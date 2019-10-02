@@ -1,11 +1,6 @@
 public class BoardGame {
-
-
-
-
         public static void main(String[] args) {
-            // Prints "Hello, World" to the terminal window.
-            System.out.println("Hello, World");
+            Player Player1 = new Player("Janosch");
+            Player Player2 = new Player("Jonas");
         }
-
 }
