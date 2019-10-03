@@ -4,6 +4,7 @@ public class Board {
         private int []snakeend = {5};
         private int []ladderstart = {2,7};
         private int []ladderend = {6,9};
+        private Object Square;
 
 
         private static boolean contains(int key, int []array){
@@ -18,7 +19,6 @@ public class Board {
         }
         public void initsquare(){
             int count = 1;
-            for(i=)
 
             while(count<=boardsize){
                     boolean multipleplayers = false;
