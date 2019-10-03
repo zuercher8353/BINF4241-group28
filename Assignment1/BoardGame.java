@@ -9,7 +9,7 @@ public class BoardGame {
         PlayerSetup playersetup = new PlayerSetup();
         Player[] players = playersetup.setup();
         for (Player player : players) {
-            System.out.println("Player Nr. "+ player.playerid +": " + player.name);
+            System.out.println("Player Nr. " + player.playerid + ": " + player.name);
         }
         //END Init Players
 
