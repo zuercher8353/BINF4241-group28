@@ -33,12 +33,13 @@ public class PlayerSetup {
                 int i = 0;
                 i < playerCount; i++) {
 
-            System.out.println("Name of player Nr. " + (i + 1) + " :");
+            System.out.println("Name of player Nr. " + (i) + " :");
             Scanner input = new Scanner(System.in);
             String playerName = input.nextLine();
             players[i] = new Player(playerName);
         }
         //END get player names
+
         return players;
     }
 }
