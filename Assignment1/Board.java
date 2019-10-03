@@ -18,6 +18,10 @@ public class Board {
         return contain;
     }
 
+    public int getBoardsize() {
+        return boardsize;
+    }
+
     public Square[] initsquare() {
         int laddercount = 0;
         int snakecount = 0;

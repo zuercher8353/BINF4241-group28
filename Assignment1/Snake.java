@@ -7,8 +7,9 @@ public class Snake extends Square {
         this.start = snakestart;
         this.end = snakeend;
     }
+
+    @Override
     public int getEnd() {
         return this.end;
     }
-
 }

@@ -3,10 +3,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int roundCount = 0;
+        int roundCount = 1;
 
         //START Init Board
-
         Board board = new Board();
         Square[] squares = board.initsquare();
         //END Init Board
@@ -20,12 +19,27 @@ public class Main {
         //END Init Players
 
         //START players play
-        while(true) {
-
+        Boolean gameEnded = false;
+        while (!gameEnded) {
+            System.out.println("\n------------ROUND " + roundCount + "------------");
             for (Player player : players) {
-                player.takeTurn(squares);
+                if (gameEnded) {
+                    break;
+                } else {
+                    player.takeTurn(squares, board);
+                    if (player.position >= board.getBoardsize() - 1) {
+                        System.out.println("************ "+player.name + " WINS!"+" ************");
+                        System.out.println("------------GAME ENDED------------\n");
+                        gameEnded = true;
+                    }
+                    else {
+                        System.out.println("\n-----Next Player-----\n");
+                    }
+                }
             }
+            roundCount++;
         }
+
         //END  players play
     }
 

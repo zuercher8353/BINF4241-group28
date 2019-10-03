@@ -6,6 +6,9 @@ public class Ladder extends Square {
         super(nr, type, occupied, multiplePlayers);
         this.start = ladderstart;
         this.end = ladderend;
-
+    }
+    @Override
+    public int getEnd() {
+        return this.end;
     }
 }
