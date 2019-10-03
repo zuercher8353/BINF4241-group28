@@ -16,29 +16,28 @@ public class Board {
                 }
                 return contain;
         }
-        public void initsquare(){
-            int count = 1;
-            for(i=)
+        public void initsquare() {
+                int laddercount = 0;
+                int snakecount = 0;
 
-            while(count<=boardsize){
-                    boolean multipleplayers = false;
-                    if (count == 1){
-                            multipleplayers = true;
-                    }
-                    if(contains(count, snakestart)){
-                            //erstelle neus feld snake
-                    }
-                    else if (contains(count,ladderstart)){
-                            //erstelle neues feld ladder
-                    }
-                    else{
-                           Square  = new Square(count, "normal", false, multipleplayers); //number sollte dem count entsprechen, da mit das Feld so heist wie sein index
-                    }
-
-                    count++;
-            }
-        }
-
+                Square[] squares = new Square[boardsize];
+                for (int count = 1; count <= boardsize; count++) {
+                        if (contains(count, snakestart)) {
+                                squares[count-1] = new Snake(count, "Snake", false, false, snakestart[snakecount], snakeend[snakecount]);
+                                snakecount++;
+                        }
+                        else if(contains(count, ladderstart)){
+                                squares[count-1] = new Ladder(count, "Ladder", false, false, ladderstart[laddercount], ladderend[laddercount]);
+                                laddercount++;
+                        }
+                        else {
+                                if(count == 1){
+                                        squares[count-1] = new Square(count, "normal", false, true);}
+                                else{
+                                squares[count-1] = new Square(count, "normal", false, false);
+                        }}
+                }
+        }}
 
 
 
