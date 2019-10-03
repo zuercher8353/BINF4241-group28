@@ -6,7 +6,9 @@ public class Snake extends Square {
         super(nr, type, occupied, multiplePlayers);
         this.start = snakestart;
         this.end = snakeend;
-
+    }
+    public int getEnd() {
+        return this.end;
     }
 
 }

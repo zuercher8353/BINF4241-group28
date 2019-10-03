@@ -1,9 +1,15 @@
 import java.util.Scanner;
 import java.util.*;
 
-public class BoardGame {
+public class Main {
     public static void main(String[] args) {
         int roundCount = 0;
+
+        //START Init Board
+
+        Board board = new Board();
+        Square[] squares = board.initsquare();
+        //END Init Board
 
         //START Init Players
         PlayerSetup playersetup = new PlayerSetup();
@@ -13,13 +19,14 @@ public class BoardGame {
         }
         //END Init Players
 
-        //START let users play
-        //while End Square not occupied
+        //START players play
+        while(true) {
 
-        for (Player player : players) {
-            player.takeTurn();
+            for (Player player : players) {
+                player.takeTurn(squares);
+            }
         }
-        //
+        //END  players play
     }
 
 }

@@ -1,8 +1,6 @@
 import java.util.Random;
 public class Die {
 
-    //public static int roll;
-
     //static means that you don`t have to creat an object of the class before,
     public static int roll(){
         int min = 1;
