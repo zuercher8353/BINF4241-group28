@@ -1,10 +1,16 @@
 public class Square {
 
-    static int nr = 0;
-
+    private int nr;
     private String type;
     private Boolean occupied;
     private Boolean multiplePlayers;
+
+    public Square(int nr, String type, Boolean occupied, Boolean multiplePlayers ){
+        this.nr = nr;
+        this.type = type;
+        this.occupied = occupied;
+        this.multiplePlayers = multiplePlayers;
+    }
 
     public void setOccupied(Boolean occupied){
         this.occupied = occupied;
