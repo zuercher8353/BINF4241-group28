@@ -18,8 +18,10 @@ public class Board {
         }
         public void initsquare(){
             int count = 1;
-            boolean multipleplayers = false;
+            for(i=)
+
             while(count<=boardsize){
+                    boolean multipleplayers = false;
                     if (count == 1){
                             multipleplayers = true;
                     }
@@ -30,7 +32,7 @@ public class Board {
                             //erstelle neues feld ladder
                     }
                     else{
-                           Square number  = new Square(count, "normal", false, multipleplayers); //number sollte dem count entsprechen, da mit das Feld so heist wie sein index
+                           Square  = new Square(count, "normal", false, multipleplayers); //number sollte dem count entsprechen, da mit das Feld so heist wie sein index
                     }
 
                     count++;
