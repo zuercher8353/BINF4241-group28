@@ -6,6 +6,7 @@ public class BoardGame {
 
         int playerCount = 0;
 
+        //START read amount of players -- 2-4 and only accepting integers
         boolean correctPlayerCount = false;
         while (!correctPlayerCount) {
             try {
@@ -23,7 +24,9 @@ public class BoardGame {
             }
         }
         System.out.println("Amount of players: " + playerCount);
+        //END read amount of players
 
+        //START get player names
         Player[] players = new Player[playerCount];
         for (
                 int i = 0;
@@ -34,6 +37,7 @@ public class BoardGame {
             String playerName = input.nextLine();
             players[i] = new Player(playerName);
         }
+        //END get player names
     }
 }
 
