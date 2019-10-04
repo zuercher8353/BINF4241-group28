@@ -38,4 +38,8 @@ public class Square {
     public String getType() {
         return type;
     }
+
+    public int getEnd(){
+        return 0;
+    }
 }

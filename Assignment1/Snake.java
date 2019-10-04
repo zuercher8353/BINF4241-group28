@@ -9,10 +9,6 @@ public class Snake extends Square {
         this.start = start;
     }
 
-    public int getEnd(){
-        return end;
-    }
-
     public void setEnd(int end) {
         this.end = end;
     }
@@ -21,7 +17,10 @@ public class Snake extends Square {
         super(nr, type, occupied, multiplePlayers);
         this.start = snakestart;
         this.end = snakeend;
-
     }
 
+    @Override
+    public int getEnd() {
+        return this.end;
+    }
 }
