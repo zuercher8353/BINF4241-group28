@@ -20,19 +20,53 @@ public class Player {
         if (this.position + moveNumber >= board.getBoardsize() - 1) {
             this.position = board.getBoardsize() - 1;
         } else {
-            this.position = this.position + moveNumber;
-            if (squares[this.position] instanceof Snake) {
-                System.out.println("You encountered a snake");
-                int newPosition = squares[this.position].getEnd();
-                System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+            int tempPos = this.position + moveNumber;
+            if(squares[tempPos].getOccupied()){
+                System.out.println("You landed on an occupied pos");
+                int newPosition = 0;
+                squares[this.position].setOccupied(false);
+                System.out.println("You moved from pos " + this.position + "to pos " + newPosition);
                 this.position = newPosition;
             }
-            if (squares[this.position] instanceof Ladder) {
-                System.out.println("Your encountered a ladder");
-                int newPosition = squares[this.position].getEnd();
-                System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
-                this.position = newPosition;
+            else {
+                if (squares[tempPos] instanceof Snake) {
+                    System.out.println("You encountered a snake");
+                    if(squares[squares[tempPos].getEnd()].getOccupied()){
+                        System.out.println("You landed on an occupied pos");
+                        int newPosition = 0;
+                        squares[this.position].setOccupied(false);
+                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        this.position = newPosition;
+                    } else {
+                        int newPosition = squares[tempPos].getEnd();
+                        squares[this.position].setOccupied(false);
+                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        this.position = newPosition;
+                        squares[this.position].setOccupied(true);
+                    }
+                }
+                if (squares[tempPos] instanceof Ladder) {
+                    System.out.println("You encountered a ladder");
+                    if(squares[squares[tempPos].getEnd()].getOccupied()){
+                        System.out.println("You landed on an occupied pos");
+                        int newPosition = 0;
+                        squares[this.position].setOccupied(false);
+                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        this.position = newPosition;
+                    } else {
+                        int newPosition = squares[tempPos].getEnd();
+                        squares[this.position].setOccupied(false);
+                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        this.position = newPosition;
+                        squares[this.position].setOccupied(true);
+                    }
+                }
+                else{
+                    this.position += moveNumber;
+                    squares[this.position].setOccupied(true);
+                }
             }
+
         }
     }
 
