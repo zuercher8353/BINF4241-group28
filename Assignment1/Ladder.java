@@ -2,8 +2,8 @@ public class Ladder extends Square {
     private int start;
     private int end;
 
-    public Ladder(int nr, String type, Boolean occupied, Boolean multiplePlayers, int ladderstart, int ladderend){
-        super(nr, type, occupied, multiplePlayers);
+    public Ladder(Boolean occupied, int ladderstart, int ladderend){
+        super(occupied);
         this.start = ladderstart;
         this.end = ladderend;
     }

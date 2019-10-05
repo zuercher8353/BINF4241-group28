@@ -1,10 +1,29 @@
 public class Board {
-    private int boardsize = 12;
-    private int[] snakestart = {10};
-    private int[] snakeend = {4};
-    private int[] ladderstart = {1, 6};
-    private int[] ladderend = {5, 8};
+    private int boardsize;
+    private int[] snakestart= new int[100];
+    private int[] snakeend = new int[100];
+    private int[] ladderstart = new int[100];
+    private int[] ladderend = new int[100];
     Square[] squares = new Square[boardsize];
+
+    public Board(int boardsize){
+        this.boardsize = boardsize;
+    }
+    public int getBoardsize() {
+        return boardsize;
+    }
+    public int[] getSnakestart(){
+        return snakestart;
+    }
+
+    public int[] getLadderstart(){
+        return ladderstart;
+    }
+
+    public int[] getLadderend() {
+        return ladderend;
+    }
+
 
     private static boolean contains(int key, int[] array) {
         boolean contain = false;
@@ -17,26 +36,33 @@ public class Board {
         return contain;
     }
 
-    public int getBoardsize() {
-        return boardsize;
-    }
 
     public Square[] initsquare() {
         int laddercount = 0;
         int snakecount = 0;
+        int c =0;
+        for(int i=1; i < (boardsize- 4);i+=5){
+            ladderstart[c] = i;
+            ladderend[c] = i+3;
+        }
+        for(int i=5; i < (boardsize- 2);i+=5){
+            snakestart[c] = i;
+            snakeend[c] = i-3;
+        }
+
 
         for (int count = 0; count < boardsize; count++) {
             if (contains(count, snakestart)) {
-                squares[count] = new Snake(count, "Snake", false, false, snakestart[snakecount], snakeend[snakecount]);
+                squares[count] = new Snake(false, snakestart[snakecount], snakeend[snakecount]);
                 snakecount++;
             } else if (contains(count, ladderstart)) {
-                squares[count] = new Ladder(count, "Ladder", false, false, ladderstart[laddercount], ladderend[laddercount]);
+                squares[count] = new Ladder(false, ladderstart[laddercount], ladderend[laddercount]);
                 laddercount++;
             } else {
                 if (count == 0) {
-                    squares[count] = new Square(count, "normal", false, true);
+                    squares[count] = new Square(false);
                 } else {
-                    squares[count] = new Square(count, "normal", false, false);
+                    squares[count] = new Square(false);
                 }
             }
         }

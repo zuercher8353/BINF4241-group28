@@ -1,15 +1,12 @@
 public class Square {
 
-    private int nr;
+
     private String type;
     private Boolean occupied;
-    private Boolean multiplePlayers;
 
-    public Square(int nr, String type, Boolean occupied, Boolean multiplePlayers ){
-        this.nr = nr;
-        this.type = type;
+
+    public Square(Boolean occupied){
         this.occupied = occupied;
-        this.multiplePlayers = multiplePlayers;
     }
 
     public void setOccupied(Boolean occupied){
@@ -19,25 +16,7 @@ public class Square {
         return this.occupied;
     }
 
-    public void setMultiplePlayersset(Boolean multiplePlayers){
-        this.multiplePlayers = multiplePlayers;
-    }
 
-    public boolean getMultiplePlayers(){
-        return this.multiplePlayers;
-    }
-
-    public int getNr(){
-        return nr;
-    }
-
-    public void setType(String type){
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
 
     public int getEnd(){
         return 0;
