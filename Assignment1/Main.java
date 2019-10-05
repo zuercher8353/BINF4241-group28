@@ -4,9 +4,25 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         int roundCount = 1;
+        int boardsizeCount = 0;
 
         //START Init Board
-        Board board = new Board();
+        boolean correctBoardsize = false;
+        while(!correctBoardsize) {
+            try {
+                System.out.println("Choose a boardsize between 10 and 50");
+                Scanner boardsize = new Scanner(System.in);
+                boardsizeCount = boardsize.nextInt();
+                if (boardsizeCount >=10 && boardsizeCount <= 50){
+                    correctBoardsize = true;
+                }else{
+                    System.out.println("Choose between 10 and 50 squares");
+                }
+            } catch (Exception e){
+                System.out.println("Invalid input");
+            }
+        }
+        Board board = new Board(boardsizeCount);
         Square[] squares = board.initsquare();
         //END Init Board
 
