@@ -15,6 +15,9 @@ public class Board {
     public int[] getSnakestart(){
         return snakestart;
     }
+    public int[] getSnakeend(){
+        return snakeend;
+    }
 
     public int[] getLadderstart(){
         return ladderstart;
