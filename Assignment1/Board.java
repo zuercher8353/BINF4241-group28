@@ -4,7 +4,7 @@ public class Board {
     private int[] snakeend = new int[100];
     private int[] ladderstart = new int[100];
     private int[] ladderend = new int[100];
-    Square[] squares = new Square[boardsize];
+
 
     public Board(int boardsize){
         this.boardsize = boardsize;
@@ -38,34 +38,36 @@ public class Board {
 
 
     public Square[] initsquare() {
+        Square[] squares = new Square[boardsize];
         int laddercount = 0;
         int snakecount = 0;
         int c =0;
+        int d =0;
         for(int i=1; i < (boardsize- 4);i+=5){
             ladderstart[c] = i;
             ladderend[c] = i+3;
+            c++;
         }
         for(int i=5; i < (boardsize- 2);i+=5){
-            snakestart[c] = i;
-            snakeend[c] = i-3;
+            snakestart[d] = i;
+            snakeend[d] = i-3;
+            d++;
         }
 
 
         for (int count = 0; count < boardsize; count++) {
-            if (contains(count, snakestart)) {
+            if (count == 0) {
+                squares[count] = new Square(false);}
+            else if (contains(count, snakestart)) {
                 squares[count] = new Snake(false, snakestart[snakecount], snakeend[snakecount]);
                 snakecount++;
             } else if (contains(count, ladderstart)) {
                 squares[count] = new Ladder(false, ladderstart[laddercount], ladderend[laddercount]);
                 laddercount++;
             } else {
-                if (count == 0) {
-                    squares[count] = new Square(false);
-                } else {
                     squares[count] = new Square(false);
                 }
             }
-        }
         return squares;
     }
 }
