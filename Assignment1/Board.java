@@ -77,7 +77,9 @@ public class Board {
 
         //START add Squares, Snakes and Ladders to board
         for(int i=0; i < boardArray.length; i++) {
-            if (squares[i] instanceof Snake || squares[i] instanceof Ladder ){
+            if (squares[i] instanceof Snake){
+                boardArray[i] = "["+squares[i].getEnd()+"<-"+i;
+            } else if(squares[i] instanceof Ladder ) {
                 boardArray[i] = "["+i+"->"+squares[i].getEnd();
             } else {
                 boardArray[i] = "["+i;
@@ -90,6 +92,7 @@ public class Board {
             boardArray[player.position] += "<"+player.name+">";
         }
 
+        //set closing brackets
         for(int i=0; i < boardArray.length; i++) {
             boardArray[i] += "]";
         }
