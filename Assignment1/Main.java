@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.*;
 
@@ -24,7 +25,14 @@ public class Main {
         }
         Board board = new Board(boardsizeCount);
         Square[] squares = board.initsquare();
+        int boardsize = board.getBoardsize();
         //END Init Board
+
+        //START build gameArray
+      /*  String[] gameArray = board.initGameArray();
+        for()*/
+
+        //END build gameArray
 
         //START Init Players
         PlayerSetup playersetup = new PlayerSetup();
@@ -55,7 +63,6 @@ public class Main {
             }
             roundCount++;
         }
-
         //END  players play
     }
 

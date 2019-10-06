@@ -73,6 +73,10 @@ public class Board {
             }
         return squares;
     }
+    public String[] initGameArray() {
+        String[] gameArray = new String[boardsize];
+        return gameArray;
+    }
 }
 
 
