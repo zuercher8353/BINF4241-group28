@@ -7,6 +7,14 @@ public class Main {
         int roundCount = 1;
         int boardsizeCount = 0;
 
+        //START Init Players
+        PlayerSetup playersetup = new PlayerSetup();
+        Player[] players = playersetup.setup();
+        /*for (Player player : players) {
+            //System.out.println("Player Nr. " + player.playerid + ": " + player.name);
+        }*/
+        //END Init Players
+
         //START Init Board
         boolean correctBoardsize = false;
         while(!correctBoardsize) {
@@ -24,40 +32,31 @@ public class Main {
             }
         }
         Board board = new Board(boardsizeCount);
-        Square[] squares = board.initsquare();
+        Square[] squares = board.initSquares();
         int boardsize = board.getBoardsize();
+
+       /* //START build boardArray
+        String[] boardArray = board.printBoardArray(squares,players);
+        //END build boardArray*/
+
         //END Init Board
-
-        //START build gameArray
-      /*  String[] gameArray = board.initGameArray();
-        for()*/
-
-        //END build gameArray
-
-        //START Init Players
-        PlayerSetup playersetup = new PlayerSetup();
-        Player[] players = playersetup.setup();
-        for (Player player : players) {
-            System.out.println("Player Nr. " + player.playerid + ": " + player.name);
-        }
-        //END Init Players
 
         //START players play
         Boolean gameEnded = false;
+        System.out.println("Intitial State: " + board.printBoardArray(squares,players));
+
         while (!gameEnded) {
-            System.out.println("\n------------ROUND " + roundCount + "------------");
+            //System.out.println("\n------------ROUND " + roundCount + "------------");
             for (Player player : players) {
                 if (gameEnded) {
                     break;
                 } else {
-                    player.takeTurn(squares, board);
+                    player.takeTurn(squares, board, players);
                     if (player.position >= board.getBoardsize() - 1) {
+                        System.out.println("Final State: " + board.printBoardArray(squares, players));
                         System.out.println("************ "+player.name + " WINS!"+" ************");
                         System.out.println("------------GAME ENDED------------\n");
                         gameEnded = true;
-                    }
-                    else {
-                        System.out.println("\n-----Next Player-----\n");
                     }
                 }
             }

@@ -22,30 +22,30 @@ public class Player {
         } else {
             int tempPos = this.position + moveNumber;
             if(squares[tempPos].getOccupied()){
-                System.out.println("You landed on an occupied pos");
+                //System.out.println("You landed on an occupied pos");
                 int newPosition = 0;
                 squares[this.position].setOccupied(false);
-                System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                //System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
                 this.position = newPosition;
             }
             else {
                 if (squares[tempPos] instanceof Snake || squares[tempPos] instanceof Ladder) {
                     if (squares[tempPos] instanceof Snake){
-                        System.out.println("You encountered a snake");
+                        //System.out.println("You encountered a snake");
                     }else {
-                        System.out.println("You encountered a ladder");
+                        //System.out.println("You encountered a ladder");
                     }
 
                     if(squares[squares[tempPos].getEnd()].getOccupied()){
-                        System.out.println("You landed on an occupied pos");
+                        //System.out.println("You landed on an occupied pos");
                         int newPosition = 0;
                         squares[this.position].setOccupied(false);
-                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        //System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
                         this.position = newPosition;
                     } else {
                         int newPosition = squares[tempPos].getEnd();
                         squares[this.position].setOccupied(false);
-                        System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
+                        //System.out.println("You moved from pos " + this.position + " to pos " + newPosition);
                         this.position = newPosition;
                         squares[this.position].setOccupied(true);
                     }
@@ -60,15 +60,16 @@ public class Player {
         }
     }
 
-    public void takeTurn(Square[] squares, Board board) {
-        System.out.println("It is your turn, " + this.name + "!");
+    public void takeTurn(Square[] squares, Board board, Player[] players) {
+        //System.out.println("Final State: " + board.printBoardArray(squares, players));
+        /*System.out.println("It is your turn, " + this.name + "!");
         System.out.println("Right now, you're on square " + this.position);
         System.out.println("Press ENTER to roll the die");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        scanner.nextLine();*/
         int dieNumber = Die.roll();
-        System.out.println("The die is showing " + dieNumber);
+        System.out.println(this.name+" rolls "+ dieNumber+ " :" + board.printBoardArray(squares, players));
         this.updatePosition(dieNumber, squares, board);
-        System.out.println("Your new Position: " + this.position);
+        //System.out.println("Your new Position: " + this.position);
     }
 }

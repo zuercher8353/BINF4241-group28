@@ -1,10 +1,11 @@
+import java.util.Arrays;
+
 public class Board {
     private int boardsize;
     private int[] snakestart= new int[100];
     private int[] snakeend = new int[100];
     private int[] ladderstart = new int[100];
     private int[] ladderend = new int[100];
-
 
     public Board(int boardsize){
         this.boardsize = boardsize;
@@ -27,7 +28,6 @@ public class Board {
         return ladderend;
     }
 
-
     private static boolean contains(int key, int[] array) {
         boolean contain = false;
         for (int i = 0; i < array.length; i++) {
@@ -39,8 +39,7 @@ public class Board {
         return contain;
     }
 
-
-    public Square[] initsquare() {
+    public Square[] initSquares() {
         Square[] squares = new Square[boardsize];
         int laddercount = 0;
         int snakecount = 0;
@@ -57,7 +56,6 @@ public class Board {
             d++;
         }
 
-
         for (int count = 0; count < boardsize; count++) {
             if (count == 0) {
                 squares[count] = new Square(false);}
@@ -73,9 +71,37 @@ public class Board {
             }
         return squares;
     }
-    public String[] initGameArray() {
-        String[] gameArray = new String[boardsize];
-        return gameArray;
+
+    public String printBoardArray(Square[] squares, Player[] players) {
+        String[] boardArray = new String[squares.length];
+
+        //START add Squares, Snakes and Ladders to board
+        for(int i=0; i < boardArray.length; i++) {
+            if (squares[i] instanceof Snake || squares[i] instanceof Ladder ){
+                boardArray[i] = "["+i+"->"+squares[i].getEnd();
+            } else {
+                boardArray[i] = "["+i;
+            }
+        }
+        //END add Squares Snakes and Ladders to board
+
+        //START add Players
+        for(Player player : players) {
+            boardArray[player.position] += "<"+player.name+">";
+        }
+
+        for(int i=0; i < boardArray.length; i++) {
+            boardArray[i] += "]";
+        }
+
+        //print BoardArray
+        StringBuilder builder = new StringBuilder();
+        for (String value : boardArray) {
+            builder.append(value);
+        }
+        String strArray = builder.toString();
+        return strArray;
+        //print BoardArray
     }
 }
 
