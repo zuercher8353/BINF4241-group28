@@ -30,7 +30,6 @@ public class Game {
     public  void playGame(Board board,Square[] squares, Player[] players) {
         Boolean gameEnded = false;
         System.out.println("Intitial State:          " + board.printBoardArray(squares,players));
-
         while (!gameEnded) {
             for (Player player : players) {
                 if (gameEnded) {
