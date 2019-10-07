@@ -6,5 +6,5 @@
 ** GAME SETUP **
 
 - a minimum of 2 and a maximum of 4 players is required
-- board field reaching from 0 to (input size - 1), by a minimum of 10 and a maximum of 100
+- board size is limited by a minimum of 10 and a maximum of 100
 - no fields occupied by snake and ladder at the same time (end and start)
