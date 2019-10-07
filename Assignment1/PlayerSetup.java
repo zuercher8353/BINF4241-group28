@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class PlayerSetup {
 
     public Player[] setup() {
-        //return object array of Players, with name and id
 
         int playerCount = 0;
 

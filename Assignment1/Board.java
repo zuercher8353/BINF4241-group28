@@ -13,22 +13,8 @@ public class Board {
     public int getBoardsize() {
         return boardsize;
     }
-    public int[] getSnakestart(){
-        return snakestart;
-    }
-    public int[] getSnakeend(){
-        return snakeend;
-    }
 
-    public int[] getLadderstart(){
-        return ladderstart;
-    }
-
-    public int[] getLadderend() {
-        return ladderend;
-    }
-
-    private static boolean contains(int key, int[] array) {
+    private boolean contains(int key, int[] array) {
         boolean contain = false;
         for (int i = 0; i < array.length; i++) {
             if (key == array[i]) {
@@ -78,18 +64,18 @@ public class Board {
         //START add Squares, Snakes and Ladders to board
         for(int i=0; i < boardArray.length; i++) {
             if (squares[i] instanceof Snake){
-                boardArray[i] = "["+squares[i].getEnd()+"<-"+i;
+                boardArray[i] = "["+(squares[i].getEnd()+1)+"<-"+(i+1);
             } else if(squares[i] instanceof Ladder ) {
-                boardArray[i] = "["+i+"->"+squares[i].getEnd();
+                boardArray[i] = "["+(i+1)+"->"+(squares[i].getEnd()+1);
             } else {
-                boardArray[i] = "["+i;
+                boardArray[i] = "["+(i+1);
             }
         }
         //END add Squares Snakes and Ladders to board
 
         //START add Players
         for(Player player : players) {
-            boardArray[player.position] += "<"+player.name+">";
+            boardArray[player.getPosition()] += "<"+player.getName()+">";
         }
 
         //set closing brackets
