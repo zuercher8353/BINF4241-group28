@@ -2,14 +2,13 @@ import java.lang.reflect.Array;
 
 public class Board {
     private int boardsize = 8;
-    public Figure[][] Board = new Figure[boardsize][boardsize];
+    public Figure[][] chessBoard = new Figure[boardsize][boardsize];
 
     public Board() {
         for (int i=0;i<boardsize;i++) {
             for (int j=0; i<boardsize;i++)
-                Board[i][j] = null;
+                chessBoard[i][j] = null;
         }
-
         for (int k=0;k<boardsize;k++) {
             //Board[7][k] = new Bauer();
             //Board[2][k] = new Bauer();
@@ -21,7 +20,7 @@ public class Board {
         for (int i=0;i<boardsize;i++) {
             System.out.print(i+" ");            //y axis (on the left)
             for (int j=0; j<boardsize;j++) {
-                if (Board[i][j] == null) {
+                if (chessBoard[i][j] == null) {
                     System.out.print("[  ]");
                 } else {
                     //print Figure Type and Color

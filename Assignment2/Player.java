@@ -20,4 +20,7 @@ public class Player {
     public void getColor() {
 
     }
+
+    //TODO add Colors
+    //TODO possibly integrate  //java.util.Iterator<E> as suggested in lecture
 }
