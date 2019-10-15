@@ -5,8 +5,6 @@ public class Game {
     public Players players = new Players();
     public Board board = new Board();
 
-
-
     public void createPlayers() {
 
         int nrOfPlayers = 0;
