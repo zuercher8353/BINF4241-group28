@@ -23,10 +23,8 @@ public class Player {
         return this.name;
     }
 
-    public void setColor(COLOR color) {
-    }
-
-    public void getColor() {
+    public Boolean isPlayerWhite() {
+        return isWhite;
     }
 
     //TODO add Colors

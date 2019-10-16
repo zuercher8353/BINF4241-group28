@@ -1,33 +1,64 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Board {
     private int boardsize = 8;
 
-    private Figure[][] chessBoard = new Figure[boardsize][boardsize];
+    private Object[][] chessBoard = new Object[boardsize][boardsize];
 
     public Board() {
-        for (int i=0;i<boardsize;i++) {
-            for (int j=0; i<boardsize;i++)
+        for (int i = 0; i < boardsize; i++) {
+            for (int j = 0; i < boardsize; i++)
                 chessBoard[i][j] = null;
         }
-        for (int k=0;k<boardsize;k++) {
-            //Board[7][k] = new Bauer();
-            //Board[2][k] = new Bauer();
+
+        //START initialize figures, black at the top, white at the bottom
+
+        //init all pawns
+        for (int k = 0; k < boardsize; k++) {
+            chessBoard[1][k] = new Pawn(false);
+            chessBoard[6][k] = new Pawn(true);
         }
+        //init towers
+        chessBoard[0][0] = new Rock(false);
+        chessBoard[0][7] = new Rock(false);
+        chessBoard[7][0] = new Rock(true);
+        chessBoard[7][7] = new Rock(true);
+
+        //init knights
+        chessBoard[0][1] = new Knight(false);
+        chessBoard[0][6] = new Knight(false);
+        chessBoard[6][1] = new Knight(true);
+        chessBoard[6][6] = new Knight(true);
+
+        //init bishops
+        chessBoard[0][2] = new Bishop(false);
+        chessBoard[0][5] = new Bishop(false);
+        chessBoard[7][2] = new Bishop(true);
+        chessBoard[7][5] = new Bishop(true);
+
+        //init queen
+        chessBoard[0][4] = new Queen(false);
+        chessBoard[7][4] = new Queen(true);
+
+        //init king
+        chessBoard[0][5] = new King(false);
+        chessBoard[7][5] = new King(false);
+
+        //START initialize figures
     }
 
 
-
     public void printBoard() {
-        System.out.print("   0   1   2   3   4   5   6   7\n"); //x axis
-        for (int i=0;i<boardsize;i++) {
-            System.out.print(i+" ");            //y axis (on the left)
-            for (int j=0; j<boardsize;j++) {
+        System.out.print("   a   b   c   d   e   f   g   h\n"); //x axis
+        for (int i = 0; i < boardsize; i++) {
+            System.out.print(i + " ");            //y axis (on the left)
+            for (int j = 0; j < boardsize; j++) {
                 if (chessBoard[i][j] == null) {
                     System.out.print("[  ]");
                 } else {
-                    //print Figure Type and Color
+                    System.out.print("[Fig]");
                 }
             }
             System.out.print("\n");
@@ -39,18 +70,10 @@ public class Board {
 
     }
 
+
     //public void moveFigure(//whole move array) {
-        //kill figure or just move
+    //kill figure or just move
     //}
-
-    public Figure[][] getFiguresArray() {
-        return chessBoard;
-    }
-
-
-
-
-
 
     /*public tryMove(int[] movearray) {
 
@@ -82,5 +105,7 @@ public class Board {
         // nicht meine Figur?
 
         //return array
+
+     */
 
 }
