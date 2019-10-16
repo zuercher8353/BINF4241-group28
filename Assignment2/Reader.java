@@ -28,19 +28,22 @@ public class Reader {
                 //check empty input
                 if (!moveInput.isEmpty()) {
                     //check if Indices are in Range
-                    if (Arrays.asList(chars).contains(startX)) {
-                        moveArray[0] = startX;
-                    } else {
-                        throw new ArithmeticException("Index out of Range");
-                    }
+                    for (int i = 0; i < chars.length; i ++) {
+                        if (startX == chars[i]) {
+                            moveArray[0] = i;
+                        } else {
+                            throw new ArithmeticException("Index out of Range");
+                        }
 
+
+                        if (endX == chars[i]) {
+                            moveArray[2] = i;
+                        } else {
+                            throw new ArithmeticException("Index out of Range");
+                        }
+                    }
                     if (startY >= 0 && startY < 8) {
                         moveArray[1] = startY;
-                    } else {
-                        throw new ArithmeticException("Index out of Range");
-                    }
-                    if (Arrays.asList(chars).contains(endX)) {
-                        moveArray[2] = endX;
                     } else {
                         throw new ArithmeticException("Index out of Range");
                     }
