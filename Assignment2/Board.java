@@ -36,7 +36,31 @@ public class Board {
 
     }
 
+    //public void moveFigure(//whole move array) {
+        //kill figure or just move
+    //}
+
     public Figure[][] getFiguresArray() {
         return chessBoard;
+    }
+
+    //public tryMove(inputarray) {
+        //figure auf dem input
+        // meine Figur?
+            //figure move islegal, type of move?
+                //figure path? return arraylist path of fields stepped
+                    //check if arraylist path is free on board
+                        //yes?
+                            //is endfield occupied by own figure?
+                                //no?
+                                    //move
+                                //yes?
+                                    // dont move, field is occupied by own figure , tell user cannot move
+                        //no?
+                            //there is a figure in your way
+            //figure is not able to move like this, return false
+        // nicht meine Figur?
+
+        //return array
     }
 }

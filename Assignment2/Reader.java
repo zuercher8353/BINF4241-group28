@@ -19,11 +19,12 @@ public class Reader {
                 System.out.print("Move (Figure X, Position xx, Target xx: ");
                 String moveInput = moveScanner.nextLine(); // Read Input
 
-                //validate Input
+
 
                 //check empty input
                 if (!moveInput.isEmpty()) {
 
+                    //convert input
                     char figure = Character.toUpperCase(moveInput.charAt(0));
                     char startX = Character.toUpperCase(moveInput.charAt(1));
                     int startY = Character.getNumericValue(moveInput.charAt(2));
@@ -31,12 +32,15 @@ public class Reader {
                     int endY = Character.getNumericValue(moveInput.charAt(4));
 
                     //TODO Mulitple Exceptions
+
+                    //validate Input
                     if(!validateFigureChar(figure)) {
                         throw new Exception("None Existing Figure");
                     }
                     if((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
                         throw new Exception("None Existing Figure");
                     }
+
                     //check if Indices are in Range
                     for (int i = 0; i < fieldSTRs.length; i ++) {
                         if (startX == fieldSTRs[i]) {

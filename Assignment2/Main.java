@@ -7,6 +7,7 @@ public class Main {
         Players players = new Players();
         Reader reader = new Reader();
         players.createPlayers();
+        board.getFiguresArray();
 
         board.printBoard();
 
@@ -19,6 +20,9 @@ public class Main {
                 //TODO Player take turn
                 System.out.println("It's your turn, "+player.getName()+"\n");
                 int[] moveArray = reader.readMove();
+                //while (!board.tryMove(inputarray))
+                // tell user move is not legal, read another input
+                // int[] moveArray = reader.readMove();;
             }
         }
     }
