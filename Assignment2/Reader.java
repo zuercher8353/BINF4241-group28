@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Reader {
     private enum FigureSTRs {P, T, N, Q, K}
 
-    public void readMove() {
+    public int[] readMove() {
         int[] moveArray = new int[4];
         Boolean validInput = false;
         char[] chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
@@ -35,7 +35,6 @@ public class Reader {
                             throw new ArithmeticException("Index out of Range");
                         }
 
-
                         if (endX == chars[i]) {
                             moveArray[2] = i;
                         } else {
@@ -57,8 +56,9 @@ public class Reader {
 
 
             } catch (Exception e) {
-                System.out.print("Invalid Input!");
+                System.out.println("Invalid Input!");
             }
+        return moveArray;
     }
 
     private Boolean validateFigureChar(char inputFigureSTR) {
