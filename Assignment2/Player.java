@@ -17,8 +17,8 @@ public class Player {
 
     public void setColor(COLOR color) {
     }
-    public void getColor() {
 
+    public void getColor() {
     }
 
     //TODO add Colors
