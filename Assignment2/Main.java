@@ -9,16 +9,17 @@ public class Main {
         players.createPlayers();
 
         board.printBoard();
-        boolean gameEnded = false;
+
 
         //TODO resolve issue with Players List Array
         List<Player> allPlayers = players.getPlayers();
-
-        //while(!gameEnded) {
+        boolean gameEnded = false;
+        while(!gameEnded) {
             for (Player player : allPlayers) {
-                System.out.println(player.getName());
+                //TODO Player take turn
+                System.out.println("It's your turn, "+player.getName()+"\n");
                 int[] moveArray = reader.readMove();
             }
-        //}
+        }
     }
 }
