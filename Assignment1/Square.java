@@ -16,8 +16,6 @@ public class Square {
         return this.occupied;
     }
 
-
-
     public int getEnd(){
         return 0;
     }
