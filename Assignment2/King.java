@@ -4,10 +4,14 @@ public class King implements Figur {
 
     private Boolean hasmoved;
     private Boolean iswhite;
+    private int figurid;
+    static int id = 0;
 
     public King(Boolean iswhite){
         this.hasmoved = false;
         this.iswhite = iswhite;
+        this.figurid = id;
+        id += 1;
 
     }
 

@@ -1,8 +1,14 @@
 import java.util.ArrayList;
 public class Queen implements Figur {
+
     private Boolean iswhite;
+    private int figurid;
+    static int id = 0;
+
     public Queen(Boolean iswhite){
         this.iswhite = iswhite;
+        this.figurid = id;
+        id += 1;
     }
 
     public Boolean iswhite() {
