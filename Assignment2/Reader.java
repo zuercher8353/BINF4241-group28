@@ -31,6 +31,7 @@ public class Reader {
                     for (int i = 0; i < chars.length; i ++) {
                         if (startX == chars[i]) {
                             moveArray[0] = i;
+                            //System.out.println(moveArray);
                         } else {
                             throw new ArithmeticException("Index out of Range");
                         }
@@ -53,7 +54,6 @@ public class Reader {
                     }
                     validInput = true;
                 }
-
 
             } catch (Exception e) {
                 System.out.println("Invalid Input!");
