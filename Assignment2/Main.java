@@ -7,10 +7,8 @@ public class Main {
         Players players = new Players();
         Reader reader = new Reader();
         players.createPlayers();
-        board.getFiguresArray();
 
         board.printBoard();
-
 
         //TODO resolve issue with Players List Array
         List<Player> allPlayers = players.getPlayers();

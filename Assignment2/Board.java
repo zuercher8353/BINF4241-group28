@@ -40,10 +40,6 @@ public class Board {
         //kill figure or just move
     //}
 
-    public Figure[][] getFiguresArray() {
-        return chessBoard;
-    }
-
     //public tryMove(inputarray) {
         //figure auf dem input
         // meine Figur?
@@ -62,5 +58,5 @@ public class Board {
         // nicht meine Figur?
 
         //return array
-    }
+
 }
