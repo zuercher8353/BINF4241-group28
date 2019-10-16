@@ -28,6 +28,7 @@ public class Queen implements Figur {
 
         }
 
+
         return true;
     }
 //path ist ohne start und end punkt, alle felder die von der Figur beschritten werden.
