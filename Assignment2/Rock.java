@@ -1,15 +1,28 @@
 import java.util.ArrayList;
 public class Rock implements Figur {
-    boolean hasmoved;
-    public Rock(){
+
+
+    private Boolean iswhite;
+    private Boolean hasmoved;
+    private int figurid;
+    static int id = 0;
+
+    public Rock(Boolean iswhite){
         this.hasmoved = false;
+        this.iswhite = iswhite;
+        this.figurid = id;
+        id += 1;
     }
 
-    public boolean islegal(int[] array){
+    public Boolean iswhite() {
+        return iswhite;
+    }
+
+    public Boolean islegal(int[] array){
         if(array[0] != array[2] && array[1] != array[3] ) {
             return false;
         }
-        if(Board.getFiguresArray(array[2],array[3]).getcolour == Board.getFiguresArray(array[0],array[1]).getcolour ){
+        if(Board.getFiguresArray(array[2],array[3]).iswhite() == Board.getFiguresArray(array[0],array[1]).iswhite() ){
             return false;
         }
         ArrayList <Integer> path = path(array);

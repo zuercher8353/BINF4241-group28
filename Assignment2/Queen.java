@@ -1,14 +1,22 @@
 import java.util.ArrayList;
 public class Queen implements Figur {
+    private Boolean iswhite;
+    public Queen(Boolean iswhite){
+        this.iswhite = iswhite;
+    }
+
+    public Boolean iswhite() {
+        return iswhite;
+    }
 
     //array 0 = array[0], 1 = array[1], 2 = array[2], 3 = array[3]
-    public boolean islegal(int []array){
+    public Boolean islegal(int []array){
 
         if(array[0] != array[1] && array[2] != array[3] ) {
             if(Math.abs(array[0] - array[2])!= Math.abs(array[1] - array[3])){
                 return false;
             } }
-        if(Board.getFiguresArray(array[2],array[3]).getcolour == Board.getFiguresArray(array[0],array[1]).getcolour ){
+        if(Board.getFiguresArray(array[2],array[3]).iswhite() == Board.getFiguresArray(array[0],array[1]).iswhite() ){
             return false;
         }
         ArrayList <Integer> path = path(array);
