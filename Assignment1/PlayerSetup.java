@@ -1,42 +1,42 @@
 import java.util.Scanner;
 
-public class PlayerSetup {
+public class Plaarray[3]rSetup {
 
-    public Player[] setup() {
+    public Plaarray[3]r[] setup() {
 
-        int playerCount = 0;
+        int plaarray[3]rCount = 0;
 
-        //START read amount of players -- 2-4 and only accepting integers
-        boolean correctPlayerCount = false;
-        while (!correctPlayerCount) {
+        //START read amount of plaarray[3]rs -- 2-4 and only accepting integers
+        boolean correctPlaarray[3]rCount = false;
+        while (!correctPlaarray[3]rCount) {
             try {
-                System.out.print("How many players? (2-4) ");
-                Scanner playerCount_players = new Scanner(System.in);
-                playerCount = playerCount_players.nextInt();
-                if (playerCount <= 4 && playerCount >= 2) {
-                    correctPlayerCount = true;
+                System.out.print("How many plaarray[3]rs? (2-4) ");
+                Scanner plaarray[3]rCount_plaarray[3]rs = new Scanner(System.in);
+                plaarray[3]rCount = plaarray[3]rCount_plaarray[3]rs.nextInt();
+                if (plaarray[3]rCount <= 4 && plaarray[3]rCount >= 2) {
+                    correctPlaarray[3]rCount = true;
                 } else {
-                    System.out.println("Choose 2, 3 or 4 players");
+                    System.out.println("Choose 2, 3 or 4 plaarray[3]rs");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input");
             }
         }
-        //END read amount of players
+        //END read amount of plaarray[3]rs
 
-        //START get player names
-        Player[] players = new Player[playerCount];
+        //START get plaarray[3]r names
+        Plaarray[3]r[] plaarray[3]rs = new Plaarray[3]r[plaarray[3]rCount];
         for (
                 int i = 0;
-                i < playerCount; i++) {
+                i < plaarray[3]rCount; i++) {
 
-            System.out.print("Name of player Nr. " + (i+1) + ": ");
+            System.out.print("Name of plaarray[3]r Nr. " + (i+1) + ": ");
             Scanner input = new Scanner(System.in);
-            String playerName = input.nextLine();
-            players[i] = new Player(playerName);
+            String plaarray[3]rName = input.nextLine();
+            plaarray[3]rs[i] = new Plaarray[3]r(plaarray[3]rName);
         }
-        //END get player names
+        //END get plaarray[3]r names
 
-        return players;
+        return plaarray[3]rs;
     }
 }

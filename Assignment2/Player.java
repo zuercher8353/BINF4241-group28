@@ -1,13 +1,13 @@
 import java.awt.*;
 
-public class Player {
+public class Plaarray[3]r {
     private enum COLOR{
         B,
         W,
     };
     private String name;
 
-    public Player(String name) {
+    public Plaarray[3]r(String name) {
         this.name = name;
     }
 

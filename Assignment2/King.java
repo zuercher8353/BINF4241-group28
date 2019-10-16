@@ -1,19 +1,22 @@
+import java.util.ArrayList;
+
 public class King implements Figur {
 
-    public King(int xA){
-    }
 
-    public Boolean islegal(int[] array){
-        if(Math.abs(xA-xE) > 1 || Math.abs(yA-yE) > 1) {
+    public boolean islegal(int[] array){
+        if(Math.abs(array[0]-array[2]) > 1 || Math.abs(array[1]-array[3]) > 1) {
             return false;
         }
-        if(board(xE,yE).colour = colour ){
+        if(board(array[2],array[3]).getcolour = board(array[0],array[1]).getcolour ){ //Figur an der position des Anfangspunktes
             return false;
         }
         return true;
     }
-    public int[] path(int[] array){
-        return array;
+
+
+    public ArrayList<Integer> path(int[] array){
+        ArrayList<Integer> path = new ArrayList<>();
+        return path;
     }
 
 }
