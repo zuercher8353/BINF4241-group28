@@ -17,8 +17,8 @@ public class Plaarray[3]r {
 
     public void setColor(COLOR color) {
     }
-    public void getColor() {
 
+    public void getColor() {
     }
 
     //TODO add Colors

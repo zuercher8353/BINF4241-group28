@@ -2,7 +2,8 @@ import java.lang.reflect.Array;
 
 public class Board {
     private int boardsize = 8;
-    public Figure[][] chessBoard = new Figure[boardsize][boardsize];
+
+    private Figure[][] chessBoard = new Figure[boardsize][boardsize];
 
     public Board() {
         for (int i=0;i<boardsize;i++) {
@@ -33,5 +34,9 @@ public class Board {
 
     public void removeFigure(int i, int j) {
 
+    }
+
+    public Figure[][] getFiguresArray() {
+        return chessBoard;
     }
 }
