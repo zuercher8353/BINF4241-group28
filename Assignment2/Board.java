@@ -62,5 +62,5 @@ public class Board {
         // nicht meine Figur?
 
         //return array
-    }
+    //}
 }
