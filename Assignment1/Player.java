@@ -65,5 +65,6 @@ public class Player {
         String repeated = new String(new char[remainder]).replace("\0", " ");
         System.out.println(this.name+" rolls "+ dieNumber+": "+repeated+ board.printBoardArray(squares, players));
         this.updatePosition(dieNumber, squares, board);
+
     }
 }
