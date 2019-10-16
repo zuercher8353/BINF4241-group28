@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Board {
     private int boardsize = 8;
@@ -46,7 +47,23 @@ public class Board {
         return chessBoard;
     }
 
-    //public tryMove(inputarray) {
+
+
+
+
+
+    /*public tryMove(int[] movearray) {
+
+    ArrayList<Integer> path = Figur.path(movearray);
+
+    if(chessBoard[movearray[2],movearray[3]].iswhite() == chessBoard[movearray[0],movearray[1]].iswhite()){
+        return false;
+    }
+    int x = path.size();
+    for(int i=0; i<x; i +=2){
+        if(Board.getFiguresArray(path.get(i),path.get(i+1)) != null){
+            return false;
+        }
         //figure auf dem input
         // meine Figur?
             //figure move islegal, type of move?

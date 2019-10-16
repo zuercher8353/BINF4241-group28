@@ -19,9 +19,6 @@ public class King implements Figur {
         if(Math.abs(array[0]-array[2]) > 1 || Math.abs(array[1]-array[3]) > 1) {
             return false;
         }
-        if(Board.getFiguresArray(array[2],array[3]).iswhite() == Board.getFiguresArray(array[0],array[1]).iswhite() ){ //Figur an der position des Anfangspunktes
-            return false;
-        }
         return true;
     }
 

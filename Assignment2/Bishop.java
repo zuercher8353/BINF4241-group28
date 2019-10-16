@@ -23,17 +23,6 @@ public class Bishop implements Figur {
                 islegal = true;
             }
         }
-        if(islegal){
-            if(Board.getFiguresArray(array[2],array[3]).iswhite() == Board.getFiguresArray(array[0],array[1]).iswhite() ){
-                return false;
-            }
-            ArrayList <Integer> path = path(array);
-            int x = path.size();
-            for(int i=0; i<x; i +=2){
-                if(Board.getFiguresArray(path.get(i),path.get(i+1)) != null){
-                    return false;
-                }
-            }}
         return islegal;
     }
 
