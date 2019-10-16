@@ -8,22 +8,16 @@ public class Queen implements Figur {
             if(Math.abs(array[0] - array[2])!= Math.abs(array[1] - array[3])){
                 return false;
             } }
-        if(board(array[2],array[3]) != )
-        while (array[0] != array[2] || array[1] != array[3]){
-            if(board.isempty(array[0],array[1])){
+        if(Board.getFiguresArray(array[2],array[3]).getcolour == Board.getFiguresArray(array[0],array[1]).getcolour ){
+            return false;
+        }
+        ArrayList <Integer> path = path(array);
+        int x = path.size();
+        for(int i=0; i<x; i +=2){
+            if(Board.getFiguresArray(path.get(i),path.get(i+1)) != null){
                 return false;
             }
-            if(array[0] != array[2]){
-                array[0]++;
-            }
-            if(array[1] != array[3]) {
-                array[1]++;
-            }
-            if(array[0] == array[2] && array[1] == array[3]){
-                if(board.isown(array[0],array[1])){
-                    return false;
-                }
-            }
+
         }
 
         return true;
