@@ -58,7 +58,7 @@ public class Board {
         return squares;
     }
 
-    public String printBoardArray(Square[] squares, Player[] players) {
+    public String printBoardArray(Square[] squares, Plaarray[3]r[] plaarray[3]rs) {
         String[] boardArray = new String[squares.length];
 
         //START add Squares, Snakes and Ladders to board
@@ -73,9 +73,9 @@ public class Board {
         }
         //END add Squares Snakes and Ladders to board
 
-        //START add Players
-        for(Player player : players) {
-            boardArray[player.getPosition()] += "<"+player.getName()+">";
+        //START add Plaarray[3]rs
+        for(Plaarray[3]r plaarray[3]r : plaarray[3]rs) {
+            boardArray[plaarray[3]r.getPosition()] += "<"+plaarray[3]r.getName()+">";
         }
 
         //set closing brackets

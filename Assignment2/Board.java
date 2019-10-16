@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Board {
     private int boardsize = 8;
@@ -15,6 +16,8 @@ public class Board {
             //Board[2][k] = new Bauer();
         }
     }
+
+
 
     public void printBoard() {
         System.out.print("   0   1   2   3   4   5   6   7\n"); //x axis
@@ -40,6 +43,27 @@ public class Board {
         //kill figure or just move
     //}
 
+    public Figure[][] getFiguresArray() {
+        return chessBoard;
+    }
+
+
+
+
+
+
+    /*public tryMove(int[] movearray) {
+
+    ArrayList<Integer> path = Figur.path(movearray);
+
+    if(chessBoard[movearray[2],movearray[3]].iswhite() == chessBoard[movearray[0],movearray[1]].iswhite()){
+        return false;
+    }
+    int x = path.size();
+    for(int i=0; i<x; i +=2){
+        if(Board.getFiguresArray(path.get(i),path.get(i+1)) != null){
+            return false;
+        }
     //public tryMove(inputarray) {
         //figure auf dem input
         // meine Figur?
