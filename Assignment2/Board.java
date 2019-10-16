@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 
 public class Board {
     private int boardsize = 8;
+
     public Figure[][] chessBoard = new Figure[boardsize][boardsize];
 
     public Board() {

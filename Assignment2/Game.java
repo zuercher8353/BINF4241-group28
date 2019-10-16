@@ -5,13 +5,14 @@ public class Game {
     public Players players = new Players();
     public Board board = new Board();
 
+
     public void runGame() {
         boolean gameEnded = false;
+        board.printBoard();
 
         //TODO resolve issue with Players List Array
         //while(!gameEnded) {
             //for(Player player: players) {
-
             //}
         //}
 
