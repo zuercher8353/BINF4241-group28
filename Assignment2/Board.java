@@ -254,16 +254,14 @@ public class Board {
             Pawn endField1 = (Pawn)endField;
             endFieldColor = endField1.iswhite();
         }
+        else{
+            endFieldColor = true;
+        }
         //Figur at Startfield == Figurtyp of input
         if(!figurtyp.equals(token)){
             System.out.println("The input figuretyp doesn`t match with the figuretyp that is on the startfield");
             return false;
         }
-        else{
-            endFieldColor = true;
-        }
-
-
             //eigene Figur?
         if (startFieldColor!= player.isPlayerWhite()) {
             System.out.println("The figure that you try to move is not yours");
