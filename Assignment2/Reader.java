@@ -1,12 +1,15 @@
 import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Reader {
-    private enum FigureSTRs {P, T, N, Q, K}
+    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
+    private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-    public void readMove() {
-        int[] moveArray = new int[5];
+    public int[] readMove() {
+        int[] moveArray = new int[4];
         Boolean validInput = false;
+
 
         while (!validInput)
 
@@ -16,46 +19,70 @@ public class Reader {
                 System.out.print("Move (Figure X, Position xx, Target xx: ");
                 String moveInput = moveScanner.nextLine(); // Read Input
 
-                //validate Input
-                char figure = moveInput.charAt(0);
-                int startX = moveInput.charAt(1);
-                int startY = Character.getNumericValue(moveInput.charAt(2));
-                int endX = Character.getNumericValue(moveInput.charAt(3));
-                int endY = Character.getNumericValue(moveInput.charAt(4));
 
-                //check if Indices are in Range
-                if (startX >= 0 && startX < 8) {
-                    moveArray[0] = startX;
+
+                //check empty input
+                if (!moveInput.isEmpty()) {
+
+                    //convert input
+                    char figure = Character.toUpperCase(moveInput.charAt(0));
+                    char startX = Character.toUpperCase(moveInput.charAt(1));
+                    int startY = Character.getNumericValue(moveInput.charAt(2));
+                    char endX = Character.toUpperCase(moveInput.charAt(3));
+                    int endY = Character.getNumericValue(moveInput.charAt(4));
+
+                    //TODO Mulitple Exceptions
+
+                    //validate Input
+                    if(!validateFigureChar(figure)) {
+                        throw new Exception("None Existing Figure");
+                    }
+                    if((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
+                        throw new Exception("None Existing Figure");
+                    }
+
+                    //check if Indices are in Range
+                    for (int i = 0; i < fieldSTRs.length; i ++) {
+                        if (startX == fieldSTRs[i]) {
+                            moveArray[0] = i;
+                        }
+                        if (endX == fieldSTRs[i]) {
+                            moveArray[2] = i;
+                        }
+                    }
+                    if (startY >= 0 && startY < 8) {
+                        moveArray[1] = startY;
+                    } else {
+                        throw new ArithmeticException("Index out of Range");
+                }
+                    if (endY >= 0 && endY < 8) {
+                        moveArray[3] = endY;
+                    } else {
+                        throw new ArithmeticException("Index out of Range");
+                    }
+                    validInput = true;
                 } else {
-                    throw new ArithmeticException("Index out of Range");
+                    System.out.println("empty Input!");
                 }
 
-                if (startY >= 0 && startY < 8) {
-                    moveArray[1] = startY;
-                } else {
-                    throw new ArithmeticException("Index out of Range");
-                }
-                if (endX >= 0 && endX < 8) {
-                    moveArray[2] = endX;
-                } else {
-                    throw new ArithmeticException("Index out of Range");
-                }
-                if (endY >= 0 && endY < 8) {
-                    moveArray[3] = endY;
-                } else {
-                    throw new ArithmeticException("Index out of Range");
-                }
-
-                validInput = true;
 
             } catch (Exception e) {
-                System.out.print("Invalid Input!");
+                System.out.println("Invalid Input!");
             }
+        return moveArray;
     }
 
     private Boolean validateFigureChar(char inputFigureSTR) {
-        for (FigureSTRs figureSTR : FigureSTRs.values()) {
-            if (figureSTR.name().equals(inputFigureSTR)) {
+        for (char figureSTR : FigureSTRs) {
+            if (figureSTR == inputFigureSTR) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private Boolean validateFieldChar(char inputfieldSTR) {
+        for (char fieldSTR : fieldSTRs) {
+            if (fieldSTR == inputfieldSTR) {
                 return true;
             }
         }
