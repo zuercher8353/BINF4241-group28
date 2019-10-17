@@ -13,6 +13,7 @@ public class Board {
                 chessBoard[i][j] = null;
         }
 
+
         //START initialize figures, black at the top, white at the bottom
 
         //init all pawns
@@ -20,6 +21,7 @@ public class Board {
             chessBoard[1][k] = new Pawn(false);
             chessBoard[6][k] = new Pawn(true);
         }
+
         //init towers
         chessBoard[0][0] = new Rock(false);
         chessBoard[0][7] = new Rock(false);
@@ -111,8 +113,10 @@ public class Board {
         System.out.print("\n");
     }
 
-    public void removeFigure(int i, int j) {
-
+    public void removeFigure(int i, int j, Player player) {
+        Object object = chessBoard[i][j];
+        player.addEatenPiece(object);
+        chessBoard[i][j] = null;
     }
 
     public void moveFigure(int[] moveArrayINT) {
@@ -129,6 +133,19 @@ public class Board {
         }
     }
 
+    public King findKing(String color) {
+        for (Object object : chessBoard) {
+            if (object.getClass() == King.class) {
+                King king = (King) object;
+                if(king.iswhite()) {
+                    return king;
+                }
+            }
+        }
+        System.out.println("no king found");
+        return null;
+    }
+
     //public void moveFigure(//whole move array) {
     //kill figure or just move
     //}
@@ -141,14 +158,16 @@ public class Board {
         boolean endFieldColor;
         String token;
 
+
         int[] array = new int[4];
-        String figurtyp = list.get(0).toString();
-        Object startField = chessBoard[array[0]][array[1]];
-        Object endField = chessBoard[array[2]][array[3]];
 
         for(int i=1; i <= 4; i++){
             array[i-1] = (Integer) list.get(i);
         }
+
+        String figurtyp = list.get(0).toString();
+        Object startField = chessBoard[array[0]][array[1]];
+        Object endField = chessBoard[array[2]][array[3]];
 
         if (startField == null) {                                              //figur auf dem Anfangspunkt
             System.out.println("The chosen startfield is empty");
@@ -202,6 +221,10 @@ public class Board {
                 return false;
             }
         }
+        else {
+            token = null;
+            startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
+        }
 
         if(endField.getClass() == Bishop.class) {
             Bishop endField1 = (Bishop)endField;
@@ -232,6 +255,9 @@ public class Board {
             System.out.println("The input figuretyp doesn`t match with the figuretyp that is on the startfield");
             return false;
         }
+        else{
+            endFieldColor = true;
+        }
 
             //eigene Figur?
         if (startFieldColor!= player.isPlayerWhite()) {
@@ -243,7 +269,7 @@ public class Board {
                 System.out.println("Endfield is occupied by own figure");
             }
         }
-
+        return true;
         }
 
     public boolean isLegalPath(Figur startField, int[] array){
@@ -263,8 +289,6 @@ public class Board {
         }
         return true;
     }
-
-
 
     //public tryMove(inputarray) {
         //figure auf dem input

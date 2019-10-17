@@ -27,6 +27,15 @@ public class Player {
         return isWhite;
     }
 
+    public String getColourSTR() {
+        if (this.isPlayerWhite()) {
+            return "W";
+        }
+        else {
+            return "B";
+        }
+    }
+
     public void addEatenPiece(Object object) {
         eatenPieces.add(object);
         return;

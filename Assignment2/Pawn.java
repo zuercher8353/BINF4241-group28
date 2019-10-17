@@ -28,13 +28,13 @@ public class Pawn implements Figur {
         int x = array[0]-array[2];
         int y = array[1]-array[3];
 
-        if((x == -1 && y == 0 && iswhite)|| (x == -2 && y == 0 && !hasmoved && iswhite) ){
+        if((x == -1 && y == 0 && !iswhite)|| (x == -2 && y == 0 && !hasmoved && !iswhite) ){
             return true;
         }
-        else if((x == 1 && y == 0 && !iswhite)||(x == 2 && y == 0 && !hasmoved && !iswhite)){
+        else if((x == 1 && y == 0 && iswhite)||(x == 2 && y == 0 && !hasmoved && iswhite)){
             return true;
         }
-        else if(x == -1 && Math.abs(y)== 1 && iswhite || x == 1 && Math.abs(y)== 1 && !iswhite ){
+        else if(x == -1 && Math.abs(y)== 1 && !iswhite || x == 1 && Math.abs(y)== 1 && iswhite ){
             return true;
         }
         return false;

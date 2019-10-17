@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// chessBoard [x][y]
+// x-Axis: intAxis X numeric 0 - 7
+// y-Axis: charAxis Y character
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,13 +22,13 @@ public class Main {
             for (Player player : allPlayers) {
 
                 //TODO Player take turn
-                System.out.println("It's your turn, "+player.getName());
+                System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
 
                 Boolean possibleMove = false;
                 while (!possibleMove) {
                     ArrayList moveArray = reader.readMove(); //let player input move
-                    if(board.tryMove(moveArray)) { //check if move is possible
+                    if(board.tryMove(moveArray, player)) { //check if move is possible
                         possibleMove = true;
                         board.printBoard();
                     }
