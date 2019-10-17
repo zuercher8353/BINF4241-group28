@@ -24,8 +24,6 @@ public class Pawn implements Figur {
         return token;
     }
 
-    public Boolean islegal(int[] array){ //nur 1 ausser am start, nur nach vorne laufen, muss deshalb wissen welche farbe er ist und auf welche Seite dieser Spieler spielt
-        return true;
     public Boolean islegal(int[] array){ // Schräg laufen wenn figur geschlagen, noch nicht implementiert
         int x = array[0]-array[2];
         int y = array[1]-array[3];

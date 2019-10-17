@@ -29,8 +29,8 @@ public class Board {
         //init knights
         chessBoard[0][1] = new Knight(false);
         chessBoard[0][6] = new Knight(false);
-        chessBoard[6][1] = new Knight(true);
-        chessBoard[6][6] = new Knight(true);
+        chessBoard[7][1] = new Knight(true);
+        chessBoard[7][6] = new Knight(true);
 
         //init bishops
         chessBoard[0][2] = new Bishop(false);
@@ -39,19 +39,19 @@ public class Board {
         chessBoard[7][5] = new Bishop(true);
 
         //init queen
-        chessBoard[0][4] = new Queen(false);
-        chessBoard[7][4] = new Queen(true);
+        chessBoard[0][3] = new Queen(false);
+        chessBoard[7][3] = new Queen(true);
 
         //init king
-        chessBoard[0][5] = new King(false);
-        chessBoard[7][5] = new King(false);
+        chessBoard[0][4] = new King(false);
+        chessBoard[7][4] = new King(false);
 
         //START initialize figures
     }
 
 
     public void printBoard() {
-        System.out.print("   a   b   c   d   e   f   g   h\n"); //x axis
+        System.out.print("   a    b    c    d    e    f    g    h\n"); //x axis
         for (int i = 0; i < boardsize; i++) {
             System.out.print(i + " ");            //y axis (on the left)
             for (int j = 0; j < boardsize; j++) {

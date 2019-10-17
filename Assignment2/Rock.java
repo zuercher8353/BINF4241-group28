@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Rock implements Figur {
 
-    private String token = "R";
+    private String token = "T";
     private Boolean iswhite;
     private Boolean hasmoved;
     private int figurid;
