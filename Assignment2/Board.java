@@ -13,6 +13,7 @@ public class Board {
                 chessBoard[i][j] = null;
         }
 
+
         //START initialize figures, black at the top, white at the bottom
 
         //init all pawns
