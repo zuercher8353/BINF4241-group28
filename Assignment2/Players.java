@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,14 +12,22 @@ public class Players {
         int nrOfPlayers = 0;
 
         while (nrOfPlayers < 2) {
-            Scanner inputPlayer = new Scanner(System.in);  // Create a Scanner object
-            System.out.print("Enter Name: ");
-            //TODO if empty name
-            String inputPlayerName = inputPlayer.nextLine(); // Read Input
-            Player player = new Player(inputPlayerName); // Create New Player
-            playerList.add(player);
-
-            nrOfPlayers += 1;
+            try {
+                Scanner inputPlayer = new Scanner(System.in);  // Create a Scanner object
+                System.out.print("Enter Name: ");
+                String inputPlayerName = inputPlayer.nextLine(); // Read Input
+                if (!inputPlayerName.isEmpty()) {
+                    Player player = new Player(inputPlayerName); // Create New Player
+                    playerList.add(player);
+                    nrOfPlayers += 1;
+                }
+                else {
+                    throw new IllegalArgumentException("Invalid input");
+                    }
+            }
+            catch (Exception e){
+                System.out.println("Invalid input");
+            }
         }
         System.out.print('\n');
     }
@@ -40,7 +47,6 @@ public class Players {
                 return player.getName();
             }
         }
-
         return null;
     }
 }

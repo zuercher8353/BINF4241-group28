@@ -62,50 +62,45 @@ public class Board {
                     if (chessBoard[i][j].getClass() == Bishop.class) {
                         Bishop bishop = (Bishop) chessBoard[i][j];
                         if (bishop.iswhite()) {
-                            System.out.print("[W"+bishop.getToken()+"] ");
+                            System.out.print("[W" + bishop.getToken() + "] ");
                         } else {
-                            System.out.print("[B"+bishop.getToken()+"] ");
+                            System.out.print("[B" + bishop.getToken() + "] ");
                         }
 
-                    }
-                    else if (chessBoard[i][j].getClass() == King.class) {
+                    } else if (chessBoard[i][j].getClass() == King.class) {
                         King king = (King) chessBoard[i][j];
                         if (king.iswhite()) {
-                            System.out.print("[W"+king.getToken()+"] ");
+                            System.out.print("[W" + king.getToken() + "] ");
                         } else {
-                            System.out.print("[B"+king.getToken()+"] ");
+                            System.out.print("[B" + king.getToken() + "] ");
                         }
-                    }
-                    else if (chessBoard[i][j].getClass() == Knight.class) {
+                    } else if (chessBoard[i][j].getClass() == Knight.class) {
                         Knight knight = (Knight) chessBoard[i][j];
                         if (knight.iswhite()) {
-                            System.out.print("[W"+knight.getToken()+"] ");
+                            System.out.print("[W" + knight.getToken() + "] ");
                         } else {
-                            System.out.print("[B"+knight.getToken()+"] ");
+                            System.out.print("[B" + knight.getToken() + "] ");
                         }
-                    }
-                    else if (chessBoard[i][j].getClass() == Queen.class) {
+                    } else if (chessBoard[i][j].getClass() == Queen.class) {
                         Queen queen = (Queen) chessBoard[i][j];
                         if (queen.iswhite()) {
-                            System.out.print("[W" + queen.getToken()+"] ");
+                            System.out.print("[W" + queen.getToken() + "] ");
                         } else {
-                            System.out.print("[B" + queen.getToken()+"] ");
+                            System.out.print("[B" + queen.getToken() + "] ");
                         }
-                    }
-                    else if (chessBoard[i][j].getClass() == Pawn.class) {
+                    } else if (chessBoard[i][j].getClass() == Pawn.class) {
                         Pawn pawn = (Pawn) chessBoard[i][j];
                         if (pawn.iswhite()) {
-                            System.out.print("[W" + pawn.getToken()+"] ");
+                            System.out.print("[W" + pawn.getToken() + "] ");
                         } else {
-                            System.out.print("[B" + pawn.getToken()+"] ");
+                            System.out.print("[B" + pawn.getToken() + "] ");
                         }
-                    }
-                    else if (chessBoard[i][j].getClass() == Rock.class) {
+                    } else if (chessBoard[i][j].getClass() == Rock.class) {
                         Rock rock = (Rock) chessBoard[i][j];
                         if (rock.iswhite()) {
-                            System.out.print("[W" + rock.getToken()+"] ");
+                            System.out.print("[W" + rock.getToken() + "] ");
                         } else {
-                            System.out.print("[B" + rock.getToken()+"] ");
+                            System.out.print("[B" + rock.getToken() + "] ");
                         }
                     }
 
@@ -120,6 +115,19 @@ public class Board {
 
     }
 
+    public void moveFigure(int[] moveArrayINT) {
+        int startX = moveArrayINT[0];
+        int startY = moveArrayINT[1];
+        int endX = moveArrayINT[2];
+        int endY = moveArrayINT[3];
+        if (!(chessBoard[startX][startY] == null)) {
+            Object temp = chessBoard[startX][startY];
+            chessBoard[startX][startY] = null;
+            chessBoard[endX][endY] = temp;
+        } else {
+            System.out.println("no figure to move");
+        }
+    }
 
     //public void moveFigure(//whole move array) {
     //kill figure or just move

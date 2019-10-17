@@ -1,15 +1,13 @@
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Reader {
     private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-    public int[] readMove() {
-        int[] moveArray = new int[4];
+    public ArrayList<Object> readMove() {
+        ArrayList<Object> moveArray = new ArrayList<>();
         Boolean validInput = false;
-
 
         while (!validInput)
 
@@ -18,7 +16,6 @@ public class Reader {
                 Scanner moveScanner = new Scanner(System.in); // Create a Scanner object
                 System.out.print("Move (Figure X, Position xx, Target xx: ");
                 String moveInput = moveScanner.nextLine(); // Read Input
-
 
 
                 //check empty input
@@ -34,33 +31,41 @@ public class Reader {
                     //TODO Mulitple Exceptions
 
                     //validate Input
-                    if(!validateFigureChar(figure)) {
+                    if (!validateFigureChar(figure)) {
                         throw new Exception("None Existing Figure");
+                    } else {
+                        moveArray.add(0, figure);
                     }
-                    if((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
+                    if ((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
                         throw new Exception("None Existing Figure");
                     }
 
                     //check if Indices are in Range
-                    for (int i = 0; i < fieldSTRs.length; i ++) {
+                    for (int i = 0; i < fieldSTRs.length; i++) {
                         if (startX == fieldSTRs[i]) {
-                            moveArray[0] = i;
-                        }
-                        if (endX == fieldSTRs[i]) {
-                            moveArray[2] = i;
+                            moveArray.add(1, i);
                         }
                     }
+
                     if (startY >= 0 && startY < 8) {
-                        moveArray[1] = startY;
+                        moveArray.add(2, startY);
                     } else {
                         throw new ArithmeticException("Index out of Range");
-                }
+                    }
+
+                    for (int i = 0; i < fieldSTRs.length; i++) {
+                        if (endX == fieldSTRs[i]) {
+                            moveArray.add(3, i);
+                        }
+                    }
+
                     if (endY >= 0 && endY < 8) {
-                        moveArray[3] = endY;
+                        moveArray.add(4, endY);
                     } else {
                         throw new ArithmeticException("Index out of Range");
                     }
                     validInput = true;
+
                 } else {
                     System.out.println("empty Input!");
                 }
@@ -80,6 +85,7 @@ public class Reader {
         }
         return false;
     }
+
     private Boolean validateFieldChar(char inputfieldSTR) {
         for (char fieldSTR : fieldSTRs) {
             if (fieldSTR == inputfieldSTR) {
