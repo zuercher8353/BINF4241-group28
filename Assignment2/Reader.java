@@ -41,29 +41,35 @@ public class Reader {
                     }
 
                     //check if Indices are in Range
-                    for (int i = 0; i < fieldSTRs.length; i++) {
-                        if (startX == fieldSTRs[i]) {
-                            moveArray.add(1, i);
-                        }
-                    }
+
 
                     if (startY >= 0 && startY < 8) {
-                        moveArray.add(2, startY);
+                        moveArray.add(1, startY);
                     } else {
                         throw new ArithmeticException("Index out of Range");
                     }
+
+                    //write startX in array index 2
+                    for (int i = 0; i < fieldSTRs.length; i++) {
+                        if (startX == fieldSTRs[i]) {
+                            moveArray.add(2, i);
+                        }
+                    }
+
+
+                    if (endY >= 0 && endY < 8) {
+                        moveArray.add(3, endY);
+                    } else {
+                        throw new ArithmeticException("Index out of Range");
+                    }
+
 
                     for (int i = 0; i < fieldSTRs.length; i++) {
                         if (endX == fieldSTRs[i]) {
-                            moveArray.add(3, i);
+                            moveArray.add(4, i);
                         }
                     }
 
-                    if (endY >= 0 && endY < 8) {
-                        moveArray.add(4, endY);
-                    } else {
-                        throw new ArithmeticException("Index out of Range");
-                    }
                     validInput = true;
 
                 } else {
