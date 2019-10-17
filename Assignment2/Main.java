@@ -24,7 +24,7 @@ public class Main {
                 Boolean possibleMove = false;
                 while (!possibleMove) {
                     ArrayList moveArray = reader.readMove(); //let player input move
-                    if(board.tryMove(moveArray)) { //check if move is possible
+                    if(board.tryMove(moveArray, player)) { //check if move is possible
                         possibleMove = true;
                         board.printBoard();
                     }
