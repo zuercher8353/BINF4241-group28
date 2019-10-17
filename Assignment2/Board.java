@@ -56,12 +56,57 @@ public class Board {
             System.out.print(i + " ");            //y axis (on the left)
             for (int j = 0; j < boardsize; j++) {
                 if (chessBoard[i][j] == null) {
-                    System.out.print("[  ]");
+                    System.out.print("[  ] ");
                 } else {
                     if (chessBoard[i][j].getClass() == Bishop.class) {
                         Bishop bishop = (Bishop) chessBoard[i][j];
-                        bishop.iswhite();
+                        if (bishop.iswhite()) {
+                            System.out.print("[W"+bishop.getToken()+"] ");
+                        } else {
+                            System.out.print("[B"+bishop.getToken()+"] ");
+                        }
                     }
+                    else if (chessBoard[i][j].getClass() == King.class) {
+                        King king = (King) chessBoard[i][j];
+                        if (king.iswhite()) {
+                            System.out.print("[W"+king.getToken()+"] ");
+                        } else {
+                            System.out.print("[B"+king.getToken()+"] ");
+                        }
+                    }
+                    else if (chessBoard[i][j].getClass() == Knight.class) {
+                        Knight knight = (Knight) chessBoard[i][j];
+                        if (knight.iswhite()) {
+                            System.out.print("[W"+knight.getToken()+"] ");
+                        } else {
+                            System.out.print("[B"+knight.getToken()+"] ");
+                        }
+                    }
+                    else if (chessBoard[i][j].getClass() == Queen.class) {
+                        Queen queen = (Queen) chessBoard[i][j];
+                        if (queen.iswhite()) {
+                            System.out.print("[W" + queen.getToken()+"] ");
+                        } else {
+                            System.out.print("[B" + queen.getToken()+"] ");
+                        }
+                    }
+                    else if (chessBoard[i][j].getClass() == Pawn.class) {
+                        Pawn pawn = (Pawn) chessBoard[i][j];
+                        if (pawn.iswhite()) {
+                            System.out.print("[W" + pawn.getToken()+"] ");
+                        } else {
+                            System.out.print("[B" + pawn.getToken()+"] ");
+                        }
+                    }
+                    else if (chessBoard[i][j].getClass() == Rock.class) {
+                        Rock rock = (Rock) chessBoard[i][j];
+                        if (rock.iswhite()) {
+                            System.out.print("[W" + rock.getToken()+"] ");
+                        } else {
+                            System.out.print("[B" + rock.getToken()+"] ");
+                        }
+                    }
+
                 }
             }
             System.out.print("\n");
