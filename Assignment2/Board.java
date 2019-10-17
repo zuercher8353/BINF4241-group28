@@ -225,8 +225,10 @@ public class Board {
             token = null;
             startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
         }
-
-        if(endField.getClass() == Bishop.class) {
+        if(endField == null){
+            endFieldColor = true;
+        }
+        else if(endField.getClass() == Bishop.class) {
             Bishop endField1 = (Bishop)endField;
             endFieldColor = endField1.iswhite();
         }
@@ -258,6 +260,7 @@ public class Board {
         else{
             endFieldColor = true;
         }
+
 
             //eigene Figur?
         if (startFieldColor!= player.isPlayerWhite()) {

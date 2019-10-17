@@ -38,17 +38,29 @@ public class Bishop implements Figur {
 
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();
-        int x =  array[0]-array[2];
-        if(x > 0){
+        int x =  array[2]-array[0];
+        int y = array[3] - array[1];
+        if(x > 0 && y > 0){
             for(int i=1; i < x; i++ ){
                 path.add(array[0]+i);
                 path.add(array[1]+i);
             }}
-        else{
+        else if(x<0 && y < 0){
             for(int i=-1; i > x; i-- ){
                 path.add(array[0]+i);
                 path.add(array[1]+i);
             }}
+        else if(x>0 && y<0){
+            for(int i=1; i < x; i++ ){
+                path.add(array[0]+i);
+                path.add(array[1]-i);
+            }}
+        else{
+            for(int i=-1; i > x; i-- ){
+                path.add(array[0]+i);
+                path.add(array[1]-i);
+            }
+        }
         return path;
     }
 }
