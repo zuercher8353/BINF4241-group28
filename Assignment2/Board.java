@@ -284,6 +284,7 @@ public class Board {
         }
 
     public boolean isLegalPath(Figur startField, int[] array){
+
         //check if figur can move like this
         if (!startField.islegal(array)) {
             System.out.println("The figure you chose can't move like this");
