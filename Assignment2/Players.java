@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class Players {
     //excaping references
     int nrOfPlayers = 0;
     static private List<Player> playerList = new ArrayList<>();
+    public Iterator iterPlayers = playerList.iterator();
 
     public void createPlayers() {
         int nrOfPlayers = 0;
@@ -48,5 +50,16 @@ public class Players {
             }
         }
         return null;
+    }
+
+
+    public Player next() {
+        if(iterPlayers.hasNext()) {
+            Player nextPlayer = (Player) iterPlayers.next();
+            return nextPlayer;
+        } else {
+            Player nextPlayer = playerList.get(0);
+            return nextPlayer;
+        }
     }
 }
