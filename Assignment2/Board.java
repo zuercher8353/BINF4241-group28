@@ -32,6 +32,7 @@ public class Board {
         chessBoard[7][1] = new Knight(true);
         chessBoard[7][6] = new Knight(true);
 
+
         //init bishops
         chessBoard[0][2] = new Bishop(false);
         chessBoard[0][5] = new Bishop(false);
