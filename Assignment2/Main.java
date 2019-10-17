@@ -18,7 +18,7 @@ public class Main {
             for (Player player : allPlayers) {
 
                 //TODO Player take turn
-                System.out.println("It's your turn, "+player.getName());
+                System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
 
                 Boolean possibleMove = false;

@@ -110,8 +110,10 @@ public class Board {
         System.out.print("\n");
     }
 
-    public void removeFigure(int i, int j) {
-
+    public void removeFigure(int i, int j, Player player) {
+        Object object = chessBoard[i][j];
+        player.addEatenPiece(object);
+        chessBoard[i][j] = null;
     }
 
     public void moveFigure(int[] moveArrayINT) {
@@ -126,6 +128,19 @@ public class Board {
         } else {
             System.out.println("no figure to move");
         }
+    }
+
+    public King findKing(String color) {
+        for (Object object : chessBoard) {
+            if (object.getClass() == King.class) {
+                King king = (King) object;
+                if(king.iswhite()) {
+                    return king;
+                }
+            }
+        }
+        System.out.println("no king found");
+        return null;
     }
 
     //public void moveFigure(//whole move array) {
