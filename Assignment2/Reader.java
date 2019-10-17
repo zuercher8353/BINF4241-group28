@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Reader {
     private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
@@ -8,6 +9,7 @@ public class Reader {
     public ArrayList<Object> readMove() {
         ArrayList<Object> moveArray = new ArrayList <Object>();
         Boolean validInput = false;
+
 
         while (!validInput)
 
@@ -33,12 +35,12 @@ public class Reader {
 
                     //validate Input
                     if(!validateFigureChar(figure)) {
-                        throw new Exception("None Existing Figure");
-                    } else {
-                        moveArray.set(0, figure);
+                        System.out.print("None Existing Figure. ");
+                        throw new NoSuchObjectException("None Existing Figure. ");
                     }
                     if((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
-                        throw new Exception("None Existing Figure");
+                        System.out.print("None Existing Field. ");
+                        throw new NoSuchFieldException();
                     }
 
                     //check if Indices are in Range
@@ -53,12 +55,14 @@ public class Reader {
                     if (startY >= 0 && startY < 8) {
                         moveArray.set(3, startY);
                     } else {
-                        throw new ArithmeticException("Index out of Range");
+                        System.out.print("Index out of Range. ");
+                        throw new ArithmeticException();
                 }
                     if (endY >= 0 && endY < 8) {
                         moveArray.set(4, endY);
                     } else {
-                        throw new ArithmeticException("Index out of Range");
+                        System.out.print("Index out of Range. ");
+                        throw new ArithmeticException();
                     }
                     validInput = true;
                 } else {
