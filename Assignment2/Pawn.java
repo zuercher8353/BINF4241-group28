@@ -28,6 +28,9 @@ public class Pawn implements Figur {
         else if((x == 1 && y == 0 && !iswhite)||(x == 2 && y == 0 && !hasmoved && !iswhite)){
             return true;
         }
+        else if(x == -1 && (y == -1 || y == 1) && iswhite || x == 1 && (y == -1 || y == 1) && !iswhite ){
+            return true;
+        }
         return false;
     }
 
