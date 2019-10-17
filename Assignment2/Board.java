@@ -20,6 +20,7 @@ public class Board {
             chessBoard[1][k] = new Pawn(false);
             chessBoard[6][k] = new Pawn(true);
         }
+
         //init towers
         chessBoard[0][0] = new Rock(false);
         chessBoard[0][7] = new Rock(false);
