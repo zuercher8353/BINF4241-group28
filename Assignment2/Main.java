@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// chessBoard [x][y]
+// x-Axis: intAxis X numeric 0 - 7
+// y-Axis: charAxis Y character
+
 public class Main {
     public static void main(String[] args) {
 

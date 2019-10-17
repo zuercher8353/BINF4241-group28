@@ -158,13 +158,14 @@ public class Board {
 
 
         int[] array = new int[4];
-        String figurtyp = list.get(0).toString();
-        Object startField = chessBoard[array[0]][array[1]];
-        Object endField = chessBoard[array[2]][array[3]];
 
         for(int i=1; i <= 4; i++){
             array[i-1] = (Integer) list.get(i);
         }
+
+        String figurtyp = list.get(0).toString();
+        Object startField = chessBoard[array[0]][array[1]];
+        Object endField = chessBoard[array[2]][array[3]];
 
         if (startField == null) {                                              //figur auf dem Anfangspunkt
             System.out.println("The chosen startfield is empty");
@@ -286,8 +287,6 @@ public class Board {
         }
         return true;
     }
-
-
 
     //public tryMove(inputarray) {
         //figure auf dem input
