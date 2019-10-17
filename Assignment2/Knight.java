@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 public class Knight implements Figur {
 
+    private String token = "N";
     private Boolean iswhite;
     private int figurid;
     static int id = 0;
@@ -14,6 +15,10 @@ public class Knight implements Figur {
 
     public Boolean iswhite() {
         return iswhite;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public Boolean islegal(int[] array) {

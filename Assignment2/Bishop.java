@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 public class Bishop implements Figur {
 
+    private String token = "B";
     private Boolean iswhite;
     private int figurid;
     static int id = 0;
@@ -12,8 +13,17 @@ public class Bishop implements Figur {
 
     }
 
+    public String getName() {
+        return token;
+    }
+
     public Boolean iswhite() {
         return iswhite;
+    }
+
+
+    public String getToken() {
+        return token;
     }
 
     public Boolean islegal(int []array){

@@ -58,7 +58,10 @@ public class Board {
                 if (chessBoard[i][j] == null) {
                     System.out.print("[  ]");
                 } else {
-                    System.out.print("[Fig]");
+                    if (chessBoard[i][j].getClass() == Bishop.class) {
+                        Bishop bishop = (Bishop) chessBoard[i][j];
+                        bishop.iswhite();
+                    }
                 }
             }
             System.out.print("\n");

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class King implements Figur {
 
+    private String token = "K";
     private Boolean hasmoved;
     private Boolean iswhite;
     private int figurid;
@@ -17,6 +18,10 @@ public class King implements Figur {
 
     public Boolean iswhite() {
         return iswhite;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public Boolean islegal(int[] array){
