@@ -202,6 +202,10 @@ public class Board {
                 return false;
             }
         }
+        else {
+            token = null;
+            startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
+        }
 
         if(endField.getClass() == Bishop.class) {
             Bishop endField1 = (Bishop)endField;
@@ -232,6 +236,9 @@ public class Board {
             System.out.println("The input figuretyp doesn`t match with the figuretyp that is on the startfield");
             return false;
         }
+        else{
+            endFieldColor = true;
+        }
 
             //eigene Figur?
         if (startFieldColor!= player.isPlayerWhite()) {
@@ -243,7 +250,7 @@ public class Board {
                 System.out.println("Endfield is occupied by own figure");
             }
         }
-
+        return true;
         }
 
     public boolean isLegalPath(Figur startField, int[] array){
