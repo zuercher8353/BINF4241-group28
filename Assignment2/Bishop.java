@@ -6,6 +6,7 @@ public class Bishop implements Figur {
     private int figurid;
     static int id = 0;
 
+
     public Bishop(Boolean iswhite){
         this.iswhite = iswhite;
         this.figurid = id;
