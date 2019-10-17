@@ -16,12 +16,19 @@ public class Main {
         boolean gameEnded = false;
         while(!gameEnded) {
             for (Player player : allPlayers) {
+
                 //TODO Player take turn
-                System.out.println("It's your turn, "+player.getName()+"\n");
-                ArrayList moveArray = reader.readMove();
+                System.out.println("It's your turn, "+player.getName());
                 System.out.println();
-                //while (!board.tryMove(inputarray))
-                // tell user move is not legal, read another input
+
+                Boolean possibleMove = false;
+                while (!possibleMove) {
+                    ArrayList moveArray = reader.readMove(); //let player input move
+                    if(board.tryMove(moveArray)) { //check if move is possible
+                        possibleMove = true;
+                        board.printBoard();
+                    }
+                }
                 // int[] moveArray = reader.readMove();;
             }
         }

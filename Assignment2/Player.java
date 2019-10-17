@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.util.ArrayList;
 
 public class Player {
 
@@ -6,6 +6,7 @@ public class Player {
     private String name;
     private int playerId;
     private boolean isWhite;
+    private ArrayList<Object> eatenPieces = new ArrayList<>();
 
     public Player(String name) {
         this.playerId = id;
@@ -18,7 +19,6 @@ public class Player {
             this.isWhite = false;
         }
     }
-
     public String getName() {
         return this.name;
     }
@@ -27,6 +27,15 @@ public class Player {
         return isWhite;
     }
 
-    //TODO add Colors
+    public void addEatenPiece(Object object) {
+        eatenPieces.add(object);
+        return;
+    }
+    public void showEatenPieces() {
+        for(Object eatenPiece : eatenPieces) {
+            System.out.println(eatenPiece.getClass().getName() + ", ");
+        }
+    }
+
     //TODO possibly integrate  //java.util.Iterator<E> as suggested in lecture
 }
