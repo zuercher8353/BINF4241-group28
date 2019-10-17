@@ -141,6 +141,7 @@ public class Board {
         boolean endFieldColor;
         String token;
 
+
         int[] array = new int[4];
         String figurtyp = list.get(0).toString();
         Object startField = chessBoard[array[0]][array[1]];
