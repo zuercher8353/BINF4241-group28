@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -17,7 +18,8 @@ public class Main {
             for (Player player : allPlayers) {
                 //TODO Player take turn
                 System.out.println("It's your turn, "+player.getName()+"\n");
-                int[] moveArray = reader.readMove();
+                ArrayList moveArray = reader.readMove();
+                System.out.println();
                 //while (!board.tryMove(inputarray))
                 // tell user move is not legal, read another input
                 // int[] moveArray = reader.readMove();;

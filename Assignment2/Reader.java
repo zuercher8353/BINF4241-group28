@@ -1,15 +1,13 @@
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Reader {
     private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-    public int[] readMove() {
-        int[] moveArray = new int[4];
+    public ArrayList<Object> readMove() {
+        ArrayList<Object> moveArray = new ArrayList <Object>();
         Boolean validInput = false;
-
 
         while (!validInput)
 
@@ -36,6 +34,8 @@ public class Reader {
                     //validate Input
                     if(!validateFigureChar(figure)) {
                         throw new Exception("None Existing Figure");
+                    } else {
+                        moveArray.set(0, figure);
                     }
                     if((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
                         throw new Exception("None Existing Figure");
@@ -44,19 +44,19 @@ public class Reader {
                     //check if Indices are in Range
                     for (int i = 0; i < fieldSTRs.length; i ++) {
                         if (startX == fieldSTRs[i]) {
-                            moveArray[0] = i;
+                            moveArray.set(1, i);
                         }
                         if (endX == fieldSTRs[i]) {
-                            moveArray[2] = i;
+                            moveArray.set(2, i);
                         }
                     }
                     if (startY >= 0 && startY < 8) {
-                        moveArray[1] = startY;
+                        moveArray.set(3, startY);
                     } else {
                         throw new ArithmeticException("Index out of Range");
                 }
                     if (endY >= 0 && endY < 8) {
-                        moveArray[3] = endY;
+                        moveArray.set(4, endY);
                     } else {
                         throw new ArithmeticException("Index out of Range");
                     }
