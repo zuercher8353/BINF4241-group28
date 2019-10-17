@@ -14,9 +14,6 @@ public class Pawn implements Figur {
         this.figurid = id;
         id += 1;
     }
-    public String getName() {
-        return token;
-    }
 
     public Boolean iswhite() {
         return iswhite;
@@ -29,11 +26,36 @@ public class Pawn implements Figur {
 
     public Boolean islegal(int[] array){ //nur 1 ausser am start, nur nach vorne laufen, muss deshalb wissen welche farbe er ist und auf welche Seite dieser Spieler spielt
         return true;
+    public Boolean islegal(int[] array){ // Schräg laufen wenn figur geschlagen, noch nicht implementiert
+        int x = array[0]-array[2];
+        int y = array[1]-array[3];
+
+        if((x == -1 && y == 0 && iswhite)|| (x == -2 && y == 0 && !hasmoved && iswhite) ){
+            return true;
+        }
+        else if((x == 1 && y == 0 && !iswhite)||(x == 2 && y == 0 && !hasmoved && !iswhite)){
+            return true;
+        }
+        else if(x == -1 && Math.abs(y)== 1 && iswhite || x == 1 && Math.abs(y)== 1 && !iswhite ){
+            return true;
+        }
+        return false;
     }
 
 
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();
+        int x =  array[0]-array[2];
+        if(x > 0){
+            for(int i=1; i < x; i++ ){
+                path.add(array[0]+i);
+                path.add(array[1]);
+            }}
+        else{
+            for(int i=-1; i > x; i-- ){
+                path.add(array[0]+i);
+                path.add(array[1]);
+            }}
         return path;
     }
 }
