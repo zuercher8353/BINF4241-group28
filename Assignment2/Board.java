@@ -65,6 +65,7 @@ public class Board {
                         } else {
                             System.out.print("[B"+bishop.getToken()+"] ");
                         }
+
                     }
                     else if (chessBoard[i][j].getClass() == King.class) {
                         King king = (King) chessBoard[i][j];
