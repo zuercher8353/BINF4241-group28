@@ -25,10 +25,10 @@ public class Main {
                 //TODO Jonas isCheck() aufrufen
                 System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
-                /*if(board.isCheck(player, players)){
+                if(board.isCheck(player, players)){
                     System.out.println("You are in check");
-                    System.out.println();
-                }*/
+                    System.out.println();}
+
 
                 Boolean possibleMove = false;
                 while (!possibleMove) {

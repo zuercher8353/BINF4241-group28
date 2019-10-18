@@ -297,7 +297,7 @@ public class Board {
     public boolean isLegalPath(Figur startField, int[] array){
         //check if figur can move like this
         if (!startField.islegal(array)) {
-            System.out.println("The figure you chose can't move like this");
+            //System.out.println("The figure you chose can't move like this");
             return false;
         }
         //check if path between start and end is empty
@@ -305,7 +305,7 @@ public class Board {
         int x = path.size();
         for (int i = 0; i < x; i += 2) {
             if (chessBoard[path.get(i)][path.get(i + 1)] != null) {
-                System.out.println("there is a figure in your way");
+                //System.out.println("there is a figure in your way");
                 return false;
             }
         }
@@ -318,12 +318,12 @@ public class Board {
         int[] checkKingArray = new int[4];
         checkKingArray[2] = kingPosition[0];
         checkKingArray[3] = kingPosition[1];
-        //player = player.next
+        Player otherPlayer = players.otherPlayer(player);
         for (int x = 0; x < boardsize; x++) {
             checkKingArray[0] = x;
             for (int y = 0; y < boardsize; y++) {
                 checkKingArray[1] = y;
-                if(tryIsCheck(checkKingArray, player)){         //player should be the other player(not the one inserted into the function), (the player which has moved before)
+                if(tryIsCheck(checkKingArray, otherPlayer)){         //player should be the other player(not the one inserted into the function), (the player which has moved before)
                     return true;
                 }
 
@@ -338,14 +338,15 @@ public class Board {
 
         for (int x = 0; x < boardsize; x++) {
             for (int y = 0; y < boardsize; y++) {
-                if (chessBoard[x][y].getClass() == King.class) {
-                    King kingPositionObject = (King) chessBoard[x][y];
-                    if (kingPositionObject.iswhite() == player.isPlayerWhite()) {
-                        kingPosition[0] = x;
-                        kingPosition[1] = y;
-                        return kingPosition;
-                    }
-                }
+                if(chessBoard[x][y] != null){
+                    if (chessBoard[x][y].getClass() == King.class) {
+                        King kingPositionObject = (King) chessBoard[x][y];
+                        if (kingPositionObject.iswhite() == player.isPlayerWhite()) {
+                            kingPosition[0] = x;
+                            kingPosition[1] = y;
+                            return kingPosition;
+                        }
+                }}
             }
         }
         return kingPosition;
