@@ -46,7 +46,7 @@ public class Board {
 
         //init king
         chessBoard[0][4] = new King(false);
-        chessBoard[7][4] = new King(false);
+        chessBoard[7][4] = new King(true);
 
         //START initialize figures
     }
