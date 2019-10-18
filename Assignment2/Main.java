@@ -22,14 +22,18 @@ public class Main {
             for (Player player : allPlayers) {
 
                 //TODO Player take turn
+                //TODO Jonas isCheck() aufrufen
                 System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
+                if(board.isCheck(player, players)){
+                    System.out.println("You are in check");
+                    System.out.println();}
+
 
                 Boolean possibleMove = false;
                 while (!possibleMove) {
                     ArrayList moveArray = reader.readMove(); //let player input move
                     if(board.tryMove(moveArray, player, players)) { //check if move is possible
-                        //TODO Jonas isChess() aufrufen
                         possibleMove = true;
                         board.printBoard();
                     }

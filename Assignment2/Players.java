@@ -36,7 +36,7 @@ public class Players {
 
     public void add(Player player) {
         playerList.add(player);
-    }
+    } //vlt löschen da sonst player list verändert werden kann
 
     public List<Player> getPlayers() {
         List<Player> aPlayerList = playerList;
@@ -50,6 +50,15 @@ public class Players {
             }
         }
         return null;
+    }
+
+    public Player otherPlayer(Player player){
+        for(Player player1 : playerList){
+            if(player != player1){
+                return player1;
+            }
+        }
+        return player;
     }
 
 
