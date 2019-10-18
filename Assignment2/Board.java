@@ -333,6 +333,7 @@ public class Board {
     }
 
 
+
     public int[] kingPosition(Player player){
         int[] kingPosition = new int[2];
 
