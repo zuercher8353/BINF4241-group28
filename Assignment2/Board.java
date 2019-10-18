@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Board {
+
     private int boardsize = 8;
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
