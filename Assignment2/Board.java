@@ -6,6 +6,7 @@ public class Board {
     private int boardsize = 8;
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
+    private Object lastdeleted;
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
     public Board() {
@@ -134,11 +135,18 @@ public class Board {
         if (!(chessBoard[startX][startY] == null)) {
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
+            if(chessBoard[endX][endY] != null){
+                lastdeleted = chessBoard[endX][endY];
+            }
+            else{
+                lastdeleted = null;
+            }
             chessBoard[endX][endY] = temp;
         } else {
             System.out.println("no figure to move");
         }
     }
+    //bug if figur got deleted in move figure
     public void undoMoveFigure(){
         int startX = lastMove[2];
         int startY = lastMove[3];
@@ -146,9 +154,17 @@ public class Board {
         int endY = lastMove[1];
         if (!(chessBoard[startX][startY] == null)) {
             Object temp = chessBoard[startX][startY];
-            chessBoard[startX][startY] = null;
-            chessBoard[endX][endY] = temp;
-        } else {
+            if(lastdeleted != null){
+                chessBoard[endX][endY] = temp;
+                chessBoard[startX][startY] = lastdeleted;
+                lastdeleted = null;
+            }
+            else {
+                chessBoard[endX][endY] = temp;
+                chessBoard[startX][startY] = null;
+            }
+        }
+        else {
             System.out.println("no figure to move");
         }
     }
