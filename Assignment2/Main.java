@@ -26,7 +26,12 @@ public class Main {
                 System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
                 if(board.isCheck(player, players)){
-                    System.out.println("You are in check");
+                    if(board.isCheckMated(player,players)){
+                        System.out.println("Your checkmated"); //add good print
+                    }
+                    else{
+                        System.out.println("You are in check");
+                    }
                     System.out.println();}
 
 

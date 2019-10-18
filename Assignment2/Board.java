@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Board {
     private int boardsize = 8;
-
+    private int[] positionFigureCheck = new int[2];
+    private int[] lastMove = new int[4];
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
     public Board() {
@@ -129,6 +130,20 @@ public class Board {
         int startY = moveArrayINT[1];
         int endX = moveArrayINT[2];
         int endY = moveArrayINT[3];
+        lastMove = moveArrayINT.clone();
+        if (!(chessBoard[startX][startY] == null)) {
+            Object temp = chessBoard[startX][startY];
+            chessBoard[startX][startY] = null;
+            chessBoard[endX][endY] = temp;
+        } else {
+            System.out.println("no figure to move");
+        }
+    }
+    public void undoMoveFigure(){
+        int startX = lastMove[2];
+        int startY = lastMove[3];
+        int endX = lastMove[0];
+        int endY = lastMove[1];
         if (!(chessBoard[startX][startY] == null)) {
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
@@ -138,6 +153,117 @@ public class Board {
         }
     }
 
+    public boolean isCheckMated(Player player, Players players){
+        isCheck(player, players);
+        int[] FigureDoesCheck = positionFigureCheck.clone();
+        int[] kingPosition = kingPosition(player);
+        //check if King can move out of Check
+        int[] kingMoves = new int[4];
+        kingMoves[0] = kingPosition[0];
+        kingMoves[1] = kingPosition[1];
+        for(int i= 1; i>=-1; i -=2){
+            kingMoves[2] = kingPosition[0] + i;
+            for(int j= 1; j>=-1; j -=2){
+                kingMoves[3] = kingPosition[1] + j;
+                if(kingMoves[2] >= 0 && kingMoves[2] <=7 && kingMoves[3] >= 0 && kingMoves[3] <=7) {
+                    if (tryIsCheck(kingMoves, player)) {
+                        moveFigure(kingMoves);
+                        if (!isCheck(player, players)) {
+                            undoMoveFigure();
+                            System.out.println("your king can move out of the way");
+                            return false;
+                        } else {
+                            undoMoveFigure();
+                        }
+                    }
+                }
+            }
+        }
+        //check if figures that checks King, can be killed and that after this it isn`t check anymore
+        int[] killFigure = new int[4];
+        killFigure[2] = FigureDoesCheck[0];
+        killFigure[3] = FigureDoesCheck[1];
+        for (int x = 0; x < boardsize; x++) {
+            killFigure[0] = x;
+            for (int y = 0; y < boardsize; y++) {
+                killFigure[1] = y;
+                if(tryIsCheck(killFigure, player)){
+                    moveFigure(killFigure);
+                    if(!isCheck(player, players)){
+                        undoMoveFigure();
+                        System.out.println("you can kill figure");
+                        return false;
+                    }
+                    else {
+                        undoMoveFigure(); }
+                }
+
+            }
+        }
+
+        //check if we can do something in the way, check if still Check
+        ArrayList<Integer> path = new ArrayList<>();
+        Object startField = chessBoard[FigureDoesCheck[0]][FigureDoesCheck[1]];
+        int[]putInWay = new int[4];
+        putInWay[0]= FigureDoesCheck[0] ;
+        putInWay[1]= FigureDoesCheck[1] ;
+        putInWay[2]= kingPosition[0];
+        putInWay[3]= kingPosition[1];
+
+        if(startField.getClass() == Bishop.class) {
+            Bishop startField1 = (Bishop)startField;
+            path = startField1.path(putInWay);
+        }
+        else if(startField.getClass() == King.class) {
+            King startField1 = (King)startField;
+            path = startField1.path(putInWay);
+        }
+        else if(startField.getClass() == Queen.class) {
+            Queen startField1 = (Queen)startField;
+            path = startField1.path(putInWay);
+        }
+        else if(startField.getClass() == Rock.class) {
+            Rock startField1 = (Rock)startField;
+            path = startField1.path(putInWay);
+        }
+        else if(startField.getClass() == Knight.class) {
+            Knight startField1 = (Knight)startField;
+            path = startField1.path(putInWay);
+        }
+        else if(startField.getClass() == Pawn.class) {
+            Pawn startField1 = (Pawn) startField;
+            path = startField1.path(putInWay);
+        }
+
+        int x = path.size();
+        for (int i = 0; i < x; i += 2) {
+            putInWay[2] = path.get(i);
+            putInWay[3] = path.get(i+1);
+            for (int k = 0; k < boardsize; k++) {
+                putInWay[0] = k;
+                for (int l = 0; l < boardsize; l++) {
+                    putInWay[1] = l;
+                    if (tryIsCheck(putInWay, player)) {
+                        moveFigure(putInWay);
+                        if (!isCheck(player, players)) {
+                            undoMoveFigure();
+                            System.out.println("you can put something in the way");
+                            return false;
+                        } else {
+                            undoMoveFigure();
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+
+    //unnötig löschen
     //TODO @Jonas findKing indices?
     public King findKing(String color) {
         //TODO do i need to return the indices?
@@ -325,6 +451,8 @@ public class Board {
             for (int y = 0; y < boardsize; y++) {
                 checkKingArray[1] = y;
                 if(tryIsCheck(checkKingArray, otherPlayer)){         //player should be the other player(not the one inserted into the function), (the player which has moved before)
+                    positionFigureCheck[0] = x;
+                    positionFigureCheck[1] = y;
                     return true;
                 }
 
@@ -354,7 +482,7 @@ public class Board {
         return kingPosition;
     }
 
-
+    //gleiche wie trymove(), ohne prints und ohne typ am anfang von Arraylist, ohne move
     public boolean tryIsCheck(int[] array, Player player) {
         boolean startFieldColor;
         boolean endFieldColor;
@@ -407,13 +535,11 @@ public class Board {
             }
             if(Math.abs(array[2]-array[0]) == 1 && Math.abs(array[3]-array[1]) == 1){       //check if pawn is allowed to move transversal
                 if(endField == null){
-                    System.out.println("The figure you chose can't move like this");
                     return false;
                 }
             }
             else{                                                                           //check if endfield is empty, cause pawn can only move forward if endfield empty
                 if(endField != null){
-                    System.out.println("The figure you chose can't move like this");
                     return false;
                 }
             }
