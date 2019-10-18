@@ -29,7 +29,7 @@ public class Main {
                 if(board.isCheck(player, players)){
                     if(board.isCheckMated(player,players)){
                         System.out.println("Your checkmated");//add good print
-                        gameEnded = true;
+                        //gameEnded = true;
                     }
                     else{
                         System.out.println("You are in check");
