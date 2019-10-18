@@ -354,6 +354,7 @@ public class Board {
         return kingPosition;
     }
 
+
     public boolean tryIsCheck(int[] array, Player player) {
         boolean startFieldColor;
         boolean endFieldColor;
