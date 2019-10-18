@@ -300,6 +300,32 @@ public class Board {
         }
         return true;
     }
+    //player is the player who has the next turn, check must be checked before he takes a turn
+    public boolean check(Player player){
+
+
+
+        return false;
+    }
+
+    public int[] kingPosition(Player player){
+        int[] kingPosition = new int[2];
+
+        for (int x = 0; x < boardsize; x++) {
+            for (int y = 0; y < boardsize; y++) {
+                if (chessBoard[x][y].getClass() == King.class) {
+                    King kingPositionObject = (King) chessBoard[x][y];
+                    if (kingPositionObject.iswhite() == player.isPlayerWhite()) {
+                        kingPosition[0] = x;
+                        kingPosition[1] = y;
+                        return kingPosition;
+                    }
+                }
+            }
+        }
+        return kingPosition;
+    }
+
 
     //public tryMove(inputarray) {
         //figure auf dem input
