@@ -22,7 +22,6 @@ public class Main {
             for (Player player : allPlayers) {
 
                 //TODO Player take turn
-
                 //TODO Jonas isCheck() aufrufen
                 System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
