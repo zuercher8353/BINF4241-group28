@@ -15,6 +15,7 @@ public class Players {
 
 
 
+
         while (nrOfPlayers < 2) {
             try {
                 Scanner inputPlayer = new Scanner(System.in);  // Create a Scanner object
