@@ -35,34 +35,22 @@ public class Queen implements Figur {
 //path ist ohne start und end punkt, alle felder die von der Figur beschritten werden.
     public  ArrayList<Integer> path(int[] array){
         ArrayList<Integer> path = new ArrayList<>();
-        if(array[0] != array[2] && array[1] != array[3]) {   //same code in Bishop
-            int x = array[2] - array[0];
-            int y = array[3] - array[1];
-            if (x > 0 && y > 0) {
-                for (int i = 1; i < x; i++) {
-                    path.add(array[0] + i);
-                    path.add(array[1] + i);
-                }
-            } else if (x < 0 && y < 0) {
-                for (int i = -1; i > x; i--) {
-                    path.add(array[0] + i);
-                    path.add(array[1] + i);
-                }
-            } else if (x > 0 && y < 0) {
-                for (int i = 1; i < x; i++) {
-                    path.add(array[0] + i);
-                    path.add(array[1] - i);
-                }
-            } else {
-                for (int i = -1; i > x; i--) {
-                    path.add(array[0] + i);
-                    path.add(array[1] - i);
-                }
-            }
+        if(array[0] != array[2] && array[1] != array[3]){   //same code in Bishop
+            int x =  array[0]-array[2];
+            if(x > 0){
+                for(int i=1; i < x; i++ ){
+                    path.add(array[0]+i);
+                    path.add(array[1]+i);
+            }}
+            else{
+                for(int i=-1; i > x; i-- ){
+                path.add(array[0]+i);
+                path.add(array[1]+i);
+            }}
         }
         else{
             if(array[0]!= array[2]){
-                int x =  array[2]-array[0];
+                int x =  array[0]-array[2];
                 if(x > 0){
                     for(int i=1; i < x; i++ ){
                         path.add(array[0]+i);
@@ -75,7 +63,7 @@ public class Queen implements Figur {
                     }}
             }
             else{
-                int y =  array[3]-array[1];
+                int y =  array[1]-array[3];
                 if(y > 0){
                     for(int i=1; i < y; i++ ){
                         path.add(array[0]);

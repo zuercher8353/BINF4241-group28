@@ -13,6 +13,7 @@ public class Board {
                 chessBoard[i][j] = null;
         }
 
+
         //START initialize figures, black at the top, white at the bottom
 
         //init all pawns
@@ -118,12 +119,6 @@ public class Board {
         chessBoard[i][j] = null;
     }
 
-    //TODO @Janosch killfigure bauen
-    public void killFigure(int[] killPosition, Player player) {
-        //int killPosX =
-    }
-
-    //TODO @Janosch moveFigure bauen
     public void moveFigure(int[] moveArrayINT) {
         int startX = moveArrayINT[0];
         int startY = moveArrayINT[1];
@@ -138,9 +133,7 @@ public class Board {
         }
     }
 
-    //TODO @Jonas findKing indices?
     public King findKing(String color) {
-        //TODO do i need to return the indices?
         for (Object object : chessBoard) {
             if (object.getClass() == King.class) {
                 King king = (King) object;
@@ -153,13 +146,18 @@ public class Board {
         return null;
     }
 
-    public boolean tryMove(ArrayList list, Player player, Players players) {
+    //public void moveFigure(//whole move array) {
+    //kill figure or just move
+    //}
+
+    public boolean tryMove(ArrayList list, Player player) {
         //bauer schräg noch testen, figur typ of input stimmt
         //convert move array to array and char
 
         boolean startFieldColor;
         boolean endFieldColor;
         String token;
+
 
         int[] array = new int[4];
 
@@ -227,10 +225,8 @@ public class Board {
             token = null;
             startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
         }
-        if(endField == null){
-            endFieldColor = true;
-        }
-        else if(endField.getClass() == Bishop.class) {
+
+        if(endField.getClass() == Bishop.class) {
             Bishop endField1 = (Bishop)endField;
             endFieldColor = endField1.iswhite();
         }
@@ -263,25 +259,16 @@ public class Board {
             endFieldColor = true;
         }
 
-
             //eigene Figur?
         if (startFieldColor!= player.isPlayerWhite()) {
             System.out.println("The figure that you try to move is not yours");
-            return false;
         }
         //check if endfield is not own figur
         if(endField != null){
             if (startFieldColor == endFieldColor) {
                 System.out.println("Endfield is occupied by own figure");
-                return false;
-            }
-            else {
-                System.out.println(endField.getClass().getName() + "is getting eating");
             }
         }
-
-        moveFigure(array);
-
         return true;
         }
 
