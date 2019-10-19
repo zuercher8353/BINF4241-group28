@@ -124,6 +124,9 @@ public class Board {
         int startY = moveArrayINT[1];
         int endX = moveArrayINT[2];
         int endY = moveArrayINT[3];
+        if (chessBoard[endX][endY].getClass() == Rock.class){
+            rochade(moveArrayINT);
+        }
         if (!(chessBoard[startX][startY] == null)) {
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
@@ -131,6 +134,14 @@ public class Board {
         } else {
             System.out.println("no figure to move");
         }
+    }
+
+    public boolean rochade(int[] moveArrayINT){
+        int startX = moveArrayINT[0];
+        int startY = moveArrayINT[1];
+        int endX = moveArrayINT[2];
+        int endY = moveArrayINT[3];
+
     }
 
     public King findKing(String color) {
@@ -265,6 +276,7 @@ public class Board {
         }
         //check if endfield is not own figur
         if(endField != null){
+            if (figurtyp)
             if (startFieldColor == endFieldColor) {
                 System.out.println("Endfield is occupied by own figure");
             }

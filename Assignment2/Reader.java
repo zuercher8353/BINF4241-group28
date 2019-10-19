@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Reader {
     private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-    private boolean rochade = false;
 
     public ArrayList<Object> readMove() {
         ArrayList<Object> moveArray = new ArrayList<>();
@@ -21,10 +20,7 @@ public class Reader {
                 System.out.print("Move (Figure X, Position xx, Target xx: ");
                 String moveInput = moveScanner.nextLine(); // Read Input
 
-                //check if rochade
-                if(kindInput.equals("rochade")){
-                    rochade = true;
-                }
+
                 //check empty input
                     if (!moveInput.isEmpty() && !kindInput.isEmpty()) {
 
