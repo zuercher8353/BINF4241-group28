@@ -596,7 +596,7 @@ public class Board {
     //unnötig löschen
     //TODO @Jonas findKing indices?
 
-    public King findKing(String color) {
+    /*public King findKing(String color) {
         //TODO do i need to return the indices?
         for (Object object : chessBoard) {
             if (object.getClass() == King.class) {
@@ -609,7 +609,7 @@ public class Board {
         System.out.println("no king found");
         return null;
     }
-
+*/
     //public tryMove(inputarray) {
         //figure auf dem input
         // meine Figur?
