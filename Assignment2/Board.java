@@ -14,6 +14,7 @@ public class Board {
         }
 
 
+
         //START initialize figures, black at the top, white at the bottom
 
         //init all pawns
