@@ -55,6 +55,7 @@ public class Board {
 
 
     public void printBoard() {
+
         System.out.print("   a    b    c    d    e    f    g    h\n"); //x axis
         for (int i = 0; i < boardsize; i++) {
             System.out.print(i + " ");            //y axis (on the left)
