@@ -21,6 +21,7 @@ public class Main {
         //TODO resolve issue with Players List Array
         List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
+
         while(!gameEnded) {
             for (Player player : allPlayers) {
 
