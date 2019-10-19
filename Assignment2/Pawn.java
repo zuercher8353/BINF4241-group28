@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Pawn implements Figur {
 
+
     private String token = "P";
     private Boolean iswhite;
     Boolean hasmoved;
