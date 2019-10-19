@@ -14,6 +14,7 @@ public class King implements Figur {
         this.figurid = id;
         id += 1;
 
+
     }
 
     public Boolean iswhite() {
