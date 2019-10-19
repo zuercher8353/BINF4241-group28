@@ -281,21 +281,6 @@ public class Board {
     }
 
 
-    //unnötig löschen
-    //TODO @Jonas findKing indices?
-    public King findKing(String color) {
-        //TODO do i need to return the indices?
-        for (Object object : chessBoard) {
-            if (object.getClass() == King.class) {
-                King king = (King) object;
-                if(king.iswhite()) {
-                    return king;
-                }
-            }
-        }
-        System.out.println("no king found");
-        return null;
-    }
 
     public boolean tryMove(ArrayList list, Player player, Players players) {
         boolean startFieldColor;
@@ -608,7 +593,22 @@ public class Board {
         return true;
     }
 
+    //unnötig löschen
+    //TODO @Jonas findKing indices?
 
+    public King findKing(String color) {
+        //TODO do i need to return the indices?
+        for (Object object : chessBoard) {
+            if (object.getClass() == King.class) {
+                King king = (King) object;
+                if(king.iswhite()) {
+                    return king;
+                }
+            }
+        }
+        System.out.println("no king found");
+        return null;
+    }
 
     //public tryMove(inputarray) {
         //figure auf dem input
