@@ -147,6 +147,7 @@ public class Board {
         }
     }
     //bug if figur got deleted in move figure
+
     public void undoMoveFigure(){
         int startX = lastMove[2];
         int startY = lastMove[3];
