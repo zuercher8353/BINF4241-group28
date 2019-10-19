@@ -16,6 +16,7 @@ public class Main {
         board.printBoard();
 
         //TODO resolve issue with Players List Array
+
         List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
         while(!gameEnded) {
