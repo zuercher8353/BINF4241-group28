@@ -53,7 +53,6 @@ public class Players {
     }
 
     public Player otherPlayer(Player player){
-
         for(Player player1 : playerList){
             if(player != player1){
                 return player1;
