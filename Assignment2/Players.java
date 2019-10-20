@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Players {
 
+
     //excaping references
     int nrOfPlayers = 0;
     static private List<Player> playerList = new ArrayList<>();
