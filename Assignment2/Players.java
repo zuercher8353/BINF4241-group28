@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Players {
 
-
     //excaping references
     int nrOfPlayers = 0;
     static private List<Player> playerList = new ArrayList<>();
@@ -13,9 +12,6 @@ public class Players {
 
     public void createPlayers() {
         int nrOfPlayers = 0;
-
-
-
 
         while (nrOfPlayers < 2) {
             try {
@@ -57,6 +53,7 @@ public class Players {
         return null;
     }
 
+
     public Player otherPlayer(Player player){
         for(Player player1 : playerList){
             if(player != player1){
@@ -65,7 +62,6 @@ public class Players {
         }
         return player;
     }
-
 
 
     public Player next() {
