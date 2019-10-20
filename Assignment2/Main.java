@@ -38,14 +38,18 @@ public class Main {
                 boolean possibleMove = false;
                 while (!possibleMove) {
                     ArrayList moveArray = reader.readMove(); //let player input move
-                    if (moveArray.get(0).equals("Rochade_Small")) {}
+                    if (moveArray.get(0).equals("Rochade_Small")) {
+                        if (board.shortRochade(player, players)){
+                            possibleMove = true;
+                        }
+                    }
                     else if(moveArray.get(0).equals("Rochade_Large")) {}
                     else {
                         if (board.tryMove(moveArray, player, players)) { //check if move is possible
                             possibleMove = true;
-                            board.printBoard();
                         }
                     }
+                    board.printBoard();
                 }
                 // int[] moveArray = reader.readMove();;
             }

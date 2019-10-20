@@ -34,15 +34,15 @@ public class Board {
         //init knights
         chessBoard[0][1] = new Knight(false);
         chessBoard[0][6] = new Knight(false);
-        chessBoard[7][1] = new Knight(true);
-        chessBoard[7][6] = new Knight(true);
+       // chessBoard[7][1] = new Knight(true);
+        //chessBoard[7][6] = new Knight(true);
 
 
         //init bishops
         chessBoard[0][2] = new Bishop(false);
         chessBoard[0][5] = new Bishop(false);
         chessBoard[7][2] = new Bishop(true);
-        chessBoard[7][5] = new Bishop(true);
+        //chessBoard[7][5] = new Bishop(true);
 
         //init queen
         chessBoard[0][3] = new Queen(false);
@@ -555,47 +555,54 @@ public class Board {
     public boolean shortRochade(Player player, Players players){
         int[] kingPos = kingPosition(player);
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
-        lastMove = kingPos.clone();
         if (kingObj.getHasmoved()){
             System.out.println("King has already moved. No castling possible");
             return false;
         }
-        for (int x = kingPos[0]; x <= 6; x++){
-            if (!(chessBoard[x][7].getClass()==null)){
+        for (int y = kingPos[1]+1; y <= 6; y++){
+            if (chessBoard[kingPos[0]][y] != null){
                 System.out.println("Other figures are in the way");
                 return false;
             }
         }
         if (player.isPlayerWhite()){
-            if(!(chessBoard[7][7].getClass() == Rock.class)){
-                System.out.println("Rock is not in the right place.");
-                return false;
-            }
-            else {
-                Rock rockObj = (Rock) chessBoard[7][7];
-                if(rockObj.getHasmoved()){
-                    System.out.println("Rock has already moved. No castling possible.");
+            if(chessBoard[7][7] !=  null) {
+                if (!(chessBoard[7][7].getClass() == Rock.class)) {
+                    System.out.println("Rock is not in the right place.");
                     return false;
-                }
-                else{
-                    for (int x = kingPos[0]; x<7;x++){
-                        int[] moveArray = {kingPos[0], kingPos[1], x, 7};
-                        moveFigure(moveArray);
-                        if(isCheck(player, players)){
-                            undoMoveFigure();
-                            System.out.println("King is checked. No castling possible");
-                            return false;
-                        }
+                } else {
+                    Rock rockObj = (Rock) chessBoard[7][7];
+                    if (rockObj.getHasmoved()) {
+                        System.out.println("Rock has already moved. No castling possible.");
+                        return false;
+                    } else {
+                        int[] moveArray = new int[4];
+                        for (int y = kingPos[1]+1; y < 7; y++) {
+                            moveArray[0] = kingPos[0];
+                            moveArray[1] = kingPos[1];
+                            moveArray[2] = kingPos[0];
+                            moveArray[3] = y;
+                            moveFigure(moveArray);
 
+
+                            if (isCheck(player, players)) {
+                                undoMoveFigure();
+                                System.out.println("King is checked. No castling possible");
+                                return false;
+                            }
+                            undoMoveFigure();
+                        }
+                        moveFigure(moveArray);
+                        int[] moveArrayRock = {7, 7, 7, 5};
+                        moveFigure(moveArrayRock);
                     }
 
                 }
-
             }
         }
-        int[] moveArrayRock = {7, 7, 5, 7};
-        moveFigure(moveArrayRock);
+
         return true;
+
     }
 
     public int[] kingPosition(Player player){
