@@ -23,7 +23,7 @@ public class Knight implements Figur {
 
     public Boolean islegal(int[] array) {
         Boolean islegal = false;
-        if (Math.abs(array[0] - array[2]) == 3 && Math.abs(array[1] - array[3]) == 1 || Math.abs(array[0] - array[2]) == 1 && Math.abs(array[1] - array[3]) == 3) {
+        if (Math.abs(array[0] - array[2]) == 2 && Math.abs(array[1] - array[3]) == 1 || Math.abs(array[0] - array[2]) == 1 && Math.abs(array[1] - array[3]) == 2) {
             islegal = true;
         }
         return islegal;

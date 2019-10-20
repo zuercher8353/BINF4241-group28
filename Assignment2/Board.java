@@ -23,7 +23,6 @@ public class Board {
             chessBoard[6][k] = new Pawn(true);
         }
 
-
         //init towers
         chessBoard[0][0] = new Rock(false);
         chessBoard[0][7] = new Rock(false);
@@ -56,7 +55,6 @@ public class Board {
 
 
     public void printBoard() {
-
         System.out.print("   a    b    c    d    e    f    g    h\n"); //x axis
         for (int i = 0; i < boardsize; i++) {
             System.out.print(i + " ");            //y axis (on the left)
@@ -129,7 +127,6 @@ public class Board {
 
     //TODO @Janosch moveFigure bauen
     public void moveFigure(int[] moveArrayINT) {
-
 
 
         int startX = moveArrayINT[0];
@@ -285,6 +282,21 @@ public class Board {
     }
 
 
+    //unnötig löschen
+    //TODO @Jonas findKing indices?
+    public King findKing(String color) {
+        //TODO do i need to return the indices?
+        for (Object object : chessBoard) {
+            if (object.getClass() == King.class) {
+                King king = (King) object;
+                if(king.iswhite()) {
+                    return king;
+                }
+            }
+        }
+        System.out.println("no king found");
+        return null;
+    }
 
     public boolean tryMove(ArrayList list, Player player, Players players) {
         boolean startFieldColor;
@@ -446,7 +458,6 @@ public class Board {
         return true;
     }
 
-
     //player is the player who has the next turn, check must be checked before he takes a turn
     public boolean isCheck(Player player, Players players){
         int[] kingPosition = kingPosition(player);
@@ -599,23 +610,8 @@ public class Board {
         return true;
     }
 
-    //unnötig löschen
-    //TODO @Jonas findKing indices?
 
-    /*public King findKing(String color) {
-        //TODO do i need to return the indices?
-        for (Object object : chessBoard) {
-            if (object.getClass() == King.class) {
-                King king = (King) object;
-                if(king.iswhite()) {
-                    return king;
-                }
-            }
-        }
-        System.out.println("no king found");
-        return null;
-    }
-*/
+
     //public tryMove(inputarray) {
         //figure auf dem input
         // meine Figur?

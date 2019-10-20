@@ -1,9 +1,8 @@
-import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reader {
-    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
+    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K', 'B'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
     public ArrayList<Object> readMove() {
@@ -33,14 +32,12 @@ public class Reader {
 
                     //validate Input
                     if (!validateFigureChar(figure)) {
-                        System.out.print("None Existing Figure. ");
-                        throw new NoSuchObjectException("None Existing Figure");
+                        throw new Exception("None Existing Figure");
                     } else {
                         moveArray.add(0, figure);
                     }
                     if ((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
-                        System.out.print("None Existing Field. ");
-                        throw new NoSuchFieldException();
+                        throw new Exception("None Existing Figure");
                     }
 
                     //check if Indices are in Range
@@ -49,8 +46,7 @@ public class Reader {
                     if (startY >= 0 && startY < 8) {
                         moveArray.add(1, startY);
                     } else {
-                        System.out.print("Index out of Range. ");
-                        throw new ArithmeticException();
+                        throw new ArithmeticException("Index out of Range");
                     }
 
                     //write startX in array index 2
@@ -64,8 +60,7 @@ public class Reader {
                     if (endY >= 0 && endY < 8) {
                         moveArray.add(3, endY);
                     } else {
-                        System.out.print("Index out of Range. ");
-                        throw new ArithmeticException();
+                        throw new ArithmeticException("Index out of Range");
                     }
 
 
