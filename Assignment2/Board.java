@@ -590,23 +590,6 @@ public class Board {
     }
 
 
-    //rochade
-    // könig position
-    // position von turm
-    // king und rook an richtigem ort
-    //olat input
-    //schon bewegt
-    // andere figur im weg
-    //move um 1 feld
-    //ischeck
-    //undomovefigur
-    // move um 2 felder
-    //undo
-    //move um 3 felder..
-    //jede pos überprüfen ob schach
-    // könig bewegen mit path
-    //
-
     public boolean shortRochade(Player player, Players players){
         int[] kingPos = kingPosition(player);
         int x;
