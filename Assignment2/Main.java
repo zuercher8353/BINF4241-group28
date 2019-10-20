@@ -43,7 +43,11 @@ public class Main {
                             possibleMove = true;
                         }
                     }
-                    else if(moveArray.get(0).equals("Rochade_Large")) {}
+                    else if(moveArray.get(0).equals("Rochade_Large")) {
+                        if (board.longRochade(player, players)){
+                            possibleMove = true;
+                        }
+                    }
                     else {
                         if (board.tryMove(moveArray, player, players)) { //check if move is possible
                             possibleMove = true;
