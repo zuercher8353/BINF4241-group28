@@ -50,14 +50,16 @@ public class Board {
         chessBoard[0][4] = new King(false);
         chessBoard[7][4] = new King(true);
 
-        //START initialize figures
+        //END initialize figures
     }
 
 
     public void printBoard() {
-        System.out.print("   a    b    c    d    e    f    g    h\n"); //x axis
+        System.out.print("   a    b    c    d    e    f    g    h\n"); //character x axis on top
+
+        int yLabel = 8; //for numeric y axis
         for (int i = 0; i < boardsize; i++) {
-            System.out.print(i + " ");            //y axis (on the left)
+            System.out.print((yLabel) + " ");            //numeric y axis (on the left)
             for (int j = 0; j < boardsize; j++) {
                 if (chessBoard[i][j] == null) {
                     System.out.print("[  ] ");
@@ -106,12 +108,13 @@ public class Board {
                             System.out.print("[B" + rock.getToken() + "] ");
                         }
                     }
-
                 }
             }
-            System.out.print("\n");
+            System.out.print(" ("+i+") \n");
+            yLabel = yLabel - 1;
         }
         System.out.print("\n");
+
     }
 
     public void removeFigure(int i, int j, Player player) {
@@ -148,7 +151,7 @@ public class Board {
             System.out.println("no figure to move");
         }
     }
-    //bug if figur got deleted in move figure
+    //bug if figure got deleted in move figure
 
     public void undoMoveFigure(){
         int startX = lastMove[2];
