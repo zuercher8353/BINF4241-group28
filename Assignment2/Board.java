@@ -117,7 +117,6 @@ public class Board {
     public void removeFigure(int i, int j, Player player) {
         Object object = chessBoard[i][j];
         player.addEatenPiece(object);
-        chessBoard[i][j] = null;
     }
 
     //TODO @Janosch killfigure bauen
@@ -428,6 +427,8 @@ public class Board {
                 return false;
             }
             else {
+                Player otherplayer = players.otherPlayer(player);
+                removeFigure(array[2], array[3], otherplayer);
                 System.out.println(endField.getClass().getName() + "is getting eating");
             }
         }
