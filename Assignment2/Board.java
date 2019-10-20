@@ -33,20 +33,20 @@ public class Board {
 
         //init knights
         chessBoard[0][1] = new Knight(false);
-        //chessBoard[0][6] = new Knight(false);
-       // chessBoard[7][1] = new Knight(true);
-        //chessBoard[7][6] = new Knight(true);
+        chessBoard[0][6] = new Knight(false);
+        chessBoard[7][1] = new Knight(true);
+        chessBoard[7][6] = new Knight(true);
 
 
         //init bishops
         chessBoard[0][2] = new Bishop(false);
-        //chessBoard[0][5] = new Bishop(false);
-       // chessBoard[7][2] = new Bishop(true);
-        //chessBoard[7][5] = new Bishop(true);
+        chessBoard[0][5] = new Bishop(false);
+        chessBoard[7][2] = new Bishop(true);
+        chessBoard[7][5] = new Bishop(true);
 
         //init queen
         chessBoard[0][3] = new Queen(false);
-        //chessBoard[7][3] = new Queen(true);
+        chessBoard[7][3] = new Queen(true);
 
         //init king
         chessBoard[0][4] = new King(false);
