@@ -127,15 +127,15 @@ public class Board {
 
     //TODO @Janosch moveFigure bauen
     public void moveFigure(int[] moveArrayINT) {
-
-
-
         int startX = moveArrayINT[0];
         int startY = moveArrayINT[1];
         int endX = moveArrayINT[2];
         int endY = moveArrayINT[3];
         lastMove = moveArrayINT.clone();
+
         if (!(chessBoard[startX][startY] == null)) {
+
+
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
             if(chessBoard[endX][endY] != null){
