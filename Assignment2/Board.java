@@ -144,6 +144,7 @@ public class Board {
                     lastHasMoved = false;
                     ObjectStartField.setHasMoved(true);
                 }
+
             }
             else if(chessBoard[startX][startY].getClass() == Rock.class) {
                 Rock ObjectStartField = (Rock) chessBoard[startX][startY];
