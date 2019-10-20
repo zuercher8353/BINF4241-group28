@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Pawn implements Figur {
 
+
     private String token = "P";
     private Boolean iswhite;
     Boolean hasmoved;
@@ -43,7 +44,7 @@ public class Pawn implements Figur {
 
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();
-        int x =  array[2]-array[0];
+        int x =  array[0]-array[2];
         if(x > 0){
             for(int i=1; i < x; i++ ){
                 path.add(array[0]+i);
