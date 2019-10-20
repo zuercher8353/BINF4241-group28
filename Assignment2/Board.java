@@ -169,7 +169,7 @@ public class Board {
             System.out.println("no figure to move");
         }
     }
-    //bug if figure got deleted in move figure
+
 
     public void undoMoveFigure(){
         int startX = lastMove[2];
@@ -466,6 +466,9 @@ public class Board {
                 System.out.println(endField.getClass().getName() + " is getting eaten");
                 moveFigure(array);
             }
+        }
+        else {
+            moveFigure(array);
         }
         lastRealMove = array;
 
@@ -830,106 +833,7 @@ public class Board {
             }
             return true;
         }
-        if (startField == null) {                                              //figur auf dem Anfangspunkt
-            return false;
-        }
-        else if(startField.getClass() == Bishop.class) {
-            Bishop startField1 = (Bishop)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == King.class) {
-            King startField1 = (King)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Queen.class) {
-            Queen startField1 = (Queen)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Rock.class) {
-            Rock startField1 = (Rock)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Knight.class) {
-            Knight startField1 = (Knight)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Pawn.class) {
-            Pawn startField1 = (Pawn)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-            if(Math.abs(array[2]-array[0]) == 1 && Math.abs(array[3]-array[1]) == 1){       //check if pawn is allowed to move transversal
-                if(endField == null){
-                    return false;
-                }
-            }
-            else{                                                                           //check if endfield is empty, cause pawn can only move forward if endfield empty
-                if(endField != null){
-                    return false;
-                }
-            }
-        }
-        else {
-            startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
-        }
-        if(endField == null){
-            endFieldColor = true;
-        }
-        else if(endField.getClass() == Bishop.class) {
-            Bishop endField1 = (Bishop)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == King.class) {
-            King endField1 = (King)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Queen.class) {
-            Queen endField1 = (Queen)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Rock.class) {
-            Rock endField1 = (Rock)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Knight.class) {
-            Knight endField1 = (Knight)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Pawn.class) {
-            Pawn endField1 = (Pawn)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else{
-            endFieldColor = true;
-        }
-        //eigene Figur?
-        if (startFieldColor!= player.isPlayerWhite()) {
-            return false;
-        }
-        //check if endfield is not own figur
-        if(endField != null){
-            if (startFieldColor == endFieldColor) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 
     public boolean enPassant(ArrayList movearray, Player player, Players players){
