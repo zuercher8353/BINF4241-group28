@@ -2,17 +2,17 @@ import java.util.ArrayList;
 public class Queen implements Figur {
 
     private String token = "Q";
-    private Boolean iswhite;
+    private boolean iswhite;
     private int figurid;
     static int id = 0;
 
-    public Queen(Boolean iswhite){
+    public Queen(boolean iswhite){
         this.iswhite = iswhite;
         this.figurid = id;
         id += 1;
     }
 
-    public Boolean iswhite() {
+    public boolean iswhite() {
         return iswhite;
     }
 
@@ -22,7 +22,7 @@ public class Queen implements Figur {
     }
 
     //array 0 = array[0], 1 = array[1], 2 = array[2], 3 = array[3]
-    public Boolean islegal(int []array){
+    public boolean islegal(int []array){
 
         if(array[0] != array[2] && array[1] != array[3] ) {
             if(Math.abs(array[0] - array[2])!= Math.abs(array[1] - array[3])){

@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class King implements Figur {
 
     private String token = "K";
-    private Boolean hasmoved;
-    private Boolean iswhite;
+    private boolean hasmoved;
+    private boolean iswhite;
     private int figurid;
     static int id = 0;
 
-    public King(Boolean iswhite){
+    public King(boolean iswhite){
         this.hasmoved = false;
         this.iswhite = iswhite;
         this.figurid = id;
@@ -19,7 +19,7 @@ public class King implements Figur {
         hasmoved = setHasMoved;
     }
 
-    public Boolean iswhite() {
+    public boolean iswhite() {
         return iswhite;
     }
 
@@ -27,14 +27,14 @@ public class King implements Figur {
         return token;
     }
 
-    public Boolean islegal(int[] array){
+    public boolean islegal(int[] array){
         if(Math.abs(array[0]-array[2]) > 1 || Math.abs(array[1]-array[3]) > 1) {
             return false;
         }
         return true;
     }
 
-    public Boolean getHasmoved() {
+    public boolean getHasmoved() {
         return hasmoved;
     }
 

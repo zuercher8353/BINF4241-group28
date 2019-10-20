@@ -23,7 +23,7 @@ public class Player {
         return this.name;
     }
 
-    public Boolean isPlayerWhite() {
+    public boolean isPlayerWhite() {
         return isWhite;
     }
 
@@ -38,7 +38,6 @@ public class Player {
 
     public void addEatenPiece(Object object) {
         eatenPieces.add(object);
-        return;
     }
     public void showEatenPieces() {
         for(Object eatenPiece : eatenPieces) {

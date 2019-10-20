@@ -8,7 +8,7 @@ public class Reader {
 
     public ArrayList<Object> readMove() {
         ArrayList<Object> moveArray = new ArrayList<>();
-        Boolean validInput = false;
+        boolean validInput = false;
 
         while (!validInput)
 
@@ -120,7 +120,7 @@ public class Reader {
         return moveArray;
     }
 
-    private Boolean validateFigureChar(char inputFigureSTR) {
+    private boolean validateFigureChar(char inputFigureSTR) {
         for (char figureSTR : FigureSTRs) {
             if (figureSTR == inputFigureSTR) {
                 return true;
@@ -129,7 +129,7 @@ public class Reader {
         return false;
     }
 
-    private Boolean validateFieldChar(char inputfieldSTR) {
+    private boolean validateFieldChar(char inputfieldSTR) {
         for (char fieldSTR : fieldSTRs) {
             if (fieldSTR == inputfieldSTR) {
                 return true;

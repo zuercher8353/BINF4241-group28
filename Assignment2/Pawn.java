@@ -3,19 +3,19 @@ import java.util.ArrayList;
 public class Pawn implements Figur {
 
     private String token = "P";
-    private Boolean iswhite;
-    Boolean hasmoved;
+    private boolean iswhite;
+    private boolean hasmoved;
     private int figurid;
     static int id = 0;
 
-    public Pawn(Boolean iswhite){
+    public Pawn(boolean iswhite){
         this.hasmoved = false;
         this.iswhite = iswhite;
         this.figurid = id;
         id += 1;
     }
 
-    public Boolean iswhite() {
+    public boolean iswhite() {
         return iswhite;
     }
 
@@ -29,11 +29,11 @@ public class Pawn implements Figur {
         return token;
     }
 
-    public Boolean getHasmoved() {
+    public boolean getHasmoved() {
         return hasmoved;
     }
 
-    public Boolean islegal(int[] array){ // Schräg laufen wenn figur geschlagen, noch nicht implementiert
+    public boolean islegal(int[] array){ // Schräg laufen wenn figur geschlagen, noch nicht implementiert
         int x = array[0]-array[2];
         int y = array[1]-array[3];
 
