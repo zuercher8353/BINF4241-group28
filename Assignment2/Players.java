@@ -67,6 +67,7 @@ public class Players {
     }
 
 
+
     public Player next() {
         if(iterPlayers.hasNext()) {
             Player nextPlayer = (Player) iterPlayers.next();
