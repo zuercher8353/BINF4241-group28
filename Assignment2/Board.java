@@ -6,6 +6,7 @@ public class Board {
     private int boardsize = 8;
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
+    private int[] lastRealMove = new int[4];
     private Object lastdeleted;
     private boolean lastHasMoved = true;
 
@@ -329,22 +330,6 @@ public class Board {
     }
 
 
-    //unnötig löschen
-    //TODO @Jonas findKing indices?
-    public King findKing(String color) {
-        //TODO do i need to return the indices?
-        for (Object object : chessBoard) {
-            if (object.getClass() == King.class) {
-                King king = (King) object;
-                if(king.iswhite()) {
-                    return king;
-                }
-            }
-        }
-        System.out.println("no king found");
-        return null;
-    }
-
     public boolean tryMove(ArrayList list, Player player, Players players) {
         boolean startFieldColor;
         boolean endFieldColor;
@@ -469,6 +454,15 @@ public class Board {
             return false;
         }
         //check if endfield is not own figur
+        moveFigure(array);
+        if(isCheck(player, players)){
+            undoMoveFigure();
+            System.out.println("Your committing Kingsuicid");
+            return false;
+        }
+        else{
+            undoMoveFigure();}
+
         if(endField != null){
             if (startFieldColor == endFieldColor) {
                 System.out.println("Endfield is occupied by own figure");
@@ -476,12 +470,12 @@ public class Board {
             }
             else {
                 Player otherplayer = players.otherPlayer(player);
-                removeFigure(array[2], array[3], otherplayer);
-                System.out.println(endField.getClass().getName() + "is getting eating");
+                removeFigure(array[2], array[3], otherplayer);  //soltte nicht gemacht werden wenn Kingsuicid
+                System.out.println(endField.getClass().getName() + " is getting eaten");
+                moveFigure(array);
             }
         }
-
-        moveFigure(array);
+        lastRealMove = array;
 
         return true;
         }
@@ -658,6 +652,62 @@ public class Board {
         }
         return true;
     }
+
+
+    public boolean enPassant(ArrayList movearray, Player player, Players players){
+        int endX = lastRealMove[2];
+        int endY = lastRealMove[3];
+        int[] tryEnPassant = new int[4];
+        ArrayList<Integer> path = new ArrayList<>();
+        tryEnPassant[0] = (Integer) movearray.get(1);
+        tryEnPassant[1] = (Integer) movearray.get(2);
+        tryEnPassant[2] = (Integer) movearray.get(3);
+        tryEnPassant[3] = (Integer) movearray.get(4);
+
+        //check if char at the beginning is = P;
+        String figuretyp = movearray.get(0).toString();
+        if(!(figuretyp.equals("P"))){
+            System.out.println("The first letter of the input must be P for en passant");
+            return false;
+        }
+
+        if(chessBoard[endX][endY] != null) {
+            if (chessBoard[endX][endY].getClass() == Pawn.class) {
+                Pawn movedPawn = (Pawn) chessBoard[endX][endY];
+                path = movedPawn.path(lastRealMove);
+                if(path.size() == 2) {
+                    if(path.get(0) == tryEnPassant[2] && path.get(1) == tryEnPassant[3]) {
+                        if (chessBoard[tryEnPassant[0]][tryEnPassant[1]].getClass() == Pawn.class) {
+                            Pawn killerPawn = (Pawn) chessBoard[endX][endY];
+                            if (killerPawn.iswhite() == player.isPlayerWhite()) {
+                                if (isLegalPath(killerPawn, tryEnPassant)) {
+                                    Player otherPlayer = players.otherPlayer(player);
+                                    removeFigure(endX, endY, otherPlayer);
+                                    moveFigure(tryEnPassant);
+                                    chessBoard[endX][endY] = null;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+                else{
+                    System.out.println("Pawn was not moved 2 fields");
+                    return false;
+                }
+            }
+            else{
+                System.out.println("Last moved Figure is not a Pawn");
+                return false;
+            }
+
+        }
+        System.out.println("Your not allowed to perform en passant");
+        return false;
+    }
+
 
 
 
