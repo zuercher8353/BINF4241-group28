@@ -473,6 +473,7 @@ public class Board {
         lastRealMove = array;
 
         return true;
+
         }
 
     public boolean promoteFigure(ArrayList moveArray, Player player, Players players) {
