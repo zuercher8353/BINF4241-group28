@@ -24,7 +24,7 @@ public class Queen implements Figur {
     //array 0 = array[0], 1 = array[1], 2 = array[2], 3 = array[3]
     public Boolean islegal(int []array){
 
-        if(array[0] != array[1] && array[2] != array[3] ) {
+        if(array[0] != array[2] && array[1] != array[3] ) {
             if(Math.abs(array[0] - array[2])!= Math.abs(array[1] - array[3])){
                 return false;
             } }

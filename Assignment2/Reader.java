@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reader {
-    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
+    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K', 'B'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
     public ArrayList<Object> readMove() {
