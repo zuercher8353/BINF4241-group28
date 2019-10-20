@@ -36,18 +36,15 @@ public class Main {
 
                 boolean possibleMove = false;
                 while (!possibleMove) {
-                    //let player input move
-                    ArrayList moveArray = reader.readMove();
 
-                    //if (moveArray.get(0).equals("Rochade_Small")) {}
-                    //else if(moveArray.get(0).equals("Rochade_Large")) {}
+                    ArrayList moveArray = reader.readMove();
 
                     if(moveArray.size() == 6) {
                         if(board.promoteFigure(moveArray,player,players)) {
                             possibleMove = true;
                         }
                     }
-                    ArrayList moveArray = reader.readMove(); //let player input move
+
                     if (moveArray.get(0).equals("Rochade_Small")) {
                         if (board.shortRochade(player, players)){
                             possibleMove = true;
@@ -65,11 +62,6 @@ public class Main {
                     }
                 }
                 board.printBoard();
-                        }
-                    }
-                    board.printBoard();
-                }
-                // int[] moveArray = reader.readMove();;
             }
         }
     }

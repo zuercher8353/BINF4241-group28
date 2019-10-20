@@ -569,8 +569,6 @@ public class Board {
                     positionFigureCheck[1] = y;
                     return true;
                 }
-
-
             }
         }
         return false;
@@ -652,26 +650,26 @@ public class Board {
 
     }
 
-    public boolean longRochade(Player player, Players players){
+    public boolean longRochade(Player player, Players players) {
         int[] kingPos = kingPosition(player);
         int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
-        if (kingObj.getHasmoved()){
+        if (kingObj.getHasmoved()) {
             System.out.println("King has already moved. No castling possible");
             return false;
         }
-        for (int y = kingPos[1]-1; y > 0; y--){
-            if (chessBoard[kingPos[0]][y] != null){
+        for (int y = kingPos[1] - 1; y > 0; y--) {
+            if (chessBoard[kingPos[0]][y] != null) {
                 System.out.println("Other figures are in the way");
                 return false;
             }
         }
         if (player.isPlayerWhite()) {
             x = 7;
-        }else{
+        } else {
             x = 0;
         }
-        if(chessBoard[x][0] !=  null) {
+        if (chessBoard[x][0] != null) {
             if (!(chessBoard[x][7].getClass() == Rock.class)) {
                 System.out.println("Rock is not in the right place.");
                 return false;
@@ -682,7 +680,7 @@ public class Board {
                     return false;
                 } else {
                     int[] moveArray = new int[4];
-                    for (int y = kingPos[1]-1; y > 1; y--) {
+                    for (int y = kingPos[1] - 1; y > 1; y--) {
                         moveArray[0] = kingPos[0];
                         moveArray[1] = kingPos[1];
                         moveArray[2] = kingPos[0];
@@ -704,157 +702,121 @@ public class Board {
 
             }
         }
-
-
-
-    public int[] kingPosition(Player player){
-        int[] kingPosition = new int[2];
-
-        for (int x = 0; x < boardsize; x++) {
-            for (int y = 0; y < boardsize; y++) {
-                if(chessBoard[x][y] != null){
-                    if (chessBoard[x][y].getClass() == King.class) {
-                        King kingPositionObject = (King) chessBoard[x][y];
-                        if (kingPositionObject.iswhite() == player.isPlayerWhite()) {
-                            kingPosition[0] = x;
-                            kingPosition[1] = y;
-                            return kingPosition;
-                        }
-                }}
-            }
-        }
-        return kingPosition;
-    }
-
-    //gleiche wie trymove(), ohne prints und ohne typ am anfang von Arraylist, ohne move
-    public boolean tryIsCheck(int[] array, Player player) {
-        boolean startFieldColor;
-        boolean endFieldColor;
-        Object startField = chessBoard[array[0]][array[1]];
-        Object endField = chessBoard[array[2]][array[3]];
-
-        if (startField == null) {                                              //figur auf dem Anfangspunkt
-            return false;
-        }
-        else if(startField.getClass() == Bishop.class) {
-            Bishop startField1 = (Bishop)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == King.class) {
-            King startField1 = (King)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Queen.class) {
-            Queen startField1 = (Queen)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Rock.class) {
-            Rock startField1 = (Rock)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Knight.class) {
-            Knight startField1 = (Knight)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-        }
-        else if(startField.getClass() == Pawn.class) {
-            Pawn startField1 = (Pawn)startField;
-            startFieldColor= startField1.iswhite();
-            if(!isLegalPath(startField1, array)){
-                return false;
-            }
-            if(Math.abs(array[2]-array[0]) == 1 && Math.abs(array[3]-array[1]) == 1){       //check if pawn is allowed to move transversal
-                if(endField == null){
-                    return false;
-                }
-            }
-            else{                                                                           //check if endfield is empty, cause pawn can only move forward if endfield empty
-                if(endField != null){
-                    return false;
-                }
-            }
-        }
-        else {
-            startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
-        }
-        if(endField == null){
-            endFieldColor = true;
-        }
-        else if(endField.getClass() == Bishop.class) {
-            Bishop endField1 = (Bishop)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == King.class) {
-            King endField1 = (King)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Queen.class) {
-            Queen endField1 = (Queen)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Rock.class) {
-            Rock endField1 = (Rock)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Knight.class) {
-            Knight endField1 = (Knight)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else if(endField.getClass() == Pawn.class) {
-            Pawn endField1 = (Pawn)endField;
-            endFieldColor = endField1.iswhite();
-        }
-        else{
-            endFieldColor = true;
-        }
-        //eigene Figur?
-        if (startFieldColor!= player.isPlayerWhite()) {
-            return false;
-        }
-        //check if endfield is not own figur
-        if(endField != null){
-            if (startFieldColor == endFieldColor) {
-                return false;
-            }
-        }
         return true;
     }
 
 
+        public int[] kingPosition (Player player){
+            int[] kingPosition = new int[2];
 
-    //public tryMove(inputarray) {
-        //figure auf dem input
-        // meine Figur?
-            //figure move islegal, type of move?
-                //figure path? return arraylist path of fields stepped
-                    //check if arraylist path is free on board
-                        //yes?
-                            //is endfield occupied by own figure?
-                                //no?
-                                    //move
-                                //yes?
-                                    // dont move, field is occupied by own figure , tell user cannot move
-                        //no?
-                            //there is a figure in your way
-            //figure is not able to move like this, return false
-        // nicht meine Figur?
+            for (int x = 0; x < boardsize; x++) {
+                for (int y = 0; y < boardsize; y++) {
+                    if (chessBoard[x][y] != null) {
+                        if (chessBoard[x][y].getClass() == King.class) {
+                            King kingPositionObject = (King) chessBoard[x][y];
+                            if (kingPositionObject.iswhite() == player.isPlayerWhite()) {
+                                kingPosition[0] = x;
+                                kingPosition[1] = y;
+                                return kingPosition;
+                            }
+                        }
+                    }
+                }
+            }
+            return kingPosition;
+        }
 
-        //return array
+        //gleiche wie trymove(), ohne prints und ohne typ am anfang von Arraylist, ohne move
+        public boolean tryIsCheck ( int[] array, Player player){
+            boolean startFieldColor;
+            boolean endFieldColor;
+            Object startField = chessBoard[array[0]][array[1]];
+            Object endField = chessBoard[array[2]][array[3]];
 
-
-
+            if (startField == null) {                                              //figur auf dem Anfangspunkt
+                return false;
+            } else if (startField.getClass() == Bishop.class) {
+                Bishop startField1 = (Bishop) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+            } else if (startField.getClass() == King.class) {
+                King startField1 = (King) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+            } else if (startField.getClass() == Queen.class) {
+                Queen startField1 = (Queen) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+            } else if (startField.getClass() == Rock.class) {
+                Rock startField1 = (Rock) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+            } else if (startField.getClass() == Knight.class) {
+                Knight startField1 = (Knight) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+            } else if (startField.getClass() == Pawn.class) {
+                Pawn startField1 = (Pawn) startField;
+                startFieldColor = startField1.iswhite();
+                if (!isLegalPath(startField1, array)) {
+                    return false;
+                }
+                if (Math.abs(array[2] - array[0]) == 1 && Math.abs(array[3] - array[1]) == 1) {       //check if pawn is allowed to move transversal
+                    if (endField == null) {
+                        return false;
+                    }
+                } else {                                                                           //check if endfield is empty, cause pawn can only move forward if endfield empty
+                    if (endField != null) {
+                        return false;
+                    }
+                }
+            } else {
+                startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
+            }
+            if (endField == null) {
+                endFieldColor = true;
+            } else if (endField.getClass() == Bishop.class) {
+                Bishop endField1 = (Bishop) endField;
+                endFieldColor = endField1.iswhite();
+            } else if (endField.getClass() == King.class) {
+                King endField1 = (King) endField;
+                endFieldColor = endField1.iswhite();
+            } else if (endField.getClass() == Queen.class) {
+                Queen endField1 = (Queen) endField;
+                endFieldColor = endField1.iswhite();
+            } else if (endField.getClass() == Rock.class) {
+                Rock endField1 = (Rock) endField;
+                endFieldColor = endField1.iswhite();
+            } else if (endField.getClass() == Knight.class) {
+                Knight endField1 = (Knight) endField;
+                endFieldColor = endField1.iswhite();
+            } else if (endField.getClass() == Pawn.class) {
+                Pawn endField1 = (Pawn) endField;
+                endFieldColor = endField1.iswhite();
+            } else {
+                endFieldColor = true;
+            }
+            //eigene Figur?
+            if (startFieldColor != player.isPlayerWhite()) {
+                return false;
+            }
+            //check if endfield is not own figur
+            if (endField != null) {
+                if (startFieldColor == endFieldColor) {
+                    return false;
+                }
+            }
+            return true;
+        }
 }
+
