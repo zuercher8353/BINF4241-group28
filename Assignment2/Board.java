@@ -532,6 +532,68 @@ public class Board {
     }
 
 
+    //rochade
+    // könig position
+    // position von turm
+    // king und rook an richtigem ort
+    //olat input
+    //schon bewegt
+    // andere figur im weg
+    //move um 1 feld
+    //ischeck
+    //undomovefigur
+    // move um 2 felder
+    //undo
+    //move um 3 felder..
+    //jede pos überprüfen ob schach
+    // könig bewegen mit path
+    //
+
+    public boolean shortRochade(Player player, Players players){
+        int[] kingPos = kingPosition(player);
+        King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
+        lastMove = kingPos.clone();
+        if (kingObj.getHasmoved()){
+            System.out.println("King has already moved. No castling possible");
+            return false;
+        }
+        for (int x = kingPos[0]; x <= 6; x++){
+            if (!(chessBoard[x][7].getClass()==null)){
+                System.out.println("Other figures are in the way");
+                return false;
+            }
+        }
+        if (player.isPlayerWhite()){
+            if(!(chessBoard[7][7].getClass() == Rock.class)){
+                System.out.println("Rock is not in the right place.");
+                return false;
+            }
+            else {
+                Rock rockObj = (Rock) chessBoard[7][7];
+                if(rockObj.getHasmoved()){
+                    System.out.println("Rock has already moved. No castling possible.");
+                    return false;
+                }
+                else{
+                    for (int x = kingPos[0]; x<7;x++){
+                        int[] moveArray = {kingPos[0], kingPos[1], x, 7};
+                        moveFigure(moveArray);
+                        if(isCheck(player, players)){
+                            undoMoveFigure();
+                            System.out.println("King is checked. No castling possible");
+                            return false;
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+        int[] moveArrayRock = {7, 7, 5, 7};
+        moveFigure(moveArrayRock);
+        return true;
+    }
 
     public int[] kingPosition(Player player){
         int[] kingPosition = new int[2];

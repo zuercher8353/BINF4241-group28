@@ -31,6 +31,10 @@ public class Rock implements Figur {
         hasmoved = setHasMoved;
     }
 
+    public Boolean getHasmoved() {
+        return hasmoved;
+    }
+
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();
         if(array[0]!= array[2]){
