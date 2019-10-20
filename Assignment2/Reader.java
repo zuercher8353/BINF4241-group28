@@ -5,6 +5,7 @@ public class Reader {
     private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K', 'B'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
+
     public ArrayList<Object> readMove() {
         ArrayList<Object> moveArray = new ArrayList<>();
         Boolean validInput = false;
