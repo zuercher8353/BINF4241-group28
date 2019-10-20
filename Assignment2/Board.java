@@ -868,7 +868,6 @@ public class Board {
                         }
                     }
 
-
                 }
                 else{
                     System.out.println("Pawn was not moved 2 fields");
