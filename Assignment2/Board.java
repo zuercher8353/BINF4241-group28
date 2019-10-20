@@ -12,6 +12,7 @@ public class Board {
 
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
+
     public Board() {
         for (int i = 0; i < boardsize; i++) {
             for (int j = 0; i < boardsize; i++)
