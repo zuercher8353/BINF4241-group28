@@ -127,7 +127,6 @@ public class Board {
 
     public void moveFigure(int[] moveArrayINT) {
 
-
         int startX = moveArrayINT[0];
         int startY = moveArrayINT[1];
         int endX = moveArrayINT[2];
