@@ -26,6 +26,9 @@ public class Board {
             chessBoard[6][k] = new Pawn(true);
         }
 
+
+
+
         //init towers
         chessBoard[0][0] = new Rock(false);
         chessBoard[0][7] = new Rock(false);
@@ -48,6 +51,7 @@ public class Board {
         //init queen
         chessBoard[0][3] = new Queen(false);
         chessBoard[7][3] = new Queen(true);
+
 
         //init king
         chessBoard[0][4] = new King(false);
@@ -851,7 +855,7 @@ public class Board {
                 if(path.size() == 2) {
                     if(path.get(0) == tryEnPassant[2] && path.get(1) == tryEnPassant[3]) {
                         if (chessBoard[tryEnPassant[0]][tryEnPassant[1]].getClass() == Pawn.class) {
-                            Pawn killerPawn = (Pawn) chessBoard[endX][endY];
+                            Pawn killerPawn = (Pawn) chessBoard[tryEnPassant[0]][tryEnPassant[1]];
                             if (killerPawn.iswhite() == player.isPlayerWhite()) {
                                 if (isLegalPath(killerPawn, tryEnPassant)) {
                                     Player otherPlayer = players.otherPlayer(player);
