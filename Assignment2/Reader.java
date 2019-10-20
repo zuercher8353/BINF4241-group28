@@ -107,6 +107,7 @@ public class Reader {
         return false;
     }
 
+
     private Boolean validateFieldChar(char inputfieldSTR) {
         for (char fieldSTR : fieldSTRs) {
             if (fieldSTR == inputfieldSTR) {
