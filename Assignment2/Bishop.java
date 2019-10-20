@@ -14,10 +14,6 @@ public class Bishop implements Figur {
 
     }
 
-    public String getName() {
-        return token;
-    }
-
     public Boolean iswhite() {
         return iswhite;
     }
