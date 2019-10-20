@@ -611,6 +611,10 @@ public class Board {
         int[] kingPos = kingPosition(player);
         int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
+        if (isCheck(player, players)){
+            System.out.println("You are in check");
+            return false;
+        }
         if (kingObj.getHasmoved()){
             System.out.println("King has already moved. No castling possible");
             return false;
@@ -669,6 +673,10 @@ public class Board {
         int[] kingPos = kingPosition(player);
         int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
+        if (isCheck(player, players)){
+            System.out.println("You are in check");
+            return false;
+        }
         if (kingObj.getHasmoved()) {
             System.out.println("King has already moved. No castling possible");
             return false;
