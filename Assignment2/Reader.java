@@ -23,22 +23,16 @@ public class Reader {
                     if (moveInput.equals("O-O")) {
                         moveArray.add("Rochade_Small");
                         validInput = true;
-                    }
-                    else if (moveInput.equals("O-O-O")) {
+                    } else if (moveInput.equals("O-O-O")) {
                         moveArray.add("Rochade_Large");
                         validInput = true;
-                    }
-                    else {
+                    } else {
                         //convert input
                         char figure = Character.toUpperCase(moveInput.charAt(0));
                         char startX = Character.toUpperCase(moveInput.charAt(1));
                         int startY = Character.getNumericValue(moveInput.charAt(2));
                         char endX = Character.toUpperCase(moveInput.charAt(3));
                         int endY = Character.getNumericValue(moveInput.charAt(4));
-
-                        if (moveInput.length()==6) {
-                            char figurePromoted = Character.toUpperCase(moveInput.charAt(5));
-                        }
 
                         //TODO Mulitple Exceptions
 
@@ -58,7 +52,7 @@ public class Reader {
                         if (startY > 0 && startY <= 8) {
                             //write numeric start value in moveArray, convert to mirrored numeric Y axis
                             //by subtracting 8
-                            moveArray.add(1, 8-startY);
+                            moveArray.add(1, 8 - startY);
                         } else {
                             throw new ArithmeticException("Index out of Range");
                         }
@@ -70,14 +64,29 @@ public class Reader {
                         }
 
                         if (endY > 0 && endY <= 8) {
-                            moveArray.add(3, 8-endY);
+                            moveArray.add(3, 8 - endY);
                         } else {
                             throw new ArithmeticException("Index out of Range");
                         }
-
                         for (int i = 0; i < fieldSTRs.length; i++) {
                             if (endX == fieldSTRs[i]) {
                                 moveArray.add(4, i);
+                            }
+                        }
+
+                        if (moveInput.length() == 6) {
+
+                            //exclude Knight
+                            char figurePromoted = Character.toUpperCase(moveInput.charAt(5));
+                            if (!validateFigureChar(figurePromoted)) {
+                                throw new Exception("Promotion: None Existing Figure");
+                            } else {
+                                if (figurePromoted == 'K') {
+                                    System.out.println("Promotion to King not allowed");
+                                    throw new Exception("Promotion to King not allowed");
+                                } else {
+                                    moveArray.add(5, figurePromoted);
+                                }
                             }
                         }
 
@@ -85,7 +94,7 @@ public class Reader {
                     }
 
                 } else {
-                    System.out.println("empty Input!");
+                    System.out.println("Empty Input!");
                 }
 
 
@@ -93,7 +102,7 @@ public class Reader {
                 System.out.println("Invalid Input!");
             }
 
-        //move Array output style: { Figure, Ystart, Xstart, Yend, Xend }
+        //move Array output style: { Figure, Ystart (Zeile), Xstart (Spalte), Yend, Xend }
         //axis: Y (top-bottom)- 0-7 // X (left-right)- 0-7
         return moveArray;
     }

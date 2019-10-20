@@ -22,12 +22,11 @@ public class Main {
         while(!gameEnded) {
             for (Player player : allPlayers) {
 
-                //TODO Jonas isCheck() aufrufen
-                System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
+                System.out.println("It's your turn, " + player.getName() + " (" +player.getColourSTR()+ ")");
                 System.out.println();
                 if(board.isCheck(player, players)){
                     if(board.isCheckMated(player,players)){
-                        System.out.println("Your checkmated");//add good print
+                        System.out.println("Your checkmated"); //add good print
                         //gameEnded = true;
                     }
                     else{
@@ -37,17 +36,24 @@ public class Main {
 
                 boolean possibleMove = false;
                 while (!possibleMove) {
-                    ArrayList moveArray = reader.readMove(); //let player input move
-                    if (moveArray.get(0).equals("Rochade_Small")) {}
-                    else if(moveArray.get(0).equals("Rochade_Large")) {}
+                    //let player input move
+                    ArrayList moveArray = reader.readMove();
+
+                    //if (moveArray.get(0).equals("Rochade_Small")) {}
+                    //else if(moveArray.get(0).equals("Rochade_Large")) {}
+
+                    if(moveArray.size() == 6) {
+                        if(board.promoteFigure(moveArray,player,players)) {
+                            possibleMove = true;
+                        }
+                    }
                     else {
                         if (board.tryMove(moveArray, player, players)) { //check if move is possible
                             possibleMove = true;
-                            board.printBoard();
                         }
                     }
                 }
-                // int[] moveArray = reader.readMove();;
+                board.printBoard();
             }
         }
     }
