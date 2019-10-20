@@ -15,6 +15,9 @@ public class King implements Figur {
         id += 1;
 
     }
+    public void setHasMoved(boolean setHasMoved){
+        hasmoved = setHasMoved;
+    }
 
     public Boolean iswhite() {
         return iswhite;

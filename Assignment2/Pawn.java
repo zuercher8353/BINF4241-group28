@@ -19,6 +19,10 @@ public class Pawn implements Figur {
         return iswhite;
     }
 
+    public void setHasMoved(boolean setHasMoved){
+        hasmoved = setHasMoved;
+    }
+
     @Override
     public String getToken() {
         return token;
