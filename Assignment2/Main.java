@@ -8,9 +8,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-
-
-
         Board board = new Board();
         Players players = new Players();
         Reader reader = new Reader();
@@ -25,8 +22,6 @@ public class Main {
         while(!gameEnded) {
             for (Player player : allPlayers) {
 
-                //TODO Player take turn
-
                 //TODO Jonas isCheck() aufrufen
                 System.out.println("It's your turn, "+player.getName() +" (" +player.getColourSTR()+ ")");
                 System.out.println();
@@ -40,13 +35,16 @@ public class Main {
                     }
                     System.out.println();}
 
-
-                Boolean possibleMove = false;
+                boolean possibleMove = false;
                 while (!possibleMove) {
                     ArrayList moveArray = reader.readMove(); //let player input move
-                    if(board.tryMove(moveArray, player, players)) { //check if move is possible
-                        possibleMove = true;
-                        board.printBoard();
+                    if (moveArray.get(0).equals("Rochade_Small")) {}
+                    else if(moveArray.get(0).equals("Rochade_Large")) {}
+                    else {
+                        if (board.tryMove(moveArray, player, players)) { //check if move is possible
+                            possibleMove = true;
+                            board.printBoard();
+                        }
                     }
                 }
                 // int[] moveArray = reader.readMove();;

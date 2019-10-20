@@ -27,6 +27,9 @@ public class Rock implements Figur {
         }
         return true;
     }
+    public void setHasMoved(boolean setHasMoved){
+        hasmoved = setHasMoved;
+    }
 
     public Boolean getHasmoved() {
         return hasmoved;
