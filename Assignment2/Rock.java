@@ -27,7 +27,9 @@ public class Rock implements Figur {
         }
         return true;
     }
-
+    public void setHasMoved(boolean setHasMoved){
+        hasmoved = setHasMoved;
+    }
 
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();

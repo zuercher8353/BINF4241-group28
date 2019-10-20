@@ -117,7 +117,6 @@ public class Board {
     public void removeFigure(int i, int j, Player player) {
         Object object = chessBoard[i][j];
         player.addEatenPiece(object);
-        chessBoard[i][j] = null;
     }
 
     //TODO @Janosch killfigure bauen
@@ -127,15 +126,14 @@ public class Board {
 
     //TODO @Janosch moveFigure bauen
     public void moveFigure(int[] moveArrayINT) {
+
+
         int startX = moveArrayINT[0];
         int startY = moveArrayINT[1];
         int endX = moveArrayINT[2];
         int endY = moveArrayINT[3];
         lastMove = moveArrayINT.clone();
-
         if (!(chessBoard[startX][startY] == null)) {
-
-
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
             if(chessBoard[endX][endY] != null){
@@ -429,6 +427,8 @@ public class Board {
                 return false;
             }
             else {
+                Player otherplayer = players.otherPlayer(player);
+                removeFigure(array[2], array[3], otherplayer);
                 System.out.println(endField.getClass().getName() + "is getting eating");
             }
         }
@@ -475,6 +475,7 @@ public class Board {
                     positionFigureCheck[1] = y;
                     return true;
                 }
+
 
             }
         }
