@@ -446,6 +446,7 @@ public class Board {
         return true;
     }
 
+
     //player is the player who has the next turn, check must be checked before he takes a turn
     public boolean isCheck(Player player, Players players){
         int[] kingPosition = kingPosition(player);
