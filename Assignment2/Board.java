@@ -426,6 +426,7 @@ public class Board {
             return legalPromotion;
         }
 
+
         //IF its a Pawn and Promotion Token is valid, move Figure and promote
         if(tryMove(moveArray,player,players)) {
             if ((player.isPlayerWhite() && endX == 0)) {
