@@ -33,14 +33,14 @@ public class Board {
 
         //init knights
         chessBoard[0][1] = new Knight(false);
-        chessBoard[0][6] = new Knight(false);
+        //chessBoard[0][6] = new Knight(false);
        // chessBoard[7][1] = new Knight(true);
         //chessBoard[7][6] = new Knight(true);
 
 
         //init bishops
         chessBoard[0][2] = new Bishop(false);
-        chessBoard[0][5] = new Bishop(false);
+        //chessBoard[0][5] = new Bishop(false);
         chessBoard[7][2] = new Bishop(true);
         //chessBoard[7][5] = new Bishop(true);
 
@@ -554,6 +554,7 @@ public class Board {
 
     public boolean shortRochade(Player player, Players players){
         int[] kingPos = kingPosition(player);
+        int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
         if (kingObj.getHasmoved()){
             System.out.println("King has already moved. No castling possible");
@@ -565,13 +566,17 @@ public class Board {
                 return false;
             }
         }
-        if (player.isPlayerWhite()){
-            if(chessBoard[7][7] !=  null) {
-                if (!(chessBoard[7][7].getClass() == Rock.class)) {
+        if (player.isPlayerWhite()) {
+            x = 7;
+        }else{
+            x = 0;
+        }
+            if(chessBoard[x][7] !=  null) {
+                if (!(chessBoard[x][7].getClass() == Rock.class)) {
                     System.out.println("Rock is not in the right place.");
                     return false;
                 } else {
-                    Rock rockObj = (Rock) chessBoard[7][7];
+                    Rock rockObj = (Rock) chessBoard[x][7];
                     if (rockObj.getHasmoved()) {
                         System.out.println("Rock has already moved. No castling possible.");
                         return false;
@@ -593,13 +598,13 @@ public class Board {
                             undoMoveFigure();
                         }
                         moveFigure(moveArray);
-                        int[] moveArrayRock = {7, 7, 7, 5};
+                        int[] moveArrayRock = {x, 7, x, 5};
                         moveFigure(moveArrayRock);
                     }
 
                 }
             }
-        }
+
 
         return true;
 
