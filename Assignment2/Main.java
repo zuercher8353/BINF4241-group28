@@ -47,6 +47,17 @@ public class Main {
                             possibleMove = true;
                         }
                     }
+                    ArrayList moveArray = reader.readMove(); //let player input move
+                    if (moveArray.get(0).equals("Rochade_Small")) {
+                        if (board.shortRochade(player, players)){
+                            possibleMove = true;
+                        }
+                    }
+                    else if(moveArray.get(0).equals("Rochade_Large")) {
+                        if (board.longRochade(player, players)){
+                            possibleMove = true;
+                        }
+                    }
                     else {
                         if (board.tryMove(moveArray, player, players)) { //check if move is possible
                             possibleMove = true;
@@ -54,6 +65,11 @@ public class Main {
                     }
                 }
                 board.printBoard();
+                        }
+                    }
+                    board.printBoard();
+                }
+                // int[] moveArray = reader.readMove();;
             }
         }
     }
