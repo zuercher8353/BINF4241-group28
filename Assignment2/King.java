@@ -31,6 +31,9 @@ public class King implements Figur {
         return true;
     }
 
+    public Boolean getHasmoved() {
+        return hasmoved;
+    }
 
     public ArrayList<Integer> path(int[] array){
         ArrayList<Integer> path = new ArrayList<>();
