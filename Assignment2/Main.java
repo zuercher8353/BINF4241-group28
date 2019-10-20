@@ -44,6 +44,11 @@ public class Main {
                             possibleMove = true;
                         }
                     }
+                    if(moveArray.size() == 7){
+                        if(board.enPassant(moveArray,player,players)) {
+                            possibleMove = true;
+                        }
+                    }
 
                     if (moveArray.get(0).equals("Rochade_Small")) {
                         if (board.shortRochade(player, players)){

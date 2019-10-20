@@ -91,6 +91,18 @@ public class Reader {
                             }
                         }
 
+                        if (moveInput.length() == 7) {
+                            char enPassant1 = Character.toUpperCase(moveInput.charAt(5));
+                            char enPassant2 = Character.toUpperCase(moveInput.charAt(6));
+
+                            if (enPassant1 == 'E' && enPassant2 == 'P') {
+                                moveArray.add(5,enPassant1);
+                                moveArray.add(6,enPassant2);
+                            }
+                            else {
+                                System.out.println("for en passent: write ep");
+                            }
+                        }
                         validInput = true;
                     }
 
