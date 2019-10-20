@@ -6,6 +6,7 @@ public class Board {
     private int boardsize = 8;
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
+    private int[] lastRealMove = new int[4];
     private Object lastdeleted;
     private boolean lastHasMoved = true;
 
@@ -109,6 +110,7 @@ public class Board {
                             System.out.print("[B" + rock.getToken() + "] ");
                         }
                     }
+
                 }
             }
             System.out.print(" (" + i + ") \n");
@@ -316,6 +318,7 @@ public class Board {
                 }
             }
         }
+
         return true;
     }
 
@@ -443,6 +446,15 @@ public class Board {
             return false;
         }
         //check if endfield is not own figur
+        moveFigure(array);
+        if(isCheck(player, players)){
+            undoMoveFigure();
+            System.out.println("Your committing Kingsuicid");
+            return false;
+        }
+        else{
+            undoMoveFigure();}
+
         if(endField != null){
             if (startFieldColor == endFieldColor) {
                 System.out.println("Endfield is occupied by own figure");
@@ -450,12 +462,12 @@ public class Board {
             }
             else {
                 Player otherplayer = players.otherPlayer(player);
-                removeFigure(array[2], array[3], otherplayer);
-                System.out.println(endField.getClass().getName() + "is getting eating");
+                removeFigure(array[2], array[3], otherplayer);  //soltte nicht gemacht werden wenn Kingsuicid
+                System.out.println(endField.getClass().getName() + " is getting eaten");
+                moveFigure(array);
             }
         }
-
-        moveFigure(array);
+        lastRealMove = array;
 
         return true;
         }
@@ -818,5 +830,185 @@ public class Board {
             }
             return true;
         }
+        if (startField == null) {                                              //figur auf dem Anfangspunkt
+            return false;
+        }
+        else if(startField.getClass() == Bishop.class) {
+            Bishop startField1 = (Bishop)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+        }
+        else if(startField.getClass() == King.class) {
+            King startField1 = (King)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+        }
+        else if(startField.getClass() == Queen.class) {
+            Queen startField1 = (Queen)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+        }
+        else if(startField.getClass() == Rock.class) {
+            Rock startField1 = (Rock)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+        }
+        else if(startField.getClass() == Knight.class) {
+            Knight startField1 = (Knight)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+        }
+        else if(startField.getClass() == Pawn.class) {
+            Pawn startField1 = (Pawn)startField;
+            startFieldColor= startField1.iswhite();
+            if(!isLegalPath(startField1, array)){
+                return false;
+            }
+            if(Math.abs(array[2]-array[0]) == 1 && Math.abs(array[3]-array[1]) == 1){       //check if pawn is allowed to move transversal
+                if(endField == null){
+                    return false;
+                }
+            }
+            else{                                                                           //check if endfield is empty, cause pawn can only move forward if endfield empty
+                if(endField != null){
+                    return false;
+                }
+            }
+        }
+        else {
+            startFieldColor = true; //testen ob falsche frabe startfigur richtig erkannt wird
+        }
+        if(endField == null){
+            endFieldColor = true;
+        }
+        else if(endField.getClass() == Bishop.class) {
+            Bishop endField1 = (Bishop)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else if(endField.getClass() == King.class) {
+            King endField1 = (King)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else if(endField.getClass() == Queen.class) {
+            Queen endField1 = (Queen)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else if(endField.getClass() == Rock.class) {
+            Rock endField1 = (Rock)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else if(endField.getClass() == Knight.class) {
+            Knight endField1 = (Knight)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else if(endField.getClass() == Pawn.class) {
+            Pawn endField1 = (Pawn)endField;
+            endFieldColor = endField1.iswhite();
+        }
+        else{
+            endFieldColor = true;
+        }
+        //eigene Figur?
+        if (startFieldColor!= player.isPlayerWhite()) {
+            return false;
+        }
+        //check if endfield is not own figur
+        if(endField != null){
+            if (startFieldColor == endFieldColor) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean enPassant(ArrayList movearray, Player player, Players players){
+        int endX = lastRealMove[2];
+        int endY = lastRealMove[3];
+        int[] tryEnPassant = new int[4];
+        ArrayList<Integer> path = new ArrayList<>();
+        tryEnPassant[0] = (Integer) movearray.get(1);
+        tryEnPassant[1] = (Integer) movearray.get(2);
+        tryEnPassant[2] = (Integer) movearray.get(3);
+        tryEnPassant[3] = (Integer) movearray.get(4);
+
+        //check if char at the beginning is = P;
+        String figuretyp = movearray.get(0).toString();
+        if(!(figuretyp.equals("P"))){
+            System.out.println("The first letter of the input must be P for en passant");
+            return false;
+        }
+
+        if(chessBoard[endX][endY] != null) {
+            if (chessBoard[endX][endY].getClass() == Pawn.class) {
+                Pawn movedPawn = (Pawn) chessBoard[endX][endY];
+                path = movedPawn.path(lastRealMove);
+                if(path.size() == 2) {
+                    if(path.get(0) == tryEnPassant[2] && path.get(1) == tryEnPassant[3]) {
+                        if (chessBoard[tryEnPassant[0]][tryEnPassant[1]].getClass() == Pawn.class) {
+                            Pawn killerPawn = (Pawn) chessBoard[endX][endY];
+                            if (killerPawn.iswhite() == player.isPlayerWhite()) {
+                                if (isLegalPath(killerPawn, tryEnPassant)) {
+                                    Player otherPlayer = players.otherPlayer(player);
+                                    removeFigure(endX, endY, otherPlayer);
+                                    moveFigure(tryEnPassant);
+                                    chessBoard[endX][endY] = null;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+                else{
+                    System.out.println("Pawn was not moved 2 fields");
+                    return false;
+                }
+            }
+            else{
+                System.out.println("Last moved Figure is not a Pawn");
+                return false;
+            }
+
+        }
+        System.out.println("Your not allowed to perform en passant");
+        return false;
+    }
+
+
+
+
+    //public tryMove(inputarray) {
+        //figure auf dem input
+        // meine Figur?
+            //figure move islegal, type of move?
+                //figure path? return arraylist path of fields stepped
+                    //check if arraylist path is free on board
+                        //yes?
+                            //is endfield occupied by own figure?
+                                //no?
+                                    //move
+                                //yes?
+                                    // dont move, field is occupied by own figure , tell user cannot move
+                        //no?
+                            //there is a figure in your way
+            //figure is not able to move like this, return false
+        // nicht meine Figur?
+
+        //return array
+
+
+
 }
 

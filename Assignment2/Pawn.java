@@ -23,6 +23,7 @@ public class Pawn implements Figur {
         hasmoved = setHasMoved;
     }
 
+
     @Override
     public String getToken() {
         return token;
