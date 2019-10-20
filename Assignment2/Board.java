@@ -7,6 +7,8 @@ public class Board {
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
     private Object lastdeleted;
+    private boolean lastHasMoved = true;
+
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
     public Board() {
@@ -127,6 +129,8 @@ public class Board {
         //int killPosX =
     }
 
+
+
     //TODO @Janosch moveFigure bauen
     public void moveFigure(int[] moveArrayINT) {
 
@@ -137,6 +141,28 @@ public class Board {
         int endY = moveArrayINT[3];
         lastMove = moveArrayINT.clone();
         if (!(chessBoard[startX][startY] == null)) {
+            if(chessBoard[startX][startY].getClass() == King.class) {
+                King ObjectStartField = (King)chessBoard[startX][startY];
+                if(ObjectStartField.getHasmoved() == false){
+                    lastHasMoved = false;
+                    ObjectStartField.setHasMoved(true);
+                }
+
+            }
+            else if(chessBoard[startX][startY].getClass() == Rock.class) {
+                Rock ObjectStartField = (Rock) chessBoard[startX][startY];
+                if(ObjectStartField.getHasmoved() == false){
+                    lastHasMoved = false;
+                    ObjectStartField.setHasMoved(true);
+                }
+            }
+            else if(chessBoard[startX][startY].getClass() == Pawn.class) {
+                Pawn ObjectStartField = (Pawn) chessBoard[startX][startY];
+                if(ObjectStartField.getHasmoved() == false){
+                    lastHasMoved = false;
+                    ObjectStartField.setHasMoved(true);
+                }
+            }
             Object temp = chessBoard[startX][startY];
             chessBoard[startX][startY] = null;
             if(chessBoard[endX][endY] != null){
@@ -159,6 +185,27 @@ public class Board {
         int endY = lastMove[1];
         if (!(chessBoard[startX][startY] == null)) {
             Object temp = chessBoard[startX][startY];
+            if(chessBoard[startX][startY].getClass() == King.class) {
+                King ObjectStartField = (King)chessBoard[startX][startY];
+                if(!lastHasMoved){
+                    lastHasMoved = true;
+                    ObjectStartField.setHasMoved(false);
+                }
+            }
+            else if(chessBoard[startX][startY].getClass() == Rock.class) {
+                Rock ObjectStartField = (Rock) chessBoard[startX][startY];
+                if(!lastHasMoved){
+                    lastHasMoved = true;
+                    ObjectStartField.setHasMoved(false);
+                }
+            }
+            else if(chessBoard[startX][startY].getClass() == Pawn.class) {
+                Pawn ObjectStartField = (Pawn) chessBoard[startX][startY];
+                if(!lastHasMoved){
+                    lastHasMoved = true;
+                    ObjectStartField.setHasMoved(false);
+                }
+            }
             if(lastdeleted != null){
                 chessBoard[endX][endY] = temp;
                 chessBoard[startX][startY] = lastdeleted;
@@ -173,6 +220,8 @@ public class Board {
             System.out.println("no figure to move");
         }
     }
+
+
 
     public boolean isCheckMated(Player player, Players players){
         isCheck(player, players);
