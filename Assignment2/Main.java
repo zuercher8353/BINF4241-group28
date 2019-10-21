@@ -26,8 +26,11 @@ public class Main {
                 System.out.println();
                 if(board.isCheck(player, players)){
                     if(board.isCheckMated(player,players)){
-                        System.out.println("Your checkmated"); //add good print
-                        //gameEnded = true;
+                        System.out.println("It is checkmate"); //add good print
+                        Player otherplayer = players.otherPlayer(player);
+                        System.out.println(otherplayer.getName() + " wins!!");
+                        gameEnded = true;
+                        break;
                     }
                     else{
                         System.out.println("You are in check");
