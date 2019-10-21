@@ -1,10 +1,10 @@
-import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reader {
-    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K'};
+    private char[] FigureSTRs = {'P', 'T', 'N', 'Q', 'K', 'B'};
     private char[] fieldSTRs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+
 
     public ArrayList<Object> readMove() {
         ArrayList<Object> moveArray = new ArrayList<>();
@@ -15,76 +15,108 @@ public class Reader {
             try {
                 //read Input
                 Scanner moveScanner = new Scanner(System.in); // Create a Scanner object
-                System.out.print("Move (Figure X, Position xx, Target xx: ");
+                System.out.print("Move? (Figure X, Position xx, Target xx): ");
                 String moveInput = moveScanner.nextLine(); // Read Input
-
 
                 //check empty input
                 if (!moveInput.isEmpty()) {
 
-                    //convert input
-                    char figure = Character.toUpperCase(moveInput.charAt(0));
-                    char startX = Character.toUpperCase(moveInput.charAt(1));
-                    int startY = Character.getNumericValue(moveInput.charAt(2));
-                    char endX = Character.toUpperCase(moveInput.charAt(3));
-                    int endY = Character.getNumericValue(moveInput.charAt(4));
-
-                    //TODO Mulitple Exceptions
-
-                    //validate Input
-                    if (!validateFigureChar(figure)) {
-                        System.out.print("None Existing Figure. ");
-                        throw new NoSuchObjectException("None Existing Figure");
+                    if (moveInput.equals("O-O")) {
+                        moveArray.add("Rochade_Small");
+                        validInput = true;
+                    } else if (moveInput.equals("O-O-O")) {
+                        moveArray.add("Rochade_Large");
+                        validInput = true;
                     } else {
-                        moveArray.add(0, figure);
-                    }
-                    if ((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
-                        System.out.print("None Existing Field. ");
-                        throw new NoSuchFieldException();
-                    }
+                        //convert input
+                        char figure = Character.toUpperCase(moveInput.charAt(0));
+                        char startX = Character.toUpperCase(moveInput.charAt(1));
+                        int startY = Character.getNumericValue(moveInput.charAt(2));
+                        char endX = Character.toUpperCase(moveInput.charAt(3));
+                        int endY = Character.getNumericValue(moveInput.charAt(4));
 
-                    //check if Indices are in Range
+                        //TODO Mulitple Exceptions
 
-
-                    if (startY >= 0 && startY < 8) {
-                        moveArray.add(1, startY);
-                    } else {
-                        System.out.print("Index out of Range. ");
-                        throw new ArithmeticException();
-                    }
-
-                    //write startX in array index 2
-                    for (int i = 0; i < fieldSTRs.length; i++) {
-                        if (startX == fieldSTRs[i]) {
-                            moveArray.add(2, i);
+                        //validate Input
+                        if (!validateFigureChar(figure)) {
+                            throw new Exception("None Existing Figure");
+                        } else {
+                            moveArray.add(0, figure);
                         }
-                    }
-
-
-                    if (endY >= 0 && endY < 8) {
-                        moveArray.add(3, endY);
-                    } else {
-                        System.out.print("Index out of Range. ");
-                        throw new ArithmeticException();
-                    }
-
-
-                    for (int i = 0; i < fieldSTRs.length; i++) {
-                        if (endX == fieldSTRs[i]) {
-                            moveArray.add(4, i);
+                        if ((!validateFieldChar(startX)) || (!validateFieldChar(endX))) {
+                            throw new Exception("None Existing Field");
                         }
-                    }
 
-                    validInput = true;
+                        //check if Indices are in Range
+
+
+                        if (startY > 0 && startY <= 8) {
+                            //write numeric start value in moveArray, convert to mirrored numeric Y axis
+                            //by subtracting 8
+                            moveArray.add(1, 8 - startY);
+                        } else {
+                            throw new ArithmeticException("Index out of Range");
+                        }
+
+                        for (int i = 0; i < fieldSTRs.length; i++) {
+                            if (startX == fieldSTRs[i]) {
+                                moveArray.add(2, i);
+                            }
+                        }
+
+                        if (endY > 0 && endY <= 8) {
+                            moveArray.add(3, 8 - endY);
+                        } else {
+                            throw new ArithmeticException("Index out of Range");
+                        }
+                        for (int i = 0; i < fieldSTRs.length; i++) {
+                            if (endX == fieldSTRs[i]) {
+                                moveArray.add(4, i);
+                            }
+                        }
+
+                        if (moveInput.length() == 6) {
+
+                            //exclude Knight
+                            char figurePromoted = Character.toUpperCase(moveInput.charAt(5));
+                            if (!validateFigureChar(figurePromoted)) {
+                                throw new Exception("Promotion: None Existing Figure");
+                            } else {
+                                if (figurePromoted == 'K') {
+                                    System.out.println("Promotion to King not allowed");
+                                    throw new Exception("Promotion to King not allowed");
+                                } else {
+                                    moveArray.add(5, figurePromoted);
+                                }
+                            }
+                        }
+
+                        if (moveInput.length() == 7) {
+                            char enPassant1 = Character.toUpperCase(moveInput.charAt(5));
+                            char enPassant2 = Character.toUpperCase(moveInput.charAt(6));
+
+                            if (enPassant1 == 'E' && enPassant2 == 'P') {
+                                moveArray.add(5,enPassant1);
+                                moveArray.add(6,enPassant2);
+                            }
+                            else {
+                                System.out.println("for en passent: write ep");
+                            }
+                        }
+                        validInput = true;
+                    }
 
                 } else {
-                    System.out.println("empty Input!");
+                    System.out.println("Empty Input!");
                 }
 
 
             } catch (Exception e) {
                 System.out.println("Invalid Input!");
             }
+
+        //move Array output style: { Figure, Ystart (Zeile), Xstart (Spalte), Yend, Xend }
+        //axis: Y (top-bottom)- 0-7 // X (left-right)- 0-7
         return moveArray;
     }
 

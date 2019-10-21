@@ -14,7 +14,9 @@ public class King implements Figur {
         this.figurid = id;
         id += 1;
 
-
+    }
+    public void setHasMoved(boolean setHasMoved){
+        hasmoved = setHasMoved;
     }
 
     public Boolean iswhite() {
@@ -32,6 +34,9 @@ public class King implements Figur {
         return true;
     }
 
+    public Boolean getHasmoved() {
+        return hasmoved;
+    }
 
     public ArrayList<Integer> path(int[] array){
         ArrayList<Integer> path = new ArrayList<>();
