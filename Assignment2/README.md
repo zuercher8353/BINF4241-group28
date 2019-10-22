@@ -3,7 +3,7 @@
 ### Input Style
 
 chosen figure - starting position - target position
-e.g. P (Pawn) - a2 - a4
+e.g. P (Pawn) - a2 - a4 -> Pa2a4
 
 **we do not consider shortcut moves like "e8" as valid**
 

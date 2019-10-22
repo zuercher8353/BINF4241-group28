@@ -45,9 +45,5 @@ public class Player {
         }
     }
 
-    public boolean rochade(Player player) {
-        return false;
-    }
-
     //TODO possibly integrate  //java.util.Iterator<E> as suggested in lecture
 }

@@ -31,10 +31,10 @@ public class Board {
 
 
         //init towers
-        chessBoard[0][0] = new Rock(false);
-        chessBoard[0][7] = new Rock(false);
-        chessBoard[7][0] = new Rock(true);
-        chessBoard[7][7] = new Rock(true);
+        chessBoard[0][0] = new Rook(false);
+        chessBoard[0][7] = new Rook(false);
+        chessBoard[7][0] = new Rook(true);
+        chessBoard[7][7] = new Rook(true);
 
         //init knights
         chessBoard[0][1] = new Knight(false);
@@ -107,8 +107,8 @@ public class Board {
                         } else {
                             System.out.print("[B" + pawn.getToken() + "] ");
                         }
-                    } else if (chessBoard[i][j].getClass() == Rock.class) {
-                        Rock rock = (Rock) chessBoard[i][j];
+                    } else if (chessBoard[i][j].getClass() == Rook.class) {
+                        Rook rock = (Rook) chessBoard[i][j];
                         if (rock.iswhite()) {
                             System.out.print("[W" + rock.getToken() + "] ");
                         } else {
@@ -125,12 +125,12 @@ public class Board {
 
     }
 
-    public void removeFigure(int i, int j, Player player) {
+    private void removeFigure(int i, int j, Player player) {
         Object object = chessBoard[i][j];
         player.addEatenPiece(object);
     }
 
-    public void moveFigure(int[] moveArrayINT) {
+    private void moveFigure(int[] moveArrayINT) {
 
         int startX = moveArrayINT[0];
         int startY = moveArrayINT[1];
@@ -146,8 +146,8 @@ public class Board {
                 }
 
             }
-            else if(chessBoard[startX][startY].getClass() == Rock.class) {
-                Rock ObjectStartField = (Rock) chessBoard[startX][startY];
+            else if(chessBoard[startX][startY].getClass() == Rook.class) {
+                Rook ObjectStartField = (Rook) chessBoard[startX][startY];
                 if(ObjectStartField.getHasmoved() == false){
                     lastHasMoved = false;
                     ObjectStartField.setHasMoved(true);
@@ -174,8 +174,7 @@ public class Board {
         }
     }
 
-
-    public void undoMoveFigure(){
+    private void undoMoveFigure(){
         int startX = lastMove[2];
         int startY = lastMove[3];
         int endX = lastMove[0];
@@ -189,8 +188,8 @@ public class Board {
                     ObjectStartField.setHasMoved(false);
                 }
             }
-            else if(chessBoard[startX][startY].getClass() == Rock.class) {
-                Rock ObjectStartField = (Rock) chessBoard[startX][startY];
+            else if(chessBoard[startX][startY].getClass() == Rook.class) {
+                Rook ObjectStartField = (Rook) chessBoard[startX][startY];
                 if(!lastHasMoved){
                     lastHasMoved = true;
                     ObjectStartField.setHasMoved(false);
@@ -287,8 +286,8 @@ public class Board {
             Queen startField1 = (Queen)startField;
             path = startField1.path(putInWay);
         }
-        else if(startField.getClass() == Rock.class) {
-            Rock startField1 = (Rock)startField;
+        else if(startField.getClass() == Rook.class) {
+            Rook startField1 = (Rook)startField;
             path = startField1.path(putInWay);
         }
         else if(startField.getClass() == Knight.class) {
@@ -369,8 +368,8 @@ public class Board {
                 return false;
             }
         }
-        else if(startField.getClass() == Rock.class) {
-            Rock startField1 = (Rock)startField;
+        else if(startField.getClass() == Rook.class) {
+            Rook startField1 = (Rook)startField;
             startFieldColor= startField1.iswhite();
             token = startField1.getToken();
             if(!isLegalPath(startField1, array)){
@@ -424,8 +423,8 @@ public class Board {
             Queen endField1 = (Queen)endField;
             endFieldColor = endField1.iswhite();
         }
-        else if(endField.getClass() == Rock.class) {
-            Rock endField1 = (Rock)endField;
+        else if(endField.getClass() == Rook.class) {
+            Rook endField1 = (Rook)endField;
             endFieldColor = endField1.iswhite();
         }
         else if(endField.getClass() == Knight.class) {
@@ -527,7 +526,7 @@ public class Board {
                 } else if (promoteTo == 'Q') {
                     chessBoard[endX][endY] = new Queen(true);
                 } else if (promoteTo == 'R') {
-                    chessBoard[endX][endY] = new Rock(true);
+                    chessBoard[endX][endY] = new Rook(true);
                 }
                 legalPromotion = true;
             } else if ((!(player.isPlayerWhite()) && endX == 8)) {
@@ -541,7 +540,7 @@ public class Board {
                 } else if (promoteTo == 'Q') {
                     chessBoard[endX][endY] = new Queen(false);
                 } else if (promoteTo == 'R') {
-                    chessBoard[endX][endY] = new Rock(false);
+                    chessBoard[endX][endY] = new Rook(false);
                 }
                 legalPromotion = true;
             }
@@ -553,8 +552,7 @@ public class Board {
         return legalPromotion;
     }
 
-    //supress output of this function if used in isCheck or delet it here and add to tryMove
-    public boolean isLegalPath(Figur startField, int[] array){
+    private boolean isLegalPath(Figur startField, int[] array){
 
         //check if figur can move like this
         if (!startField.islegal(array)) {
@@ -594,7 +592,6 @@ public class Board {
         return false;
     }
 
-
     public boolean shortRochade(Player player, Players players){
         int[] kingPos = kingPosition(player);
         int x;
@@ -619,13 +616,13 @@ public class Board {
             x = 0;
         }
             if(chessBoard[x][7] !=  null) {
-                if (!(chessBoard[x][7].getClass() == Rock.class)) {
-                    System.out.println("Rock is not in the right place.");
+                if (!(chessBoard[x][7].getClass() == Rook.class)) {
+                    System.out.println("Rook is not in the right place.");
                     return false;
                 } else {
-                    Rock rockObj = (Rock) chessBoard[x][7];
+                    Rook rockObj = (Rook) chessBoard[x][7];
                     if (rockObj.getHasmoved()) {
-                        System.out.println("Rock has already moved. No castling possible.");
+                        System.out.println("Rook has already moved. No castling possible.");
                         return false;
                     } else {
                         int[] moveArray = new int[4];
@@ -645,8 +642,8 @@ public class Board {
                             undoMoveFigure();
                         }
                         moveFigure(moveArray);
-                        int[] moveArrayRock = {x, 7, x, 5};
-                        moveFigure(moveArrayRock);
+                        int[] moveArrayRook = {x, 7, x, 5};
+                        moveFigure(moveArrayRook);
                     }
 
                 }
@@ -681,13 +678,13 @@ public class Board {
             x = 0;
         }
         if (chessBoard[x][0] != null) {
-            if (!(chessBoard[x][7].getClass() == Rock.class)) {
-                System.out.println("Rock is not in the right place.");
+            if (!(chessBoard[x][7].getClass() == Rook.class)) {
+                System.out.println("Rook is not in the right place.");
                 return false;
             } else {
-                Rock rockObj = (Rock) chessBoard[x][0];
+                Rook rockObj = (Rook) chessBoard[x][0];
                 if (rockObj.getHasmoved()) {
-                    System.out.println("Rock has already moved. No castling possible.");
+                    System.out.println("Rook has already moved. No castling possible.");
                     return false;
                 } else {
                     int[] moveArray = new int[4];
@@ -707,8 +704,8 @@ public class Board {
                         undoMoveFigure();
                     }
                     moveFigure(moveArray);
-                    int[] moveArrayRock = {x, 0, x, 3};
-                    moveFigure(moveArrayRock);
+                    int[] moveArrayRook = {x, 0, x, 3};
+                    moveFigure(moveArrayRook);
                 }
 
             }
@@ -716,8 +713,7 @@ public class Board {
         return true;
     }
 
-
-        public int[] kingPosition (Player player){
+    public int[] kingPosition (Player player){
             int[] kingPosition = new int[2];
 
             for (int x = 0; x < boardsize; x++) {
@@ -737,8 +733,8 @@ public class Board {
             return kingPosition;
         }
 
-        //gleiche wie trymove(), ohne prints und ohne typ am anfang von Arraylist, ohne move
-        public boolean tryIsCheck ( int[] array, Player player){
+    //gleiche wie trymove(), ohne prints und ohne typ am anfang von Arraylist, ohne move
+    public boolean tryIsCheck ( int[] array, Player player){
             boolean startFieldColor;
             boolean endFieldColor;
             Object startField = chessBoard[array[0]][array[1]];
@@ -764,8 +760,8 @@ public class Board {
                 if (!isLegalPath(startField1, array)) {
                     return false;
                 }
-            } else if (startField.getClass() == Rock.class) {
-                Rock startField1 = (Rock) startField;
+            } else if (startField.getClass() == Rook.class) {
+                Rook startField1 = (Rook) startField;
                 startFieldColor = startField1.iswhite();
                 if (!isLegalPath(startField1, array)) {
                     return false;
@@ -805,8 +801,8 @@ public class Board {
             } else if (endField.getClass() == Queen.class) {
                 Queen endField1 = (Queen) endField;
                 endFieldColor = endField1.iswhite();
-            } else if (endField.getClass() == Rock.class) {
-                Rock endField1 = (Rock) endField;
+            } else if (endField.getClass() == Rook.class) {
+                Rook endField1 = (Rook) endField;
                 endFieldColor = endField1.iswhite();
             } else if (endField.getClass() == Knight.class) {
                 Knight endField1 = (Knight) endField;
@@ -829,8 +825,6 @@ public class Board {
             }
             return true;
         }
-
-
 
     public boolean enPassant(ArrayList movearray, Player player, Players players){
         int endX = lastRealMove[2];
@@ -884,30 +878,6 @@ public class Board {
         System.out.println("Your not allowed to perform en passant");
         return false;
     }
-
-
-
-
-    //public tryMove(inputarray) {
-        //figure auf dem input
-        // meine Figur?
-            //figure move islegal, type of move?
-                //figure path? return arraylist path of fields stepped
-                    //check if arraylist path is free on board
-                        //yes?
-                            //is endfield occupied by own figure?
-                                //no?
-                                    //move
-                                //yes?
-                                    // dont move, field is occupied by own figure , tell user cannot move
-                        //no?
-                            //there is a figure in your way
-            //figure is not able to move like this, return false
-        // nicht meine Figur?
-
-        //return array
-
-
 
 }
 

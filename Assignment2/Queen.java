@@ -32,7 +32,8 @@ public class Queen implements Figur {
 
         return true;
     }
-//path ist ohne start und end punkt, alle felder die von der Figur beschritten werden.
+
+    //path ist ohne start und end punkt, alle felder die von der Figur beschritten werden.
     public  ArrayList<Integer> path(int[] array){
         ArrayList<Integer> path = new ArrayList<>();
         if(array[0] != array[2] && array[1] != array[3]) {   //same code in Bishop

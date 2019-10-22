@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Rock implements Figur {
+public class Rook implements Figur {
 
     private String token = "T";
     private boolean iswhite;
@@ -7,7 +7,7 @@ public class Rock implements Figur {
     private int figurid;
     static int id = 0;
 
-    public Rock(boolean iswhite){
+    public Rook(boolean iswhite){
         this.hasmoved = false;
         this.iswhite = iswhite;
         this.figurid = id;

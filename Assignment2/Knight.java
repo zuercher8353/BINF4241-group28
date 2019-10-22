@@ -29,7 +29,6 @@ public class Knight implements Figur {
         return islegal;
     }
 
-
     public ArrayList<Integer> path(int[] array) {
         ArrayList<Integer> path = new ArrayList<>();
         return path;
