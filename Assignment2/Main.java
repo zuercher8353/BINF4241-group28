@@ -22,7 +22,6 @@ public class Main {
             for (Player player : allPlayers) {
 
                 System.out.println("It's your turn, " + player.getName() + " (" +player.getColourSTR()+ ")");
-                System.out.println();
                 if(board.isCheck(player, players)){
                     if(board.isCheckMated(player,players)){
                         System.out.println("It is checkmate"); //add good print

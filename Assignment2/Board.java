@@ -27,9 +27,6 @@ public class Board {
             chessBoard[6][k] = new Pawn(true);
         }
 
-
-
-
         //init towers
         chessBoard[0][0] = new Rook(false);
         chessBoard[0][7] = new Rook(false);
@@ -118,7 +115,7 @@ public class Board {
 
                 }
             }
-            System.out.print(" (" + i + ") \n");
+            System.out.print("\n");
             yLabel = yLabel - 1;
         }
         System.out.print("\n");
@@ -234,7 +231,7 @@ public class Board {
                         moveFigure(kingMoves);
                         if (!isCheck(player, players)) {
                             undoMoveFigure();
-                            System.out.println("your king can move out of the way");
+                            //System.out.println("your king can move out of the way");
                             return false;
                         } else {
                             undoMoveFigure();
@@ -255,7 +252,7 @@ public class Board {
                     moveFigure(killFigure);
                     if(!isCheck(player, players)){
                         undoMoveFigure();
-                        System.out.println("you can kill figure");
+                        //System.out.println("you can kill figure");
                         return false;
                     }
                     else {
@@ -311,7 +308,7 @@ public class Board {
                         moveFigure(putInWay);
                         if (!isCheck(player, players)) {
                             undoMoveFigure();
-                            System.out.println("you can put something in the way");
+                            //System.out.println("you can put something in the way");
                             return false;
                         } else {
                             undoMoveFigure();
@@ -636,7 +633,7 @@ public class Board {
 
                             if (isCheck(player, players)) {
                                 undoMoveFigure();
-                                System.out.println("King is checked. No castling possible");
+                                System.out.println("King will be threatened. No castling possible");
                                 return false;
                             }
                             undoMoveFigure();
@@ -678,7 +675,7 @@ public class Board {
             x = 0;
         }
         if (chessBoard[x][0] != null) {
-            if (!(chessBoard[x][7].getClass() == Rook.class)) {
+            if (!(chessBoard[x][0].getClass() == Rook.class)) {
                 System.out.println("Rook is not in the right place.");
                 return false;
             } else {
@@ -698,7 +695,7 @@ public class Board {
 
                         if (isCheck(player, players)) {
                             undoMoveFigure();
-                            System.out.println("King is checked. No castling possible");
+                            System.out.println("King will be threatened. No castling possible");
                             return false;
                         }
                         undoMoveFigure();

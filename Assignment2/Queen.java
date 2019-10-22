@@ -28,8 +28,6 @@ public class Queen implements Figur {
             if(Math.abs(array[0] - array[2])!= Math.abs(array[1] - array[3])){
                 return false;
             } }
-
-
         return true;
     }
 

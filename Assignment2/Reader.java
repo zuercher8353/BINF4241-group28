@@ -21,10 +21,10 @@ public class Reader {
                 //check empty input
                 if (!moveInput.isEmpty()) {
 
-                    if (moveInput.equals("O-O")) {
+                    if (moveInput.equals("O-O") || moveInput.equals("o-o")) {
                         moveArray.add("Rochade_Small");
                         validInput = true;
-                    } else if (moveInput.equals("O-O-O")) {
+                    } else if (moveInput.equals("O-O-O") || moveInput.equals("o-o-o")) {
                         moveArray.add("Rochade_Large");
                         validInput = true;
                     } else {
