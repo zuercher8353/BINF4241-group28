@@ -18,6 +18,7 @@ public class Main {
         List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
 
+
         while(!gameEnded) {
             for (Player player : allPlayers) {
 
