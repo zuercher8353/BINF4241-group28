@@ -3,7 +3,7 @@ import java.util.List;
 
 public class PlayerIterator implements Iterator {
     private List<Player> players = new ArrayList<>();
-    public int position = 0;
+    private int position = 0;
 
     public PlayerIterator(List<Player> players) {
         this.players = players;
