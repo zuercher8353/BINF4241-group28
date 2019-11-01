@@ -45,16 +45,11 @@ public class Board extends Main implements Observable{
         chessBoard[7][0] = new Rook(true);
         chessBoard[7][7] = new Rook(true);
 
-
-
-
-
         //init knights
         chessBoard[0][1] = new Knight(false);
         chessBoard[0][6] = new Knight(false);
         chessBoard[7][1] = new Knight(true);
         chessBoard[7][6] = new Knight(true);
-
 
         //init bishops
         chessBoard[0][2] = new Bishop(false);
