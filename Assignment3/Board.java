@@ -2,13 +2,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Board {
+public class Board implements Observable{
     private int boardsize = 8;
     private int[] positionFigureCheck = new int[2];
     private int[] lastMove = new int[4];
     private int[] lastRealMove = new int[4];
     private Object lastdeleted;
     private boolean lastHasMoved = true;
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     private static Board board = null;
     private Object[][] chessBoard = new Object[boardsize][boardsize];
@@ -40,6 +41,10 @@ public class Board {
         chessBoard[0][7] = new Rook(false);
         chessBoard[7][0] = new Rook(true);
         chessBoard[7][7] = new Rook(true);
+
+
+
+
 
         //init knights
         chessBoard[0][1] = new Knight(false);
@@ -130,9 +135,32 @@ public class Board {
 
     }
 
+    public void registerObserver(Observer aObserver){
+        observers.add(aObserver);
+
+    }
+    public void unregisterObserver(Observer aObserver){
+        observers.remove(aObserver);
+    }
+    public void notifyObservers(boolean isWhite, int points){
+        for(Observer eachObserver : observers){
+            eachObserver.update(isWhite,points);
+        }
+    }
+
     private void removeFigure(int i, int j, Player player) {
         Object object = chessBoard[i][j];
         player.addEatenPiece(object);
+        int points = 1;
+        if (chessBoard[i][j].getClass() == Queen.class){
+            points = 5;
+        }
+        if(player.isPlayerWhite()){
+            notifyObservers(false, points);
+        }
+        else{
+            notifyObservers(true, points);
+        }
     }
 
     private void moveFigure(int[] moveArrayINT) {
