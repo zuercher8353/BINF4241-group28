@@ -72,13 +72,13 @@ public class Main {
                         }
                     }
                 }
-                if(player.isPlayerWhite()){
+                if(currentPlayer.isPlayerWhite()){
                     score= scoreBoard.getScoreWhite();
                 }
                 else {
                     score = scoreBoard.getScoreBlack();
                 }
-                System.out.println(player.getName() + ", score: " + score );
+                System.out.println(currentPlayer.getName() + ", score: " + score );
                 board.printBoard();
             }
         }
