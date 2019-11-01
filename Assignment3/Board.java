@@ -137,9 +137,11 @@ public class Board extends Main implements Observable{
         observers.add(aObserver);
 
     }
+
     public void unregisterObserver(Observer aObserver){
         observers.remove(aObserver);
     }
+
     public void notifyObservers(boolean isWhite, int points){
         for(Observer eachObserver : observers){
             eachObserver.update(isWhite,points);
