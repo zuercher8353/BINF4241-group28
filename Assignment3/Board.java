@@ -10,10 +10,18 @@ public class Board {
     private Object lastdeleted;
     private boolean lastHasMoved = true;
 
+    private static Board board = null;
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
+    public static Board getInstance(){
+        if (board == null){
+            board = new Board();
+        }
 
-    public Board() {
+        return board;
+    }
+
+    private Board() {
         for (int i = 0; i < boardsize; i++) {
             for (int j = 0; i < boardsize; i++)
                 chessBoard[i][j] = null;
