@@ -1,5 +1,6 @@
 ## CHESS GAME
 
+
 ### Input Style
 
 chosen figure - starting position - target position
