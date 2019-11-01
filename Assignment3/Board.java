@@ -250,8 +250,8 @@ public class Board implements Observable{
         }
     }
 
-    public boolean isCheckMated(Player player, Players players){
-        isCheck(player, players);
+    public boolean isCheckMated(Player player, PlayerIterator playerIterator){
+        isCheck(player, playerIterator);
         int[] FigureDoesCheck = positionFigureCheck.clone();
         int[] kingPosition = kingPosition(player);
         //check if King can move out of Check
@@ -265,7 +265,7 @@ public class Board implements Observable{
                 if(kingMoves[2] >= 0 && kingMoves[2] <=7 && kingMoves[3] >= 0 && kingMoves[3] <=7) {
                     if (tryIsCheck(kingMoves, player)) {
                         moveFigure(kingMoves);
-                        if (!isCheck(player, players)) {
+                        if (!isCheck(player, playerIterator)) {
                             undoMoveFigure();
                             //System.out.println("your king can move out of the way");
                             return false;
@@ -286,7 +286,7 @@ public class Board implements Observable{
                 killFigure[1] = y;
                 if(tryIsCheck(killFigure, player)){
                     moveFigure(killFigure);
-                    if(!isCheck(player, players)){
+                    if(!isCheck(player, playerIterator)){
                         undoMoveFigure();
                         //System.out.println("you can kill figure");
                         return false;
@@ -342,7 +342,7 @@ public class Board implements Observable{
                     putInWay[1] = l;
                     if (tryIsCheck(putInWay, player)) {
                         moveFigure(putInWay);
-                        if (!isCheck(player, players)) {
+                        if (!isCheck(player, playerIterator)) {
                             undoMoveFigure();
                             //System.out.println("you can put something in the way");
                             return false;
@@ -358,7 +358,7 @@ public class Board implements Observable{
         return true;
     }
 
-    public boolean tryMove(ArrayList list, Player player, Players players) {
+    public boolean tryMove(ArrayList list, Player player, PlayerIterator playerIterator) {
         boolean startFieldColor;
         boolean endFieldColor;
         String token;
@@ -483,7 +483,7 @@ public class Board implements Observable{
         }
         //check if endfield is not own figur
         moveFigure(array);
-        if(isCheck(player, players)){
+        if(isCheck(player, playerIterator)){
             undoMoveFigure();
             System.out.println("Your committing Kingsuicid");
             return false;
@@ -497,8 +497,8 @@ public class Board implements Observable{
                 return false;
             }
             else {
-                Player otherplayer = players.otherPlayer(player);
-                removeFigure(array[2], array[3], otherplayer);  //soltte nicht gemacht werden wenn Kingsuicid
+                Player otherPlayer = playerIterator.otherPlayer();
+                removeFigure(array[2], array[3], otherPlayer);  //soltte nicht gemacht werden wenn Kingsuicid
                 System.out.println(endField.getClass().getName() + " is getting eaten");
                 moveFigure(array);
             }
@@ -512,7 +512,7 @@ public class Board implements Observable{
 
         }
 
-    public boolean promoteFigure(ArrayList moveArray, Player player, Players players) {
+    public boolean promoteFigure(ArrayList moveArray, Player player, PlayerIterator playerIterator) {
         boolean legalPromotion = false;
 
         int startX = (Integer) moveArray.get(1);
@@ -548,7 +548,7 @@ public class Board implements Observable{
 
 
         //IF its a Pawn and Promotion Token is valid, move Figure and promote
-        if(tryMove(moveArray,player,players)) {
+        if(tryMove(moveArray,player,playerIterator)) {
             if ((player.isPlayerWhite() && endX == 0)) {
                 if (promoteTo == 'B') {
                     chessBoard[endX][endY] = new Bishop(true);
@@ -605,12 +605,12 @@ public class Board implements Observable{
     }
 
     //player is the player who has the next turn, check must be checked before he takes a turn
-    public boolean isCheck(Player player, Players players){
+    public boolean isCheck(Player player, PlayerIterator playerIterator){
         int[] kingPosition = kingPosition(player);
         int[] checkKingArray = new int[4];
         checkKingArray[2] = kingPosition[0];
         checkKingArray[3] = kingPosition[1];
-        Player otherPlayer = players.otherPlayer(player);
+        Player otherPlayer = playerIterator.otherPlayer();
         for (int x = 0; x < boardsize; x++) {
             checkKingArray[0] = x;
             for (int y = 0; y < boardsize; y++) {
@@ -625,11 +625,11 @@ public class Board implements Observable{
         return false;
     }
 
-    public boolean shortRochade(Player player, Players players){
+    public boolean shortRochade(Player player, PlayerIterator playerIterator){
         int[] kingPos = kingPosition(player);
         int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
-        if (isCheck(player, players)){
+        if (isCheck(player, playerIterator)){
             System.out.println("You are in check");
             return false;
         }
@@ -667,7 +667,7 @@ public class Board implements Observable{
                             moveFigure(moveArray);
 
 
-                            if (isCheck(player, players)) {
+                            if (isCheck(player, playerIterator)) {
                                 undoMoveFigure();
                                 System.out.println("King will be threatened. No castling possible");
                                 return false;
@@ -681,17 +681,15 @@ public class Board implements Observable{
 
                 }
             }
-
-
         return true;
 
     }
 
-    public boolean longRochade(Player player, Players players) {
+    public boolean longRochade(Player player, PlayerIterator playerIterator) {
         int[] kingPos = kingPosition(player);
         int x;
         King kingObj = (King) chessBoard[kingPos[0]][kingPos[1]];
-        if (isCheck(player, players)){
+        if (isCheck(player, playerIterator)){
             System.out.println("You are in check");
             return false;
         }
@@ -729,7 +727,7 @@ public class Board implements Observable{
                         moveFigure(moveArray);
 
 
-                        if (isCheck(player, players)) {
+                        if (isCheck(player, playerIterator)) {
                             undoMoveFigure();
                             System.out.println("King will be threatened. No castling possible");
                             return false;
@@ -859,7 +857,7 @@ public class Board implements Observable{
             return true;
         }
 
-    public boolean enPassant(ArrayList movearray, Player player, Players players){
+    public boolean enPassant(ArrayList movearray, Player player, PlayerIterator playerIterator){
         int endX = lastRealMove[2];
         int endY = lastRealMove[3];
         int[] tryEnPassant = new int[4];
@@ -886,7 +884,7 @@ public class Board implements Observable{
                             Pawn killerPawn = (Pawn) chessBoard[tryEnPassant[0]][tryEnPassant[1]];
                             if (killerPawn.iswhite() == player.isPlayerWhite()) {
                                 if (isLegalPath(killerPawn, tryEnPassant)) {
-                                    Player otherPlayer = players.otherPlayer(player);
+                                    Player otherPlayer = playerIterator.otherPlayer();
                                     removeFigure(endX, endY, otherPlayer);
                                     moveFigure(tryEnPassant);
                                     chessBoard[endX][endY] = null;

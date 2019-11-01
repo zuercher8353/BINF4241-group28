@@ -5,10 +5,8 @@ import java.util.Scanner;
 
 public class Players {
 
-    //excaping references
     int nrOfPlayers = 0;
     static private List<Player> playerList = new ArrayList<>();
-    public Iterator iterPlayers = playerList.iterator();
 
     public void createPlayers() {
         int nrOfPlayers = 0;
@@ -34,11 +32,6 @@ public class Players {
         System.out.print('\n');
     }
 
-    public List<Player> getPlayers() {
-        List<Player> aPlayerList = playerList;
-        return aPlayerList;
-    }
-
     public String getPlayerName(Player aPlayer) {
         for (Player player : playerList) {
             if (player == aPlayer) {
@@ -48,12 +41,8 @@ public class Players {
         return null;
     }
 
-    public Player otherPlayer(Player player){
-        for(Player player1 : playerList){
-            if(player != player1){
-                return player1;
-            }
-        }
-        return player;
+    public PlayerIterator createPlayerIterator() {
+        PlayerIterator playerIterator = new PlayerIterator(playerList);
+        return playerIterator;
     }
 }

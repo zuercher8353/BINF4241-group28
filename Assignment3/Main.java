@@ -16,56 +16,58 @@ public class Main {
         players.createPlayers();
         board.printBoard();
 
-        List<Player> allPlayers = players.getPlayers();
+        //List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
         int score;
 
 
-        while(!gameEnded) {
-            for (Player player : allPlayers) {
+        while (!gameEnded) {
 
-                System.out.println("It's your turn, " + player.getName() + " (" +player.getColourSTR()+ ")");
-                if(board.isCheck(player, players)){
-                    if(board.isCheckMated(player,players)){
+            //making new iterator to start iteration from beginning
+            PlayerIterator playerIterator = players.createPlayerIterator();
+            while (playerIterator.hasNext()) {
+
+                Player currentPlayer = playerIterator.next();
+
+                System.out.println("It's your turn, " + currentPlayer.getName() + " (" + currentPlayer.getColourSTR() + ")");
+                if (board.isCheck(currentPlayer, playerIterator)) {
+                    if (board.isCheckMated(currentPlayer, playerIterator)) {
                         System.out.println("It is checkmate"); //add good print
-                        Player otherplayer = players.otherPlayer(player);
-                        System.out.println(otherplayer.getName() + " wins!!");
+                        //Player otherplayer = players.otherPlayer(player);
+                        Player nextPlayer = playerIterator.next();
+                        //System.out.println(otherplayer.getName() + " wins!!");
+                        System.out.println(nextPlayer.getName() + " wins!!");
                         gameEnded = true;
                         break;
-                    }
-                    else{
+                    } else {
                         System.out.println("You are in check");
                     }
-                    System.out.println();}
+                    System.out.println();
+                }
 
                 boolean possibleMove = false;
                 while (!possibleMove) {
 
                     ArrayList moveArray = reader.readMove();
 
-                    if(moveArray.size() == 6) {
-                        if(board.promoteFigure(moveArray,player,players)) {
+                    if (moveArray.size() == 6) {
+                        if (board.promoteFigure(moveArray, currentPlayer, playerIterator)) {
                             possibleMove = true;
                         }
-                    }
-                    else if(moveArray.size() == 7){
-                        if(board.enPassant(moveArray,player,players)) {
+                    } else if (moveArray.size() == 7) {
+                        if (board.enPassant(moveArray, currentPlayer, playerIterator)) {
                             possibleMove = true;
                         }
-                    }
-
-                    else if (moveArray.get(0).equals("Rochade_Small")) {
-                        if (board.shortRochade(player, players)){
+                    } else if (moveArray.get(0).equals("Rochade_Small")) {
+                        if (board.shortRochade(currentPlayer, playerIterator)) {
                             possibleMove = true;
                         }
-                    }
-                    else if(moveArray.get(0).equals("Rochade_Large")) {
-                        if (board.longRochade(player, players)){
+                    } else if (moveArray.get(0).equals("Rochade_Large")) {
+                        if (board.longRochade(currentPlayer, playerIterator)) {
                             possibleMove = true;
                         }
-                    }
-                    else {
-                        if (board.tryMove(moveArray, player, players)) { //check if move is possible
+                    } else {
+                        if (board.tryMove(moveArray, currentPlayer, playerIterator)) { //check if move is possible
                             possibleMove = true;
                         }
                     }
