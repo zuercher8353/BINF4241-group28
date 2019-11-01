@@ -11,12 +11,15 @@ public class Main {
         Board board = new Board();
         Players players = new Players();
         Reader reader = new Reader();
+        Scoreboard scoreBoard = new Scoreboard();
+        board.registerObserver(scoreBoard);
         players.createPlayers();
 
         board.printBoard();
 
         List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
+        int score;
 
 
         while(!gameEnded) {
@@ -68,6 +71,13 @@ public class Main {
                         }
                     }
                 }
+                if(player.isPlayerWhite()){
+                    score= scoreBoard.getScoreWhite();
+                }
+                else {
+                    score = scoreBoard.getScoreBlack();
+                }
+                System.out.println(player.getName() + ", score: " + score );
                 board.printBoard();
             }
         }
