@@ -24,10 +24,10 @@ public class Board implements Observable{
         //START initialize figures, black at the top, white at the bottom
 
         //init all pawns
-        /*for (int k = 0; k < boardsize; k++) {
+        for (int k = 0; k < boardsize; k++) {
             chessBoard[1][k] = new Pawn(false);
             chessBoard[6][k] = new Pawn(true);
-        }*/
+        }
 
         //init towers
         chessBoard[0][0] = new Rook(false);
