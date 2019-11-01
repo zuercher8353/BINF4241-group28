@@ -20,7 +20,6 @@ public class Main {
         boolean gameEnded = false;
         int score;
 
-
         while (!gameEnded) {
 
             //making new iterator to start iteration from beginning
