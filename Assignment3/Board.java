@@ -11,14 +11,17 @@ public class Board extends Main implements Observable{
     private boolean lastHasMoved = true;
     private ArrayList<Observer> observers = new ArrayList<>();
 
-    private static Board board = null;
+    private volatile static Board board = null;
     private Object[][] chessBoard = new Object[boardsize][boardsize];
 
     public static Board getInstance(){
         if (board == null){
-            board = new Board();
+            synchronized (Board.class) {
+                if (board == null){
+                    board = new Board();
+                }
+            }
         }
-
         return board;
     }
 
