@@ -5,5 +5,6 @@ Design pattern: Singleton
    In the class Board the constructor is set to private and the method getInstance() is created
    to return one instance of Board. 
 2. Class diagram:
-
+![(Singleton_classDiagram.png)]
 3. Sequence diagram:
+![(Singleton_sequenceDiagram.png)]
