@@ -19,6 +19,7 @@
 1.
 2. Class diagram:
 
+![](Iterator_classDiag.png)
 3. Sequence diagram:
 
 ![](IteratorSequenceDiagram.png)
