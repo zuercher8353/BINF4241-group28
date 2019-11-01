@@ -14,7 +14,6 @@ public class Main {
         Scoreboard scoreBoard = new Scoreboard();
         board.registerObserver(scoreBoard);
         players.createPlayers();
-
         board.printBoard();
 
         List<Player> allPlayers = players.getPlayers();
