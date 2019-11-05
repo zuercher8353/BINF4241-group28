@@ -25,7 +25,7 @@
 ![](IteratorSequenceDiagram.png)
 
 ##Part2
-
+![](Sequence diagram.png)
 ##Part 3
 
 ### 3) Scoreboard using the Observer
