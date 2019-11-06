@@ -22,11 +22,12 @@
 ![](Iterator_classDiagram.png)
 3. Sequence diagram:
 
-![](IteratorSequenceDiagram.png)
+![](IteratorSequenceDiagram.PNG)
 
 ##Part2
 This is the simplified version of the Sequence diagram:
 ![](Sequence Diagram.png)
+
 ##Part 3
 
 ### 3) Scoreboard using the Observer
