@@ -5,6 +5,7 @@ import java.util.List;
 // x-Axis: intAxis X numeric 0 - 7
 // y-Axis: charAxis Y character a-b
 
+
 public class Main {
     public static void main(String[] args) {
 
