@@ -26,7 +26,7 @@
 
 ##Part2
 This is the simplified version of the Sequence diagram:
-![](Sequence Diagram.png)
+![](SequenceDiagram.png)
 
 ##Part 3
 
