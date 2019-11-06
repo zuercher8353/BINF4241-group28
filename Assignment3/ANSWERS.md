@@ -19,12 +19,14 @@
 1.
 2. Class diagram:
 
-![](Iterator_classDiag.png)
+![](Iterator_classDiagram.png)
 3. Sequence diagram:
 
-![](IteratorSequenceDiagram.png)
+![](IteratorSequenceDiagram.PNG)
 
 ##Part2
+This is the simplified version of the Sequence diagram:
+![](SequenceDiagram.png)
 
 ##Part 3
 
