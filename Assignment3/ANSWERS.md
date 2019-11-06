@@ -25,6 +25,7 @@
 ![](IteratorSequenceDiagram.png)
 
 ##Part2
+This is the simplified version of the Sequence diagram:
 ![](Sequence diagram.png)
 ##Part 3
 
