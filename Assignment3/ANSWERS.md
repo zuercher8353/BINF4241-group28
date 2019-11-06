@@ -16,7 +16,8 @@
 ![](Singleton_sequenceDiagram.png)
 
 ### Design pattern 2: Iterator
-1.
+1. We are using the Iterator Design Pattern to iterate over the players array in the main, while providing encapsulation. The PlayerIterator implements the Iterator Interface, implementing the defined methods next() and hasNext(). 
+Additionally, we implement the otherPlayer Method to switch players in the methods of the board.
 2. Class diagram:
 
 ![](Iterator_classDiagram.png)
@@ -43,6 +44,8 @@ which keeps track of the score of each player.
 The main function adds Scoreboard to the observers list of board by calling registerObserver().Every time a chess piece gets eaten the Scoreboard gets updated by using notifyObservers(). 
 To do this we had to change our method removeFigure() in Board so that it calls notifyOberservers() when a figure gets eaten. 
 
+
+##Game Description
 #### Input Style
 
 chosen figure - starting position - target position
