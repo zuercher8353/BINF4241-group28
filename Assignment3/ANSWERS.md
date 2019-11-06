@@ -25,6 +25,7 @@ Additionally, we implement the otherPlayer Method to switch players in the metho
 
 ![](IteratorSequenceDiagram.PNG)
 
+
 ##Part2
 This is the simplified version of the Sequence diagram where all outgoing method calls from the board class are left away, if they don`t influence class attributes of the board directly:
 
