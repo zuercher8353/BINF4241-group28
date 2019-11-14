@@ -10,7 +10,7 @@ public class Oven extends Device{
         grill,
         defrost
     }
-
+    @Override
     private enum DeviceCommands {
         SwitchOn,
         SwitchOff,
@@ -22,6 +22,7 @@ public class Oven extends Device{
         Interrupt
     }
 
+    @Override
     private enum DeviceStates {
         On,
         Off
