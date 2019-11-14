@@ -32,6 +32,7 @@ public class Smartphone {
                 for(Device device:deviceArray) {
                     if(device.getClass().getSimpleName().equals(inputDevice)) {
                         device.printDeviceMenu();
+
                     }
                 }
                 //String inputCommand = userInput.nextLine();
