@@ -1,6 +1,6 @@
 package ReceiverDevices;
 
-public class Microwave {
+public class Microwave extends Device {
     private int timer = 0;
     private int temperatur = 0;
 

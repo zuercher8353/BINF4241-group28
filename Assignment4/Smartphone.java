@@ -1,25 +1,58 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+
+import CommandClients.Command;
+import ReceiverDevices.*;
 
 //Invoker
 public class Smartphone {
     public static void main(String[] args) {
-        for (DeviceNames deviceNames : DeviceNames.values()) {
-            System.out.println(deviceNames);
+
+        Oven oven = new Oven();
+        Microwave microwave = new Microwave();
+        //Dishwasher dishwasher;
+        //WashingMachine washingmachine;
+        //CleaningRobot cleaningrobot;
+        final Device[] deviceArray = {oven, microwave};
+
+        //print Main Menu
+        for (Device device: deviceArray) {
+            System.out.println(device.getClass().getSimpleName());
         }
-        System.out.println("back");
+        System.out.println("exit");
+        System.out.println("---------");
+        // end print
+        System.out.println("Choose Device: ");
         Scanner userInput = new Scanner(System.in);
         String inputDevice = userInput.nextLine();
-        while(!inputDevice.equals("back")){
+        while(!inputDevice.equals("exit")){
             if(validateInput(inputDevice)){
-
+                for(Device device:deviceArray) {
+                    if(device.getClass().getSimpleName().equals(inputDevice)) {
+                        device.printDeviceMenu();
+                    }
+                }
+                //String inputCommand = userInput.nextLine();
+                //while(!inputCommand.equals("back")) {
+                     //Command command;
+                //}
+            } else {
+                System.out.println("Device not available");
             }
+            inputDevice = userInput.nextLine();
         }
     }
     public void setCommand(){
 
     }
 
-    public static boolean validateInput(String userInput) {
+    public void printMainMenu() {
+
+    }
+
+    private static boolean validateInput(String userInput) {
 
         for (DeviceNames deviceName : DeviceNames.values()) {
             if (deviceName.name().equals(userInput)) {
