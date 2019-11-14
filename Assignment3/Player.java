@@ -44,6 +44,5 @@ public class Player {
             System.out.println(eatenPiece.getClass().getName() + ", ");
         }
     }
-
     //TODO possibly integrate  //java.util.Iterator<E> as suggested in lecture
 }

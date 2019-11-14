@@ -1,13 +1,13 @@
 import java.util.ArrayList;
-public class Rock implements Figur {
+public class Rook implements Figur {
 
     private String token = "T";
-    private Boolean iswhite;
-    private Boolean hasmoved;
+    private boolean iswhite;
+    private boolean hasmoved;
     private int figurid;
     static int id = 0;
 
-    public Rock(Boolean iswhite){
+    public Rook(boolean iswhite){
         this.hasmoved = false;
         this.iswhite = iswhite;
         this.figurid = id;
@@ -18,11 +18,11 @@ public class Rock implements Figur {
         return token;
     }
 
-    public Boolean iswhite() {
+    public boolean iswhite() {
         return iswhite;
     }
 
-    public Boolean islegal(int[] array){
+    public boolean islegal(int[] array){
         if(array[0] != array[2] && array[1] != array[3] ) {
             return false;
         }
@@ -33,7 +33,7 @@ public class Rock implements Figur {
         hasmoved = setHasMoved;
     }
 
-    public Boolean getHasmoved() {
+    public boolean getHasmoved() {
         return hasmoved;
     }
 

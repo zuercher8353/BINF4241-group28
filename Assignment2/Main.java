@@ -15,19 +15,21 @@ public class Main {
 
         board.printBoard();
 
-        //TODO resolve issue with Players List Array
         List<Player> allPlayers = players.getPlayers();
         boolean gameEnded = false;
+
 
         while(!gameEnded) {
             for (Player player : allPlayers) {
 
                 System.out.println("It's your turn, " + player.getName() + " (" +player.getColourSTR()+ ")");
-                System.out.println();
                 if(board.isCheck(player, players)){
                     if(board.isCheckMated(player,players)){
-                        System.out.println("Your checkmated"); //add good print
-                        //gameEnded = true;
+                        System.out.println("It is checkmate"); //add good print
+                        Player otherplayer = players.otherPlayer(player);
+                        System.out.println(otherplayer.getName() + " wins!!");
+                        gameEnded = true;
+                        break;
                     }
                     else{
                         System.out.println("You are in check");
