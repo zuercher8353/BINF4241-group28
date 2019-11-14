@@ -1,6 +1,6 @@
 package ReceiverDevices;
 
-public abstract class Device  {
+public abstract class Device {
 
 
     public void turnOn() {

@@ -1,16 +1,28 @@
 package ReceiverDevices;
 
 
-public class Oven extends Device{
+public class Oven extends Device implements Runnable{
+    private int timer = 0;
+    private int temperature = 0;
+    private DeviceStates deviceState = DeviceStates.Off;
+
+    @Override
+    public void run() {
+        try {
+            deviceState = DeviceStates.On;
+            Thread.sleep(timer);
+            deviceState = DeviceStates.Off;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private enum DeviceStates {
         On,
         Off,
         Running
     }
-    private int timer = 0;
-    private int temperature = 0;
-    private DeviceStates deviceState = DeviceStates.Off;
+
 
 
 
