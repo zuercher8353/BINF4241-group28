@@ -3,13 +3,12 @@ package ReceiverDevices;
 public class Dishwasher extends Device{
 
     private int timer = 0;
-    private int temperatur = 0;
 
     private enum DishwasherProgram {
-        glasses,
-        plates,
-        pans,
-        mixed
+        Glasses,
+        Plates,
+        Pans,
+        Mixed
     }
 
     private enum DeviceCommands {
