@@ -36,8 +36,7 @@ public abstract class Device  {
 
 
 
-
-
-
-
+    public void printDeviceMenu();
+    public void turnOn();
+    public void turnOff();
 }
