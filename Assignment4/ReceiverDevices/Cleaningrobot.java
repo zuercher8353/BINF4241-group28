@@ -1,25 +1,6 @@
 package ReceiverDevices;
 
-
-public class Oven extends Device{
-
-    private enum DeviceStates {
-        On,
-        Off,
-        Running
-    }
-    private int timer = 0;
-    private int temperature = 0;
-    private DeviceStates deviceState = DeviceStates.Off;
-
-
-
-
-    private enum OvenProgram {
-        ventilated,
-        grill,
-        defrost
-    }
+public class Cleaningrobot {
 
     private enum DeviceCommands {
         SwitchOn,
@@ -32,13 +13,19 @@ public class Oven extends Device{
         Interrupt
     }
 
+    private enum DeviceStates {
+        On,
+        Off,
+        Running,
+        Charging,
+        CleaningNotCompleted,
+        Ended
+
+    }
 
     public void printDeviceMenu(){
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
         }
     }
-
-
-
 }
