@@ -10,7 +10,7 @@ public class Oven extends Device{
         grill,
         defrost
     }
-    @Override
+
     private enum DeviceCommands {
         SwitchOn,
         SwitchOff,
@@ -22,11 +22,24 @@ public class Oven extends Device{
         Interrupt
     }
 
-    @Override
     private enum DeviceStates {
         On,
         Off
     }
 
+    public void printDeviceMenu(){
+        for (DeviceCommands commands : DeviceCommands.values()) {
+            System.out.println(commands);
+        }
+    }
 
+    public void turnOn() {
+        //new Thread
+        //start Thread
+    }
+
+    @Override
+    public void turnOff() {
+        //kill Thread
+    }
 }
