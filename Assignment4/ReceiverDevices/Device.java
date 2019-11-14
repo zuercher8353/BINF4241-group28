@@ -19,6 +19,7 @@ public abstract class Device  {
         //new Thread
         //start Thread
     }
+
     public void turnOff() {
         //kill Thread
     }
