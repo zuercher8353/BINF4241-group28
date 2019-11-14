@@ -1,7 +1,13 @@
 package ReceiverDevices;
 
 public class Oven implements Device {
-    private enum DeviceCommands {
+    private enum OvenProgram {
+        ventilated,
+        grill,
+        defrost
+    }
+
+    private enum OvenCommands {
         SwitchOn,
         SwitchOff,
         SetTimer,
@@ -11,9 +17,24 @@ public class Oven implements Device {
         CheckTimer,
         Interrupt
     }
+
+    private enum OvenStates {
+        On,
+        Off,
+        Cooking,
+    }
+
     public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
+        for (OvenCommands commands : OvenCommands.values()) {
             System.out.println(commands);
         }
+    }
+    public void on() {
+
+    }
+
+    @Override
+    public void off() {
+
     }
 }
