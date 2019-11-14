@@ -1,23 +1,22 @@
 package ReceiverDevices;
 
-public class Oven extends Device{
+public class Dishwasher extends Device{
 
     private int timer = 0;
     private int temperatur = 0;
 
-    private enum OvenProgram {
-        ventilated,
-        grill,
-        defrost
+    private enum DishwasherProgram {
+        glasses,
+        plates,
+        pans,
+        mixed
     }
 
     private enum DeviceCommands {
         SwitchOn,
         SwitchOff,
-        SetTimer,
-        SetTemperature,
+        StartDishwasher,
         SetUpProgram,
-        StartCooking,
         CheckTimer,
         Interrupt
     }
