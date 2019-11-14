@@ -2,6 +2,9 @@ package ReceiverDevices;
 
 public class Oven implements Device {
 
+    private int timer = 0;
+    private int temperatur = 0;
+
     private enum OvenProgram {
         ventilated,
         grill,
@@ -21,8 +24,7 @@ public class Oven implements Device {
 
     private enum DeviceStates {
         On,
-        Off,
-        Cooking,
+        Off
     }
 
     public void printDeviceMenu(){
@@ -31,12 +33,13 @@ public class Oven implements Device {
         }
     }
 
-    public void on() {
-
+    public void turnOn() {
+        //new Thread
+        //start Thread
     }
 
     @Override
-    public void off() {
-
+    public void turnOff() {
+        //kill Thread
     }
 }
