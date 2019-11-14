@@ -13,6 +13,7 @@ public class Rook implements Figur {
         this.figurid = id;
         id += 1;
     }
+
     public String getToken() {
         return token;
     }
@@ -27,6 +28,7 @@ public class Rook implements Figur {
         }
         return true;
     }
+
     public void setHasMoved(boolean setHasMoved){
         hasmoved = setHasMoved;
     }

@@ -39,15 +39,6 @@ public class Players {
         return aPlayerList;
     }
 
-    public String getPlayerName(Player aPlayer) {
-        for (Player player : playerList) {
-            if (player == aPlayer) {
-                return player.getName();
-            }
-        }
-        return null;
-    }
-
     public Player otherPlayer(Player player){
         for(Player player1 : playerList){
             if(player != player1){
