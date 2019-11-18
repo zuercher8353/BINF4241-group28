@@ -2,6 +2,7 @@ import CommandHandler.*;
 import ReceiverDevices.Device;
 import ReceiverDevices.Microwave;
 import ReceiverDevices.Oven;
+import ReceiverDevices.WashingMachine;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,9 @@ class DeviceSetup {
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
         Microwave microwave = new Microwave();
+        WashingMachine washingMachine = new WashingMachine();
+        WashingMachineCommandHandler washingMachineCommandHandler = new WashingMachineCommandHandler(washingMachine);
+        devicesMap.put(washingMachine, washingMachineCommandHandler);
 
     }
 
