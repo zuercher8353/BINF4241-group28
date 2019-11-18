@@ -7,8 +7,6 @@ public class Oven implements Device {
     private DeviceStates deviceState = DeviceStates.Off;
     private OvenProgram ovenProgram = OvenProgram.notSet;
     private long start;
-    Thread thread;
-    // start = System.currentTimeMillis(); for time remaining
 
 
 
