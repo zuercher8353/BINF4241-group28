@@ -14,7 +14,7 @@ public class MicrowaveCommandHandler {
         SetTimer,
         SetTemperature,
         SetUpProgram,
-        StartCooking,
+        StartBaking,
         CheckTimer,
         Interrupt
     }
