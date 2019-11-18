@@ -50,7 +50,7 @@ public class Smartphone {
                 System.out.println("Device not available");
             }
         }
-        System.out.println("Smartphone off");
+        System.out.println("Smartphone turning off");
     }
 
     private static boolean validateInput(String userInput) {
