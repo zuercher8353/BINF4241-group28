@@ -36,7 +36,9 @@ public class Oven implements Device {
         Interrupt
     }
 
-
+    public DeviceStates getDeviceState() {
+        return deviceState;
+    }
 
     public void SwitchOn() {
         if (deviceState == DeviceStates.Off){
