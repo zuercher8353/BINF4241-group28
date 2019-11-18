@@ -13,9 +13,6 @@ public class Smartphone {
 
         DeviceSetup deviceSetup = new DeviceSetup();
         HashMap<Device, CommandHandler> devicesMap = deviceSetup.getDevices();
-        //Dishwasher dishwasher;
-        //WashingMachine washingmachine;
-        //CleaningRobot cleaningrobot;
 
         //print Main Menu
         deviceSetup.printMainMenu();
