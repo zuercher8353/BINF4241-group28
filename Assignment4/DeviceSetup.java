@@ -14,8 +14,8 @@ class DeviceSetup {
         Oven oven = new Oven();
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
-        ovenCommandHandler.configButtons();
         Microwave microwave = new Microwave();
+
     }
 
     HashMap getDevices() {
@@ -23,7 +23,13 @@ class DeviceSetup {
         return copy_devicesMap;
     }
 
-    public void printMainMenu() {
+    void initButtons() {
+        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+            device.getValue().configButtons();
+        }
+    }
+
+    void printMainMenu() {
         System.out.println("---------");
         for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
             System.out.println(device.getKey().getClass().getSimpleName());

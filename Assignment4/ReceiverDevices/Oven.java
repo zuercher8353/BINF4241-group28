@@ -5,10 +5,6 @@ import CommandHandler.OvenCommandHandler;
 
 public class Oven extends Device{
 
-    public Oven() {
-
-    }
-
     private int timer = 0;
     private int temperatur = 0;
 

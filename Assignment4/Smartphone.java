@@ -13,6 +13,7 @@ public class Smartphone {
 
         DeviceSetup deviceSetup = new DeviceSetup();
         HashMap<Device, CommandHandler> devicesMap = deviceSetup.getDevices();
+        deviceSetup.initButtons();
 
         //print Main Menu
         deviceSetup.printMainMenu();
