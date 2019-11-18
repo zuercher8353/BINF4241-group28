@@ -5,8 +5,8 @@ import ReceiverDevices.Oven;
 
 public class OvenCommandCheckTimer implements Command {
 
-    private String commandName = "CheckTimer";
     private Oven oven;
+    private String commandName = "CheckTimer";
 
     public OvenCommandCheckTimer(Oven oven) {
         this.oven = oven;

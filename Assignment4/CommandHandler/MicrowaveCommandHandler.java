@@ -5,23 +5,14 @@ import CommandClients.NoCommand;
 import ReceiverDevices.Microwave;
 
 public class MicrowaveCommandHandler {
-    private Command[] buttonSlots = new Command[DeviceCommands.values().length];
-    private Microwave microwave;
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetTimer,
-        SetTemperature,
-        SetUpProgram,
-        StartBaking,
-        CheckTimer,
-        Interrupt
-    }
+    private int nrOfCommands = 8;
+    private Command[] buttonSlots;
+    private Microwave microwave;
 
     public MicrowaveCommandHandler(Microwave microwave){
         this.microwave = microwave;
-        for(int i = 0; i < DeviceCommands.values().length; i++) {
+        for(int i = 0; i < nrOfCommands; i++) {
             buttonSlots[i] = new NoCommand();
         }
     }
@@ -32,8 +23,8 @@ public class MicrowaveCommandHandler {
 
     public boolean validateCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        for (Command buttonSlot : buttonSlots) {
+            if (buttonSlot.getCommandName().equals(userInput)) {
                 return true;
             }
             i++;
@@ -43,8 +34,8 @@ public class MicrowaveCommandHandler {
 
     public void handleCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        for (Command buttonSlot: buttonSlots) {
+            if (buttonSlot.getCommandName().equals(userInput)) {
                 buttonSlots[i].execute();
             }
             i++;
@@ -54,8 +45,8 @@ public class MicrowaveCommandHandler {
     public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println("["+i+"] "+commands);
+        for (Command buttonSlot : buttonSlots) {
+            System.out.println("["+i+"] "+buttonSlot.getCommandName());
             i++;
         }
         System.out.println("back");

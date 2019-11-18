@@ -2,7 +2,7 @@ package CommandHandler;
 
 import CommandClients.Command;
 import CommandClients.NoCommand;
-import CommandClients.OvenCommands.OvenCommandOn;
+import CommandClients.OvenCommands.*;
 import ReceiverDevices.Oven;
 
 public class OvenCommandHandler implements CommandHandler{
@@ -21,25 +21,33 @@ public class OvenCommandHandler implements CommandHandler{
         CheckTimer,
         Interrupt
     }
+    private int nrOfCommands = 8;
 
     public OvenCommandHandler(Oven oven){
         this.oven = oven;
-        for(int i = 0; i < DeviceCommands.values().length; i++) {
+        for(int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
     }
 
     public void configButtons() {
         buttonSlots[0] = new OvenCommandOn(oven);
+        buttonSlots[1] = new OvenCommandInterrupt(oven);
+        buttonSlots[2] = new OvenCommandOff(oven);
+        buttonSlots[3] = new OvenCommandSetProgram(oven);
+        buttonSlots[4] = new OvenCommandCheckTimer(oven);
+        buttonSlots[5] = new OvenCommandSetTimer(oven);
+        buttonSlots[6] = new OvenCommandStartCooking(oven);
+        buttonSlots[7] = new OvenCommandSetTemp(oven);
+
     }
 
     public boolean validateCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        for(Command buttonSlot : buttonSlots) {
+            if (buttonSlot.getCommandName().equals(userInput)) {
                 return true;
             }
-            i++;
         }
         return false;
     }

@@ -13,11 +13,11 @@ public class OvenCommandInterrupt implements Command {
     }
 
     @Override
-    public void execute() {
+    public String getCommandName() {
+        return commandName;
     }
 
     @Override
-    public String getCommandName() {
-        return null;
+    public void execute() {
     }
 }
