@@ -1,6 +1,17 @@
 package ReceiverDevices;
 
-public class Cleaningrobot {
+public class Cleaningrobot implements Device, Runnable {
+
+    @Override
+    public void run() {
+        try {
+            deviceState = Oven.DeviceStates.On;
+            Thread.sleep(timer);
+            deviceState = Oven.DeviceStates.Off;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private enum DeviceCommands {
         SwitchOn,
@@ -21,6 +32,18 @@ public class Cleaningrobot {
         CleaningNotCompleted,
         Ended
 
+    }
+    public void SwitchOff() {
+        //kill Thread
+    }
+    public void interrupt(){
+        //stop running, but keep all variables, timer, program usw
+    }
+
+    public void SwitchOn() {
+        Device device = new Device();
+        //new Thread
+        //start Thread
     }
 
     public void printDeviceMenu(){

@@ -1,19 +1,13 @@
 package ReceiverDevices;
 
-public abstract class Device {
+public interface Device {
 
 
-    public void turnOn() {
-        //new Thread
-        //start Thread
-    }
+    public void SwitchOn();
 
-    public void turnOff() {
-        //kill Thread
-    }
-    public void interrupt(){
-        //stop running, but keep all variables, timer, program usw
-    }
+    public void SwitchOff();
+    public void interrupt();
+    public void printDeviceMenu();
 
 
 

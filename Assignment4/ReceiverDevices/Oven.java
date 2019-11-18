@@ -1,21 +1,16 @@
 package ReceiverDevices;
 
 
-public class Oven extends Device implements Runnable{
-    private int timer = 0;
-    private int temperature = 0;
+public class Oven implements Device {
+    private long timer = -1;
+    private int temperature = -1;
     private DeviceStates deviceState = DeviceStates.Off;
+    private OvenProgram ovenProgram = OvenProgram.notSet;
+    private long start;
+    Thread thread;
+    // start = System.currentTimeMillis(); for time remaining
 
-    @Override
-    public void run() {
-        try {
-            deviceState = DeviceStates.On;
-            Thread.sleep(timer);
-            deviceState = DeviceStates.Off;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private enum DeviceStates {
         On,
@@ -23,14 +18,11 @@ public class Oven extends Device implements Runnable{
         Running
     }
 
-
-
-
-
     private enum OvenProgram {
         ventilated,
         grill,
-        defrost
+        defrost,
+        notSet
     }
 
     private enum DeviceCommands {
@@ -42,6 +34,105 @@ public class Oven extends Device implements Runnable{
         StartCooking,
         CheckTimer,
         Interrupt
+    }
+
+
+
+    public void SwitchOn() {
+        if (deviceState == DeviceStates.Off){
+            deviceState = DeviceStates.On;
+        }
+        else{
+            System.out.println("Device is already Switched on");
+        }
+    }
+    public void SetTimer(int time){
+        if(deviceState == DeviceStates.On ){
+            long timeInMilis = time * 1000;
+            timer = timeInMilis;
+        }
+        else if(deviceState == DeviceStates.Off){
+            System.out.println("You need to switch the oven on before you set a timer");
+        }
+        else if(deviceState == DeviceStates.Running){
+            System.out.println("The oven is running you cant set a timer");
+        }
+
+    }
+    public void setTemperature(int temp){
+        if(deviceState == DeviceStates.On ){
+            temperature = temp;
+        }
+        else if(deviceState == DeviceStates.Off){
+            System.out.println("You need to switch the oven on before you set a temperature");
+        }
+        else if(deviceState == DeviceStates.Running){
+            System.out.println("The oven is running you cant set a temperature");
+        }
+    }
+    public void setUpProgram (OvenProgram ovenProgram){
+        if(deviceState == DeviceStates.On ){
+            ovenProgram = ovenProgram;
+        }
+        else if(deviceState == DeviceStates.Off){
+            System.out.println("You need to switch the oven on before you set a program");
+        }
+        else if(deviceState == DeviceStates.Running){
+            System.out.println("The oven is running you cant set a program");
+        }
+
+
+    }
+    public void StartCooking(){
+        if(deviceState == DeviceStates.On ){
+            if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
+                start =  System.currentTimeMillis();
+                deviceState = DeviceStates.Running;
+            }
+            else{
+                System.out.println("Not all parameters are set you can`t start cooking");
+            }
+        }
+        else if(deviceState == DeviceStates.Off){
+            System.out.println("You need to switch the oven on before you can start cooking");
+        }
+        else if(deviceState == DeviceStates.Running){
+            System.out.println("The oven is already cooking");
+        }
+    }
+
+    public void checkTimer(){                              //returns remaining time if program is running else it returns the last timer set
+        if(deviceState == DeviceStates.Running){
+
+            long remainingTimeSec = (timer - (System.currentTimeMillis() - start)) / 1000 ;
+            if(remainingTimeSec <= 0){
+                System.out.println("No time remaining, the program is finished");
+            }
+            else{
+                int remaining = (int) remainingTimeSec;
+            }
+        }
+        else if(deviceState == DeviceStates.Off){
+            System.out.println("You need to switch the oven, to check the timer");
+        }
+        else if(deviceState == DeviceStates.On ){
+            if(timer == -1){
+                System.out.println("You didn`t set a timer yet");
+            }
+            else{
+                int timerInSec = (int) (timer/1000);
+            }
+        }
+
+    }
+
+
+    public void interrupt(){
+        //stop running, but keep all variables, timer, program usw
+    }
+
+    public void SwitchOff() {
+        //kill Thread
     }
 
 

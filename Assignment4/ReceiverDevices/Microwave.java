@@ -1,8 +1,18 @@
 package ReceiverDevices;
 
-public class Microwave extends Device {
+public class Microwave implements Device, Runnable {
     private int timer = 0;
     private int temperature = 0;
+    @Override
+    public void run() {
+        try {
+            deviceState = Oven.DeviceStates.On;
+            Thread.sleep(timer);
+            deviceState = Oven.DeviceStates.Off;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private enum DeviceCommands {
         SwitchOn,
@@ -19,6 +29,7 @@ public class Microwave extends Device {
             System.out.println(commands);
         }
     }
+
     private enum DeviceStates {
         On,
         Off,
