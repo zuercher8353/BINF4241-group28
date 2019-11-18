@@ -1,30 +1,35 @@
 package ReceiverDevices;
 
-public class Microwave extends Device {
+public class Dishwasher extends Device{
+
     private int timer = 0;
-    private int temperature = 0;
+    private int temperatur = 0;
+
+    private enum DishwasherProgram {
+        glasses,
+        plates,
+        pans,
+        mixed
+    }
 
     private enum DeviceCommands {
         SwitchOn,
         SwitchOff,
-        SetTimer,
-        SetTemperature,
+        StartDishwasher,
         SetUpProgram,
-        StartBaking,
         CheckTimer,
         Interrupt
     }
+
+    private enum DeviceStates {
+        On,
+        Off
+    }
+
     public void printDeviceMenu(){
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
         }
-    }
-    private enum DeviceStates {
-        On,
-        Off,
-        // ReadyToRun, don`t know about that
-        Running,
-        Ended
     }
 
 }

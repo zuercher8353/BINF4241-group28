@@ -1,9 +1,31 @@
 package ReceiverDevices;
 
-public class Oven extends Device{
 
+public class Oven extends Device implements Runnable{
     private int timer = 0;
-    private int temperatur = 0;
+    private int temperature = 0;
+    private DeviceStates deviceState = DeviceStates.Off;
+
+    @Override
+    public void run() {
+        try {
+            deviceState = DeviceStates.On;
+            Thread.sleep(timer);
+            deviceState = DeviceStates.Off;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private enum DeviceStates {
+        On,
+        Off,
+        Running
+    }
+
+
+
+
 
     private enum OvenProgram {
         ventilated,
@@ -22,26 +44,13 @@ public class Oven extends Device{
         Interrupt
     }
 
-    private enum DeviceStates {
-        On,
-        Off
-    }
 
     public void printDeviceMenu(){
-        System.out.println("----------");
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
         }
-        System.out.println("back");
-        System.out.println("----------");
     }
 
-    public void turnOn() {
-        //new Thread
-        //start Thread
-    }
 
-    public void turnOff() {
-        //kill Thread
-    }
+
 }
