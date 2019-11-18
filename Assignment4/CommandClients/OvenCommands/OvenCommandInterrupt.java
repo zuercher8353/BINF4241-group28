@@ -6,6 +6,7 @@ import ReceiverDevices.Oven;
 
 public class OvenCommandInterrupt implements Command {
     private Oven oven;
+    private String commandName = "Interrupt";
 
     public OvenCommandInterrupt(Oven oven) {
         this.oven = oven;
@@ -13,5 +14,10 @@ public class OvenCommandInterrupt implements Command {
 
     @Override
     public void execute() {
+    }
+
+    @Override
+    public String getCommandName() {
+        return null;
     }
 }
