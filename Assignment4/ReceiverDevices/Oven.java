@@ -29,8 +29,10 @@ public class Oven extends Device{
 
     public void printDeviceMenu(){
         System.out.println("----------");
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
+        int i = 0;
+        for (Oven.DeviceCommands commands : Oven.DeviceCommands.values()) {
+            System.out.println("["+i+"] "+commands);
+            i++;
         }
         System.out.println("back");
         System.out.println("----------");

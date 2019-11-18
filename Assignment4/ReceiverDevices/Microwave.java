@@ -15,8 +15,10 @@ public class Microwave extends Device {
         Interrupt
     }
     public void printDeviceMenu(){
+        int i = 0;
         for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
+            System.out.println("["+i+"]"+commands);
+            i++;
         }
     }
 

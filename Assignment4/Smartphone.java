@@ -13,7 +13,6 @@ public class Smartphone {
 
         Oven oven = new Oven();
         OvenCommandOn ovenCommandOn = new OvenCommandOn(oven);
-
         Microwave microwave = new Microwave();
         //Dishwasher dishwasher;
         //WashingMachine washingmachine;
