@@ -48,8 +48,7 @@ public class Oven implements Device {
     }
     public void SetTimer(int time){
         if(deviceState == DeviceStates.On ){
-            long timeInMilis = time * 1000;
-            timer = timeInMilis;
+            timer =  time * 1000;
         }
         else if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven on before you set a timer");
@@ -117,7 +116,7 @@ public class Oven implements Device {
         }
         else if(deviceState == DeviceStates.On ){
             if(timer == -1){
-                System.out.println("You didn`t set a timer yet");
+                System.out.println("You did not set a timer yet");
             }
             else{
                 int timerInSec = (int) (timer/1000);
@@ -128,11 +127,25 @@ public class Oven implements Device {
 
 
     public void interrupt(){
-        //stop running, but keep all variables, timer, program usw
+        if(deviceState == DeviceStates.Running) {
+            timer = -1;
+            temperature = -1;
+            deviceState = DeviceStates.On;
+            ovenProgram = OvenProgram.notSet;
+            start = 0;
+        }
+        else{
+            System.out.println("The oven is not in operation, you can´t interrupt");
+        }
     }
 
+    //allowed to switch off if program still running?
     public void SwitchOff() {
-        //kill Thread
+        timer = -1;
+        temperature = -1;
+        deviceState = DeviceStates.Off;
+        ovenProgram = OvenProgram.notSet;
+        start = 0;
     }
 
 
