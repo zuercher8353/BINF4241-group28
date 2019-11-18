@@ -33,7 +33,7 @@ public class OvenCommandHandler implements CommandHandler{
         buttonSlots[0] = new OvenCommandOn(oven);
     }
 
-    public boolean validateInput(String userInput) {
+    public boolean validateCommand(String userInput) {
         int i = 0;
         for (DeviceCommands command : DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
@@ -44,7 +44,7 @@ public class OvenCommandHandler implements CommandHandler{
         return false;
     }
 
-    public void handleInput(String userInput) {
+    public void handleCommand(String userInput) {
         int i = 0;
         for (DeviceCommands command : DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
@@ -54,7 +54,7 @@ public class OvenCommandHandler implements CommandHandler{
         }
     }
 
-    public void printDeviceMenu(){
+    public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
         for (DeviceCommands commands : DeviceCommands.values()) {

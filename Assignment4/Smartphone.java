@@ -1,33 +1,24 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.HashMap;
 
 import CommandHandler.*;
-import CommandHandler.OvenCommandHandler;
 import ReceiverDevices.*;
 
 //Invoker
 public class Smartphone {
+
+
     public static void main(String[] args) {
 
-        HashMap map = new HashMap();
-        Oven oven = new Oven();
-        OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
-        map.put(oven,ovenCommandHandler);
-        ovenCommandHandler.configButtons();
-        Microwave microwave = new Microwave();
+        DeviceSetup deviceSetup = new DeviceSetup();
+        HashMap<Device, CommandHandler> devicesMap = deviceSetup.getDevices();
         //Dishwasher dishwasher;
         //WashingMachine washingmachine;
         //CleaningRobot cleaningrobot;
 
-        final Device[] deviceArray = {oven, microwave};
-
         //print Main Menu
-        for (Device device: deviceArray) {
-            System.out.println(device.getClass().getSimpleName());
-        }
-        System.out.println("exit");
-        System.out.println("---------");
+        deviceSetup.printMainMenu();
         // end print
 
         System.out.println("Choose Device: ");
@@ -35,33 +26,34 @@ public class Smartphone {
         String inputDevice = userInput.nextLine();
 
         CommandHandler deviceCommandHandler = new NoCommandHandler();
-
         while(!inputDevice.equals("exit")){
             if(validateInput(inputDevice)){
-                for(Device device:deviceArray) {
-                    if(device.getClass().getSimpleName().equals(inputDevice)) {
-                        deviceCommandHandler = (CommandHandler) map.get(device);
-                        deviceCommandHandler.printDeviceMenu();
+                for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+                    if(device.getKey().getClass().getSimpleName().equals(inputDevice)) {
+                        deviceCommandHandler = (CommandHandler) devicesMap.get(device.getKey());
+                        deviceCommandHandler.printCommandMenu();
                     }
                 }
-
                 String inputCommand = "";
                 while(!inputCommand.equals("back")) {
+                    System.out.println("Choose Command: ");
                     inputCommand = userInput.nextLine();
-                    deviceCommandHandler.validateInput(inputCommand);
-                    deviceCommandHandler.handleInput(inputCommand);
+                    if (deviceCommandHandler.validateCommand(inputCommand)) {
+                        deviceCommandHandler.handleCommand(inputCommand);
+                    } else {
+                        System.out.println("Command not available");
+                    }
+                    deviceCommandHandler.printCommandMenu();
+                    inputCommand = userInput.nextLine();
                 }
-
+                deviceSetup.printMainMenu();
+                System.out.println("Choose Device: ");
+                inputDevice = userInput.nextLine();
             } else {
                 System.out.println("Device not available");
             }
-            inputDevice = userInput.nextLine();
         }
-    }
-
-
-    public void printMainMenu() {
-
+        System.out.println("Smartphone off");
     }
 
     private static boolean validateInput(String userInput) {
