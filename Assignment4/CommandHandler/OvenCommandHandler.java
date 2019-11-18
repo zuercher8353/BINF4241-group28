@@ -57,8 +57,8 @@ public class OvenCommandHandler implements CommandHandler{
     public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println("["+i+"] "+commands);
+        for (Command buttonSlot : buttonSlots) {
+            System.out.println("["+i+"] "+ buttonSlot.getCommandName());
             i++;
         }
         System.out.println("back");

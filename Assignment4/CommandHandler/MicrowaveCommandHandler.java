@@ -22,7 +22,7 @@ public class MicrowaveCommandHandler {
     public MicrowaveCommandHandler(Microwave microwave){
         this.microwave = microwave;
         for(int i = 0; i < DeviceCommands.values().length; i++) {
-            buttonSlots[0] = new NoCommand();
+            buttonSlots[i] = new NoCommand();
         }
     }
 
