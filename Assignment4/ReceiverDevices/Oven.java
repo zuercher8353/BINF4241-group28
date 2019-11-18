@@ -1,6 +1,13 @@
 package ReceiverDevices;
 
+import CommandHandler.CommandHandler;
+import CommandHandler.OvenCommandHandler;
+
 public class Oven extends Device{
+
+    public Oven() {
+
+    }
 
     private int timer = 0;
     private int temperatur = 0;
@@ -11,36 +18,15 @@ public class Oven extends Device{
         defrost
     }
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetTimer,
-        SetTemperature,
-        SetUpProgram,
-        StartCooking,
-        CheckTimer,
-        Interrupt
-    }
-
     private enum DeviceStates {
         On,
         Off
     }
 
-    public void printDeviceMenu(){
-        System.out.println("----------");
-        int i = 0;
-        for (Oven.DeviceCommands commands : Oven.DeviceCommands.values()) {
-            System.out.println("["+i+"] "+commands);
-            i++;
-        }
-        System.out.println("back");
-        System.out.println("----------");
-    }
-
     public void turnOn() {
         //new Thread
         //start Thread
+        System.out.println("Oven is on");
     }
 
     public void turnOff() {

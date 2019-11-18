@@ -1,4 +1,5 @@
-package CommandClients;
+package CommandClients.OvenCommands;
+import CommandClients.Command;
 import ReceiverDevices.*;
 
 public class OvenCommandOn implements Command {
