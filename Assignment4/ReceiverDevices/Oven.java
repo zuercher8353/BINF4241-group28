@@ -28,9 +28,20 @@ public class Oven extends Device{
     }
 
     public void printDeviceMenu(){
+        System.out.println("----------");
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
         }
+        System.out.println("back");
+        System.out.println("----------");
     }
 
+    public void turnOn() {
+        //new Thread
+        //start Thread
+    }
+
+    public void turnOff() {
+        //kill Thread
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import CommandClients.Command;
+import CommandClients.OvenCommandOn;
 import ReceiverDevices.*;
 
 //Invoker
@@ -11,6 +12,8 @@ public class Smartphone {
     public static void main(String[] args) {
 
         Oven oven = new Oven();
+        OvenCommandOn ovenCommandOn = new OvenCommandOn(oven);
+
         Microwave microwave = new Microwave();
         //Dishwasher dishwasher;
         //WashingMachine washingmachine;
@@ -32,12 +35,13 @@ public class Smartphone {
                 for(Device device:deviceArray) {
                     if(device.getClass().getSimpleName().equals(inputDevice)) {
                         device.printDeviceMenu();
+
                     }
                 }
-                //String inputCommand = userInput.nextLine();
-                //while(!inputCommand.equals("back")) {
-                     //Command command;
-                //}
+                String inputCommand = userInput.nextLine();
+                while(!inputCommand.equals("back")) {
+
+                }
             } else {
                 System.out.println("Device not available");
             }

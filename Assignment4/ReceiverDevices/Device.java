@@ -8,21 +8,4 @@ public abstract class Device  {
         //start Thread
     }
 
-    public void turnOff() {
-        //kill Thread
-    }
-    public void interrupt(){
-        //stop running, but keep all variables, timer, program usw
-    }
-
-
-
-
-
-
-
-
-
-
-
 }
