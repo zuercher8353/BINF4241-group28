@@ -9,7 +9,6 @@ public abstract class Device  {
 
 
 
-
     public void printDeviceMenu(){
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
