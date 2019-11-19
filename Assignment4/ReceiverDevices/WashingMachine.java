@@ -1,5 +1,7 @@
 package ReceiverDevices;
 
+import CommandHandler.*;
+
 public class WashingMachine extends Device{
 
     private int timer = 0;
@@ -25,24 +27,14 @@ public class WashingMachine extends Device{
         Spin
     }
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetUpDegree,
-        SetUpProgram,
-        CheckTimer,
-        Interrupt
-    }
-
     private enum DeviceStates {
         On,
         Off
     }
 
-    public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
-        }
+
+    public void turnOn(){
+        System.out.println("Washing machine is on");
     }
 
 }

@@ -1,7 +1,5 @@
 import CommandHandler.*;
-import ReceiverDevices.Device;
-import ReceiverDevices.Microwave;
-import ReceiverDevices.Oven;
+import ReceiverDevices.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +15,13 @@ class DeviceSetup {
         Microwave microwave = new Microwave();
         MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
         devicesMap.put(microwave, microwaveCommandHandler);
+        WashingMachine washingMachine = new WashingMachine();
+        WashingMachineCommandHandler washingMachineCommandHandler = new WashingMachineCommandHandler(washingMachine);
+        devicesMap.put(washingMachine, washingMachineCommandHandler);
+        Dishwasher dishwasher = new Dishwasher();
+        DishwasherCommandHandler dishwasherCommandHandler = new DishwasherCommandHandler(dishwasher);
+        devicesMap.put(dishwasher, dishwasherCommandHandler);
+
     }
 
     HashMap getDevices() {
