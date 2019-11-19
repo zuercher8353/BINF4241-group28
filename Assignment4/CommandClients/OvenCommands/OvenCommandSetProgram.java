@@ -22,7 +22,7 @@ public class OvenCommandSetProgram implements Command {
     @Override
     public void execute() {
 
-        //print Program Menu
+        //print Program Menu without notSet
         for (Enum Ovenprogram : Oven.OvenProgram.values()) {
             if (!Ovenprogram.name().equals("notSet")) {
                 System.out.println(Ovenprogram.name());
@@ -33,6 +33,7 @@ public class OvenCommandSetProgram implements Command {
         Scanner scannerTemp = new Scanner(System.in);
         String inputProgram = "";
         boolean programSet = false;
+
         //validate Input
         while ((!inputProgram.equals("back") && !programSet)) {
             System.out.print("Enter Program: ");
