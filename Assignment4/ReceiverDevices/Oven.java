@@ -156,8 +156,4 @@ public class Oven implements Device {
         }
     }
 
-
-    public void turnOff() {
-        //kill Thread
-    }
 }
