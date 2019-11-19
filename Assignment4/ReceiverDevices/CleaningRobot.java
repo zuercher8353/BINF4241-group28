@@ -51,7 +51,6 @@ public class CleaningRobot{
         }
     }
     public void startCharging(){
-        this.remainingCleaning();
         deviceState = DeviceStates.Charging;
         batteryBeforeCharging =  batteryStatusWithReturn();
         chargingStartTime =  System.currentTimeMillis();

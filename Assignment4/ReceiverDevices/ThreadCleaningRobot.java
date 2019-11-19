@@ -22,6 +22,7 @@ public class ThreadCleaningRobot implements Runnable {
                     break;
                 }
                 if(cleaningRobot.batteryStatusWithReturn() < 5){
+                    cleaningRobot.remainingCleaning();
                     cleaningRobot.startCharging();
                     break;
                 }
