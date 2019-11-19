@@ -16,7 +16,6 @@ public class WashingMachine extends Device{
         Degrees(final int newValue){
             value = newValue;
         }
-
         public int getValue() {return value;}
     }
 
