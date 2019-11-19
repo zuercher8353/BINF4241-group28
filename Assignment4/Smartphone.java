@@ -5,9 +5,8 @@ import java.util.Scanner;
 import CommandHandler.*;
 import ReceiverDevices.*;
 
-//Invoker
+//Invoker, Main
 public class Smartphone {
-
 
     public static void main(String[] args) {
 

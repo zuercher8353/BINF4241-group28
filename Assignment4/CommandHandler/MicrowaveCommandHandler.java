@@ -1,7 +1,8 @@
 package CommandHandler;
 import CommandClients.*;
+import CommandClients.MicrowaveCommands.*;
 import ReceiverDevices.Microwave;
-
+ß
 public class MicrowaveCommandHandler implements CommandHandler {
 
     private int nrOfCommands = 8;
@@ -16,7 +17,12 @@ public class MicrowaveCommandHandler implements CommandHandler {
     }
 
     public void configButtons() {
-
+        buttonSlots[0] = new MicrowaveCommandOn(microwave);
+        buttonSlots[1] = new MicrowaveCommandSetTemp(microwave);
+        buttonSlots[3] = new MicrowaveCommandStartBaking(microwave);
+        buttonSlots[4] = new MircowaveCommandSetTimer(microwave);
+        buttonSlots[5] = new MicrowaveCommandCheckTimer(microwave);
+        buttonSlots[2] = new MicrowaveCommandOff(microwave);
     }
 
     public boolean validateCommand(String userInput) {
