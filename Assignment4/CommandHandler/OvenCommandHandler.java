@@ -7,6 +7,7 @@ public class OvenCommandHandler implements CommandHandler{
 
     private int nrOfCommands = 8;
     private Command[] buttonSlots = new Command[nrOfCommands];
+
     private Oven oven;
 
     private enum DeviceCommands {
