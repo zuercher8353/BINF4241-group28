@@ -19,7 +19,7 @@ public class OvenCommandSetProgram implements Command {
 
     @Override
     public void execute() {
+
+        for(Enum Ovenprogram : oven.OvenProgram)
     }
-
-
 }
