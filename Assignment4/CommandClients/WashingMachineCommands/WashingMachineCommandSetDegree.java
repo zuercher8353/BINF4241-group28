@@ -6,6 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandSetDegree implements Command {
     private WashingMachine washingMachine;
+    private String commandName = "SetDegree";
 
     public WashingMachineCommandSetDegree(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;
@@ -13,5 +14,10 @@ public class WashingMachineCommandSetDegree implements Command {
 
     @Override
     public void execute() {
+    }
+
+    @Override
+    public String getCommandName() {
+        return commandName;
     }
 }

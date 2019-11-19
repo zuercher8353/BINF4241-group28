@@ -7,6 +7,7 @@ import ReceiverDevices.WashingMachine;
 public class WashingMachineCommandOn implements Command {
 
     private WashingMachine washingMachine;
+    private String commandName = "SwitchOn";
 
     public WashingMachineCommandOn(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;
@@ -20,5 +21,10 @@ public class WashingMachineCommandOn implements Command {
     @Override
     public String getCommandName() {
         return null;
+    }
+
+    @Override
+    public String getCommandName() {
+        return commandName;
     }
 }

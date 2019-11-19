@@ -7,6 +7,7 @@ import ReceiverDevices.WashingMachine;
 public class DishwasherCommandCheckTimer implements Command {
 
     private Dishwasher dishwasher;
+    private String commandName = "CheckTimer";
 
     public DishwasherCommandCheckTimer(Dishwasher dishwasher) {
         this.dishwasher = dishwasher;
@@ -14,6 +15,11 @@ public class DishwasherCommandCheckTimer implements Command {
 
     @Override
     public void execute() {
+    }
+
+    @Override
+    public String getCommandName() {
+        return null;
     }
 }
 

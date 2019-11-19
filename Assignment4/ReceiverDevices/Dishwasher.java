@@ -29,8 +29,7 @@ public class Dishwasher implements Device{
 
     private enum DeviceStates {
         On,
-        Off,
-        Running
+        Off
     }
 
     public ArrayList getStateCommands(){

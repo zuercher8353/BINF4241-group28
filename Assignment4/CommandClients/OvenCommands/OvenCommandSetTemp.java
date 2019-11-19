@@ -3,6 +3,8 @@ package CommandClients.OvenCommands;
 import CommandClients.Command;
 import ReceiverDevices.Oven;
 
+import java.util.Scanner;
+
 public class OvenCommandSetTemp implements Command {
     private Oven oven;
     private String commandName = "SetTemperature";
