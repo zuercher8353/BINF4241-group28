@@ -43,4 +43,14 @@ class DeviceSetup {
         System.out.println("exit");
         System.out.println("---------");
     }
+
+    boolean validateInput(String userInput) {
+
+        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+            if (device.getKey().getClass().getSimpleName().equals(userInput)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
