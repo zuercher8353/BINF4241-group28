@@ -6,6 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandSetProgram implements Command {
     private WashingMachine washingMachine;
+    private String commandName = "SetProgram";
 
     public WashingMachineCommandSetProgram(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;
@@ -13,5 +14,10 @@ public class WashingMachineCommandSetProgram implements Command {
 
     @Override
     public void execute() {
+    }
+
+    @Override
+    public String getCommandName() {
+        return commandName;
     }
 }

@@ -38,24 +38,24 @@ public class Oven implements Device {
     }
 
     public ArrayList getStateCommands() {
-        ArrayList<DeviceCommands> possibleFunctions = new ArrayList<>();
+        ArrayList<String> possibleFunctions = new ArrayList<String>();
         if (deviceState == DeviceStates.Off){
-            possibleFunctions.add(DeviceCommands.SwitchOn);
+            possibleFunctions.add(DeviceCommands.SwitchOn.name());
         }
         else if(deviceState == DeviceStates.On){
-            possibleFunctions.add(DeviceCommands.SwitchOff);
-            possibleFunctions.add(DeviceCommands.SetTemperature);
-            possibleFunctions.add(DeviceCommands.CheckTimer);
-            possibleFunctions.add(DeviceCommands.SetTimer);
-            possibleFunctions.add(DeviceCommands.SetUpProgram);
+            possibleFunctions.add(DeviceCommands.SwitchOff.name());
+            possibleFunctions.add(DeviceCommands.SetTemperature.name());
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
+            possibleFunctions.add(DeviceCommands.SetTimer.name());
+            possibleFunctions.add(DeviceCommands.SetUpProgram.name());
             if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
-                possibleFunctions.add(DeviceCommands.StartCooking);
+                possibleFunctions.add(DeviceCommands.StartCooking.name());
             }
 
         } else if(deviceState == DeviceStates.Running){
-            possibleFunctions.add(DeviceCommands.Interrupt);
-            possibleFunctions.add(DeviceCommands.SwitchOff);
-            possibleFunctions.add(DeviceCommands.CheckTimer);
+            possibleFunctions.add(DeviceCommands.Interrupt.name());
+            possibleFunctions.add(DeviceCommands.SwitchOff.name());
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
         }
         return possibleFunctions;
     }

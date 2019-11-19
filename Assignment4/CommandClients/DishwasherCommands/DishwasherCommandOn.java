@@ -7,6 +7,7 @@ import ReceiverDevices.WashingMachine;
 public class DishwasherCommandOn implements Command {
 
     private Dishwasher dishwasher;
+    private String commandName = "SwitchOn";
 
     public DishwasherCommandOn(Dishwasher dishwasher) {
         this.dishwasher = dishwasher;
@@ -14,6 +15,11 @@ public class DishwasherCommandOn implements Command {
 
     @Override
     public void execute() {
-        dishwasher.turnOn();
+
+    }
+
+    @Override
+    public String getCommandName() {
+        return commandName;
     }
 }

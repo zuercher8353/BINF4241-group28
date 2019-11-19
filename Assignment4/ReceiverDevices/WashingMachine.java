@@ -2,9 +2,24 @@ package ReceiverDevices;
 
 import CommandHandler.*;
 
-public class WashingMachine extends Device{
+public class WashingMachine implements Device{
 
     private int timer = 0;
+
+    @Override
+    public void SwitchOn() {
+
+    }
+
+    @Override
+    public void SwitchOff() {
+
+    }
+
+    @Override
+    public void interrupt() {
+
+    }
 
     private enum Degrees {
         SET_DEGREE_HIGH(90),

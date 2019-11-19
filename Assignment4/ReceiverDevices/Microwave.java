@@ -5,13 +5,22 @@ public class Microwave implements Device, Runnable {
     private int temperature = 0;
     @Override
     public void run() {
-        try {
-            deviceState = Oven.DeviceStates.On;
-            Thread.sleep(timer);
-            deviceState = Oven.DeviceStates.Off;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+    }
+
+    @Override
+    public void SwitchOn() {
+
+    }
+
+    @Override
+    public void SwitchOff() {
+
+    }
+
+    @Override
+    public void interrupt() {
+
     }
 
     private enum DeviceCommands {
