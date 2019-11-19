@@ -1,14 +1,12 @@
 package CommandHandler;
-
-import CommandClients.Command;
-import CommandClients.NoCommand;
+import CommandClients.*;
 import CommandClients.OvenCommands.*;
-import ReceiverDevices.Oven;
+import ReceiverDevices.*;
 
 public class OvenCommandHandler implements CommandHandler{
 
-    // int size = DeviceCommands.values().length;
-    private Command[] buttonSlots = new Command[DeviceCommands.values().length];
+    private int nrOfCommands = 8;
+    private Command[] buttonSlots = new Command[nrOfCommands];
     private Oven oven;
 
     private enum DeviceCommands {
@@ -20,8 +18,7 @@ public class OvenCommandHandler implements CommandHandler{
         StartCooking,
         CheckTimer,
         Interrupt
-    }
-    private int nrOfCommands = 8;
+        }
 
     public OvenCommandHandler(Oven oven){
         this.oven = oven;
@@ -39,7 +36,6 @@ public class OvenCommandHandler implements CommandHandler{
         buttonSlots[5] = new OvenCommandSetTimer(oven);
         buttonSlots[6] = new OvenCommandStartCooking(oven);
         buttonSlots[7] = new OvenCommandSetTemp(oven);
-
     }
 
     public boolean validateCommand(String userInput) {

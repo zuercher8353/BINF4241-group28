@@ -1,13 +1,11 @@
 package CommandHandler;
-
-import CommandClients.Command;
-import CommandClients.NoCommand;
+import CommandClients.*;
 import ReceiverDevices.Microwave;
 
-public class MicrowaveCommandHandler {
+public class MicrowaveCommandHandler implements CommandHandler {
 
     private int nrOfCommands = 8;
-    private Command[] buttonSlots;
+    private Command[] buttonSlots = new Command[nrOfCommands];
     private Microwave microwave;
 
     public MicrowaveCommandHandler(Microwave microwave){

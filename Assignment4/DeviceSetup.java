@@ -15,7 +15,8 @@ class DeviceSetup {
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
         Microwave microwave = new Microwave();
-
+        MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
+        devicesMap.put(microwave, microwaveCommandHandler);
     }
 
     HashMap getDevices() {
