@@ -7,7 +7,7 @@ public interface Device {
 
     public void SwitchOff();
     public void interrupt();
-    public void printDeviceMenu();
+
 
 
 
