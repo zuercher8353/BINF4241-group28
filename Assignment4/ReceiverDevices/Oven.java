@@ -13,7 +13,8 @@ public class Oven implements Device {
     private enum DeviceStates {
         On,
         Off,
-        Running
+        Running,
+        Ended
     }
 
 
@@ -35,7 +36,9 @@ public class Oven implements Device {
         Interrupt
     }
 
-    public DeviceStates getDeviceState() {
+    public DeviceStates getStateCommands() {
+
+
         return deviceState;
     }
 
