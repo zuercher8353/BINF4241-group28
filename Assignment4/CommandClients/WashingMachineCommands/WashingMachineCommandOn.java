@@ -14,6 +14,11 @@ public class WashingMachineCommandOn implements Command {
 
     @Override
     public void execute() {
-        washingMachine.turnOn();
+        washingMachine.SwitchOn();
+    }
+
+    @Override
+    public String getCommandName() {
+        return null;
     }
 }
