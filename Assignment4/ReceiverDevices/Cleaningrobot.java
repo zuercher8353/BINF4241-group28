@@ -1,8 +1,7 @@
 package ReceiverDevices;
 
-public class Microwave implements Device, Runnable {
-    private int timer = 0;
-    private int temperature = 0;
+public class Cleaningrobot implements Device, Runnable {
+
     @Override
     public void run() {
         try {
@@ -20,22 +19,36 @@ public class Microwave implements Device, Runnable {
         SetTimer,
         SetTemperature,
         SetUpProgram,
-        StartBaking,
+        StartCooking,
         CheckTimer,
         Interrupt
-    }
-    public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
-        }
     }
 
     private enum DeviceStates {
         On,
         Off,
-        // ReadyToRun, don`t know about that
         Running,
+        Charging,
+        CleaningNotCompleted,
         Ended
+
+    }
+    public void SwitchOff() {
+        //kill Thread
+    }
+    public void interrupt(){
+        //stop running, but keep all variables, timer, program usw
     }
 
+    public void SwitchOn() {
+        Device device = new Device();
+        //new Thread
+        //start Thread
+    }
+
+    public void printDeviceMenu(){
+        for (DeviceCommands commands : DeviceCommands.values()) {
+            System.out.println(commands);
+        }
+    }
 }

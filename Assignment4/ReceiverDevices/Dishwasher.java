@@ -1,6 +1,6 @@
 package ReceiverDevices;
 
-public class Dishwasher extends Device{
+public class Dishwasher implements Device, Runnable{
 
     private int timer = 0;
 

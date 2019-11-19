@@ -1,25 +1,16 @@
 package ReceiverDevices;
 
-public abstract class Device  {
+public interface Device {
 
 
-    private enum DeviceCommands{}
+    public void SwitchOn();
 
-    private enum DeviceStates{}
-
-
-
-    public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
-        }
-    }
+    public void SwitchOff();
+    public void interrupt();
+    public void printDeviceMenu();
 
 
 
-    public void turnOn() {
-        //new Thread
-        //start Thread
-    }
+
 
 }
