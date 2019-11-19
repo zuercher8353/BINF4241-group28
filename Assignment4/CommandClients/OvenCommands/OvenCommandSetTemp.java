@@ -20,6 +20,7 @@ public class OvenCommandSetTemp implements Command {
 
     @Override
     public void execute() {
+        Scanner inputTemp = new Scanner(System.in);
     }
 
 
