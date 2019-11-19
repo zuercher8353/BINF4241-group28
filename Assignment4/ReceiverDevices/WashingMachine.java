@@ -57,7 +57,7 @@ public class WashingMachine implements Device{
             possibleFunctions.add(DeviceCommands.CheckTimer);
             possibleFunctions.add(DeviceCommands.SetUpProgram);
             possibleFunctions.add(DeviceCommands.SwitchOff);
-            if(degree != -1) {
+            if(degree != -1 && washingMachineProgram == WashingMachinePrograms.NotSet) {
                 possibleFunctions.add(DeviceCommands.StartWashing);
             }
         } else if (deviceState == DeviceStates.Running){
@@ -105,6 +105,7 @@ public class WashingMachine implements Device{
                 System.out.println("No time ramining, the program is finished");
             } else{
                 int remaining = (int) remainingTimeSec;
+                timer = remaining;
             }
         } else if(deviceState == DeviceStates.On){
             if (timer == -1){
