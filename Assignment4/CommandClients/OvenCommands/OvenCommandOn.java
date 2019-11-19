@@ -18,7 +18,7 @@ public class OvenCommandOn implements Command {
 
     @Override
     public void execute() {
-        oven.turnOn();
+        oven.SwitchOn();
     }
 
 

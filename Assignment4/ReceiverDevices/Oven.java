@@ -1,6 +1,8 @@
 package ReceiverDevices;
 
 
+import java.util.ArrayList;
+
 public class Oven implements Device {
     private long timer = -1;
     private int temperature = -1;
@@ -13,7 +15,7 @@ public class Oven implements Device {
     private enum DeviceStates {
         On,
         Off,
-        Running
+        Running,
     }
 
 
@@ -35,8 +37,27 @@ public class Oven implements Device {
         Interrupt
     }
 
-    public DeviceStates getDeviceState() {
-        return deviceState;
+    public ArrayList getStateCommands() {
+        ArrayList<DeviceCommands> possibleFunctions = new ArrayList<>();
+        if (deviceState == DeviceStates.Off){
+            possibleFunctions.add(DeviceCommands.SwitchOn);
+        }
+        else if(deviceState == DeviceStates.On){
+            possibleFunctions.add(DeviceCommands.SwitchOff);
+            possibleFunctions.add(DeviceCommands.SetTemperature);
+            possibleFunctions.add(DeviceCommands.CheckTimer);
+            possibleFunctions.add(DeviceCommands.SetTimer);
+            possibleFunctions.add(DeviceCommands.SetUpProgram);
+            if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
+                possibleFunctions.add(DeviceCommands.StartCooking);
+            }
+
+        } else if(deviceState == DeviceStates.Running){
+            possibleFunctions.add(DeviceCommands.Interrupt);
+            possibleFunctions.add(DeviceCommands.SwitchOff);
+            possibleFunctions.add(DeviceCommands.CheckTimer);
+        }
+        return possibleFunctions;
     }
 
     public void SwitchOn() {
@@ -126,7 +147,6 @@ public class Oven implements Device {
 
     }
 
-
     public void interrupt(){
         if(deviceState == DeviceStates.Running) {
             timer = -1;
@@ -149,11 +169,5 @@ public class Oven implements Device {
         start = 0;
     }
 
-
-    public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
-        }
-    }
 
 }
