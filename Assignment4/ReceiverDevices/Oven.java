@@ -147,7 +147,6 @@ public class Oven implements Device {
 
     }
 
-
     public void interrupt(){
         if(deviceState == DeviceStates.Running) {
             timer = -1;
