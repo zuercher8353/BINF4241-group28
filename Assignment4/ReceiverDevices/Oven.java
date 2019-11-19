@@ -37,7 +37,7 @@ public class Oven implements Device {
         Interrupt
     }
 
-    public void getStateCommands() {
+    public ArrayList getStateCommands() {
         ArrayList<DeviceCommands> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn);
@@ -57,7 +57,7 @@ public class Oven implements Device {
             possibleFunctions.add(DeviceCommands.SwitchOff);
             possibleFunctions.add(DeviceCommands.CheckTimer);
         }
-
+        return possibleFunctions;
     }
 
     public void SwitchOn() {
