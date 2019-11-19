@@ -24,7 +24,7 @@ public class Smartphone {
 
         CommandHandler deviceCommandHandler = new NoCommandHandler();
         while(!inputDevice.equals("exit")){
-            if(validateInput(inputDevice)){
+            if(deviceSetup.validateInput(inputDevice)){
                 for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
                     if(device.getKey().getClass().getSimpleName().equals(inputDevice)) {
                         deviceCommandHandler = (CommandHandler) devicesMap.get(device.getKey());
@@ -41,27 +41,19 @@ public class Smartphone {
                         System.out.println("Command not available");
                     }
                     deviceCommandHandler.printCommandMenu();
-                    inputCommand = userInput.nextLine();
                 }
                 deviceSetup.printMainMenu();
                 System.out.println("Choose Device: ");
                 inputDevice = userInput.nextLine();
             } else {
                 System.out.println("Device not available");
+                System.out.println("Choose Device: ");
+                inputDevice = userInput.nextLine();
             }
         }
         System.out.println("Smartphone turning off");
     }
 
-    private static boolean validateInput(String userInput) {
-
-        for (DeviceNames deviceName : DeviceNames.values()) {
-            if (deviceName.name().equals(userInput)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
 
 

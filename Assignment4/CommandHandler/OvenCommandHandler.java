@@ -38,12 +38,6 @@ public class OvenCommandHandler implements CommandHandler{
             }
         }
         return false;
-/*        for(Command buttonSlot : buttonSlots) {
-            if (buttonSlot.getCommandName().equals(userInput)) {
-                return true;
-            }
-        }
-        return false;*/
     }
 
     public void handleCommand(String userInput) {
@@ -64,10 +58,7 @@ public class OvenCommandHandler implements CommandHandler{
         for (Object stateCommand : stateCommands) {
             System.out.println(stateCommand);
         }
-/*        for (Command buttonSlot : buttonSlots) {
-            System.out.println("["+i+"] "+ buttonSlot.getCommandName());
-            i++;
-        }*/
+
         System.out.println("back");
         System.out.println("----------");
     }
