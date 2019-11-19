@@ -16,6 +16,7 @@ public class Oven implements Device {
         Running
     }
 
+
     private enum OvenProgram {
         ventilated,
         grill,
