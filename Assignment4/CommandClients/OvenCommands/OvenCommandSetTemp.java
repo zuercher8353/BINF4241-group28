@@ -21,7 +21,7 @@ public class OvenCommandSetTemp implements Command {
     @Override
     public void execute() {
         Scanner scannerTemp = new Scanner(System.in);
-        int inputTemp = 0;
+        int inputTemp = -1;
         while (true) {
             System.out.print("enter degrees (max 300): ");
             String input = scannerTemp.next();

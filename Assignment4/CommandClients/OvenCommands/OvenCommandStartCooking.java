@@ -17,6 +17,7 @@ public class OvenCommandStartCooking implements Command {
 
     @Override
     public void execute() {
+        oven.StartCooking();
     }
 
 
