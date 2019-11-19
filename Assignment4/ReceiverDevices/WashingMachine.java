@@ -49,20 +49,20 @@ public class WashingMachine implements Device{
     }
 
     public ArrayList getStateCommands(){
-        ArrayList<DeviceCommands> possibleFunctions = new ArrayList<>();
+        ArrayList<String> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
-            possibleFunctions.add(DeviceCommands.SwitchOn);
+            possibleFunctions.add(DeviceCommands.SwitchOn.name());
         } else if(deviceState == DeviceStates.On){
-            possibleFunctions.add(DeviceCommands.SetUpDegree);
-            possibleFunctions.add(DeviceCommands.CheckTimer);
-            possibleFunctions.add(DeviceCommands.SetUpProgram);
-            possibleFunctions.add(DeviceCommands.SwitchOff);
+            possibleFunctions.add(DeviceCommands.SetUpDegree.name());
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
+            possibleFunctions.add(DeviceCommands.SetUpProgram.name());
+            possibleFunctions.add(DeviceCommands.SwitchOff.name());
             if(degree != -1 && washingMachineProgram == WashingMachinePrograms.NotSet) {
-                possibleFunctions.add(DeviceCommands.StartWashing);
+                possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
         } else if (deviceState == DeviceStates.Running){
-            possibleFunctions.add(DeviceCommands.Interrupt);
-            possibleFunctions.add(DeviceCommands.CheckTimer);
+            possibleFunctions.add(DeviceCommands.Interrupt.name());
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
         }
         return possibleFunctions;
     }

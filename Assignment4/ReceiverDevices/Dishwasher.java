@@ -29,23 +29,24 @@ public class Dishwasher implements Device{
 
     private enum DeviceStates {
         On,
-        Off
+        Off,
+        Running
     }
 
     public ArrayList getStateCommands(){
-        ArrayList<DeviceCommands> possibleFunctions = new ArrayList<>();
+        ArrayList<String> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
-            possibleFunctions.add(DeviceCommands.SwitchOn);
+            possibleFunctions.add(DeviceCommands.SwitchOn.name());
         } else if(deviceState == DeviceStates.On) {
-            possibleFunctions.add(DeviceCommands.CheckTimer);
-            possibleFunctions.add(DeviceCommands.SetUpProgram);
-            possibleFunctions.add(DeviceCommands.SwitchOff);
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
+            possibleFunctions.add(DeviceCommands.SetUpProgram.name());
+            possibleFunctions.add(DeviceCommands.SwitchOff.name());
             if (dishwasherProgram == DishwasherPrograms.NotSet){
-                possibleFunctions.add(DeviceCommands.StartWashing);
+                possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
         } else if (deviceState == DeviceStates.Running){
-            possibleFunctions.add(DeviceCommands.Stop);
-            possibleFunctions.add(DeviceCommands.CheckTimer);
+            possibleFunctions.add(DeviceCommands.Stop.name());
+            possibleFunctions.add(DeviceCommands.CheckTimer.name());
         }
         return possibleFunctions;
     }
