@@ -9,12 +9,12 @@ public class Microwave implements Device, Runnable {
     }
 
     @Override
-    public void SwitchOn() {
+    public void switchOn() {
 
     }
 
     @Override
-    public void SwitchOff() {
+    public void switchOff() {
 
     }
 

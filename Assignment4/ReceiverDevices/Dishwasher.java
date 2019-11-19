@@ -5,12 +5,12 @@ public class Dishwasher implements Device, Runnable {
     private int timer = 0;
 
     @Override
-    public void SwitchOn() {
+    public void switchOn() {
 
     }
 
     @Override
-    public void SwitchOff() {
+    public void switchOff() {
 
     }
 
