@@ -53,10 +53,19 @@ public class OvenCommandHandler implements CommandHandler{
 
     public void printCommandMenu(){
         System.out.println("----------");
-        int i = 0;
+
         ArrayList stateCommands = oven.getStateCommands();
         for (Object stateCommand : stateCommands) {
-            System.out.println(stateCommand);
+            int iter = 0;
+            int buttonNumber = -1;
+            for(Command buttonSlot : buttonSlots) {
+                if (buttonSlots[iter].getCommandName().equals(stateCommand)) {
+                    buttonNumber = iter;
+                }
+
+                iter++;
+            }
+            System.out.println("[" +buttonNumber+ "]"+stateCommand);
         }
 
         System.out.println("back");

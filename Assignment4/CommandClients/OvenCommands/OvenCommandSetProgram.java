@@ -23,12 +23,14 @@ public class OvenCommandSetProgram implements Command {
     public void execute() {
 
         //print Program Menu without notSet
+        System.out.println("---------");
         for (Enum Ovenprogram : Oven.OvenProgram.values()) {
             if (!Ovenprogram.name().equals("notSet")) {
                 System.out.println(Ovenprogram.name());
             }
         }
         System.out.println("back");
+        System.out.println("---------");
 
         Scanner scannerTemp = new Scanner(System.in);
         String inputProgram = "";
