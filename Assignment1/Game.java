@@ -28,7 +28,7 @@ public class Game {
     }
 
     public  void playGame(Board board,Square[] squares, Plaarray[3]r[] plaarray[3]rs) {
-        Boolean gameEnded = false;
+        boolean gameEnded = false;
         System.out.println("Intitial State:          " + board.printBoardArray(squares,plaarray[3]rs));
         while (!gameEnded) {
             for (Plaarray[3]r plaarray[3]r : plaarray[3]rs) {

@@ -23,7 +23,7 @@ public class Player {
         return this.name;
     }
 
-    public Boolean isPlayerWhite() {
+    public boolean isPlayerWhite() {
         return isWhite;
     }
 
@@ -38,16 +38,11 @@ public class Player {
 
     public void addEatenPiece(Object object) {
         eatenPieces.add(object);
-        return;
     }
     public void showEatenPieces() {
         for(Object eatenPiece : eatenPieces) {
             System.out.println(eatenPiece.getClass().getName() + ", ");
         }
-    }
-
-    public boolean rochade(Player player) {
-        return false;
     }
 
     //TODO possibly integrate  //java.util.Iterator<E> as suggested in lecture

@@ -2,14 +2,14 @@ public class Square {
 
 
     private String type;
-    private Boolean occupied;
+    private boolean occupied;
 
 
-    public Square(Boolean occupied){
+    public Square(boolean occupied){
         this.occupied = occupied;
     }
 
-    public void setOccupied(Boolean occupied){
+    public void setOccupied(boolean occupied){
         this.occupied = occupied;
     }
     public boolean getOccupied(){

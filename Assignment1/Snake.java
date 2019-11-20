@@ -3,7 +3,7 @@ public class Snake extends Square {
     private int end;
 
 
-    public Snake(Boolean occupied,int snakestart, int snakeend){
+    public Snake(boolean occupied,int snakestart, int snakeend){
         super(occupied);
         this.start = snakestart;
         this.end = snakeend;
