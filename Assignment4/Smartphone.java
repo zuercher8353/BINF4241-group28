@@ -31,6 +31,7 @@ public class Smartphone {
                         deviceCommandHandler.printCommandMenu();
                     }
                 }
+
                 String inputCommand = "";
                 while(!inputCommand.equals("back")) {
                     System.out.println("Choose Command: ");
