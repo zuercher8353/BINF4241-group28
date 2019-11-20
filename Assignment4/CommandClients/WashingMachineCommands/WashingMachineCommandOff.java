@@ -15,7 +15,7 @@ public class WashingMachineCommandOff implements Command {
 
     @Override
     public void execute() {
-        washingMachine.SwitchOff();
+        washingMachine.switchOff();
     }
 
     @Override

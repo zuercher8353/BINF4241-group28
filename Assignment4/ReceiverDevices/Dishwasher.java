@@ -51,7 +51,7 @@ public class Dishwasher implements Device{
         return possibleFunctions;
     }
 
-    public void SwitchOn(){
+    public void switchOn(){
         deviceState = DeviceStates.On;
     }
 
@@ -92,7 +92,7 @@ public class Dishwasher implements Device{
         }
     }
 
-    public void SwitchOff(){
+    public void switchOff(){
         timer = -1;
         deviceState = DeviceStates.Off;
         dishwasherProgram = DishwasherPrograms.NotSet;
