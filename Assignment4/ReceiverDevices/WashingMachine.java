@@ -23,7 +23,8 @@ public class WashingMachine implements Device{
     public enum DeviceStates {
         On,
         Off,
-        Running
+        Running,
+        Ended
     }
 
     public enum DeviceCommands {
@@ -40,7 +41,7 @@ public class WashingMachine implements Device{
         ArrayList<String> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
-        } else if(deviceState == DeviceStates.On){
+        } else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             possibleFunctions.add(DeviceCommands.SetUpDegree.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
             possibleFunctions.add(DeviceCommands.SetUpProgram.name());
@@ -57,15 +58,15 @@ public class WashingMachine implements Device{
 
 
     public void switchOn(){
-        if (deviceState == DeviceStates.Off){
-            deviceState = DeviceStates.On;
-        } else {
-            System.out.println("Device is already switched on");
-        }
+        deviceState = DeviceStates.On;
     }
 
     public void setDegree(int deg){
         degree = deg;
+    }
+
+    public void setEnded(){
+        deviceState = DeviceStates.Ended;
     }
 
     public void setUpProgram(String program){
@@ -97,13 +98,14 @@ public class WashingMachine implements Device{
                 System.out.println("No time ramining, the program is finished");
             } else{
                 int remaining = (int) remainingTimeSec;
-                timer = remaining;
+                System.out.println("Remaining time: " + remaining);
             }
-        } else if(deviceState == DeviceStates.On){
+        } else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             if (timer == -1){
                 System.out.println("You did not set a timer yet");
             } else{
                 int timerInSec = (int) (timer/1000);
+                System.out.println("Set time: "+timerInSec);
             }
         }
     }
