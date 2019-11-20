@@ -21,7 +21,7 @@ public class CleaningRobotCommandHandler implements CommandHandler{
         }
     }
 
-    public void configButtons() {
+    public void setCommands() {
         //must follow the order of the Program enum in the device
         buttonSlots[0] = new RobotCommandChargingStatus(robot);
         buttonSlots[1] = new RobotCommandCheckBatteryStatus(robot);

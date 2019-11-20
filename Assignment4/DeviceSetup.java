@@ -39,7 +39,7 @@ class DeviceSetup {
 
     void initButtons() {
         for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
-            device.getValue().configButtons();
+            device.getValue().setCommands();
         }
     }
 

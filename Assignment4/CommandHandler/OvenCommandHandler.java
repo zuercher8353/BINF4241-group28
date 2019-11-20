@@ -20,8 +20,9 @@ public class OvenCommandHandler implements CommandHandler {
         }
     }
 
-    public void configButtons() {
+    public void setCommands() {
         //must follow the order of the Program enum in the device
+        //setCommand
         buttonSlots[0] = new OvenCommandOn(oven);
         buttonSlots[1] = new OvenCommandOff(oven);
         buttonSlots[2] = new OvenCommandSetTimer(oven);

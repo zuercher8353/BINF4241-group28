@@ -28,7 +28,7 @@ public class DishwasherCommandHandler implements CommandHandler{
         }
     }
 
-    public void configButtons() {
+    public void setCommands() {
         buttonSlots[0] = new DishwasherCommandOn(dishwasher);
     }
 

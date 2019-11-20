@@ -28,7 +28,7 @@ public class WashingMachineCommandHandler implements CommandHandler{
         }
     }
 
-    public void configButtons() {
+    public void setCommands() {
         buttonSlots[0] = new WashingMachineCommandOn(washingMachine);
     }
 

@@ -3,7 +3,7 @@ package CommandHandler;
 public class NoCommandHandler implements CommandHandler{
 
     @Override
-    public void configButtons() {
+    public void setCommands() {
 
     }
 
