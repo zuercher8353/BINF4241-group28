@@ -1,16 +1,16 @@
 package ReceiverDevices;
 
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Dishwasher implements Device, Runnable {
+public class Dishwasher implements Device{
 
-
-    private int timer = 0;
+    private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.NotSet;
+    private long start;
 
-    public enum DishwasherPrograms {
+    private enum DishwasherPrograms {
         Glasses,
         Plates,
         Pans,
@@ -18,7 +18,7 @@ public class Dishwasher implements Device, Runnable {
         NotSet
     }
 
-    public enum DeviceCommands {
+    private enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         StartWashing,
@@ -35,14 +35,12 @@ public class Dishwasher implements Device, Runnable {
 
     public ArrayList getStateCommands(){
         ArrayList<String> possibleFunctions = new ArrayList<>();
-
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
         } else if(deviceState == DeviceStates.On) {
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
             possibleFunctions.add(DeviceCommands.SetUpProgram.name());
             possibleFunctions.add(DeviceCommands.SwitchOff.name());
-
             if (dishwasherProgram == DishwasherPrograms.NotSet){
                 possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
@@ -53,7 +51,7 @@ public class Dishwasher implements Device, Runnable {
         return possibleFunctions;
     }
 
-    public void SwitchOn(){
+    public void switchOn(){
         deviceState = DeviceStates.On;
     }
 
@@ -94,7 +92,7 @@ public class Dishwasher implements Device, Runnable {
         }
     }
 
-    public void SwitchOff(){
+    public void switchOff(){
         timer = -1;
         deviceState = DeviceStates.Off;
         dishwasherProgram = DishwasherPrograms.NotSet;

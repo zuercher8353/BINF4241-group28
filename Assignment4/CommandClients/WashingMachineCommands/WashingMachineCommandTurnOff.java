@@ -14,6 +14,7 @@ public class WashingMachineCommandTurnOff implements Command {
 
     @Override
     public void execute() {
+        washingMachine.interrupt();
     }
 
     @Override

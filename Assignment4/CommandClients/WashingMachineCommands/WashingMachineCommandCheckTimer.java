@@ -15,6 +15,7 @@ public class WashingMachineCommandCheckTimer implements Command {
 
     @Override
     public void execute() {
+        washingMachine.checkTimer();
     }
 
     @Override
