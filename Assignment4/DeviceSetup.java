@@ -14,10 +14,10 @@ class DeviceSetup {
         Oven oven = new Oven();
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
-        /*
+
         Microwave microwave = new Microwave();
         MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
-        devicesMap.put(microwave, microwaveCommandHandler);*/
+        devicesMap.put(microwave, microwaveCommandHandler);
         WashingMachine washingMachine = new WashingMachine();
         WashingMachineCommandHandler washingMachineCommandHandler = new WashingMachineCommandHandler(washingMachine);
         devicesMap.put(washingMachine, washingMachineCommandHandler);

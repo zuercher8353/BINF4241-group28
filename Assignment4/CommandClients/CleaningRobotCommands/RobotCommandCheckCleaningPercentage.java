@@ -18,6 +18,6 @@ public class RobotCommandCheckCleaningPercentage implements Command {
 
     @Override
     public void execute() {
-        robot.checkPercentageOfCleaningCompletion();
+        robot.checkCleaningCompletion();
     }
 }
