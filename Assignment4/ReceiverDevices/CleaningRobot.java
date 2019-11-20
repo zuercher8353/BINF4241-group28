@@ -3,11 +3,14 @@ import java.util.*;
 
 public class CleaningRobot{
 
-    long timer = -1;
-    long startTime = -1;
-    long remainingCleaningTime = -1;
-    DeviceStates deviceState = DeviceStates.Ready;
-    float batteryBeforeCharging;
+    private long timer = -1;
+    private long startTime = -1;
+    private long remainingCleaningTime = -1;
+    private DeviceStates deviceState = DeviceStates.Ready;
+    private float batteryBeforeCharging;
+    private Thread cleaningThread;
+    private Thread chargingThread;
+
 
     public enum DeviceCommands {
         SetTimer,
@@ -62,9 +65,8 @@ public class CleaningRobot{
     public void startCleaner(){
         deviceState = DeviceStates.Running;
         startTime =  System.currentTimeMillis();
-
         ThreadCleaningRobot cleaningThreadBehaviour = new ThreadCleaningRobot(timer, this);
-        Thread cleaningThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
+        cleaningThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
         cleaningThread.start();
     }
     public void setRemainingCleaning(long remaining){
@@ -73,12 +75,14 @@ public class CleaningRobot{
 
 
     public void startCharging(){
+        cleaningThread = null;
         deviceState = DeviceStates.Charging;
         batteryBeforeCharging =  batteryStatusWithReturn();
         startTime = -1;
         long batteryChargingTime = (100 - (long)batteryBeforeCharging) * 1000;
         ThreadChargingRobot cleaningThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);
-        Thread chargingThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
+        chargingThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
+        chargingThread.start();
 
         //start threat so that when fully charged changes to ready
 
@@ -122,6 +126,7 @@ public class CleaningRobot{
     }
 
     public void setReady() {
+        chargingThread = null;
         if(remainingCleaningTime != -1){
             deviceState = DeviceStates.CleaningNotCompleted;
         }
