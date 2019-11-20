@@ -1,8 +1,28 @@
 package ReceiverDevices;
 
-public class Dishwasher implements Device, Runnable{
+public class Dishwasher implements Device, Runnable {
 
     private int timer = 0;
+
+    @Override
+    public void switchOn() {
+
+    }
+
+    @Override
+    public void switchOff() {
+
+    }
+
+    @Override
+    public void interrupt() {
+
+    }
+
+    @Override
+    public void run() {
+
+    }
 
     private enum DishwasherProgram {
         Glasses,
@@ -25,7 +45,7 @@ public class Dishwasher implements Device, Runnable{
         Off
     }
 
-    public void printDeviceMenu(){
+    public void printDeviceMenu() {
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);
         }

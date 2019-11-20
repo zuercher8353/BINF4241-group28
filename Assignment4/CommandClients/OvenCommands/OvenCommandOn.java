@@ -18,8 +18,6 @@ public class OvenCommandOn implements Command {
 
     @Override
     public void execute() {
-        oven.SwitchOn();
+        oven.switchOn();
     }
-
-
 }

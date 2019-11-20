@@ -19,7 +19,6 @@ public class OvenCommandOff implements Command {
 
     @Override
     public void execute() {
+        oven.switchOff();
     }
-
-
 }

@@ -1,48 +1,41 @@
 package CommandHandler;
+
 import CommandClients.*;
 import CommandClients.OvenCommands.*;
 import ReceiverDevices.*;
 
-public class OvenCommandHandler implements CommandHandler{
+import java.util.ArrayList;
+
+public class OvenCommandHandler implements CommandHandler {
 
     private int nrOfCommands = 8;
     private Command[] buttonSlots = new Command[nrOfCommands];
 
     private Oven oven;
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetTimer,
-        SetTemperature,
-        SetUpProgram,
-        StartCooking,
-        CheckTimer,
-        Interrupt
-        }
-
-    public OvenCommandHandler(Oven oven){
+    public OvenCommandHandler(Oven oven) {
         this.oven = oven;
-        for(int i = 0; i < nrOfCommands; i++) {
+        for (int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
     }
 
     public void configButtons() {
+        //must follow the order of the Program enum in the device
         buttonSlots[0] = new OvenCommandOn(oven);
-        buttonSlots[1] = new OvenCommandInterrupt(oven);
-        buttonSlots[2] = new OvenCommandOff(oven);
-        buttonSlots[3] = new OvenCommandSetProgram(oven);
-        buttonSlots[4] = new OvenCommandCheckTimer(oven);
-        buttonSlots[5] = new OvenCommandSetTimer(oven);
-        buttonSlots[6] = new OvenCommandStartCooking(oven);
-        buttonSlots[7] = new OvenCommandSetTemp(oven);
+        buttonSlots[1] = new OvenCommandOff(oven);
+        buttonSlots[2] = new OvenCommandSetTimer(oven);
+        buttonSlots[3] = new OvenCommandSetTemp(oven);
+        buttonSlots[4] = new OvenCommandSetProgram(oven);
+        buttonSlots[5] = new OvenCommandStartCooking(oven);
+        buttonSlots[6] = new OvenCommandCheckTimer(oven);
+        buttonSlots[7] = new OvenCommandInterrupt(oven);
     }
 
     public boolean validateCommand(String userInput) {
-        int i = 0;
-        for(Command buttonSlot : buttonSlots) {
-            if (buttonSlot.getCommandName().equals(userInput)) {
+        ArrayList stateCommands = oven.getStateCommands();
+        for (Object stateCommand : stateCommands) {
+            if (stateCommand.equals(userInput)) {
                 return true;
             }
         }
@@ -51,8 +44,9 @@ public class OvenCommandHandler implements CommandHandler{
 
     public void handleCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        ArrayList stateCommands = oven.getStateCommands();
+        for (Command buttonSlot : buttonSlots) {
+            if (buttonSlot.getCommandName().equals(userInput)) {
                 buttonSlots[i].execute();
             }
             i++;
@@ -61,11 +55,21 @@ public class OvenCommandHandler implements CommandHandler{
 
     public void printCommandMenu(){
         System.out.println("----------");
-        int i = 0;
-        for (Command buttonSlot : buttonSlots) {
-            System.out.println("["+i+"] "+ buttonSlot.getCommandName());
-            i++;
+
+        ArrayList stateCommands = oven.getStateCommands();
+        for (Object stateCommand : stateCommands) {
+            int iter = 0;
+            int buttonNumber = -1;
+            for(Command buttonSlot : buttonSlots) {
+                if (buttonSlots[iter].getCommandName().equals(stateCommand)) {
+                    buttonNumber = iter;
+                }
+
+                iter++;
+            }
+            System.out.println("[" +buttonNumber+ "]"+stateCommand);
         }
+
         System.out.println("back");
         System.out.println("----------");
     }

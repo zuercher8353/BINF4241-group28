@@ -12,6 +12,7 @@ class DeviceSetup {
         Oven oven = new Oven();
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
+        /*
         Microwave microwave = new Microwave();
         MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
         devicesMap.put(microwave, microwaveCommandHandler);
@@ -21,6 +22,7 @@ class DeviceSetup {
         Dishwasher dishwasher = new Dishwasher();
         DishwasherCommandHandler dishwasherCommandHandler = new DishwasherCommandHandler(dishwasher);
         devicesMap.put(dishwasher, dishwasherCommandHandler);
+        */
 
     }
 
@@ -42,5 +44,15 @@ class DeviceSetup {
         }
         System.out.println("exit");
         System.out.println("---------");
+    }
+
+    boolean validateInput(String userInput) {
+
+        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+            if (device.getKey().getClass().getSimpleName().equals(userInput)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

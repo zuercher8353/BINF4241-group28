@@ -6,6 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandTurnOff implements Command {
     private WashingMachine washingMachine;
+    private String commandName = "TurnOff";
 
     public WashingMachineCommandTurnOff(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;
@@ -13,5 +14,10 @@ public class WashingMachineCommandTurnOff implements Command {
 
     @Override
     public void execute() {
+    }
+
+    @Override
+    public String getCommandName() {
+        return commandName;
     }
 }

@@ -18,6 +18,6 @@ public class OvenCommandCheckTimer implements Command {
 
     @Override
     public void execute() {
+        oven.checkTimer();
     }
 }
-
