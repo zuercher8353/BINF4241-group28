@@ -3,10 +3,8 @@ package ReceiverDevices;
 
 import java.util.ArrayList;
 
-public class Dishwasher implements Device, Runnable {
+public class Dishwasher implements Device {
 
-
-    private int timer = 0;
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.NotSet;

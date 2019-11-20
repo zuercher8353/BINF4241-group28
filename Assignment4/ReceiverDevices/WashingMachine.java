@@ -1,6 +1,7 @@
 package ReceiverDevices;
 
 import CommandHandler.*;
+import Threads.WashingMachineThread;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public class WashingMachine implements Device {
     private DeviceStates deviceState = DeviceStates.Off;
     private WashingMachinePrograms washingMachineProgram = WashingMachinePrograms.notSet;
     private long start;
+    private Thread washingThread;
 
 
     public enum WashingMachinePrograms {
@@ -92,8 +94,8 @@ public class WashingMachine implements Device {
         } else {
             start = System.currentTimeMillis();
             WashingMachineThread washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
-            washingMachineThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
-            washingMachineThread.start();
+            washingThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
+            washingThread.start();
             deviceState = DeviceStates.Running;
         }
     }

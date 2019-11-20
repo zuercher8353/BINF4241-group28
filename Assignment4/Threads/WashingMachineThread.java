@@ -1,3 +1,5 @@
+package Threads;
+
 import ReceiverDevices.WashingMachine;
 
 public class WashingMachineThread implements Runnable{
