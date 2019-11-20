@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class OvenCommandSetProgram implements Command {
 
     private Oven oven;
-    private String commandName = "SetUpProgram";
+    private String commandName = Oven.DeviceCommands.SetUpProgram.name();
 
     public OvenCommandSetProgram(Oven oven) {
         this.oven = oven;

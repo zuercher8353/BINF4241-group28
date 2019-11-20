@@ -5,7 +5,7 @@ import ReceiverDevices.*;
 public class OvenCommandOn implements Command {
 
     private Oven oven;
-    private String commandName = "SwitchOn";
+    private String commandName = Oven.DeviceCommands.SwitchOn.name();
 
     public OvenCommandOn(Oven oven) {
         this.oven = oven;

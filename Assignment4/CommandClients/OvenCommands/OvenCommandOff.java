@@ -5,7 +5,7 @@ import ReceiverDevices.Oven;
 
 public class OvenCommandOff implements Command {
 
-    private String commandName = "SwitchOff";
+    private String commandName = Oven.DeviceCommands.SwitchOff.name();
     private Oven oven;
 
     public OvenCommandOff(Oven oven) {
