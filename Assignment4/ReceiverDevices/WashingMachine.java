@@ -80,8 +80,12 @@ public class WashingMachine implements Device{
         degree = deg;
     }
 
-    public void setUpProgram(WashingMachinePrograms program){
-        washingMachineProgram = program;
+    public void setUpProgram(String program){
+        for (WashingMachinePrograms ENUM_washingMachineProgams : WashingMachinePrograms.values()){
+            if (ENUM_washingMachineProgams.toString().equals(program)){
+                washingMachineProgram = ENUM_washingMachineProgams;
+            }
+        }
     }
 
     public void startWashing(){
