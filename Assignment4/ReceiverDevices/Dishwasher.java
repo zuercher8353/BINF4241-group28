@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Dishwasher implements Device, Runnable {
 
+
     private int timer = 0;
     private DeviceStates deviceState = DeviceStates.Off;
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.NotSet;
