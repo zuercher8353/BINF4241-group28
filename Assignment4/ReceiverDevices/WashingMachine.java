@@ -94,7 +94,6 @@ public class WashingMachine implements Device {
             WashingMachineThread washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
             washingMachineThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
             washingMachineThread.start();
-
             deviceState = DeviceStates.Running;
         }
     }
