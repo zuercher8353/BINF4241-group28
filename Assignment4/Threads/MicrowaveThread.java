@@ -1,8 +1,8 @@
 package Threads;
 
-import ReceiverDevices.Microwave;
+import ReceiverDevices.*;
 
-class MicrowaveThread implements Runnable {
+public class MicrowaveThread implements Runnable {
     private long bakingTime;
     Microwave microwave;
 
@@ -21,4 +21,5 @@ class MicrowaveThread implements Runnable {
         }
     }
 }
+
 

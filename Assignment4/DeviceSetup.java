@@ -18,14 +18,14 @@ class DeviceSetup {
         Microwave microwave = new Microwave();
         MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
         devicesMap.put(microwave, microwaveCommandHandler);
+
         WashingMachine washingMachine = new WashingMachine();
         WashingMachineCommandHandler washingMachineCommandHandler = new WashingMachineCommandHandler(washingMachine);
         devicesMap.put(washingMachine, washingMachineCommandHandler);
-        /*
+
         Dishwasher dishwasher = new Dishwasher();
         DishwasherCommandHandler dishwasherCommandHandler = new DishwasherCommandHandler(dishwasher);
         devicesMap.put(dishwasher, dishwasherCommandHandler);
-        */
 
         CleaningRobot robot = new CleaningRobot();
         CleaningRobotCommandHandler robotCommandHandler = new CleaningRobotCommandHandler(robot);

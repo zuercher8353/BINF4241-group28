@@ -1,21 +1,24 @@
 package ReceiverDevices;
 
 
+import Threads.DishwasherThread;
+
 import java.util.ArrayList;
 
 public class Dishwasher implements Device {
 
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
-    private DishwasherPrograms dishwasherProgram = DishwasherPrograms.NotSet;
+    private DishwasherPrograms dishwasherProgram = DishwasherPrograms.notSet;
     private long start;
+    private Thread dishwasherThread;
 
     public enum DishwasherPrograms {
         Glasses,
         Plates,
         Pans,
         Mixed,
-        NotSet
+        notSet
     }
 
     public enum DeviceCommands {
@@ -24,18 +27,18 @@ public class Dishwasher implements Device {
         StartWashing,
         SetUpProgram,
         CheckTimer,
-        Stop
+        Stop,
     }
 
     private enum DeviceStates {
         On,
         Off,
-        Running
+        Running,
+        Ended
     }
 
     public ArrayList getStateCommands(){
         ArrayList<String> possibleFunctions = new ArrayList<>();
-
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
         } else if(deviceState == DeviceStates.On) {
@@ -43,7 +46,7 @@ public class Dishwasher implements Device {
             possibleFunctions.add(DeviceCommands.SetUpProgram.name());
             possibleFunctions.add(DeviceCommands.SwitchOff.name());
 
-            if (dishwasherProgram == DishwasherPrograms.NotSet){
+            if (dishwasherProgram == DishwasherPrograms.notSet){
                 possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
         } else if (deviceState == DeviceStates.Running){
@@ -58,22 +61,32 @@ public class Dishwasher implements Device {
     }
 
     public void setUpProgram(DishwasherPrograms program){
-        dishwasherProgram = program;
+        for (Dishwasher.DishwasherPrograms ENUM_dishwasherProgams : DishwasherPrograms.values()) {
+            if (ENUM_dishwasherProgams.toString().equals(program)) {
+                dishwasherProgram = ENUM_dishwasherProgams;
+            }
+        }
     }
 
     public void startWashing(){
-        start = System.currentTimeMillis();
-        deviceState = DeviceStates.Running;
-        if (dishwasherProgram == DishwasherPrograms.Glasses){
-            timer = 3600000;
-        } else if (dishwasherProgram == DishwasherPrograms.Mixed){
-            timer = 7200000;
-        } else if (dishwasherProgram == DishwasherPrograms.Pans){
-            timer = 5400000;
-        } else if (dishwasherProgram == DishwasherPrograms.Plates){
-            timer = 4200000;
+        if (dishwasherProgram.equals(DishwasherPrograms.notSet)) {
+            System.out.println("you must set a program");
+        } else {
+            if (dishwasherProgram == DishwasherPrograms.Glasses) {
+                timer = 3600000;
+            } else if (dishwasherProgram == DishwasherPrograms.Mixed) {
+                timer = 7200000;
+            } else if (dishwasherProgram == DishwasherPrograms.Pans) {
+                timer = 5400000;
+            } else if (dishwasherProgram == DishwasherPrograms.Plates) {
+                timer = 4200000;
+            }
+            start = System.currentTimeMillis();
+            DishwasherThread washingMachineThreadBehaviour = new DishwasherThread(timer, this);
+            dishwasherThread = new Thread(washingMachineThreadBehaviour, "dishwasherThread");
+            dishwasherThread.start();
+            deviceState = DeviceStates.Running;
         }
-
     }
 
     public void checkTimer() {
@@ -97,7 +110,7 @@ public class Dishwasher implements Device {
     public void SwitchOff(){
         timer = -1;
         deviceState = DeviceStates.Off;
-        dishwasherProgram = DishwasherPrograms.NotSet;
+        dishwasherProgram = DishwasherPrograms.notSet;
         start = 0;
     }
 
@@ -105,8 +118,12 @@ public class Dishwasher implements Device {
         if(deviceState == DeviceStates.Running){
             timer = -1;
             deviceState = DeviceStates.On;
-            dishwasherProgram = DishwasherPrograms.NotSet;
+            dishwasherProgram = DishwasherPrograms.notSet;
             start = 0;
         }
+    }
+
+    public void setEnded() {
+        deviceState = DeviceStates.Ended;
     }
 }

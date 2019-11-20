@@ -1,5 +1,7 @@
 package ReceiverDevices;
 
+import Threads.*;
+
 import java.util.ArrayList;
 
 public class Microwave implements Device {
@@ -18,6 +20,7 @@ public class Microwave implements Device {
     private int temperature = -1;
     private Microwave.DeviceStates deviceState = Microwave.DeviceStates.Off;
     private long start;
+    private Thread microwaveThread;
 
     private enum DeviceStates {
         On,
@@ -84,6 +87,9 @@ public class Microwave implements Device {
 
         if (temperature != -1 && timer != -1) {
             start = System.currentTimeMillis();
+            MicrowaveThread microwaveThreadBehaviour = new MicrowaveThread(timer, this);
+            microwaveThread = new Thread(microwaveThreadBehaviour, "microwaveThread");
+            microwaveThread.start();
             deviceState = Microwave.DeviceStates.Running;
         } else {
             System.out.println("Not all parameters are set you can`t start cooking");
