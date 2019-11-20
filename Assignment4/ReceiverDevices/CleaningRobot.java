@@ -6,7 +6,7 @@ public class CleaningRobot{
     long timer = -1;
     long startTime = -1;
     long chargingStartTime = -1;
-    long remainingCleaning = -1;
+    long remainingCleaningTime = -1;
     float batteryStatusInPercent = 100;
     DeviceStates deviceState = DeviceStates.Ready;
     boolean fullyCharged = true;
@@ -26,7 +26,7 @@ public class CleaningRobot{
         Running,
         Charging,
         CleaningNotCompleted,
-        Ended
+        // add check ended when in charging Ended
 
     }
     public ArrayList getStateCommands() {
@@ -35,14 +35,14 @@ public class CleaningRobot{
             possibleFunctions.add(DeviceCommands.CheckPercentageOfCleaningCompletion.name());
             possibleFunctions.add(DeviceCommands.EndCleaning.name());
             possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
-            if(remainingTime > -1){
+            /*if(remainingCleaningTime > -1){
                 possibleFunctions.add(DeviceCommands.CompleteOutstandingCleaning.name());
-            }
+            }*/
 
         }
         else if(deviceState == DeviceStates.Ready){
             possibleFunctions.add(DeviceCommands.SetTimer.name());
-            possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
+            // dont know if possible need to change so that it works possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
             //possibleFunctions.add(DeviceCommands.CheckBatteryChargingStatus.name()); dont know if possible
             if(timer != -1 ){
                 possibleFunctions.add(DeviceCommands.StartCleaner.name());
@@ -50,8 +50,11 @@ public class CleaningRobot{
 
         } else if(deviceState == DeviceStates.Charging){
             possibleFunctions.add(DeviceCommands.CheckBatteryChargingStatus.name());
-            possibleFunctions.add(Oven..SwitchOff.name());
-            possibleFunctions.add(Oven.DeviceCommands.CheckTimer.name());
+        }
+        else if(deviceState == DeviceStates.CleaningNotCompleted){
+            possibleFunctions.add(DeviceCommands.CompleteOutstandingCleaning.name());
+            possibleFunctions.add(DeviceCommands.EndCleaning.name());
+            // dont know if possible need to change so that it works possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
         }
         return possibleFunctions;
     }
