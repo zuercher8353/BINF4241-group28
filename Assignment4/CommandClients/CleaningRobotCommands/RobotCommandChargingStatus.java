@@ -1,13 +1,11 @@
-package CommandClients.CleaningRobot;
+package CommandClients.CleaningRobotCommands;
 
 import CommandClients.Command;
-import CommandHandler.CommandHandler;
 import ReceiverDevices.CleaningRobot;
-import ReceiverDevices.Oven;
 
 public class RobotCommandChargingStatus implements Command {
     private CleaningRobot robot;
-    private String commandName = "CheckChargingStatus";
+    private String commandName = CleaningRobot.DeviceCommands.EndCleaning.name();
 
     public RobotCommandChargingStatus(CleaningRobot robot) {
         this.robot = robot;
@@ -20,7 +18,7 @@ public class RobotCommandChargingStatus implements Command {
 
     @Override
     public void execute() {
-        robot.checkBatteryChargingStatus();
+        robot.interrupt();
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class OvenCommandHandler implements CommandHandler {
 
-    private int nrOfCommands = 8;
+    private int nrOfCommands = Oven.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
 
     private Oven oven;

@@ -4,22 +4,18 @@ public class Dishwasher implements Device, Runnable {
 
     private int timer = 0;
 
-    @Override
     public void switchOn() {
 
     }
 
-    @Override
     public void switchOff() {
 
     }
 
-    @Override
     public void interrupt() {
 
     }
 
-    @Override
     public void run() {
 
     }

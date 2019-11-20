@@ -1,7 +1,7 @@
 package ReceiverDevices;
 import java.util.*;
 
-public class CleaningRobot{
+public class CleaningRobot implements Device{
 
     long timer = -1;
     long startTime = -1;
@@ -97,7 +97,7 @@ public class CleaningRobot{
     public void  completeOutstandingCleaning(){
 
     }
-    public void endCleaning(){
+    public void interrupt(){
 
     }
 

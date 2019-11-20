@@ -1,29 +1,13 @@
 package ReceiverDevices;
 
 public class Microwave implements Device, Runnable {
-    private int timer = 0;
-    private int temperature = 0;
-    @Override
-    public void run() {
+    private long timer = -1;
+    private int temperature = -1;
+    private Microwave.DeviceStates deviceState = Microwave.DeviceStates.Off;
+    private Oven.OvenProgram ovenProgram = Oven.OvenProgram.notSet;
+    private long start;
 
-    }
-
-    @Override
-    public void switchOn() {
-
-    }
-
-    @Override
-    public void switchOff() {
-
-    }
-
-    @Override
-    public void interrupt() {
-
-    }
-
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         SetTimer,
@@ -33,6 +17,23 @@ public class Microwave implements Device, Runnable {
         CheckTimer,
         Interrupt
     }
+
+    public void run() {
+
+    }
+
+    public void switchOn() {
+
+    }
+
+    public void switchOff() {
+
+    }
+
+    public void interrupt() {
+
+    }
+
     public void printDeviceMenu(){
         for (DeviceCommands commands : DeviceCommands.values()) {
             System.out.println(commands);

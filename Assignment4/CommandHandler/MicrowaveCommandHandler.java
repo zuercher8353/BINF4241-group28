@@ -5,7 +5,7 @@ import ReceiverDevices.Microwave;
 
 public class MicrowaveCommandHandler implements CommandHandler {
 
-    private int nrOfCommands = 8;
+    private int nrOfCommands = Microwave.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
     private Microwave microwave;
 

@@ -1,11 +1,10 @@
-package CommandClients.CleaningRobot;
+package CommandClients.CleaningRobotCommands;
 
 import CommandClients.Command;
 import ReceiverDevices.CleaningRobot;
 
 public class RobotCommandCheckCleaningPercentage implements Command {
     private CleaningRobot robot;
-    //private String commandName = "CheckCleaningPercentage";
     private String commandName = CleaningRobot.DeviceCommands.CheckCleaningCompletion.name();
 
     public RobotCommandCheckCleaningPercentage(CleaningRobot robot) {
@@ -19,7 +18,6 @@ public class RobotCommandCheckCleaningPercentage implements Command {
 
     @Override
     public void execute() {
-        robot.checkBatteryChargingStatus();
+        robot.checkPercentageOfCleaningCompletion();
     }
-
 }

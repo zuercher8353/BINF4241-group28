@@ -6,17 +6,14 @@ public class WashingMachine implements Device{
 
     private int timer = 0;
 
-    @Override
     public void switchOn() {
 
     }
 
-    @Override
     public void switchOff() {
 
     }
 
-    @Override
     public void interrupt() {
 
     }

@@ -14,12 +14,12 @@ public class DishwasherCommandCheckTimer implements Command {
     }
 
     @Override
-    public void execute() {
+    public String getCommandName() {
+        return null;
     }
 
     @Override
-    public String getCommandName() {
-        return null;
+    public void execute() {
     }
 }
 
