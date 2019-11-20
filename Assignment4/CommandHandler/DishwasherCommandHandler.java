@@ -8,8 +8,8 @@ import ReceiverDevices.Dishwasher;
 
 public class DishwasherCommandHandler implements CommandHandler{
 
-    // int size = DeviceCommands.values().length;
-    private Command[] buttonSlots = new Command[DeviceCommands.values().length];
+    int nrOfCommands = Dishwasher.DeviceCommands.values().length;
+    private Command[] buttonSlots = new Command[nrOfCommands];
     private Dishwasher dishwasher;
 
     private enum DeviceCommands {
@@ -23,7 +23,7 @@ public class DishwasherCommandHandler implements CommandHandler{
 
     public DishwasherCommandHandler(Dishwasher dishwasher){
         this.dishwasher = dishwasher;
-        for(int i = 0; i < DeviceCommands.values().length; i++) {
+        for(int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
     }

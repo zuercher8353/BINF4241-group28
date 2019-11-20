@@ -26,7 +26,7 @@ public class Oven implements Device {
         notSet
     }
 
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         SetTimer,

@@ -9,6 +9,8 @@ class DeviceSetup {
     private HashMap<Device, CommandHandler> devicesMap = new HashMap<Device, CommandHandler>();
 
     DeviceSetup() {
+
+        //init an oven and add to devicemap
         Oven oven = new Oven();
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
@@ -23,6 +25,10 @@ class DeviceSetup {
         DishwasherCommandHandler dishwasherCommandHandler = new DishwasherCommandHandler(dishwasher);
         devicesMap.put(dishwasher, dishwasherCommandHandler);
         */
+
+        CleaningRobot robot = new CleaningRobot();
+        CleaningRobotCommandHandler robotCommandHandler = new CleaningRobotCommandHandler(robot);
+        devicesMap.put(robot,robotCommandHandler);
 
     }
 

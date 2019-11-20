@@ -7,7 +7,7 @@ import ReceiverDevices.WashingMachine;
 public class WashingMachineCommandCheckTimer implements Command {
 
     private WashingMachine washingMachine;
-    private String commandName = "CheckTimer";
+    private String commandName = WashingMachine.DeviceCommands.CheckTimer.name();
 
     public WashingMachineCommandCheckTimer(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;

@@ -2,7 +2,7 @@ package ReceiverDevices;
 import java.util.*;
 import Threads .*;
 
-public class CleaningRobot{
+public class CleaningRobot implements Device{
 
     private long timer = -1;
     private long startTime = -1;
@@ -85,6 +85,8 @@ public class CleaningRobot{
         chargingThread.start();
 
         //start threat so that when fully charged changes to ready
+
+
 
     }
     //only possible while running

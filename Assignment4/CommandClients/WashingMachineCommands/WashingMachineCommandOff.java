@@ -6,7 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandOff implements Command {
     private WashingMachine washingMachine;
-    private String commandName = "SwitchOff";
+    private String commandName = WashingMachine.DeviceCommands.SwitchOff.name();
 
     public WashingMachineCommandOff(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;

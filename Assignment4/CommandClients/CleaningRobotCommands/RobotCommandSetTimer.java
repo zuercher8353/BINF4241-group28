@@ -1,16 +1,16 @@
-package CommandClients.OvenCommands;
+package CommandClients.CleaningRobotCommands;
 
 import CommandClients.Command;
-import ReceiverDevices.Oven;
+import ReceiverDevices.CleaningRobot;
 
 import java.util.Scanner;
 
-public class OvenCommandSetTimer implements Command {
-    private Oven oven;
-    private String commandName = Oven.DeviceCommands.SetTimer.name();
+public class RobotCommandSetTimer implements Command {
+    private CleaningRobot robot;
+    private String commandName = CleaningRobot.DeviceCommands.CheckCleaningCompletion.name();
 
-    public OvenCommandSetTimer(Oven oven) {
-        this.oven = oven;
+    public RobotCommandSetTimer(CleaningRobot robot) {
+        this.robot = robot;
     }
 
     @Override
@@ -36,8 +36,6 @@ public class OvenCommandSetTimer implements Command {
                 System.out.println("must be a number");
             }
         }
-        oven.SetTimer(inputTime);
+        robot.setTimer(inputTime);
     }
-
-
 }

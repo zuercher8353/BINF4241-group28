@@ -4,7 +4,7 @@ import ReceiverDevices.Oven;
 
 public class OvenCommandStartCooking implements Command {
     private Oven oven;
-    private String commandName = "StartCooking";
+    private String commandName = Oven.DeviceCommands.StartCooking.name();
 
     public OvenCommandStartCooking(Oven oven) {
         this.oven = oven;
@@ -19,6 +19,4 @@ public class OvenCommandStartCooking implements Command {
     public void execute() {
         oven.StartCooking();
     }
-
-
 }

@@ -1,20 +1,23 @@
 package ReceiverDevices;
 
-public class Microwave implements Device {
-    private int timer = 0;
-    private int temperature = 0;
+public class Microwave implements Device, Runnable {
+    private long timer = -1;
+    private int temperature = -1;
+    private DeviceStates deviceState = Microwave.DeviceStates.Off;
 
+    private long start;
 
-
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         SetTimer,
         SetTemperature,
+        SetUpProgram,
         StartBaking,
         CheckTimer,
         Interrupt
     }
+
 
     private enum DeviceStates {
         On,
