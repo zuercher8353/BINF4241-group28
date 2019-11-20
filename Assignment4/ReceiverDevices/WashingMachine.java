@@ -24,7 +24,7 @@ public class WashingMachine implements Device{
         public int getValue() {return value;}
     }
 
-    private enum WashingMachinePrograms{
+    public enum WashingMachinePrograms{
         DoubleRinse,
         Intense,
         Quick,
@@ -32,13 +32,13 @@ public class WashingMachine implements Device{
         NotSet
     }
 
-    private enum DeviceStates {
+    public enum DeviceStates {
         On,
         Off,
         Running
     }
 
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         SetUpDegree,

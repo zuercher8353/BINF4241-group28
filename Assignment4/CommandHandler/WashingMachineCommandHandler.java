@@ -8,28 +8,28 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandHandler implements CommandHandler{
 
-    // int size = DeviceCommands.values().length;
-    private Command[] buttonSlots = new Command[DeviceCommands.values().length];
     private WashingMachine washingMachine;
+    private int nrOfCommands = WashingMachine.DeviceCommands.values().length;
+    private Command[] buttonSlots = new Command[nrOfCommands];
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetUpDegree,
-        SetUpProgram,
-        CheckTimer,
-        Interrupt
-    }
+
+
 
     public WashingMachineCommandHandler(WashingMachine washingMachine){
         this.washingMachine = washingMachine;
-        for(int i = 0; i < DeviceCommands.values().length; i++) {
+        for(int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
     }
 
     public void configButtons() {
         buttonSlots[0] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[1] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[2] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[3] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[4] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[5] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[6] = new WashingMachineCommandOn(washingMachine);
     }
 
     public boolean validateCommand(String userInput) {
