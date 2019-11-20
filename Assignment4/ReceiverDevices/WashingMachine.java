@@ -11,18 +11,6 @@ public class WashingMachine implements Device{
     private WashingMachinePrograms washingMachineProgram = WashingMachinePrograms.NotSet;
     private long start;
 
-    private enum Degrees {
-        SET_DEGREE_HIGH(90),
-        SET_DEGREE_MIDDLE(60),
-        SET_DEGREE_LOW(40);
-
-        private final int value;
-
-        Degrees(final int newValue){
-            value = newValue;
-        }
-        public int getValue() {return value;}
-    }
 
     public enum WashingMachinePrograms{
         DoubleRinse,
@@ -94,11 +82,11 @@ public class WashingMachine implements Device{
         if (washingMachineProgram == WashingMachinePrograms.DoubleRinse){
             timer = 120000;
         } else if (washingMachineProgram == WashingMachinePrograms.Intense){
-            timer = 7200000;
+            timer = 72000;
         } else if (washingMachineProgram == WashingMachinePrograms.Quick){
-            timer = 1800000;
+            timer = 36000;
         } else if (washingMachineProgram == WashingMachinePrograms.Spin){
-            timer = 600000;
+            timer = 10000;
         }
     }
 
