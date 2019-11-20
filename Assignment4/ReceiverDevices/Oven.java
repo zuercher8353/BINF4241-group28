@@ -10,6 +10,7 @@ public class Oven implements Device {
     private DeviceStates deviceState = DeviceStates.Off;
     private OvenProgram ovenProgram = OvenProgram.notSet;
     private long start;
+    Thread ovenThread;
 
     private enum DeviceStates {
         On,
@@ -62,6 +63,7 @@ public class Oven implements Device {
     }
 
     public void setEnded(){
+        ovenThread = null;
         deviceState = DeviceStates.Ended;
     }
 
@@ -119,6 +121,9 @@ public class Oven implements Device {
 
         if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
             start =  System.currentTimeMillis();
+            OvenThread ovenThreadBehaviour = new OvenThread(timer, this);
+            ovenThread = new Thread(ovenThreadBehaviour, "ovenThread");
+            ovenThread.start();
             deviceState = DeviceStates.Running;
         }
         else{

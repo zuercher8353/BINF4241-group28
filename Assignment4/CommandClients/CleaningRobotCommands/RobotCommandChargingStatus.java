@@ -5,7 +5,7 @@ import ReceiverDevices.CleaningRobot;
 
 public class RobotCommandChargingStatus implements Command {
     private CleaningRobot robot;
-    private String commandName = CleaningRobot.DeviceCommands.EndCleaning.name();
+    private String commandName = CleaningRobot.DeviceCommands.CheckBatteryChargingStatus.name();
 
     public RobotCommandChargingStatus(CleaningRobot robot) {
         this.robot = robot;
@@ -18,7 +18,7 @@ public class RobotCommandChargingStatus implements Command {
 
     @Override
     public void execute() {
-        robot.interrupt();
+        robot.checkBatteryChargingStatus();
     }
 
 }

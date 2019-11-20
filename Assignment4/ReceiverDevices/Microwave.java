@@ -1,6 +1,6 @@
 package ReceiverDevices;
 
-public class Microwave implements Device, Runnable {
+public class Microwave implements Device {
     private long timer = -1;
     private int temperature = -1;
     private DeviceStates deviceState = Microwave.DeviceStates.Off;

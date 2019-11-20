@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class RobotCommandSetTimer implements Command {
     private CleaningRobot robot;
-    private String commandName = CleaningRobot.DeviceCommands.CheckCleaningCompletion.name();
+    private String commandName = CleaningRobot.DeviceCommands.SetTimer.name();
 
     public RobotCommandSetTimer(CleaningRobot robot) {
         this.robot = robot;
