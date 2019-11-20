@@ -1,5 +1,6 @@
 package ReceiverDevices;
 import java.util.*;
+import Threads .*;
 
 public class CleaningRobot{
 
@@ -7,7 +8,6 @@ public class CleaningRobot{
     private long startTime = -1;
     private long remainingCleaningTime = -1;
     private DeviceStates deviceState = DeviceStates.Ready;
-    private float batteryBeforeCharging;
     private Thread cleaningThread;
     private Thread chargingThread;
 
@@ -77,7 +77,7 @@ public class CleaningRobot{
     public void startCharging(){
         cleaningThread = null;
         deviceState = DeviceStates.Charging;
-        batteryBeforeCharging =  batteryStatusWithReturn();
+        float batteryBeforeCharging =  batteryStatusWithReturn();
         startTime = -1;
         long batteryChargingTime = (100 - (long)batteryBeforeCharging) * 1000;
         ThreadChargingRobot cleaningThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);

@@ -1,4 +1,5 @@
 package ReceiverDevices;
+import Threads .*;
 
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Oven implements Device {
         On,
         Off,
         Running,
+        Ended
     }
 
 
@@ -40,7 +42,7 @@ public class Oven implements Device {
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
         }
-        else if(deviceState == DeviceStates.On){
+        else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             possibleFunctions.add(DeviceCommands.SwitchOff.name());
             possibleFunctions.add(DeviceCommands.SetTemperature.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
@@ -55,6 +57,7 @@ public class Oven implements Device {
             possibleFunctions.add(DeviceCommands.SwitchOff.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
         }
+
         return possibleFunctions;
     }
 
@@ -93,14 +96,14 @@ public class Oven implements Device {
 
     public void setUpProgram (String inputProgram){
 
-        if(deviceState == DeviceStates.On ){
-            for(OvenProgram ENUM_ovenProgram : OvenProgram.values()) {
-                if(ENUM_ovenProgram.toString().equals(inputProgram)) {
-                    ovenProgram = ENUM_ovenProgram;
-                }
+
+        for(OvenProgram ENUM_ovenProgram : OvenProgram.values()) {
+            if(ENUM_ovenProgram.toString().equals(inputProgram)) {
+                ovenProgram = ENUM_ovenProgram;
             }
         }
-        else if(deviceState == DeviceStates.Off){
+
+        if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven on before you set a program");
         }
         else if(deviceState == DeviceStates.Running){
@@ -109,16 +112,16 @@ public class Oven implements Device {
     }
 
     public void StartCooking(){
-        if(deviceState == DeviceStates.On ){
-            if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
-                start =  System.currentTimeMillis();
-                deviceState = DeviceStates.Running;
-            }
-            else{
-                System.out.println("Not all parameters are set you can`t start cooking");
-            }
+
+        if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
+            start =  System.currentTimeMillis();
+            deviceState = DeviceStates.Running;
         }
-        else if(deviceState == DeviceStates.Off){
+        else{
+            System.out.println("Not all parameters are set you can`t start cooking");
+        }
+
+        if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven on before you can start cooking");
         }
         else if(deviceState == DeviceStates.Running){
@@ -141,7 +144,7 @@ public class Oven implements Device {
         else if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven, to check the timer");
         }
-        else if(deviceState == DeviceStates.On ){
+        else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended ){
             if(timer == -1){
                 System.out.println("You did not set a timer yet");
             }

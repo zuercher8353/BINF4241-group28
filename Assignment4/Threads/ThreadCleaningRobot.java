@@ -1,4 +1,6 @@
-package ReceiverDevices;
+package Threads;
+
+import ReceiverDevices.CleaningRobot;
 
 public class ThreadCleaningRobot implements Runnable {
     private long timer;

@@ -1,4 +1,6 @@
-package ReceiverDevices;
+package Threads;
+
+import ReceiverDevices.CleaningRobot;
 
 public class ThreadChargingRobot implements Runnable {
     private long timeUntilFullyCharged;
