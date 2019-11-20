@@ -14,14 +14,13 @@ public class OvenThread implements Runnable {
 
     @Override
     public void run() {
-        long startTime = System.currentTimeMillis();
-        while(true){
             try {
-                Thread.sleep(1);
+                Thread.sleep(bakingTime);
+                oven.setEnded();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
-    }
+
 }

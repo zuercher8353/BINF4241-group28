@@ -61,6 +61,10 @@ public class Oven implements Device {
         return possibleFunctions;
     }
 
+    public void setEnded(){
+        deviceState = DeviceStates.Ended;
+    }
+
     public void switchOn() {
         if (deviceState == DeviceStates.Off){
             deviceState = DeviceStates.On;

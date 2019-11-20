@@ -14,18 +14,14 @@ public class ThreadChargingRobot implements Runnable {
 
     @Override
     public void run() {
-        long startTime = System.currentTimeMillis();
-        while(true){
-            try {
-                if(System.currentTimeMillis() - startTime >= timeUntilFullyCharged){
-                    cleaningRobot.setReady();
-                    break;
-                }
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
+    try {
+        Thread.sleep(timeUntilFullyCharged);
+        cleaningRobot.setReady();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
+
+   }
+
+
 }
