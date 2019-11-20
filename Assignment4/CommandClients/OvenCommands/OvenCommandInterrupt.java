@@ -19,5 +19,6 @@ public class OvenCommandInterrupt implements Command {
 
     @Override
     public void execute() {
+        oven.interrupt();
     }
 }

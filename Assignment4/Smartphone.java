@@ -37,10 +37,15 @@ public class Smartphone {
                     inputCommand = userInput.nextLine();
                     if (deviceCommandHandler.validateCommand(inputCommand)) {
                         deviceCommandHandler.handleCommand(inputCommand);
-                    } else {
-                        System.out.println("Command not available");
                     }
-                    deviceCommandHandler.printCommandMenu();
+                    else {
+                        if (!inputCommand.equals("back")) {
+                            System.out.println("Command not available");
+                        }
+                    }
+                    if (!inputCommand.equals("back")) {
+                        deviceCommandHandler.printCommandMenu();
+                    }
                 }
                 deviceSetup.printMainMenu();
                 System.out.println("Choose Device: ");

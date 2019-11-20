@@ -1,20 +1,21 @@
 package CommandHandler;
 
-import CommandClients.*;
+import CommandClients.CleaningRobot.*;
+import CommandClients.Command;
+import CommandClients.NoCommand;
 import CommandClients.OvenCommands.*;
 import ReceiverDevices.*;
 
 import java.util.ArrayList;
 
-public class OvenCommandHandler implements CommandHandler {
-
+public class CleaningRobotCommandHandler implements CommandHandler{
     private int nrOfCommands = 8;
     private Command[] buttonSlots = new Command[nrOfCommands];
 
-    private Oven oven;
+    private CleaningRobot robot;
 
-    public OvenCommandHandler(Oven oven) {
-        this.oven = oven;
+    public CleaningRobotCommandHandler(CleaningRobot robot) {
+        this.robot = robot;
         for (int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
@@ -22,18 +23,17 @@ public class OvenCommandHandler implements CommandHandler {
 
     public void configButtons() {
         //must follow the order of the Program enum in the device
-        buttonSlots[0] = new OvenCommandOn(oven);
-        buttonSlots[1] = new OvenCommandOff(oven);
-        buttonSlots[2] = new OvenCommandSetTimer(oven);
-        buttonSlots[3] = new OvenCommandSetTemp(oven);
-        buttonSlots[4] = new OvenCommandSetProgram(oven);
-        buttonSlots[5] = new OvenCommandStartCooking(oven);
-        buttonSlots[6] = new OvenCommandCheckTimer(oven);
-        buttonSlots[7] = new OvenCommandInterrupt(oven);
+        buttonSlots[0] = new RobotCommandCheckCleaningPercentage(robot);
+        buttonSlots[1] = new RobotCommandCheckBatteryStatus(robot);
+        buttonSlots[2] = new RobotCommandCheckCleaningPercentage(robot);
+        buttonSlots[3] = new RobotCommandCompleteCleaning(robot);
+        buttonSlots[4] = new RobotCommandEndCleaning(robot);
+        buttonSlots[5] = new RobotCommandSetTimer(robot);
+        buttonSlots[6] = new RobotCommandStartCleaner(robot);
     }
 
     public boolean validateCommand(String userInput) {
-        ArrayList stateCommands = oven.getStateCommands();
+        ArrayList stateCommands = robot.getStateCommands();
         for (Object stateCommand : stateCommands) {
             if (stateCommand.equals(userInput)) {
                 return true;
@@ -44,7 +44,7 @@ public class OvenCommandHandler implements CommandHandler {
 
     public void handleCommand(String userInput) {
         int i = 0;
-        ArrayList stateCommands = oven.getStateCommands();
+        ArrayList stateCommands = robot.getStateCommands();
         for (Command buttonSlot : buttonSlots) {
             if (buttonSlot.getCommandName().equals(userInput)) {
                 buttonSlots[i].execute();
@@ -56,7 +56,7 @@ public class OvenCommandHandler implements CommandHandler {
     public void printCommandMenu(){
         System.out.println("----------");
 
-        ArrayList stateCommands = oven.getStateCommands();
+        ArrayList stateCommands = robot.getStateCommands();
         for (Object stateCommand : stateCommands) {
             int iter = 0;
             int buttonNumber = -1;

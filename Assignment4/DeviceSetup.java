@@ -12,7 +12,8 @@ class DeviceSetup {
         Oven oven = new Oven();
         OvenCommandHandler ovenCommandHandler = new OvenCommandHandler(oven);
         devicesMap.put(oven,ovenCommandHandler);
-        /*Microwave microwave = new Microwave();
+        /*
+        Microwave microwave = new Microwave();
         MicrowaveCommandHandler microwaveCommandHandler = new MicrowaveCommandHandler(microwave);
         devicesMap.put(microwave, microwaveCommandHandler);
         WashingMachine washingMachine = new WashingMachine();
@@ -20,7 +21,8 @@ class DeviceSetup {
         devicesMap.put(washingMachine, washingMachineCommandHandler);
         Dishwasher dishwasher = new Dishwasher();
         DishwasherCommandHandler dishwasherCommandHandler = new DishwasherCommandHandler(dishwasher);
-        devicesMap.put(dishwasher, dishwasherCommandHandler);*/
+        devicesMap.put(dishwasher, dishwasherCommandHandler);
+        */
 
     }
 
