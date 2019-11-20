@@ -6,6 +6,7 @@ public class CleaningRobot{
     long timer = -1;
     long startTime = -1;
     long chargingStartTime = -1;
+    long remainingCleaning = -1;
     float batteryStatusInPercent = 100;
     DeviceStates deviceState = DeviceStates.Ready;
     boolean fullyCharged = true;
@@ -27,6 +28,32 @@ public class CleaningRobot{
         CleaningNotCompleted,
         Ended
 
+    }
+    public ArrayList getStateCommands() {
+        ArrayList<String> possibleFunctions = new ArrayList<String>();
+        if (deviceState == DeviceStates.Running){
+            possibleFunctions.add(DeviceCommands.CheckPercentageOfCleaningCompletion.name());
+            possibleFunctions.add(DeviceCommands.EndCleaning.name());
+            possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
+            if(remainingTime > -1){
+                possibleFunctions.add(DeviceCommands.CompleteOutstandingCleaning.name());
+            }
+
+        }
+        else if(deviceState == DeviceStates.Ready){
+            possibleFunctions.add(DeviceCommands.SetTimer.name());
+            possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
+            //possibleFunctions.add(DeviceCommands.CheckBatteryChargingStatus.name()); dont know if possible
+            if(timer != -1 ){
+                possibleFunctions.add(DeviceCommands.StartCleaner.name());
+            }
+
+        } else if(deviceState == DeviceStates.Charging){
+            possibleFunctions.add(DeviceCommands.CheckBatteryChargingStatus.name());
+            possibleFunctions.add(Oven..SwitchOff.name());
+            possibleFunctions.add(Oven.DeviceCommands.CheckTimer.name());
+        }
+        return possibleFunctions;
     }
     public void setTimer(int timeInSec){
         timer = (long) 1000*timeInSec;

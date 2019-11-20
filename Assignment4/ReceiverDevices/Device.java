@@ -3,8 +3,8 @@ package ReceiverDevices;
 public interface Device {
 
 
-    public void SwitchOn();
-    public void SwitchOff();
+    public void switchOn();
+    public void switchOff();
     public void interrupt();
 
 
