@@ -11,10 +11,10 @@ public class CleaningRobot{
     boolean fullyCharged = true;
     float batteryBeforeCharging;
 
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SetTimer,
         StartCleaner,
-        CheckPercentageOfCleaningCompletion,
+        CheckCleaningCompletion,
         CheckBatteryStatus,
         CheckBatteryChargingStatus,
         CompleteOutstandingCleaning,
@@ -28,6 +28,11 @@ public class CleaningRobot{
         Ended
 
     }
+
+    public ArrayList getStateCommands() {
+        return null;
+    }
+
     public void setTimer(int timeInSec){
         timer = (long) 1000*timeInSec;
     }
@@ -68,7 +73,7 @@ public class CleaningRobot{
     }
 
     //roboter loses 1 percent of battery per second.
-    public void CheckBatteryStatus(){
+    public void checkBatteryStatus(){
         long timeNow = System.currentTimeMillis();
         float batteryUsed =  (float) (timeNow - startTime) /1000;
         float batteryStatus = 100 - batteryUsed;
@@ -80,7 +85,7 @@ public class CleaningRobot{
         float batteryUsed =  (float) (timeNow - startTime) /1000;
         return 100 - batteryUsed;
     }
-    public void CheckBatteryChargingStatus(){
+    public void checkBatteryChargingStatus(){
         long timeNow = System.currentTimeMillis();
         float chargingStatus = 0;
     }

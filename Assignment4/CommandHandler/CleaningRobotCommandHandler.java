@@ -23,13 +23,13 @@ public class CleaningRobotCommandHandler implements CommandHandler{
 
     public void configButtons() {
         //must follow the order of the Program enum in the device
-        buttonSlots[0] = new RobotCommandCheckCleaningPercentage(robot);
+        /*buttonSlots[0] = new RobotCommandCheckCleaningPercentage(robot);
         buttonSlots[1] = new RobotCommandCheckBatteryStatus(robot);
         buttonSlots[2] = new RobotCommandCheckCleaningPercentage(robot);
         buttonSlots[3] = new RobotCommandCompleteCleaning(robot);
         buttonSlots[4] = new RobotCommandEndCleaning(robot);
         buttonSlots[5] = new RobotCommandSetTimer(robot);
-        buttonSlots[6] = new RobotCommandStartCleaner(robot);
+        buttonSlots[6] = new RobotCommandStartCleaner(robot);*/
     }
 
     public boolean validateCommand(String userInput) {

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class OvenCommandSetTemp implements Command {
     private Oven oven;
-    private String commandName = "SetTemperature";
+    private String commandName = Oven.DeviceCommands.SetTemperature.name();
 
     public OvenCommandSetTemp(Oven oven) {
         this.oven = oven;

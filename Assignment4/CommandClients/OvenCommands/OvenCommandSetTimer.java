@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class OvenCommandSetTimer implements Command {
     private Oven oven;
-    private String commandName = "SetTimer";
+    private String commandName = Oven.DeviceCommands.SetTimer.name();
 
     public OvenCommandSetTimer(Oven oven) {
         this.oven = oven;
