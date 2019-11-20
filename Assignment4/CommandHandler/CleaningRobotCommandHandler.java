@@ -1,20 +1,20 @@
 package CommandHandler;
 
-import CommandClients.*;
+import CommandClients.Command;
+import CommandClients.NoCommand;
 import CommandClients.OvenCommands.*;
-import ReceiverDevices.*;
+import ReceiverDevices.Oven;
 
 import java.util.ArrayList;
 
-public class OvenCommandHandler implements CommandHandler {
-
+public class CleaningRobotCommandHandler implements CommandHandler{
     private int nrOfCommands = 8;
     private Command[] buttonSlots = new Command[nrOfCommands];
 
-    private Oven oven;
+    private CleaningRobot robot;
 
-    public OvenCommandHandler(Oven oven) {
-        this.oven = oven;
+    public CleaingRobotCommandHandler(CleaningRobot robot) {
+        this.robot = robot;
         for (int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
