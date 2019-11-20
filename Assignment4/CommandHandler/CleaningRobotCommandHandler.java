@@ -53,7 +53,7 @@ public class CleaningRobotCommandHandler implements CommandHandler{
         }
     }
 
-    public void printCommandMenu(){
+        public void printCommandMenu(){
         System.out.println("----------");
         ArrayList stateCommands = robot.getStateCommands();
         for (Object stateCommand : stateCommands) {

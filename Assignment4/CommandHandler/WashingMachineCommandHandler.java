@@ -8,8 +8,8 @@ import ReceiverDevices.WashingMachine;
 
 public class WashingMachineCommandHandler implements CommandHandler{
 
-    // int size = DeviceCommands.values().length;
-    private Command[] buttonSlots = new Command[DeviceCommands.values().length];
+    int nrOfCommands = WashingMachine.DeviceCommands.values().length;
+    private Command[] buttonSlots = new Command[nrOfCommands];
     private WashingMachine washingMachine;
 
     private enum DeviceCommands {
@@ -23,7 +23,7 @@ public class WashingMachineCommandHandler implements CommandHandler{
 
     public WashingMachineCommandHandler(WashingMachine washingMachine){
         this.washingMachine = washingMachine;
-        for(int i = 0; i < DeviceCommands.values().length; i++) {
+        for(int i = 0; i < nrOfCommands; i++) {
             buttonSlots[0] = new NoCommand();
         }
     }

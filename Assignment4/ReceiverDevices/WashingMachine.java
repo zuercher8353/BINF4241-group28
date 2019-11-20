@@ -30,8 +30,10 @@ public class WashingMachine implements Device{
         }
         public int getValue() {return value;}
     }
+    public enum DeviceCommands {
 
-    private enum WashingMachinePrograms{
+    }
+    public enum WashingMachinePrograms{
         DoubleRinse,
         Intense,
         Quick,

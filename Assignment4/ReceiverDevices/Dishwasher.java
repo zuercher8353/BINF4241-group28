@@ -27,7 +27,7 @@ public class Dishwasher implements Device, Runnable {
         Mixed
     }
 
-    private enum DeviceCommands {
+    public enum DeviceCommands {
         SwitchOn,
         SwitchOff,
         StartDishwasher,
