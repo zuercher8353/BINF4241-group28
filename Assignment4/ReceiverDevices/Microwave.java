@@ -3,8 +3,8 @@ package ReceiverDevices;
 public class Microwave implements Device, Runnable {
     private long timer = -1;
     private int temperature = -1;
-    private Microwave.DeviceStates deviceState = Microwave.DeviceStates.Off;
-    private Oven.OvenProgram ovenProgram = Oven.OvenProgram.notSet;
+    private DeviceStates deviceState = Microwave.DeviceStates.Off;
+
     private long start;
 
     public enum DeviceCommands {
@@ -18,8 +18,13 @@ public class Microwave implements Device, Runnable {
         Interrupt
     }
 
-    public void run() {
 
+    private enum DeviceStates {
+        On,
+        Off,
+        // ReadyToRun, don`t know about that
+        Running,
+        Ended
     }
 
     public void switchOn() {
@@ -30,22 +35,10 @@ public class Microwave implements Device, Runnable {
 
     }
 
+
     public void interrupt() {
 
     }
 
-    public void printDeviceMenu(){
-        for (DeviceCommands commands : DeviceCommands.values()) {
-            System.out.println(commands);
-        }
-    }
-
-    private enum DeviceStates {
-        On,
-        Off,
-        // ReadyToRun, don`t know about that
-        Running,
-        Ended
-    }
 
 }

@@ -1,16 +1,18 @@
 package ReceiverDevices;
 
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Dishwasher implements Device{
+public class Dishwasher implements Device, Runnable {
 
+
+    private int timer = 0;
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.NotSet;
     private long start;
 
-    private enum DishwasherPrograms {
+    public enum DishwasherPrograms {
         Glasses,
         Plates,
         Pans,
@@ -53,7 +55,7 @@ public class Dishwasher implements Device{
         return possibleFunctions;
     }
 
-    public void switchOn(){
+    public void SwitchOn(){
         deviceState = DeviceStates.On;
     }
 
@@ -94,7 +96,7 @@ public class Dishwasher implements Device{
         }
     }
 
-    public void switchOff(){
+    public void SwitchOff(){
         timer = -1;
         deviceState = DeviceStates.Off;
         dishwasherProgram = DishwasherPrograms.NotSet;
