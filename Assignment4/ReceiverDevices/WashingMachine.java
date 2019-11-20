@@ -11,18 +11,6 @@ public class WashingMachine implements Device{
     private WashingMachinePrograms washingMachineProgram = WashingMachinePrograms.NotSet;
     private long start;
 
-    private enum Degrees {
-        SET_DEGREE_HIGH(90),
-        SET_DEGREE_MIDDLE(60),
-        SET_DEGREE_LOW(40);
-
-        private final int value;
-
-        Degrees(final int newValue){
-            value = newValue;
-        }
-        public int getValue() {return value;}
-    }
 
     public enum WashingMachinePrograms{
         DoubleRinse,
@@ -32,10 +20,11 @@ public class WashingMachine implements Device{
         NotSet
     }
 
-    private enum DeviceStates {
+    public enum DeviceStates {
         On,
         Off,
-        Running
+        Running,
+        Ended
     }
 
     public enum DeviceCommands {
@@ -52,7 +41,7 @@ public class WashingMachine implements Device{
         ArrayList<String> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
-        } else if(deviceState == DeviceStates.On){
+        } else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             possibleFunctions.add(DeviceCommands.SetUpDegree.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
             possibleFunctions.add(DeviceCommands.SetUpProgram.name());
@@ -68,20 +57,24 @@ public class WashingMachine implements Device{
     }
 
 
-    public void SwitchOn(){
-        if (deviceState == DeviceStates.Off){
-            deviceState = DeviceStates.On;
-        } else {
-            System.out.println("Device is already switched on");
-        }
+    public void switchOn(){
+        deviceState = DeviceStates.On;
     }
 
     public void setDegree(int deg){
         degree = deg;
     }
 
-    public void setUpProgram(WashingMachinePrograms program){
-        washingMachineProgram = program;
+    public void setEnded(){
+        deviceState = DeviceStates.Ended;
+    }
+
+    public void setUpProgram(String program){
+        for (WashingMachinePrograms ENUM_washingMachineProgams : WashingMachinePrograms.values()){
+            if (ENUM_washingMachineProgams.toString().equals(program)){
+                washingMachineProgram = ENUM_washingMachineProgams;
+            }
+        }
     }
 
     public void startWashing(){
@@ -90,11 +83,11 @@ public class WashingMachine implements Device{
         if (washingMachineProgram == WashingMachinePrograms.DoubleRinse){
             timer = 120000;
         } else if (washingMachineProgram == WashingMachinePrograms.Intense){
-            timer = 7200000;
+            timer = 72000;
         } else if (washingMachineProgram == WashingMachinePrograms.Quick){
-            timer = 1800000;
+            timer = 36000;
         } else if (washingMachineProgram == WashingMachinePrograms.Spin){
-            timer = 600000;
+            timer = 10000;
         }
     }
 
@@ -105,17 +98,18 @@ public class WashingMachine implements Device{
                 System.out.println("No time ramining, the program is finished");
             } else{
                 int remaining = (int) remainingTimeSec;
-                timer = remaining;
+                System.out.println("Remaining time: " + remaining);
             }
-        } else if(deviceState == DeviceStates.On){
+        } else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             if (timer == -1){
                 System.out.println("You did not set a timer yet");
             } else{
                 int timerInSec = (int) (timer/1000);
+                System.out.println("Set time: "+timerInSec);
             }
         }
     }
-    public void SwitchOff(){
+    public void switchOff(){
         degree = -1;
         timer = -1;
         deviceState = DeviceStates.Off;
