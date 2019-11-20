@@ -7,6 +7,7 @@ import ReceiverDevices.WashingMachine;
 import java.util.Scanner;
 
 public class WashingMachineCommandSetDegree implements Command {
+
     private WashingMachine washingMachine;
     private String commandName = WashingMachine.DeviceCommands.SetUpDegree.name();
 

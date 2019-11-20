@@ -24,12 +24,11 @@ public class WashingMachineCommandHandler implements CommandHandler{
 
     public void setCommands() {
         buttonSlots[0] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[1] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[2] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[3] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[4] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[5] = new WashingMachineCommandOn(washingMachine);
-        buttonSlots[6] = new WashingMachineCommandOn(washingMachine);
+        buttonSlots[1] = new WashingMachineCommandCheckTimer(washingMachine);
+        buttonSlots[2] = new WashingMachineCommandSetDegree(washingMachine);
+        buttonSlots[3] = new WashingMachineCommandSetProgram(washingMachine);
+        buttonSlots[4] = new WashingMachineCommandTurnOff(washingMachine);
+        buttonSlots[4] = new WashingMachineCommandOff(washingMachine);
     }
 
     public boolean validateCommand(String userInput) {

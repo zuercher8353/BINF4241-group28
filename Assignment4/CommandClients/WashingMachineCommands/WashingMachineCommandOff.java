@@ -13,12 +13,13 @@ public class WashingMachineCommandOff implements Command {
     }
 
     @Override
+    public String getCommandName() {
+        return commandName;
+    }
+
+    @Override
     public void execute() {
         washingMachine.switchOff();
     }
 
-    @Override
-    public String getCommandName() {
-        return commandName;
-    }
 }
