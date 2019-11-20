@@ -20,14 +20,14 @@ public class WashingMachineCommandSetDegree implements Command {
         Scanner scannerTemp = new Scanner(System.in);
         int inputTemp = -1;
         while (true){
-            System.out.println("enter degrees 40, 60 or 90");
+            System.out.println("enter degrees 40, 60 or 90: ");
             String input = scannerTemp.next();
             try{
                 inputTemp = Integer.parseInt(input);
-                if (inputTemp != 40 && inputTemp != 60 && inputTemp != 90){
+                if (inputTemp == 40 || inputTemp == 60 || inputTemp == 90){
                     break;
                 } else {
-                    System.out.println("must be 40, 60 or 90 degrees");
+                    System.out.println("must be 40, 60 or 90 degrees ");
                 }
             } catch (NumberFormatException ne){
                 System.out.println("must be a number");

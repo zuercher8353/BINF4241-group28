@@ -27,8 +27,9 @@ public class WashingMachineCommandHandler implements CommandHandler{
         buttonSlots[1] = new WashingMachineCommandCheckTimer(washingMachine);
         buttonSlots[2] = new WashingMachineCommandSetDegree(washingMachine);
         buttonSlots[3] = new WashingMachineCommandSetProgram(washingMachine);
-        buttonSlots[4] = new WashingMachineCommandTurnOff(washingMachine);
-        buttonSlots[4] = new WashingMachineCommandOff(washingMachine);
+        buttonSlots[4] = new WashingMachineCommandStartWashing(washingMachine);
+        buttonSlots[5] = new WashingMachineCommandTurnOff(washingMachine);
+        buttonSlots[6] = new WashingMachineCommandOff(washingMachine);
     }
 
     public boolean validateCommand(String userInput) {
