@@ -2,15 +2,12 @@ package ReceiverDevices;
 
 public class ThreadCleaningRobot implements Runnable {
     private long timer;
-    boolean running;
     CleaningRobot cleaningRobot;
 
     public ThreadCleaningRobot(long timeInMillis, CleaningRobot cleaningRobot){
-        timer = timeInMillis;
+        this.timer = timeInMillis;
         this.cleaningRobot = cleaningRobot;
-        running = false;
     }
-
 
     @Override
     public void run() {
@@ -18,15 +15,18 @@ public class ThreadCleaningRobot implements Runnable {
         while(true){
             try {
                 if(System.currentTimeMillis() - startTime >= timer){
+                    cleaningRobot.setRemainingCleaning(-1);
                     cleaningRobot.startCharging();
                     break;
                 }
                 if(cleaningRobot.batteryStatusWithReturn() < 5){
-                    cleaningRobot.remainingCleaning();
+                    long timeNow = System.currentTimeMillis();
+                    long remaining = timer - (timeNow - startTime);
+                    cleaningRobot.setRemainingCleaning(remaining);
                     cleaningRobot.startCharging();
                     break;
                 }
-                Thread.sleep(10);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
