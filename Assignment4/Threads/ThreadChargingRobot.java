@@ -4,7 +4,7 @@ import ReceiverDevices.CleaningRobot;
 
 public class ThreadChargingRobot implements Runnable {
     private long timeUntilFullyCharged;
-    CleaningRobot cleaningRobot;
+    private CleaningRobot cleaningRobot;
 
     public ThreadChargingRobot(long timeUntilFullyCharged, CleaningRobot cleaningRobot){
         this.timeUntilFullyCharged = timeUntilFullyCharged;
