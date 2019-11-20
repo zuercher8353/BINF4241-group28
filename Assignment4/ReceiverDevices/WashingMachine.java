@@ -68,7 +68,7 @@ public class WashingMachine implements Device{
     }
 
 
-    public void SwitchOn(){
+    public void switchOn(){
         if (deviceState == DeviceStates.Off){
             deviceState = DeviceStates.On;
         } else {
@@ -119,7 +119,7 @@ public class WashingMachine implements Device{
             }
         }
     }
-    public void SwitchOff(){
+    public void switchOff(){
         degree = -1;
         timer = -1;
         deviceState = DeviceStates.Off;
