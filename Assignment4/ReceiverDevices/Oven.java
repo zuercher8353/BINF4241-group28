@@ -134,9 +134,7 @@ public class Oven implements Device {
         if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven on before you can start cooking");
         }
-        else if(deviceState == DeviceStates.Running){
-            System.out.println("The oven is already cooking");
-        }
+
     }
 
     public void checkTimer(){                              //returns remaining time if program is running else it returns the last timer set
