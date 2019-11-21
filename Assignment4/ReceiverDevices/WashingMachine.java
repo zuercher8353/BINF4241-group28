@@ -90,15 +90,11 @@ public class WashingMachine implements Devices, WashingDevices {
     }
 
     public void startWashing() {
-        if (washingMachineProgram.equals(WashingMachinePrograms.notSet) || degree == -1) {
-            System.out.println("you must set a program and a degree");
-        } else {
-            start = System.currentTimeMillis();
-            washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
-            washingThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
-            washingThread.start();
-            deviceState = DeviceStates.Running;
-        }
+        start = System.currentTimeMillis();
+        deviceState = DeviceStates.Running;
+        washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
+        washingThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
+        washingThread.start();
     }
 
     public void checkTimer() {
@@ -110,7 +106,9 @@ public class WashingMachine implements Devices, WashingDevices {
                 int remaining = (int) remainingTimeSec;
                 System.out.println("Remaining time: " + remaining);
             }
-        } else if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended) {
+        }
+
+        else if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended) {
             if (timer == -1) {
                 System.out.println("You did not set a program yet");
             } else {
