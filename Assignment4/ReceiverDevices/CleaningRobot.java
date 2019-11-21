@@ -95,6 +95,7 @@ public class CleaningRobot implements Device{
     }
 
 
+
     public void startCharging(){
         cleaningThread = null;
         startTimeCharging = System.currentTimeMillis();
