@@ -53,6 +53,7 @@ public class Dishwasher implements Devices, WashingDevices {
         } else if (deviceState == DeviceStates.Running){
             possibleFunctions.add(DeviceCommands.Stop.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
+            possibleFunctions.add(DeviceCommands.SwitchOff.name());
         }
         return possibleFunctions;
     }
