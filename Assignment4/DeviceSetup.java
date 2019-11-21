@@ -8,6 +8,7 @@ class DeviceSetup {
 
     private HashMap<Device, CommandHandler> devicesMap = new HashMap<Device, CommandHandler>();
 
+
     DeviceSetup() {
 
         //init an oven and add to devicemap
