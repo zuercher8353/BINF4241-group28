@@ -5,6 +5,8 @@ import CommandClients.NoCommand;
 import CommandClients.DishwasherCommands.*;
 import ReceiverDevices.Dishwasher;
 
+import java.util.ArrayList;
+
 
 public class DishwasherCommandHandler implements CommandHandler{
 
@@ -49,10 +51,17 @@ public class DishwasherCommandHandler implements CommandHandler{
     public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
-        for (Dishwasher.DeviceCommands commands : Dishwasher.DeviceCommands.values()) {
-            System.out.println("["+i+"] "+commands);
-            i++;
+        ArrayList stateCommands = dishwasher.getStateCommands();
+        for (Object stateCommand : stateCommands) {
+            int iter = 0;
+            for(Command buttonSlot : buttonSlots) {
+
+                iter++;
+            }
+            //System.out.println("[" +buttonNumber+ "]"+stateCommand);
+            System.out.println(stateCommand);
         }
+
         System.out.println("back");
         System.out.println("----------");
     }
