@@ -7,6 +7,7 @@ public class ThreadCleaningRobot implements Runnable {
     private CleaningRobot cleaningRobot;
     private boolean run;
 
+
     public ThreadCleaningRobot(long timeInMillis, CleaningRobot cleaningRobot){
         this.timer = timeInMillis;
         this.cleaningRobot = cleaningRobot;
