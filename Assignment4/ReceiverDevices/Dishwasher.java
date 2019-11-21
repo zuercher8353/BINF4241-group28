@@ -12,6 +12,7 @@ public class Dishwasher implements Device {
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.notSet;
     private long start;
     private Thread dishwasherThread;
+    DishwasherThread dishwasherThreadBehaviour;
 
     public enum DishwasherPrograms {
         Glasses,
@@ -82,8 +83,8 @@ public class Dishwasher implements Device {
                 timer = 4200000;
             }
             start = System.currentTimeMillis();
-            DishwasherThread washingMachineThreadBehaviour = new DishwasherThread(timer, this);
-            dishwasherThread = new Thread(washingMachineThreadBehaviour, "dishwasherThread");
+            dishwasherThreadBehaviour = new DishwasherThread(timer, this);
+            dishwasherThread = new Thread(dishwasherThreadBehaviour, "dishwasherThread");
             dishwasherThread.start();
             deviceState = DeviceStates.Running;
         }
@@ -116,6 +117,8 @@ public class Dishwasher implements Device {
 
     public void interrupt(){
         if(deviceState == DeviceStates.Running){
+            dishwasherThreadBehaviour.stop();
+            dishwasherThread = null;
             timer = -1;
             deviceState = DeviceStates.On;
             dishwasherProgram = DishwasherPrograms.notSet;
