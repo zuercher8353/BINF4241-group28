@@ -18,6 +18,7 @@ public class Smartphone {
         deviceSetup.printMainMenu();
         // end print
 
+
         System.out.println("Choose Device: ");
         Scanner userInput = new Scanner(System.in);
         String inputDevice = userInput.nextLine();
