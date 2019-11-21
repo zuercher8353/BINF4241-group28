@@ -6,20 +6,13 @@ import CommandClients.DishwasherCommands.*;
 import ReceiverDevices.Dishwasher;
 
 
-public class DishwasherCommandHandler implements CommandHandler{
+public class DishwasherCommandHandler{
+
 
     int nrOfCommands = Dishwasher.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
     private Dishwasher dishwasher;
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetUpDegree,
-        SetUpProgram,
-        CheckTimer,
-        Interrupt
-    }
 
     public DishwasherCommandHandler(Dishwasher dishwasher){
         this.dishwasher = dishwasher;
@@ -63,4 +56,5 @@ public class DishwasherCommandHandler implements CommandHandler{
         System.out.println("back");
         System.out.println("----------");
     }
+
 }

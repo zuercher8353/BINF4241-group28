@@ -6,10 +6,15 @@ public class CleaningRobot implements Device{
 
     private long timer = -1;
     private long startTime = -1;
+    private long startTimeCharging = -1;
     private long remainingCleaningTime = -1;
+    private float remainingCleaning = -1;
+    private float batteryBeforeCharging =-1;
     private DeviceStates deviceState = DeviceStates.Ready;
     private Thread cleaningThread;
     private Thread chargingThread;
+    private ThreadCleaningRobot cleaningThreadBehaviour;
+
 
 
     public enum DeviceCommands {
@@ -50,10 +55,14 @@ public class CleaningRobot implements Device{
 
         } else if(deviceState == DeviceStates.Charging){
             possibleFunctions.add(DeviceCommands.CheckBatteryChargingStatus.name());
+            if(remainingCleaning != -1){
+                possibleFunctions.add(DeviceCommands.CheckCleaningCompletion.name());
+            }
         }
         else if(deviceState == DeviceStates.CleaningNotCompleted){
             possibleFunctions.add(DeviceCommands.CompleteOutstandingCleaning.name());
             possibleFunctions.add(DeviceCommands.EndCleaning.name());
+            possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
             // dont know if possible need to change so that it works possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
         }
         return possibleFunctions;
@@ -65,23 +74,37 @@ public class CleaningRobot implements Device{
     public void startCleaner(){
         deviceState = DeviceStates.Running;
         startTime =  System.currentTimeMillis();
-        ThreadCleaningRobot cleaningThreadBehaviour = new ThreadCleaningRobot(timer, this);
+        if(remainingCleaningTime == -1){
+            cleaningThreadBehaviour = new ThreadCleaningRobot(timer, this);
+
+        }
+        else{
+            cleaningThreadBehaviour = new ThreadCleaningRobot(remainingCleaningTime, this);
+        }
         cleaningThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
         cleaningThread.start();
     }
     public void setRemainingCleaning(long remaining){
+        if(remaining == -1){
+            remainingCleaning = -1;
+        }
+        else{
+            remainingCleaning = this.checkCleaningCompletionWithReturn();
+        }
         remainingCleaningTime = remaining;
     }
 
 
+
     public void startCharging(){
         cleaningThread = null;
+        startTimeCharging = System.currentTimeMillis();
         deviceState = DeviceStates.Charging;
-        float batteryBeforeCharging =  batteryStatusWithReturn();
+        batteryBeforeCharging =  batteryStatusWithReturn();
         startTime = -1;
         long batteryChargingTime = (100 - (long)batteryBeforeCharging) * 1000;
-        ThreadChargingRobot cleaningThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);
-        chargingThread = new Thread(cleaningThreadBehaviour, "cleaningThread");
+        ThreadChargingRobot chargingThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);
+        chargingThread = new Thread(chargingThreadBehaviour, "chargingThread");
         chargingThread.start();
 
         //start threat so that when fully charged changes to ready
@@ -90,23 +113,44 @@ public class CleaningRobot implements Device{
 
     }
     //only possible while running
-    public void checkCleaningCompletion(){
+
+    public float checkCleaningCompletionWithReturn(){
+
         long timeNow = System.currentTimeMillis();
-        if(remainingCleaningTime == -1){
-            long percentageCleaned = (timeNow - startTime) / timer *100;
-            int percentage = (int) percentageCleaned;
-            System.out.println("The percentage of cleaning completion is " + percentage + "%");
+        if (remainingCleaningTime == -1) {
+            float percentageCleaned = (float) (timeNow - startTime) / timer * 100;
+            return percentageCleaned;
+        } else {
+            float percentageCleaned = (float) (remainingCleaningTime - (timeNow - startTime)) / timer * 100;
+            return percentageCleaned;
         }
-        else{
-            long percentageCleaned = (remainingCleaningTime - (timeNow - startTime)) / timer *100;
-            int percentage = (int) percentageCleaned;
-            System.out.println("The percentage of cleaning completion is " + percentage + "%");
+
+    }
+
+    public void checkCleaningCompletion(){
+        if(deviceState == DeviceStates.Charging){
+            if(remainingCleaning != -1){
+                System.out.println("The percentage of cleaning completion is " + remainingCleaning + "%");
+            }
+        }
+        else {
+            long timeNow = System.currentTimeMillis();
+            if (remainingCleaningTime == -1) {
+                float percentageCleaned = (float) (timeNow - startTime) / timer * 100;
+                percentageCleaned = Math.min(percentageCleaned, 100);
+
+                System.out.println("The percentage of cleaning completion is " + percentageCleaned + "%");
+            } else {
+                float percentageCleaned = (float) (timer - (remainingCleaningTime - (timeNow - startTime))) / timer * 100;
+                percentageCleaned = Math.min(percentageCleaned, 100);
+                System.out.println("The percentage of cleaning completion is " + percentageCleaned + "%");
+            }
         }
     }
 
     //roboter loses 1 percent of battery per second.
     public void checkBatteryStatus(){
-        if(deviceState == DeviceStates.Ready){
+        if(deviceState == DeviceStates.Ready || deviceState == DeviceStates.CleaningNotCompleted ){
             System.out.println("The battery status is 100% charged");
         }
         else{
@@ -123,8 +167,10 @@ public class CleaningRobot implements Device{
         return 100 - batteryUsed;
     }
     public void checkBatteryChargingStatus(){
-        long timeNow = System.currentTimeMillis();
-        float chargingStatus = 0;
+        long timeCharged = System.currentTimeMillis() - startTimeCharging;
+        float chargingStatus = batteryBeforeCharging + ((float)timeCharged / 1000);
+        chargingStatus = Math.min(chargingStatus,100);
+        System.out.println("the battery is " + chargingStatus + "% charged");
     }
 
     public void setReady() {
@@ -139,8 +185,13 @@ public class CleaningRobot implements Device{
     }
 
     public void interrupt() {
-        long timer = -1;
-        long remainingCleaningTime = -1;
+        cleaningThreadBehaviour.stop();
+        cleaningThread = null;
+        timer = -1;
+        startTimeCharging = -1;
+        remainingCleaningTime = -1;
+        remainingCleaning = -1;
+        batteryBeforeCharging =-1;
         this.startCharging();
 
     }
