@@ -36,7 +36,7 @@ public class OvenCommandSetTimer implements Command {
                 System.out.println("must be a number");
             }
         }
-        oven.SetTimer(inputTime);
+        oven.setTimer(inputTime);
     }
 
 

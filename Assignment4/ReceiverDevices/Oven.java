@@ -4,7 +4,7 @@ import Threads .*;
 
 import java.util.ArrayList;
 
-public class Oven implements Device {
+public class Oven implements CookingDevices {
     private long timer = -1;
     private int temperature = -1;
     private DeviceStates deviceState = DeviceStates.Off;
@@ -77,7 +77,7 @@ public class Oven implements Device {
         }
     }
 
-    public void SetTimer(int time){
+    public void setTimer(int time){
         if(deviceState == DeviceStates.On ){
             timer = (long) time * 1000;
         }
