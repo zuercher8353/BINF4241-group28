@@ -10,6 +10,7 @@ public class Oven implements Device {
     private DeviceStates deviceState = DeviceStates.Off;
     private OvenProgram ovenProgram = OvenProgram.notSet;
     private long start;
+    private Thread ovenThread;
 
     private enum DeviceStates {
         On,
@@ -120,6 +121,9 @@ public class Oven implements Device {
         if(temperature != -1 && timer != -1 && ovenProgram != OvenProgram.notSet ){
             start =  System.currentTimeMillis();
             deviceState = DeviceStates.Running;
+            OvenThread ovenThreadBehaviour = new OvenThread(timer, this);
+            ovenThread = new Thread(ovenThreadBehaviour, "ovenMachineThread");
+            ovenThread.start();
         }
         else{
             System.out.println("Not all parameters are set you can`t start cooking");
@@ -128,8 +132,8 @@ public class Oven implements Device {
         if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven on before you can start cooking");
         }
-        else if(deviceState == DeviceStates.Running){
-            System.out.println("The oven is already cooking");
+        else if (deviceState == DeviceStates.Running){
+            //System.out.println("The oven is already cooking");
         }
     }
 
