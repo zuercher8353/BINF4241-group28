@@ -64,7 +64,7 @@ public class CleaningRobot implements Device{
             possibleFunctions.add(DeviceCommands.CompleteOutstandingCleaning.name());
             possibleFunctions.add(DeviceCommands.EndCleaning.name());
             possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
-            // dont know if possible need to change so that it works possibleFunctions.add(DeviceCommands.CheckBatteryStatus.name());
+            possibleFunctions.add(DeviceCommands.CheckCleaningCompletion.name());
         }
         return possibleFunctions;
     }
@@ -86,13 +86,14 @@ public class CleaningRobot implements Device{
         cleaningThread.start();
     }
     public void setRemainingCleaning(long remaining){
+        remainingCleaningTime = remaining;
         if(remaining == -1){
             remainingCleaning = -1;
         }
         else{
             remainingCleaning = this.checkCleaningCompletionWithReturn();
         }
-        remainingCleaningTime = remaining;
+
     }
 
 
@@ -131,8 +132,12 @@ public class CleaningRobot implements Device{
     public void checkCleaningCompletion(){
         if(deviceState == DeviceStates.Charging){
             if(remainingCleaning != -1){
+
                 System.out.println("The percentage of cleaning completion is " + remainingCleaning + "%");
             }
+        }
+        else if(deviceState == DeviceStates.CleaningNotCompleted){
+            System.out.println("The percentage of cleaning completion is " + remainingCleaning + "%");
         }
         else {
             long timeNow = System.currentTimeMillis();
