@@ -127,6 +127,7 @@ public class Dishwasher implements Device {
     }
 
     public void setEnded() {
+        dishwasherThread = null;
         deviceState = DeviceStates.Ended;
     }
 }
