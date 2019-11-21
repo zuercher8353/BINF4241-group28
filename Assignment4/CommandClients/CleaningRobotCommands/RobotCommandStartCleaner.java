@@ -5,7 +5,7 @@ import ReceiverDevices.CleaningRobot;
 
 public class RobotCommandStartCleaner implements Command {
     private CleaningRobot robot;
-    private String commandName = CleaningRobot.DeviceCommands.CompleteOutstandingCleaning.name();
+    private String commandName = CleaningRobot.DeviceCommands.StartCleaner.name();
 
     public RobotCommandStartCleaner(CleaningRobot robot) {
         this.robot = robot;

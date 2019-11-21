@@ -4,24 +4,26 @@ import ReceiverDevices.CleaningRobot;
 
 public class ThreadCleaningRobot implements Runnable {
     private long timer;
-    CleaningRobot cleaningRobot;
+    private CleaningRobot cleaningRobot;
+    private boolean run;
 
     public ThreadCleaningRobot(long timeInMillis, CleaningRobot cleaningRobot){
         this.timer = timeInMillis;
         this.cleaningRobot = cleaningRobot;
+        this.run = true;
     }
 
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
-        while(true){
+        while(run){
             try {
                 if(System.currentTimeMillis() - startTime >= timer){
                     cleaningRobot.setRemainingCleaning(-1);
                     cleaningRobot.startCharging();
                     break;
                 }
-                if(cleaningRobot.batteryStatusWithReturn() < 5){
+                if(cleaningRobot.batteryStatusWithReturn() <= 0.001){
                     long timeNow = System.currentTimeMillis();
                     long remaining = timer - (timeNow - startTime);
                     cleaningRobot.setRemainingCleaning(remaining);
@@ -33,6 +35,9 @@ public class ThreadCleaningRobot implements Runnable {
                 e.printStackTrace();
             }
         }
-
     }
+    public void stop(){
+        this.run = false;
+    }
+
 }

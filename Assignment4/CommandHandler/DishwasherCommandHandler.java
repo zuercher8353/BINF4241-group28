@@ -8,18 +8,11 @@ import ReceiverDevices.Dishwasher;
 
 public class DishwasherCommandHandler implements CommandHandler{
 
+
     int nrOfCommands = Dishwasher.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
     private Dishwasher dishwasher;
 
-    private enum DeviceCommands {
-        SwitchOn,
-        SwitchOff,
-        SetUpDegree,
-        SetUpProgram,
-        CheckTimer,
-        Interrupt
-    }
 
     public DishwasherCommandHandler(Dishwasher dishwasher){
         this.dishwasher = dishwasher;
@@ -34,7 +27,7 @@ public class DishwasherCommandHandler implements CommandHandler{
 
     public boolean validateCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
                 return true;
             }
@@ -45,7 +38,7 @@ public class DishwasherCommandHandler implements CommandHandler{
 
     public void handleCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
                 buttonSlots[i].execute();
             }
@@ -56,11 +49,12 @@ public class DishwasherCommandHandler implements CommandHandler{
     public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
-        for (DeviceCommands commands : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands commands : Dishwasher.DeviceCommands.values()) {
             System.out.println("["+i+"] "+commands);
             i++;
         }
         System.out.println("back");
         System.out.println("----------");
     }
+
 }
