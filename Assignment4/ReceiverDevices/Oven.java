@@ -11,7 +11,7 @@ public class Oven implements Device {
     private OvenProgram ovenProgram = OvenProgram.notSet;
     private long start;
     private Thread ovenThread;
-    OvenThread ovenThreadBehaviour;
+    private OvenThread ovenThreadBehaviour;
 
     private enum DeviceStates {
         On,

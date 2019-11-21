@@ -12,6 +12,7 @@ public class WashingMachine implements Device {
     private WashingMachinePrograms washingMachineProgram = WashingMachinePrograms.notSet;
     private long start;
     private Thread washingThread;
+    private WashingMachineThread washingMachineThreadBehaviour;
 
 
     public enum WashingMachinePrograms {
@@ -68,6 +69,7 @@ public class WashingMachine implements Device {
     }
 
     public void setEnded() {
+        washingThread = null;
         deviceState = DeviceStates.Ended;
     }
 
@@ -93,7 +95,7 @@ public class WashingMachine implements Device {
             System.out.println("you must set a program and a degree");
         } else {
             start = System.currentTimeMillis();
-            WashingMachineThread washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
+            washingMachineThreadBehaviour = new WashingMachineThread(timer, this);
             washingThread = new Thread(washingMachineThreadBehaviour, "washingMachineThread");
             washingThread.start();
             deviceState = DeviceStates.Running;
@@ -129,6 +131,8 @@ public class WashingMachine implements Device {
 
     public void interrupt() {
         if (deviceState == DeviceStates.Running) {
+            washingMachineThreadBehaviour.stop();
+            washingThread = null;
             timer = -1;
             degree = -1;
             deviceState = DeviceStates.On;

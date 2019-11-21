@@ -21,6 +21,7 @@ public class Microwave implements Device {
     private Microwave.DeviceStates deviceState = Microwave.DeviceStates.Off;
     private long start;
     private Thread microwaveThread;
+    private MicrowaveThread microwaveThreadBehaviour;
 
     private enum DeviceStates {
         On,
@@ -52,6 +53,7 @@ public class Microwave implements Device {
     }
 
     public void setEnded() {
+        microwaveThread = null;
         deviceState = Microwave.DeviceStates.Ended;
     }
 
@@ -87,7 +89,7 @@ public class Microwave implements Device {
 
         if (temperature != -1 && timer != -1) {
             start = System.currentTimeMillis();
-            MicrowaveThread microwaveThreadBehaviour = new MicrowaveThread(timer, this);
+            microwaveThreadBehaviour = new MicrowaveThread(timer, this);
             microwaveThread = new Thread(microwaveThreadBehaviour, "microwaveThread");
             microwaveThread.start();
             deviceState = Microwave.DeviceStates.Running;
@@ -128,6 +130,8 @@ public class Microwave implements Device {
 
     public void interrupt() {
         if (deviceState == Microwave.DeviceStates.Running) {
+            microwaveThreadBehaviour.stop();
+            microwaveThread = null;
             timer = -1;
             temperature = -1;
             deviceState = Microwave.DeviceStates.On;

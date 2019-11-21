@@ -12,7 +12,7 @@ public class Dishwasher implements Device {
     private DishwasherPrograms dishwasherProgram = DishwasherPrograms.notSet;
     private long start;
     private Thread dishwasherThread;
-    DishwasherThread dishwasherThreadBehaviour;
+    private DishwasherThread dishwasherThreadBehaviour;
 
     public enum DishwasherPrograms {
         Glasses,
