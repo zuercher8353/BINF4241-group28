@@ -4,7 +4,7 @@ import Threads .*;
 
 import java.util.ArrayList;
 
-public class Oven implements Device {
+public class Oven implements Devices, CookingDevices {
     private long timer = -1;
     private int temperature = -1;
     private DeviceStates deviceState = DeviceStates.Off;
@@ -73,11 +73,11 @@ public class Oven implements Device {
             deviceState = DeviceStates.On;
         }
         else{
-            System.out.println("Device is already Switched on");
+            System.out.println("WashingDevices is already Switched on");
         }
     }
 
-    public void SetTimer(int time){
+    public void setTimer(int time){
         if(deviceState == DeviceStates.On ){
             timer = (long) time * 1000;
         }

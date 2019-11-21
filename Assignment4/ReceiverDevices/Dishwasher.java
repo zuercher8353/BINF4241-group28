@@ -5,7 +5,7 @@ import Threads.DishwasherThread;
 
 import java.util.ArrayList;
 
-public class Dishwasher implements Device {
+public class Dishwasher implements Devices, WashingDevices {
 
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
@@ -57,15 +57,24 @@ public class Dishwasher implements Device {
         return possibleFunctions;
     }
 
-    public void SwitchOn(){
+    public void switchOn(){
         deviceState = DeviceStates.On;
     }
 
-    public void setUpProgram(DishwasherPrograms program){
+    public void setUpProgram(String program){
         for (Dishwasher.DishwasherPrograms ENUM_dishwasherProgams : DishwasherPrograms.values()) {
             if (ENUM_dishwasherProgams.toString().equals(program)) {
                 dishwasherProgram = ENUM_dishwasherProgams;
             }
+        }
+        if (dishwasherProgram == DishwasherPrograms.Glasses) {
+            timer = 3600000;
+        } else if (dishwasherProgram == DishwasherPrograms.Mixed) {
+            timer = 7200000;
+        } else if (dishwasherProgram == DishwasherPrograms.Pans) {
+            timer = 5400000;
+        } else if (dishwasherProgram == DishwasherPrograms.Plates) {
+            timer = 4200000;
         }
     }
 
@@ -73,15 +82,6 @@ public class Dishwasher implements Device {
         if (dishwasherProgram.equals(DishwasherPrograms.notSet)) {
             System.out.println("you must set a program");
         } else {
-            if (dishwasherProgram == DishwasherPrograms.Glasses) {
-                timer = 3600000;
-            } else if (dishwasherProgram == DishwasherPrograms.Mixed) {
-                timer = 7200000;
-            } else if (dishwasherProgram == DishwasherPrograms.Pans) {
-                timer = 5400000;
-            } else if (dishwasherProgram == DishwasherPrograms.Plates) {
-                timer = 4200000;
-            }
             start = System.currentTimeMillis();
             dishwasherThreadBehaviour = new DishwasherThread(timer, this);
             dishwasherThread = new Thread(dishwasherThreadBehaviour, "dishwasherThread");
@@ -108,7 +108,7 @@ public class Dishwasher implements Device {
         }
     }
 
-    public void SwitchOff(){
+    public void switchOff(){
         timer = -1;
         deviceState = DeviceStates.Off;
         dishwasherProgram = DishwasherPrograms.notSet;

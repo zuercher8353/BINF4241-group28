@@ -4,7 +4,7 @@ import Threads.*;
 
 import java.util.ArrayList;
 
-public class Microwave implements Device {
+public class Microwave implements Devices, CookingDevices {
 
     public enum DeviceCommands {
         SwitchOn,
@@ -61,7 +61,7 @@ public class Microwave implements Device {
         if (deviceState == Microwave.DeviceStates.Off) {
             deviceState = Microwave.DeviceStates.On;
         } else {
-            System.out.println("Device is already switched on");
+            System.out.println("WashingDevices is already switched on");
         }
     }
 
