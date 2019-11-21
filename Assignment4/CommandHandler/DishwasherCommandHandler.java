@@ -7,7 +7,7 @@ import ReceiverDevices.Dishwasher;
 
 
 public class DishwasherCommandHandler{
-    /*
+
 
     int nrOfCommands = Dishwasher.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
@@ -56,5 +56,5 @@ public class DishwasherCommandHandler{
         System.out.println("back");
         System.out.println("----------");
     }
-    */
+
 }

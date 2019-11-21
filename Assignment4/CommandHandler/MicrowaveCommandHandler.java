@@ -1,4 +1,4 @@
-/*package CommandHandler;
+package CommandHandler;
 import CommandClients.*;
 import CommandClients.MicrowaveCommands.*;
 import ReceiverDevices.Microwave;
@@ -56,4 +56,4 @@ public class MicrowaveCommandHandler implements CommandHandler {
         System.out.println("back");
         System.out.println("----------");
     }
-}*/
+}
