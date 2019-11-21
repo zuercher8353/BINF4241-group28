@@ -3,9 +3,6 @@ package ReceiverDevices;
 import java.util.ArrayList;
 
 public interface WashingDevices {
-
-    public ArrayList getStateCommands();
-
     public void setEnded();
 
     public void switchOn();
@@ -17,8 +14,6 @@ public interface WashingDevices {
     public void checkTimer();
 
     public void switchOff();
-
-    public void interrupt();
 
 
 
