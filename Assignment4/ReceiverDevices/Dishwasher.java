@@ -5,7 +5,7 @@ import Threads.DishwasherThread;
 
 import java.util.ArrayList;
 
-public class Dishwasher implements Devices {
+public class Dishwasher implements Devices, WashingDevices {
 
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;

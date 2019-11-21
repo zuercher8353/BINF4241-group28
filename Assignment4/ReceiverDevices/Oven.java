@@ -4,7 +4,7 @@ import Threads .*;
 
 import java.util.ArrayList;
 
-public class Oven implements Devices {
+public class Oven implements Devices, CookingDevices {
     private long timer = -1;
     private int temperature = -1;
     private DeviceStates deviceState = DeviceStates.Off;

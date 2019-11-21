@@ -4,7 +4,7 @@ import Threads.*;
 
 import java.util.ArrayList;
 
-public class Microwave implements Devices {
+public class Microwave implements Devices, CookingDevices {
 
     public enum DeviceCommands {
         SwitchOn,

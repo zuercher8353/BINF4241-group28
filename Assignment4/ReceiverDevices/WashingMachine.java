@@ -4,7 +4,7 @@ import Threads.WashingMachineThread;
 
 import java.util.ArrayList;
 
-public class WashingMachine implements Devices {
+public class WashingMachine implements Devices, WashingDevices {
     private int degree = -1;
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public interface CookingDevices {
 
-    public ArrayList getStateCommands();
-
     public void setEnded();
 
     public void switchOn();
@@ -15,8 +13,6 @@ public interface CookingDevices {
     public void setTemperature(int temp);
 
     public void checkTimer();
-
-    public void interrupt();
 
     public void switchOff();
 
