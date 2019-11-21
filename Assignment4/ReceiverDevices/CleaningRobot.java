@@ -86,14 +86,15 @@ public class CleaningRobot implements Device{
         cleaningThread.start();
     }
     public void setRemainingCleaning(long remaining){
-        remainingCleaningTime = remaining;
+
         if(remaining == -1){
             remainingCleaning = -1;
         }
         else{
-            remainingCleaning = this.checkCleaningCompletionWithReturn();
+            remainingCleaning = (1 - (float)remaining / timer) *100;
+        //this.checkCleaningCompletionWithReturn();
         }
-
+        remainingCleaningTime = remaining;
     }
 
 
