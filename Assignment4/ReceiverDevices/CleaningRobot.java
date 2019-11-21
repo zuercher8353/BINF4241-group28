@@ -2,7 +2,7 @@ package ReceiverDevices;
 import java.util.*;
 import Threads .*;
 
-public class CleaningRobot implements Device{
+public class CleaningRobot implements Devices{
 
     private long timer = -1;
     private long startTime = -1;

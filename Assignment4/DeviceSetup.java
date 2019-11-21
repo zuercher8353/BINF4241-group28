@@ -6,7 +6,7 @@ import java.util.Map;
 
 class DeviceSetup {
 
-    private HashMap<Device, CommandHandler> devicesMap = new HashMap<Device, CommandHandler>();
+    private HashMap<Devices, CommandHandler> devicesMap = new HashMap<Devices, CommandHandler>();
 
 
     DeviceSetup() {
@@ -35,19 +35,19 @@ class DeviceSetup {
     }
 
     HashMap getDevices() {
-        HashMap<Device, CommandHandler> copy_devicesMap = devicesMap;
+        HashMap<Devices, CommandHandler> copy_devicesMap = devicesMap;
         return copy_devicesMap;
     }
 
     void initButtons() {
-        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+        for (Map.Entry<Devices, CommandHandler> device : devicesMap.entrySet()) {
             device.getValue().setCommands();
         }
     }
 
     void printMainMenu() {
         System.out.println("---------");
-        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+        for (Map.Entry<Devices, CommandHandler> device : devicesMap.entrySet()) {
             System.out.println(device.getKey().getClass().getSimpleName());
         }
         System.out.println("exit");
@@ -56,7 +56,7 @@ class DeviceSetup {
 
     boolean validateInput(String userInput) {
 
-        for (Map.Entry<Device, CommandHandler> device : devicesMap.entrySet()) {
+        for (Map.Entry<Devices, CommandHandler> device : devicesMap.entrySet()) {
             if (device.getKey().getClass().getSimpleName().equals(userInput)) {
                 return true;
             }

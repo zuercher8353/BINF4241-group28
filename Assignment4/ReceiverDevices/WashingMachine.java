@@ -1,11 +1,10 @@
 package ReceiverDevices;
 
-import CommandHandler.*;
 import Threads.WashingMachineThread;
 
 import java.util.ArrayList;
 
-public class WashingMachine implements Device {
+public class WashingMachine implements Devices {
     private int degree = -1;
     private long timer = -1;
     private DeviceStates deviceState = DeviceStates.Off;
