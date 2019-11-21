@@ -13,7 +13,8 @@ public class CleaningRobot implements Device{
     private DeviceStates deviceState = DeviceStates.Ready;
     private Thread cleaningThread;
     private Thread chargingThread;
-    private ThreadCleaningRobot cleaningThreadBehaviour;
+    private ThreadCleaningRobot cleaningThreadBehaviour = null;
+    private ThreadChargingRobot chargingThreadBehaviour = null;
 
 
 
@@ -103,7 +104,7 @@ public class CleaningRobot implements Device{
         batteryBeforeCharging =  batteryStatusWithReturn();
         startTime = -1;
         long batteryChargingTime = (100 - (long)batteryBeforeCharging) * 1000;
-        ThreadChargingRobot chargingThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);
+        chargingThreadBehaviour = new ThreadChargingRobot(batteryChargingTime, this);
         chargingThread = new Thread(chargingThreadBehaviour, "chargingThread");
         chargingThread.start();
 
@@ -174,7 +175,9 @@ public class CleaningRobot implements Device{
     }
 
     public void setReady() {
+        chargingThreadBehaviour.stop();
         chargingThread = null;
+        startTime = -1;
         if(remainingCleaningTime != -1){
             deviceState = DeviceStates.CleaningNotCompleted;
         }
@@ -185,14 +188,24 @@ public class CleaningRobot implements Device{
     }
 
     public void interrupt() {
-        cleaningThreadBehaviour.stop();
+        if(cleaningThreadBehaviour != null){
+            cleaningThreadBehaviour.stop(); }
         cleaningThread = null;
+        if(chargingThreadBehaviour != null){
+            chargingThreadBehaviour.stop(); }
+        chargingThread = null;
         timer = -1;
         startTimeCharging = -1;
         remainingCleaningTime = -1;
         remainingCleaning = -1;
         batteryBeforeCharging =-1;
-        this.startCharging();
+        if(deviceState == DeviceStates.CleaningNotCompleted){
+            setReady();
+        }
+        else{
+            this.startCharging();
+        }
+
 
     }
 
