@@ -43,6 +43,7 @@ public class Smartphone {
                             System.out.println("Command not available");
                         }
                     }
+
                     if (!inputCommand.equals("back")) {
                         deviceCommandHandler.printCommandMenu();
                     }
