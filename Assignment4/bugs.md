@@ -1,1 +1,1 @@
-CheckTimer: stops program 
+CheckTimer: stops program (after first time running)

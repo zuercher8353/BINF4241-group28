@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DishwasherCommandHandler implements CommandHandler{
 
 
-    int nrOfCommands = Dishwasher.DeviceCommands.values().length;
+    private int nrOfCommands = Dishwasher.DeviceCommands.values().length;
     private Command[] buttonSlots = new Command[nrOfCommands];
     private Dishwasher dishwasher;
 
@@ -25,23 +25,28 @@ public class DishwasherCommandHandler implements CommandHandler{
 
     public void setCommands() {
         buttonSlots[0] = new DishwasherCommandOn(dishwasher);
+        buttonSlots[1] = new DishwasherCommandCheckTimer(dishwasher);
+        buttonSlots[2] = new DishwasherCommandSetProgram(dishwasher);
+        buttonSlots[3] = new DishwasherCommandStart(dishwasher);
+        buttonSlots[4] = new DishwasherCommandInterrupt(dishwasher);
+        buttonSlots[5] = new DishwasherCommandOff(dishwasher);
+
     }
 
     public boolean validateCommand(String userInput) {
-        int i = 0;
-        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        ArrayList stateCommands = dishwasher.getStateCommands();
+        for (Object stateCommand : stateCommands) {
+            if (stateCommand.equals(userInput)) {
                 return true;
             }
-            i++;
         }
         return false;
     }
 
     public void handleCommand(String userInput) {
         int i = 0;
-        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
-            if (command.name().equals(userInput)) {
+        for (Command buttonSlot : buttonSlots) {
+            if (buttonSlot.getCommandName().equals(userInput)) {
                 buttonSlots[i].execute();
             }
             i++;

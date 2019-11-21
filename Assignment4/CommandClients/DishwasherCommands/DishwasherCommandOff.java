@@ -5,6 +5,7 @@ import ReceiverDevices.Dishwasher;
 import ReceiverDevices.WashingMachine;
 
 public class DishwasherCommandOff implements Command {
+    private String commandName = Dishwasher.DeviceCommands.SwitchOff.name();
     private Dishwasher dishwasher;
 
 
@@ -14,10 +15,11 @@ public class DishwasherCommandOff implements Command {
 
     @Override
     public void execute() {
+        dishwasher.switchOff();
     }
 
     @Override
     public String getCommandName() {
-        return null;
+        return commandName;
     }
 }

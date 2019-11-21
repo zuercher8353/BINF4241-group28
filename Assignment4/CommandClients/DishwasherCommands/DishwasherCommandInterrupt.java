@@ -6,7 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class DishwasherCommandInterrupt implements Command {
     private Dishwasher dishwasher;
-    private String commandName = "Interrupt";
+    private String commandName = Dishwasher.DeviceCommands.Stop.name();
 
     public DishwasherCommandInterrupt(Dishwasher dishwasher) {
         this.dishwasher = dishwasher;
@@ -14,6 +14,7 @@ public class DishwasherCommandInterrupt implements Command {
 
     @Override
     public void execute() {
+        dishwasher.interrupt();
     }
 
     @Override

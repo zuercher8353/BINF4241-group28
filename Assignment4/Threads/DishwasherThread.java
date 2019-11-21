@@ -16,7 +16,7 @@ public class DishwasherThread implements Runnable{
     public void run() {
         while (run) {
             try {
-                Thread.sleep(1);
+                Thread.sleep(washingTime);
                 dishwasher.setEnded();
             } catch (InterruptedException e) {
                 e.printStackTrace();

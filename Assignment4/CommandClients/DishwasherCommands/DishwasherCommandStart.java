@@ -6,7 +6,7 @@ import ReceiverDevices.WashingMachine;
 
 public class DishwasherCommandStart implements Command {
     private Dishwasher dishwasher;
-    private String commandName = "Start";
+    private String commandName = Dishwasher.DeviceCommands.StartWashing.name();
 
     public DishwasherCommandStart(Dishwasher dishwasher) {
         this.dishwasher = dishwasher;
@@ -14,6 +14,7 @@ public class DishwasherCommandStart implements Command {
 
     @Override
     public void execute() {
+        dishwasher.startWashing();
     }
 
     @Override

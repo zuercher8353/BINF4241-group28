@@ -42,12 +42,12 @@ public class Dishwasher implements Devices, WashingDevices {
         ArrayList<String> possibleFunctions = new ArrayList<>();
         if (deviceState == DeviceStates.Off){
             possibleFunctions.add(DeviceCommands.SwitchOn.name());
-        } else if(deviceState == DeviceStates.On) {
+        } else if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended) {
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
             possibleFunctions.add(DeviceCommands.SetUpProgram.name());
             possibleFunctions.add(DeviceCommands.SwitchOff.name());
 
-            if (dishwasherProgram == DishwasherPrograms.notSet){
+            if (dishwasherProgram != DishwasherPrograms.notSet){
                 possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
         } else if (deviceState == DeviceStates.Running){
@@ -62,32 +62,28 @@ public class Dishwasher implements Devices, WashingDevices {
     }
 
     public void setUpProgram(String program){
-        for (Dishwasher.DishwasherPrograms ENUM_dishwasherProgams : DishwasherPrograms.values()) {
+        for (DishwasherPrograms ENUM_dishwasherProgams : DishwasherPrograms.values()) {
             if (ENUM_dishwasherProgams.toString().equals(program)) {
                 dishwasherProgram = ENUM_dishwasherProgams;
             }
         }
         if (dishwasherProgram == DishwasherPrograms.Glasses) {
-            timer = 3600000;
+            timer = 36000;
         } else if (dishwasherProgram == DishwasherPrograms.Mixed) {
-            timer = 7200000;
+            timer = 72000;
         } else if (dishwasherProgram == DishwasherPrograms.Pans) {
-            timer = 5400000;
+            timer = 54000;
         } else if (dishwasherProgram == DishwasherPrograms.Plates) {
-            timer = 4200000;
+            timer = 42000;
         }
     }
 
     public void startWashing(){
-        if (dishwasherProgram.equals(DishwasherPrograms.notSet)) {
-            System.out.println("you must set a program");
-        } else {
-            start = System.currentTimeMillis();
-            dishwasherThreadBehaviour = new DishwasherThread(timer, this);
-            dishwasherThread = new Thread(dishwasherThreadBehaviour, "dishwasherThread");
-            dishwasherThread.start();
-            deviceState = DeviceStates.Running;
-        }
+        start = System.currentTimeMillis();
+        deviceState = DeviceStates.Running;
+        dishwasherThreadBehaviour = new DishwasherThread(timer, this);
+        dishwasherThread = new Thread(dishwasherThreadBehaviour, "dishwasherThread");
+        dishwasherThread.start();
     }
 
     public void checkTimer() {
@@ -97,13 +93,15 @@ public class Dishwasher implements Devices, WashingDevices {
                 System.out.println("No time remaining, the program is finished");
             } else{
                 int remaining = (int) remainingTimeSec;
-                timer = remaining;
+                System.out.println("Remaining time: " + remaining);
+
             }
-        } else if (deviceState == DeviceStates.On){
+        } else if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             if (timer == -1){
-                System.out.println("You did not set a timer");
+                System.out.println("You did not set a program yet");
             } else{
                 int timerInSec = (int) timer/1000;
+                System.out.println("Set time: " + timerInSec);
             }
         }
     }
