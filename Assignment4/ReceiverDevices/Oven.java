@@ -101,22 +101,22 @@ public class Oven implements Devices, CookingDevices {
         }
     }
 
-    public void setUpProgram (String inputProgram){
+    public void setUpProgram (String inputProgram) {
 
 
-        for(OvenProgram ENUM_ovenProgram : OvenProgram.values()) {
-            if(ENUM_ovenProgram.toString().equals(inputProgram)) {
+        for (OvenProgram ENUM_ovenProgram : OvenProgram.values()) {
+            if (ENUM_ovenProgram.toString().equals(inputProgram)) {
                 ovenProgram = ENUM_ovenProgram;
             }
         }
 
-        if(deviceState == DeviceStates.Off){
+        if (deviceState == DeviceStates.Off) {
             System.out.println("You need to switch the oven on before you set a program");
-        }
-        else if(deviceState == DeviceStates.Running){
+        } else if (deviceState == DeviceStates.Running) {
             System.out.println("The oven is running you cant set a program");
         }
     }
+
 
     public void StartCooking(){
 
