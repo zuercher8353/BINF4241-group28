@@ -6,7 +6,7 @@ import CommandClients.DishwasherCommands.*;
 import ReceiverDevices.Dishwasher;
 
 
-public class DishwasherCommandHandler{
+public class DishwasherCommandHandler implements CommandHandler{
 
 
     int nrOfCommands = Dishwasher.DeviceCommands.values().length;
@@ -27,7 +27,7 @@ public class DishwasherCommandHandler{
 
     public boolean validateCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
                 return true;
             }
@@ -38,7 +38,7 @@ public class DishwasherCommandHandler{
 
     public void handleCommand(String userInput) {
         int i = 0;
-        for (DeviceCommands command : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands command : Dishwasher.DeviceCommands.values()) {
             if (command.name().equals(userInput)) {
                 buttonSlots[i].execute();
             }
@@ -49,7 +49,7 @@ public class DishwasherCommandHandler{
     public void printCommandMenu(){
         System.out.println("----------");
         int i = 0;
-        for (DeviceCommands commands : DeviceCommands.values()) {
+        for (Dishwasher.DeviceCommands commands : Dishwasher.DeviceCommands.values()) {
             System.out.println("["+i+"] "+commands);
             i++;
         }
