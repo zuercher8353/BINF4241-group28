@@ -89,14 +89,9 @@ public class Dishwasher implements Devices, WashingDevices {
 
     public void checkTimer() {
         if (deviceState == DeviceStates.Running){
-            long remainingTimeSec = (timer - (System.currentTimeMillis() - start)) / 1000;
-            if (remainingTimeSec <= 0){
-                System.out.println("No time remaining, the program is finished");
-            } else{
-                int remaining = (int) remainingTimeSec;
-                System.out.println("Remaining time: " + remaining);
-
-            }
+            float remainingTimeSec = (float) (timer - (System.currentTimeMillis() - start)) / 1000;
+            remainingTimeSec = Math.max(0, remainingTimeSec);
+            System.out.println("Remaining time: " + remainingTimeSec);
         } else if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             if (timer == -1){
                 System.out.println("You did not set a program yet");
@@ -126,6 +121,7 @@ public class Dishwasher implements Devices, WashingDevices {
     }
 
     public void setEnded() {
+        dishwasherThreadBehaviour.stop();
         dishwasherThread = null;
         deviceState = DeviceStates.Ended;
     }

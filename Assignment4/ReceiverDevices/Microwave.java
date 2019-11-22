@@ -53,6 +53,7 @@ public class Microwave implements Devices, CookingDevices {
     }
 
     public void setEnded() {
+        microwaveThreadBehaviour.stop();
         microwaveThread = null;
         deviceState = Microwave.DeviceStates.Ended;
     }
@@ -107,15 +108,11 @@ public class Microwave implements Devices, CookingDevices {
     public void checkTimer() {
         //returns remaining time if program is running else it returns the last timer set
         if (deviceState == Microwave.DeviceStates.Running) {
-
-            long remainingTimeSec = (timer - (System.currentTimeMillis() - start)) / 1000;
-            if (remainingTimeSec <= 0) {
-                System.out.println("No time remaining, the program is finished");
-            } else {
-                int remaining = (int) remainingTimeSec;
-                System.out.println("Remaining Time: " + remaining);
-            }
-        } else if (deviceState == Microwave.DeviceStates.Off) {
+            float remainingTimeSec = (float) (timer - (System.currentTimeMillis() - start)) / 1000;
+            remainingTimeSec = Math.max(0, remainingTimeSec);
+            System.out.println("Remaining time: " + remainingTimeSec);
+        }
+         else if (deviceState == Microwave.DeviceStates.Off) {
             System.out.println("You need to switch the Microwave, to check the timer");
         } else if (deviceState == Microwave.DeviceStates.On || deviceState == Microwave.DeviceStates.Ended) {
             if (timer == -1) {

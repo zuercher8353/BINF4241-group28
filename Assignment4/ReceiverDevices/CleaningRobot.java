@@ -100,6 +100,7 @@ public class CleaningRobot implements Devices{
 
 
     public void startCharging(){
+        cleaningThreadBehaviour.stop();
         cleaningThread = null;
         startTimeCharging = System.currentTimeMillis();
         deviceState = DeviceStates.Charging;

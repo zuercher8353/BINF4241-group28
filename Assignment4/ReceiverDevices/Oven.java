@@ -64,6 +64,7 @@ public class Oven implements Devices, CookingDevices {
     }
 
     public void setEnded(){
+        ovenThreadBehaviour.stop();
         ovenThread = null;
         deviceState = DeviceStates.Ended;
     }
@@ -139,15 +140,9 @@ public class Oven implements Devices, CookingDevices {
 
     public void checkTimer(){                              //returns remaining time if program is running else it returns the last timer set
         if(deviceState == DeviceStates.Running){
-
-            long remainingTimeSec = (timer - (System.currentTimeMillis() - start)) / 1000 ;
-            if(remainingTimeSec <= 0){
-                System.out.println("No time remaining, the program is finished");
-            }
-            else{
-                int remaining = (int) remainingTimeSec;
-                System.out.println("Remaining Time: " + remaining);
-            }
+            float remainingTimeSec = (float) (timer - (System.currentTimeMillis() - start)) / 1000;
+            remainingTimeSec = Math.max(0, remainingTimeSec);
+            System.out.println("Remaining time: " + remainingTimeSec);
         }
         else if(deviceState == DeviceStates.Off){
             System.out.println("You need to switch the oven, to check the timer");

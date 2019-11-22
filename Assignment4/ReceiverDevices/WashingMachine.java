@@ -68,6 +68,7 @@ public class WashingMachine implements Devices, WashingDevices {
     }
 
     public void setEnded() {
+        washingMachineThreadBehaviour.stop();
         washingThread = null;
         deviceState = DeviceStates.Ended;
     }
@@ -99,14 +100,10 @@ public class WashingMachine implements Devices, WashingDevices {
 
     public void checkTimer() {
         if (deviceState == DeviceStates.Running) {
-            long remainingTimeSec = (timer - (System.currentTimeMillis() - start)) / 1000;
-            if (remainingTimeSec <= 0) {
-                System.out.println("No time ramining, the program is finished");
-            } else {
-                int remaining = (int) remainingTimeSec;
-                System.out.println("Remaining time: " + remaining);
+            float remainingTimeSec = (float) (timer - (System.currentTimeMillis() - start)) / 1000;
+            remainingTimeSec = Math.max(0, remainingTimeSec);
+            System.out.println("Remaining time: " + remainingTimeSec);
             }
-        }
 
         else if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended) {
             if (timer == -1) {
