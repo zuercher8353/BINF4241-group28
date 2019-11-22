@@ -79,7 +79,7 @@ public class Oven implements Devices, CookingDevices {
     }
 
     public void setTimer(int time){
-        if(deviceState == DeviceStates.On ){
+        if(deviceState == DeviceStates.On || deviceState == DeviceStates.Ended){
             timer = (long) time * 1000;
         }
         else if(deviceState == DeviceStates.Off){

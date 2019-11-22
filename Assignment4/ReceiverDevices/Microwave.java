@@ -67,11 +67,11 @@ public class Microwave implements Devices, CookingDevices {
     }
 
     public void setTimer(int time) {
-        if (deviceState == Microwave.DeviceStates.On) {
+        if (deviceState == DeviceStates.On || deviceState == DeviceStates.Ended) {
             timer = (long) time * 1000;
-        } else if (deviceState == Microwave.DeviceStates.Off) {
+        } else if (deviceState == DeviceStates.Off) {
             System.out.println("You need to switch the Microwave on before you set a timer");
-        } else if (deviceState == Microwave.DeviceStates.Running) {
+        } else if (deviceState == DeviceStates.Running) {
             System.out.println("The Microwave is running you cant set a timer");
         }
     }
@@ -90,10 +90,10 @@ public class Microwave implements Devices, CookingDevices {
 
         if (temperature != -1 && timer != -1) {
             start = System.currentTimeMillis();
+            deviceState = Microwave.DeviceStates.Running;
             microwaveThreadBehaviour = new MicrowaveThread(timer, this);
             microwaveThread = new Thread(microwaveThreadBehaviour, "microwaveThread");
             microwaveThread.start();
-            deviceState = Microwave.DeviceStates.Running;
         } else {
             System.out.println("Not all parameters are set you can`t start cooking");
         }
