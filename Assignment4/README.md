@@ -35,8 +35,7 @@ any parameter and then start baking again.
 The washing machine must be switched on first. After switching it on, the degree and the washing program can be set. If the user sets one of
 this parameters twice the old parameter gets overwritten by the new one. After setting the program an automatic timer is set. If all parameters are set the washing machine can start washing.
 During the washing process the program and degree can't be modified. The user can turn off the washing process
-which interrupts the washing and resets all parameters (program, degree). The washing machine can't be switched off while a program runs. To run a new program while
-the washing machine is already washing the actual program must be turned off.
+which interrupts the washing and resets all parameters (program, degree).
 CheckTimer returns the active timer if the washing machine is running, the last set timer if a timer is set or no timer set if no timer is set. 
 When the washing program ends the device gets into the Ended state which preserves the program (also the timer) and degree that were previously set.
 The user can immediately start washing again or change the parameters and then start washing.
@@ -46,8 +45,7 @@ The user can immediately start washing again or change the parameters and then s
 The dishwasher must be switched on first. After switching it on, the program can be set. If the user sets this parameter twice
 the old parameter gets overwritten by the new one. After setting the program an automatic timer is set. If the program is set the dishwasher can start washing.
 During the washing process the program can't be modified. The user can interrupt the washing process which interrupts the washing and resets the program (also the automatic timer).
-The dishwasher can be switched off at any time which completely shuts down the device. To run a new program while the dishwasher 
-is already washing the actual program must be interrupted. 
+The dishwasher can be switched off at any time which completely shuts down the device.
 CheckTimer returns the active timer if the dishwasher is running, the last set timer if a timer is set or no timer set if no timer is set.
 When the program ends the device gets into the Ended state which preserves the program (also the timer) that was previously set.
 The user can immediately start washing again or change the program and then start washing.
