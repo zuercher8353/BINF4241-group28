@@ -86,3 +86,10 @@ If the robot had to break the cleaning for charging, the user can check the perc
 After the robot is 100% charged, the robot can finish the outstanding cleaning, if the cleaning was not finished before.
 Or a new timer can be set so that the robot can start cleaning again. The robot can end the cleaning and go back to charging base at any time.
 This command is also available after charging if the robot didn´t finish the cleaning before charging, if the user doesn´t want that the robot finishes the outstanding cleaning.
+
+##Class Diagram
+###Simplified Version
+![](ClassDiagramSimplified.png)
+
+###Full Version
+![](ClassDiagramFull.png)
