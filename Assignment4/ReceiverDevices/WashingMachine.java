@@ -36,7 +36,7 @@ public class WashingMachine implements Devices, WashingDevices {
         SetUpProgram,
         CheckTimer,
         StartWashing,
-        Interrupt
+        TurnOff
     }
 
     public ArrayList getStateCommands() {
@@ -52,7 +52,7 @@ public class WashingMachine implements Devices, WashingDevices {
                 possibleFunctions.add(DeviceCommands.StartWashing.name());
             }
         } else if (deviceState == DeviceStates.Running) {
-            possibleFunctions.add(DeviceCommands.Interrupt.name());
+            possibleFunctions.add(DeviceCommands.TurnOff.name());
             possibleFunctions.add(DeviceCommands.CheckTimer.name());
         }
         return possibleFunctions;
