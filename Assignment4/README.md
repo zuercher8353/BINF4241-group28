@@ -1,13 +1,35 @@
 ## Instructions
 
 In the console, one can navigate through the menus
-using exit or back respecively. exit quits the smartphone. 
+using exit or back respectively. exit quits the smartphone. 
 
 to input a command, write the statements exactly as shown in the menu
 
 the submenu of the device represents a remote control, where buttons 
 are mapped with a function (to follow the command pattern). according to the current state
 only currently possible commands are shown. Nevertheless the index of the button remains the same.
+
+### Client
+
+We split up the Client of the Command Pattern into two classes: Smartphone and DeviceSetup. The Smartphone acts as a Main, handling the initialization of the DeviceSetup and thus indirectly the initialization of the Devices. The Devices are paired inside a Hashmap to the corresponding CommandHandler. 
+
+The Smartphone Client is responsible for reading an input Device and a input command and handling the menu/submenu printing. It then delegates the corresponding CommandHandler to handle the Command to the specific Device.
+
+The DeviceSetup initializes the buttons (see Invoker) of the corresponding CommandHandler (Invoker), occuping each button with a specific Command (setCommands), available in the Device. Thus it is responsible for creating a CommandObject.
+
+### Invoker
+
+For each Device we implemented a CommandHandler (Invoker), representing a methophor of a Remote with buttons. These buttons are initially allocated without any function i.e. empty Commands (NoCommands). The function handleCommand inside CommandHandler allows a CommandObject loaded in the button to be execute.
+
+We used a small alteration of the command pattern, such that the CommandHandler (Invoker) creates the Concrete Command, instead of the Client itself. We did this because of the following reason: First, a Smartphone is usually not aware of all the commands a certain coupled device can handle. Second, when adding an additional device, we do not have to change the implementation of the smartphone but just add a new CommandHandler with the device and its specific commands.
+
+### Concrete Command
+
+Each Concrete Command of every Device is implemented as its own class. These are the loaded into the buttons of the corresponding CommandHandler, ready to be executed on a call of handleCommand() to the CommandHandler. The Concrete Command is then able to prompt the device to perform an action.
+
+### Receiver
+
+At the end of the Command pattern chain, the Receiver performs the desired action, leading to the ouput/behaviour.
 
 ##Devices
 
@@ -32,6 +54,7 @@ which preserves the timer and temperature that was previously set. The user can 
 any parameter and then start baking again. 
 
 ####Washing Machine
+
 The washing machine must be switched on first. After switching it on, the degree and the washing program can be set. If the user sets one of
 this parameters twice the old parameter gets overwritten by the new one. After setting the program an automatic timer is set. If all parameters are set the washing machine can start washing.
 During the washing process the program and degree can't be modified. The user can turn off the washing process
@@ -42,6 +65,7 @@ The user can immediately start washing again or change the parameters and then s
 
 
 ####Dishwasher
+
 The dishwasher must be switched on first. After switching it on, the program can be set. If the user sets this parameter twice
 the old parameter gets overwritten by the new one. After setting the program an automatic timer is set. If the program is set the dishwasher can start washing.
 During the washing process the program can't be modified. The user can interrupt the washing process which interrupts the washing and resets the program (also the automatic timer).
