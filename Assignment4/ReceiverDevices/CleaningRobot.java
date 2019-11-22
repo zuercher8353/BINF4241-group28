@@ -118,19 +118,6 @@ public class CleaningRobot implements Devices{
     }
     //only possible while running
 
-    public float checkCleaningCompletionWithReturn(){
-
-        long timeNow = System.currentTimeMillis();
-        if (remainingCleaningTime == -1) {
-            float percentageCleaned = (float) (timeNow - startTime) / timer * 100;
-            return percentageCleaned;
-        } else {
-            float percentageCleaned = (float) (remainingCleaningTime - (timeNow - startTime)) / timer * 100;
-            return percentageCleaned;
-        }
-
-    }
-
     public void checkCleaningCompletion(){
         if(deviceState == DeviceStates.Charging){
             if(remainingCleaning != -1){
