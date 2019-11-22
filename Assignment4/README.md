@@ -25,6 +25,7 @@ For each Device we implemented a CommandHandler (Invoker), representing a methap
 We used a small alteration of the command pattern, such that the CommandHandler (Invoker) creates the Concrete Command, instead of the *Client* itself. We did this because of the following reason: First, a Smartphone is usually not aware of all the commands a certain coupled device can handle. Second, when adding an additional device, we do not have to change the implementation of the smartphone but just add a new CommandHandler with the device and its specific commands.
 
 
+
 ### Concrete Command
 
 Each Concrete Command of every device is implemented as its own class. These are the loaded into the buttons of the corresponding CommandHandler, ready to be executed on a call of handleCommand() to the CommandHandler. The Concrete Command is then able to prompt the device to perform an action.
