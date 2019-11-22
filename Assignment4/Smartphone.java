@@ -40,6 +40,7 @@ public class Smartphone {
                     if (deviceCommandHandler.validateCommand(inputCommand)) {
                         deviceCommandHandler.handleCommand(inputCommand);
                     }
+
                     else {
                         if (!inputCommand.equals("back")) {
                             System.out.println("Command not available");
