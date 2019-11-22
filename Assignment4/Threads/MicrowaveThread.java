@@ -17,7 +17,7 @@ public class MicrowaveThread implements Runnable {
     public void run() {
         while (run) {
             try {
-                Thread.sleep(1);
+                Thread.sleep(bakingTime);
                 microwave.setEnded();
             } catch (InterruptedException e) {
                 e.printStackTrace();
