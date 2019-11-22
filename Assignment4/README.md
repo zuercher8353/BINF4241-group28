@@ -33,6 +33,8 @@ Each Concrete Command of every device is implemented as its own class. These are
 
 At the end of the Command pattern chain, the *Client* performs the desired action, leading to the ouput/behaviour.
 
+![](UML-CommandPattern.png)
+
 ##Devices
 
 ####Oven
