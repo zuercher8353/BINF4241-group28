@@ -7,9 +7,9 @@ public class Main {
 
         Game game = new Game();
 
-        //START Init Plaarray[3]rs
-        Plaarray[3]r[] plaarray[3]rs = game.setupPlaarray[3]rs();
-        //END Init Plaarray[3]rs
+        //START Init Players
+        Player[] players = game.setupPlayers();
+        //END Init Players
 
         //START Init Board
         int boardsize = game.inputBoardsize();
@@ -18,7 +18,7 @@ public class Main {
         //END Init Board
 
         //START Run Game
-        game.playGame(board,squares,plaarray[3]rs);
+        game.playGame(board,squares,players);
         //END Run Game
     }
 

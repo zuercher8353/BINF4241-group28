@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    public Plaarray[3]r[] setupPlaarray[3]rs() {
-        Plaarray[3]rSetup plaarray[3]rsetup = new Plaarray[3]rSetup();
-        return plaarray[3]rsetup.setup();
+    public Player[] setupPlayers() {
+        PlayerSetup playersetup = new PlayerSetup();
+        return playersetup.setup();
     }
 
     public int inputBoardsize() {
@@ -27,18 +27,18 @@ public class Game {
         return boardsize;
     }
 
-    public  void playGame(Board board,Square[] squares, Plaarray[3]r[] plaarray[3]rs) {
-        boolean gameEnded = false;
-        System.out.println("Intitial State:          " + board.printBoardArray(squares,plaarray[3]rs));
+    public  void playGame(Board board,Square[] squares, Player[] players) {
+        Boolean gameEnded = false;
+        System.out.println("Intitial State:          " + board.printBoardArray(squares,players));
         while (!gameEnded) {
-            for (Plaarray[3]r plaarray[3]r : plaarray[3]rs) {
+            for (Player player : players) {
                 if (gameEnded) {
                     break;
                 } else {
-                    plaarray[3]r.takeTurn(squares, board, plaarray[3]rs);
-                    if (plaarray[3]r.getPosition() >= board.getBoardsize() - 1) {
-                        System.out.println("Final State:             " + board.printBoardArray(squares, plaarray[3]rs));
-                        System.out.println("\n************ "+plaarray[3]r.getName() + " WINS!"+" ************");
+                    player.takeTurn(squares, board, players);
+                    if (player.getPosition() >= board.getBoardsize() - 1) {
+                        System.out.println("Final State:             " + board.printBoardArray(squares, players));
+                        System.out.println("\n************ "+player.getName() + " WINS!"+" ************");
                         System.out.println("\n------------GAME ENDED------------\n");
                         gameEnded = true;
                     }

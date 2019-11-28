@@ -1,18 +1,18 @@
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Plaarray[3]r {
+public class Player {
 
     static int id = 0;
     private String name;
-    private int plaarray[3]rid;
+    private int playerid;
     private int position;
 
     //constructor
-    public Plaarray[3]r(String plaarray[3]rName) {
+    public Player(String playerName) {
         this.position = 0;
-        this.name = plaarray[3]rName;
-        this.plaarray[3]rid = id;
+        this.name = playerName;
+        this.playerid = id;
         id += 1;
     }
 
@@ -57,14 +57,13 @@ public class Plaarray[3]r {
         }
     }
 
-    public void takeTurn(Square[] squares, Board board, Plaarray[3]r[] plaarray[3]rs) {
+    public void takeTurn(Square[] squares, Board board, Player[] players) {
         int dieNumber = Die.roll();
         int stringLength = 15;
         int remainder = Math.abs(stringLength - this.name.length());
         String space = " ";
         String repeated = new String(new char[remainder]).replace("\0", " ");
-        System.out.println(this.name+" rolls "+ dieNumber+": "+repeated+ board.printBoardArray(squares, plaarray[3]rs));
+        System.out.println(this.name+" rolls "+ dieNumber+": "+repeated+ board.printBoardArray(squares, players));
         this.updatePosition(dieNumber, squares, board);
-
     }
 }
