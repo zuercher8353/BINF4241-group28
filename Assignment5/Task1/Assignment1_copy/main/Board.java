@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package main;
 
 public class Board {
     private int boardsize;

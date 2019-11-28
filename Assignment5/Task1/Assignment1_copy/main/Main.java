@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
-import java.util.Scanner;
-import java.util.*;
+package main;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +19,8 @@ public class Main {
         game.playGame(board,squares,players);
         //END Run Game
     }
-
 }
+
+
 
 

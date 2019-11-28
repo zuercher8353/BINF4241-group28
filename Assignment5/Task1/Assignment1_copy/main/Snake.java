@@ -1,3 +1,5 @@
+package main;
+
 public class Snake extends Square {
     private int start;
     private int end;
