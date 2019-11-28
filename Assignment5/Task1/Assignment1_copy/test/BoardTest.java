@@ -1,15 +1,14 @@
 package test;
 import main.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
 
-public class GameTest {
+public class BoardTest {
     private int boardsize = 8;
     Board board;
     Die die;
 
-    @Before
+    @BeforeEach
     public void setup() {
         board = new Board(boardsize);
         die = new Die();
@@ -17,12 +16,9 @@ public class GameTest {
 
     @Test
     public void testBoardSize() {
-        Board board = new Board(boardsize);
+        Board newBoard = new Board(9);
+        Assert.assertEquals(board.initSquares().length,boardsize);
         Assert.assertEquals(board.getBoardsize(),boardsize);
-    }
-
-    @Test
-    public void testDie() {
-        Assert.assertEquals(Die.roll(), 4);
+        Assert.assertNotEquals(newBoard.getBoardsize(),board.getBoardsize());
     }
 }
