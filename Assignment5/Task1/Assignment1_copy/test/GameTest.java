@@ -39,10 +39,6 @@ public class GameTest implements Runnable {
         player1 = new Player("janosch");
         player2 = new Player("jonas");
         players = new Player[]{player1, player2};
-    }
-
-    @BeforeEach
-    public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }

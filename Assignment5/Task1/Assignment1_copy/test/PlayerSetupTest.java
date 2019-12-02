@@ -3,13 +3,13 @@ package test;
 import main.*;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.io.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 
 public class PlayerSetupTest implements Runnable {
 
@@ -20,18 +20,17 @@ public class PlayerSetupTest implements Runnable {
     Board board;
     Die die;
     PlayerSetup playerSetup;
-
+    int boardsize = 20;
     private Player player1;
     private Player player2;
     private Player[] players;
-    int boardsize = 20;
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    @Before
+    @BeforeEach
     public void setup() {
         game = new Game();
         board = new Board(boardsize);
@@ -40,33 +39,8 @@ public class PlayerSetupTest implements Runnable {
         player1 = new Player("janosch");
         player2 = new Player("jonas");
         players = new Player[]{player1, player2};
-    }
-
-    @Before
-    public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-    }
-
-    /**
-     * test for restriction of amount fo players, upper limit
-     */
-    @Test
-    public void testInputPlayerAmountUpper() {
-        thread = new Thread(this);
-        String input = "5"; //should be <= 4 and >= 2
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        long start_time = System.currentTimeMillis();
-        thread.start();
-        long end_time = System.currentTimeMillis();
-        while (end_time-start_time < 10){
-            end_time = System.currentTimeMillis();
-        }
-        thread.interrupt();
-        thread = null;
-        String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*(.*)"));
     }
 
     /**
@@ -75,9 +49,9 @@ public class PlayerSetupTest implements Runnable {
    @Test
    public void testInputPlayerAmountLower() {
         thread = new Thread(this);
-        String input = "1"; //should be <= 4 and >= 2
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String input1 = "9"; //should be <= 4 and >= 2
+        InputStream in2 = new ByteArrayInputStream(input1.getBytes());
+        System.setIn(in2);
         long start_time = System.currentTimeMillis();
         thread.start();
         long end_time = System.currentTimeMillis();
@@ -87,7 +61,8 @@ public class PlayerSetupTest implements Runnable {
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*(.*)"));
+       String outputSTR2 = outContent.toString();
+        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR2.matches("(.*)(?s).*[\\n\\r].*(.*)\\nChoose 2, 3 or 4 players\\n(.*)(?s).*[\\n\\r].*(.*)"));
     }
 
     /**
@@ -96,9 +71,7 @@ public class PlayerSetupTest implements Runnable {
     @Override
     public void run() {
         running = true;
-        while(running) {
-            playerSetup.setup();
-            running = false;
-        }
+        playerSetup.setup();
+        running = false;
     }
 }
