@@ -3,15 +3,15 @@ package test;
 import main.*;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.io.*;
 
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
-
-public class GameTest implements Runnable {
+public class PlayerSetupTest implements Runnable {
 
     private boolean running = false;
     private Thread thread;
@@ -20,17 +20,18 @@ public class GameTest implements Runnable {
     Board board;
     Die die;
     PlayerSetup playerSetup;
-    int boardsize = 20;
+
     private Player player1;
     private Player player2;
     private Player[] players;
+    int boardsize = 20;
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    @BeforeEach
+    @Before
     public void setup() {
         game = new Game();
         board = new Board(boardsize);
@@ -41,76 +42,53 @@ public class GameTest implements Runnable {
         players = new Player[]{player1, player2};
     }
 
-    @BeforeEach
+    @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
 
     /**
-     * Test for final string when game ends
+     * test for restriction of amount fo players, upper limit
      */
     @Test
-    void testGameEndOutput() {
-        game.playGame(board, board.initSquares(), players);
-        String outputSTR = outContent.toString();
-        Assert.assertTrue("last line should contain 'GAME ENDED'", outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)GAME ENDED(.*)"));
-    }
-
-    /**
-     * Test such that there is one player on the last square when the game ended
-     */
-    @Test
-    void testGameEndSquare() {
-        Square[] squares = board.initSquares();
-        game.playGame(board, squares, players);
-        int p1pos = player1.getPosition();
-        int p2pos = player2.getPosition();
-        Assert.assertTrue(p1pos == boardsize - 1 || p2pos == boardsize - 1);
-    }
-
-    /**
-     * test upper limit of boardsize input
-     */
-    @Test
-    void testInputBoardsizeOver() {
+    public void testInputPlayerAmountUpper() {
         thread = new Thread(this);
-        String input = "101"; //should be <= 100
+        String input = "5"; //should be <= 4 and >= 2
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         long start_time = System.currentTimeMillis();
         thread.start();
         long end_time = System.currentTimeMillis();
-        while (end_time-start_time < 1000){
+        while (end_time-start_time < 10){
             end_time = System.currentTimeMillis();
         }
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose between 10 and 100 squares'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
+        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*(.*)"));
     }
 
     /**
-     * test lower limit of boardsize input
+     * test for restriction of amount fo players, lower limit
      */
-    @Test
-    void testInputBoardsizeLower() {
+   @Test
+   public void testInputPlayerAmountLower() {
         thread = new Thread(this);
-        String input = "9"; //should be <= 100 and > 10
+        String input = "1"; //should be <= 4 and >= 2
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         long start_time = System.currentTimeMillis();
         thread.start();
         long end_time = System.currentTimeMillis();
-        while (end_time-start_time < 1000){
+        while (end_time-start_time < 10){
             end_time = System.currentTimeMillis();
         }
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose between 10 and 100 squares'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
+        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*(.*)"));
     }
-
 
     /**
      * using threading for input testing
@@ -118,8 +96,9 @@ public class GameTest implements Runnable {
     @Override
     public void run() {
         running = true;
-        game.inputBoardsize();
-        running = false;
+        while(running) {
+            playerSetup.setup();
+            running = false;
+        }
     }
-
 }
