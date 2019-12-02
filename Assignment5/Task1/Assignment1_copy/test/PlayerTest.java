@@ -34,6 +34,7 @@ class PlayerTest {
         Assert.assertEquals(player1.getName(), newPlayer.getName());
     }
 
+
     @Test
     void testTakeTurn() {
         //squares array should be different after moving one player
