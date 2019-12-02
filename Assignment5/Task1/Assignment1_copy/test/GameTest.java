@@ -2,13 +2,13 @@ package test;
 
 import main.*;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.*;
 
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 
 public class GameTest implements Runnable {
