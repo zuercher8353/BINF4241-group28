@@ -27,11 +27,11 @@
  If a player wants to catch somebody that didn't shout Uno he can give the input "Uno" + "Player name" (e.g. UnoMarc) of the player 
  that didn't shout uno. This must happen before the next player has taken his turn. 
  
- The syntactic check happens in the the main class in the function ScanAndValidateInput(): , as long as the user doesn't give a 
+ The syntactic check happens in the the main class in the function checkSyntaxInput() , as long as the user doesn't give a 
  syntactically correct input he gets asked again to give an input by displaying the output: "The given input is symentically not correct."
  
- If the user has given an syntactically correct input, the input string gets precessed by the main function 
- checkSemanticalCorrect() for it's semantical correctness. 
+ If the user has given an syntactically correct input, the input string gets precessed by the game function 
+ playCardIfLegal() for it's semantical correctness. 
  
  
  ##### Inputs that are only accepted during the game is running: 
@@ -43,9 +43,8 @@
  
  If the input is a card that the user wants to play this things get checked and this actions performed:
  
- - Does the player have the (by the input) specified card in his hand.
-   For this the Game function returnHandCardsActivPlayer() gets called.
-   If the specified card is in the returned ArrayList the next check gets performed else
+ - Does the player have the (by the input) specified card in his hand. This is done in the playCardIfLegal() method
+ of the board. If the specified card is in the ArrayList of HandCards the next check gets performed else
    the Output "Your don't have the card that you wanna play" gets displayed, after that the user
    must give another input. 
    
@@ -61,16 +60,14 @@ If the ending uno or the command Uno is given this things get checked and this a
   if the player has only one card the same function is used to check if a player has forgot to say Uno.
   If the function returns falls an approproit output gets displayed.   
   
- If the input is draw this things get checked and this actions performed:
- 
- The Game function drawCards("activePlayer") is called. 
+ If the input is draw this the Game function drawCards() is called, since drawing is sematically always legal. 
  
  
 ##### Inputs that are only accepted during the game is not running: 
  
  This are the inputs number of players, playernames or Score to win. If one of this inputs is given the it gets checked if the game is 
- not running by for this the Game function gameRunning() gets called and if it return is false the main function calls the appropriat  Game function
- Game function. Else the output "The game is running, command not allowed" gets displayed.
+ not running by for this the Game function gameRunning() gets called and if it return is false the main saves the input, and asks the user for the 
+ missing inputs to initalize the Game. Else the output "The game is running, command not allowed" gets displayed.
  
  If the inputs are semantically or syntactically not corrected the program display an appropriat error message and the actions
  of the input want get performed. If the input is correct the main functions performes the actions specified by the input by using
