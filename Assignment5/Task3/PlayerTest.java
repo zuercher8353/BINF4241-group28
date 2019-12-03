@@ -24,6 +24,7 @@ public class PlayerTest {
         Assert.assertEquals(player1.returnName(), newPlayer.returnName());
     }
 
+
     /**
      * testing the score updating
      */
