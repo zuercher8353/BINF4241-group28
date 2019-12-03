@@ -7,7 +7,6 @@
  Inputs to set up game : 
  
  If the user gets asked for the number of players only inputs between 2 and 10 should be accepted. 
- Playernames should have a max length of 20 characters and only consist of letters from A-Z or special characters like ö,ä...
  The Score to win must be a integer number. 
 
  "Color" + "Card typ" e.g. Blue1 or BlackWild

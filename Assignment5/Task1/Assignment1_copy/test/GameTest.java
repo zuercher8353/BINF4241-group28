@@ -10,7 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-
+/**
+ * Test class for testing the Game
+ */
 public class GameTest implements Runnable {
 
     private boolean running = false;

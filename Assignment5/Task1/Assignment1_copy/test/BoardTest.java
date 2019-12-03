@@ -27,6 +27,7 @@ public class BoardTest {
         player1 = new Player("aName");
     }
 
+
     /**
      * test the board size with a numeric input as well as test the size of the squares array
      * after the initiallization of the squares. Compare the new board to another board

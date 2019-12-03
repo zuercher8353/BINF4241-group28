@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
-
+/**
+ * Test class for testing the Player Class
+ */
 class PlayerTest {
     private int boardsize = 20;
     private Player player1;
@@ -25,7 +27,7 @@ class PlayerTest {
         squares2 = board1.initSquares();
 }
     /**
-     * Test weather the input name is actually set
+     * Test whether the input name is actually set
      */
     @Test
     void testPlayerName() {

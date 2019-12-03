@@ -12,8 +12,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 /**
- * Testing the PlayerSetup which requires an amount of players set by the user,
- * restricted by an upper and a lower limit
+ * Testing the PlayerSetup
  */
 public class PlayerSetupTest implements Runnable {
 
@@ -34,14 +33,18 @@ public class PlayerSetupTest implements Runnable {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    @BeforeEach
     /**
      * intial setup of the test
      */
+    @BeforeEach
     public void setup() {
-
+        game = new Game();
+        board = new Board(boardsize);
+        die = new Die();
         playerSetup = new PlayerSetup();
-
+        player1 = new Player("janosch");
+        player2 = new Player("jonas");
+        players = new Player[]{player1, player2};
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
