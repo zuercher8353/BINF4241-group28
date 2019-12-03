@@ -50,7 +50,7 @@ public class PlayerSetupTest implements Runnable {
     @Test
     public void testInputPlayerAmountLower() {
         thread = new Thread(this);
-        String input = "1"; //should be <= 4
+        String input = "5"; //should be <= 4
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         long start_time = System.currentTimeMillis();
@@ -64,11 +64,13 @@ public class PlayerSetupTest implements Runnable {
         String outputSTR = outContent.toString();
         Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)Choose 2, 3 or 4 players(.*)(.*)(?s).*[\\n\\r].*"));
     }
-/*
+
     @Test
     public void testInputPlayerAmountUpper() {
+        thread.interrupt();
+        thread = null;
         thread = new Thread(this);
-        String input = "5"; //should be <= 4
+        String input = "1"; //should be <= 4
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         long start_time = System.currentTimeMillis();
@@ -81,7 +83,7 @@ public class PlayerSetupTest implements Runnable {
         thread = null;
         String outputSTR = outContent.toString();
         Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*"));
-    }*/
+    }
 
     /**
      * using threading for input testing
