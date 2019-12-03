@@ -1,4 +1,4 @@
-import main.Player;
+
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
 import java.io.ByteArrayInputStream;
@@ -47,7 +47,7 @@ public class GameTest {
         Assert.assertFalse(checkUno(player1));
     }
     /**
-     * Testing playCardIfLegal() and playerShoutedUno(), addCardToPlayedPile()  which are used by playCardIfLegal().
+     * Testing playCardIfLegal() and addCardToPlayedPile() which is used by playCardIfLegal().
      */
     @Test
     public void testPlayCardIfLegal(){
@@ -82,7 +82,7 @@ public class GameTest {
 
     }
     /**
-     * Testing playerShoutedUno() together with a part of game.playCardIfLegal
+     * Testing playerShoutedUno() together with playCardIfLegal("cardnameUno")
      */
     @Test
     public void TestPlayerShoutedUno(){
@@ -101,20 +101,89 @@ public class GameTest {
         player2.addHandCard(card);
         player2.addHandCard(card);
         player2.addHandCard(card);
+        Assert.assertFalse(game.playCardIfLegal("Green2Uno", player2));
+        Assert.assertFalse(game.playerShoutedUno(player2));
     }
 
     /**
-     * Testing ShufflePlayedToDraw(), this should shuffle all Cards of the PlayedPile besides the last played card to the DrawPile
+     * Testing getCardNrDrawPile(), ShufflePlayedToDraw(), this should shuffle all Cards of the PlayedPile besides the last played card to the DrawPile
      */
     @Test
     public void testShufflePlayedToDraw(){
+
         Cards card = new NumberCard("Blue", 1);
-        playedCards.addCards(card);
-        playedCards.addCards(card);
-        playedCards.addCards(card);
-        ShufflePlayedToDraw
+        int beforeShuffle = game.getCardNrDrawPile();
+        game.addCardToPlayedPile(card);
+        game.addCardToPlayedPile(card);
+        game.ShufflePlayedToDraw();
+        int afterShuffle = game.getCardNrDrawPile();
+        Assert.assertEquals(beforeShuffle + 2, afterShuffle);
 
     }
+    /**
+     * Testing HandoutCards, which should handout 7 cards to all players
+     */
+    @Test
+    public void testHandoutCards(){
+        ArrayList<Player> players= game.returnPlayers();
+        Player gamePlayer1 = players.remove();
+        Player gamePlayer2 = players.remove();
+        Assert.assertEquals(7, gamePlayer1.nrOfHandCards);
+        Assert.assertEquals(7, gamePlayer2.nrOfHandCards);
+    }
+    /**
+     * testing ChangeDirection and returnDirectionNextPlayer
+     */
+    @Test
+    public void testSwitchDirection(){
+        game.changeDirection(2);
+        Assert.assertEquals(2, returnDirectionNextPlayer());
+    }
+
+    /**
+     *  Testing gameRoundOver and assignScore, by playing all cards and then checking if gameRound over and score changed
+     */
+    @Test
+    public void testGameRoundOver(){
+        Assert.assertFalse(game.gameRoundOver());
+        ArrayList<Player> players= game.returnPlayers();
+        Player gamePlayer1 = players.remove();
+        ArrayList<Cards> = gamePlayer1.returnHandCards();
+        for (Cards card: ArrayList<Cards>) {
+            gamePlayer1.playCard(card);
+        }
+        int scoreBeforeRoundOver = gamePlayer1.getScore();
+        //check if gameRound over
+        Assert.assertTrue(game.gameRoundOver());
+        Assert.assertNotEquals(scoreBeforeRoundOver, gamePlayer1.getScore());
+    }
+    /**
+     *  Testing DrawCards(), by drawing 1 and 4 cards
+     */
+    @Test
+    public void testDrawCards(){
+        int nrOfCardsBefore = player1.nrOfHandCards();
+        game.drawCards(1, player1);
+        Assert.assertEquals(1, (player1.nrOfHandCards()-nrOfCardsBefore));
+        int nrOfCardsBefore2 = player2.nrOfHandCards();
+        game.drawCards(4, player2);
+        Assert.assertEquals(4, (player2.nrOfHandCards()-nrOfCardsBefore2));
+    }
+    /**
+     * Testing gameRunning(), by increasing the score of a player so that it equals the scoreToWin
+     */
+    @Test
+    public void testGameRunning(){
+        Assert.assertTrue(game.gameRunning());
+        ArrayList<Player> players= game.returnPlayers();
+        Player gamePlayer1 = players.remove();
+        gamePlayer1.updateScore(20);
+        Assert.assertFalse(game.gameRunning());
+    }
+
+
+
+
 
     /**
      * Test the getter method of the Handcards of a player, after adding HandCards. must return the correct ArrayList of cards
