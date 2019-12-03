@@ -25,6 +25,7 @@ public class BoardTest {
         die = new Die();
     }
 
+
     /**
      * test the board size with a numeric input as well as test the size of the squares array
      * after the initiallization of the squares. Compare the new board to another board
