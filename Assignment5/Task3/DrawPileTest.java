@@ -12,7 +12,7 @@ public class DrawPileTest {
 
     @Before
     public void setup(){
-        drawPile1 = new DrawPile();
+        drawPile = new DrawPile();
     }
 
 
@@ -23,94 +23,56 @@ public class DrawPileTest {
     public void nrOfCards(){
         ArrayList<Cards> drawPile = new ArrayList<>() {{
             add(new Cards(blue));
-            add(new Cards(blue);
+            add(new Cards(blue));
             add(new Cards(green));
             add(new Cards(red));
         }};
 
-        Assert.assertEquals(drawPile.size(), drawPile.getNrOfCards());
+        drawPile1.addCards(drawPile);
+
+        Assert.assertEquals(drawPile.size(), drawPile1.getNrOfCards());
     }
     /**
      * this test checks if the method isEmpty returns true if drawpile is empty
      */
     @Test
     public void isEmpty(){
-        ArrayList<Cards> drawPile = new ArrayList<>() {{
-        }};
-        boolean empty = drawPile.isEmpty();
-        Assert.assertTrue(empty);
-    }
-
-    /**
-     * this test checks if removeCard() succesfully removes the top card of the pile
-     */
-    @Test
-    public void removeCardWorks(){
-        ArrayList<Cards> drawPile = new ArrayList<>() {{
-            add(new Cards(blue));
-            add(new Cards(blue);
-            add(new Cards(green));
-            add(new Cards(red));
-        }};
-        drawPile.removeCard();
-        ArrayList<Cards> drawPileAfter = new ArrayList<>() {{
-            add(new Cards(blue);
-            add(new Cards(green));
-            add(new Cards(red));
-        }};
-        Cards card = drawPile.removeCard();
-        Assert.assertEquals(3, drawPile.getNrOfCards());
-
-        Assert.assertEquals(drawPileAfter, drawPile);
-    }
-
-
-    /**
-     * This test checks if removeCard() returns the top card
-     */
-    @Test
-    public void removeTopCard(){
-        ArrayList<Cards> drawPile = new ArrayList<>() {{
-            add(new Cards(blue));
-            add(new Cards(blue);
-            add(new Cards(green));
-            add(new Cards(red));
-        }};
-        Cards expected = new Cards(blue);
-        Cards card = drawPile.removeCard();
-
-        Assert.assertEquals(expected, card);
-    }
-
-
-    /**
-     * This test checks if new cards are added to old drawPile
-     */
-    @Test
-    public void addCards(){
-        ArrayList<Cards> drawPile = new ArrayList<>() {{
-            add(new Cards(blue));
-            add(new Cards(blue);
-            add(new Cards(green));
-            add(new Cards(red));
-        }};
+        Assert.assertTrue(drawPile1.isEmpty());
 
         ArrayList<Cards> drawPileToAdd = new ArrayList<>() {{
             add(new Cards(yellow));
-            add(new Cards(blue);
+            add(new Cards(blue));
         }};
 
-        drawPile.addCards(drawPileToAdd);
+        drawPile1.addCards(drawPileToAdd);
+        Assert.assertFalse(drawPile1.isEmpty());
+    }
 
-        ArrayList<Cards> AddedDrawPile = new ArrayList<>() {{
+    /**
+     * this test checks if addCards() and removeCard() work
+     */
+    @Test
+    public void removeCardWorks(){
+        ArrayList<Cards> newCards = new ArrayList<>() {{
             add(new Cards(blue));
-            add(new Cards(blue);
+            add(new Cards(blue));
             add(new Cards(green));
             add(new Cards(red));
         }};
 
-        Assert.assertEquals(AddedDrawPile, drawPile);
+        drawPile1.addCards(newCards);
+        Assert.assertEquals(4, drawPile1.getNrOfCards());
+
+        Cards card = drawPile1.removeCard();
+
+        Cards expected = new Cards(blue);
+
+        Assert.assertEquals(expected, card);
+        Assert.assertEquals(3, drawPile1.getNrOfCards());
+
     }
+
+
 
     /**
      * This test checks if the pile has same length after shuffling
@@ -124,10 +86,36 @@ public class DrawPileTest {
             add(new Cards(red));
         }};
 
-        drawPile.shuffle();
+        drawPile1.addCards(drawPile);
+        drawPile1.shuffle();
 
-        Assert.assertEquals(4, drawPile.getNrOfCards());
+        Assert.assertEquals(4, drawPile1.getNrOfCards());
 
+    }
+
+
+    /**
+     * this test checks if multiple cards can be removed from pile
+     */
+    @Test
+    public void removeMultipleCards(){
+        ArrayList<Cards> drawPile = new ArrayList<>() {{
+            add(new Cards(blue));
+            add(new Cards(blue);
+            add(new Cards(green));
+            add(new Cards(red));
+        }};
+
+        drawPile1.addCards(drawPile);
+
+        Cards c1 = drawPile1.removeCard();
+        Cards c2 = drawPile1.removeCard();
+        Cards c3 = drawPile1.removeCard();
+
+        Cards expected = new Cards(green);
+
+        Assert.assertEquals(1, drawPile1.getNrOfCards());
+        Assert.assertEquals(expected, c3);
     }
 
 
@@ -143,15 +131,15 @@ public class DrawPileTest {
             add(new Cards(red));
         }};
 
-        drawPile.removeCard();
-        drawPile.removeCard();
-        drawPile.removeCard();
-        drawPile.removeCard();
+        drawPile1.addCards(drawPile);
 
-        ArrayList<Cards> drawPileAfter = new ArrayList<>() {{
-        }};
+        Cards c1 = drawPile1.removeCard();
+        Cards c2 = drawPile1.removeCard();
+        Cards c3 = drawPile1.removeCard();
+        Cards c4 = drawPile1.removeCard();
 
-        Assert.assertEquals(0, drawPile.getNrOfCards);
-        Assert.assertEquals(true, drawPile.isEmpty());
+
+        Assert.assertEquals(0, drawPile1.getNrOfCards());
+        Assert.assertTrue(drawPile1.isEmpty());
     }
 }
