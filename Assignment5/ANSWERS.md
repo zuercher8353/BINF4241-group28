@@ -93,3 +93,4 @@ Changing board.getMark(1,2) in line 158 to board.getMark(2,2) fixes the problem.
 
 ###getAvailableStatesLastOne
 
+
