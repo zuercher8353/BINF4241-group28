@@ -12,6 +12,7 @@ class PlayerTest {
     private int boardsize = 20;
     private Player player1;
     private Player player2;
+    private Player player3;
     private Board board1;
     private Player[] players;
     private Square[] squares1;
@@ -24,18 +25,20 @@ class PlayerTest {
     void setup() {
         player1 = new Player("janosch");
         player2 = new Player("jonas");
+        player3 = new Player("");
         board1 = new Board(boardsize);
         players = new Player[]{player1, player2};
         squares1 = board1.initSquares();
         squares2 = board1.initSquares();
 }
     /**
-     * Test whether the input name is actually set
+     * Test whether the input name is actually set, also test for empty string
      */
     @Test
     void testPlayerName() {
         //check if playername is set correctly
         Assert.assertEquals("janosch",player1.getName());
+        Assert.assertEquals("",player3.getName());
         Player newPlayer = new Player("janosch");
         //check two players having similar names, should be okay
         Assert.assertEquals(player1.getName(), newPlayer.getName());

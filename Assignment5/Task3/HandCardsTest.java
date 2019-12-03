@@ -109,7 +109,7 @@ public class HandCardsTest {
     public void getCards(){
         ArrayList<Cards> handCards = new ArrayList<>() {{
             add(new Cards(blue));
-            add(new Cards(blue);
+            add(new Cards(blue));
             add(new Cards(green));
             add(new Cards(red));
         }};

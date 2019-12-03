@@ -32,9 +32,12 @@ public class PlayerSetup {
                 int i = 0;
                 i < playerCount; i++) {
 
-            System.out.print("Name of player Nr. " + (i+1) + ": ");
+            System.out.print("Name of player Nr. " + (i + 1) + ": ");
             Scanner input = new Scanner(System.in);
             String playerName = input.nextLine();
+            if (playerName.equals("")) {
+                playerName = "unknown";
+            }
             players[i] = new Player(playerName);
         }
         //END get player names
