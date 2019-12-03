@@ -9,7 +9,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 /**
  * Test Class for testing the Board.
- * The {@link Board#printBoardArray printBoard} Method is not being tested.
+ * The {@link Board#printBoardArray printBoard} Method is not being tested, since it is
+ * a console output.
  */
 public class BoardTest {
 
@@ -19,6 +20,9 @@ public class BoardTest {
     private Game game;
     private Player player1;
 
+    /**
+     * initial setup of the game
+     */
     @Before
     public void setup() {
         game = new Game();

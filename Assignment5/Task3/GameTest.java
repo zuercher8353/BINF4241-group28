@@ -171,8 +171,12 @@ public class GameTest {
 
     @Test
     public void testCardDrawPileToPlayPile() {
+        game.shufflePlayedToDraw();
         int initValue = game.getCardNrDrawPile();
         game.moveCardDrawPileToPlayPile();
         Assert.assertEquals(initValue -1,game.getCardNrDrawPile());
+
+        game.shufflePlayedToDraw();
+        Assert.assertEquals(initValue,game.getCardNrDrawPile());
     }
 }

@@ -17,6 +17,9 @@ class PlayerTest {
     private Square[] squares1;
     private Square[] squares2;
 
+    /**
+     * initial setup
+     */
     @BeforeEach
     void setup() {
         player1 = new Player("janosch");
