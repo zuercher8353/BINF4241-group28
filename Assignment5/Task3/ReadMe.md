@@ -21,7 +21,8 @@
  The accepted colors are : Green, Red, Blue, Yellow, Black 
  
  The accepted card types for all colors beside black are: 0,1,2,3,4,5,6,7,8,9, Draw2, Skip, Reverse.
- For the color black the accepted card types are: Wild and WildDraw4. 
+ For the color black the accepted card types are: Wild and WildDraw4, for the WildCards the user has to add "chosenColor" at the end.
+ E.g. BlackWildGreen. 
  
  If a player wants to catch somebody that didn't shout Uno he can give the input "Uno" + "Player name" (e.g. UnoMarc) of the player 
  that didn't shout uno. This must happen before the next player has taken his turn. 
