@@ -1,3 +1,7 @@
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 public class TestCards {
 
     private int nrOfPlayers;
@@ -11,8 +15,8 @@ public class TestCards {
     public void setup() {
         nrOfPlayers = 2;
         playerNames = new String[nrOfPlayers];
-        playerNames[1] = "test1";
-        playerNames[2] = "test2";
+        playerNames[0] = "test1";
+        playerNames[1] = "test2";
         scoreToWin = 20;
         game = new Game(nrOfPlayers, playerNames, scoreToWin);
     }
@@ -20,10 +24,10 @@ public class TestCards {
     /**
      * testing the functionality of the Wildcard Draw4, s.t. the other player has 4 more cards in his hands (initially 0)
      */
-    public void testWildCardDraw4 {
-        ArrayList<Players> players = game.returnPlayer();
-        Player player1 = players[1];
-        Player player2 =  players[2];
+    public void testWildCardDraw4() {
+        ArrayList<Player> players = game.returnPlayer();
+        Player player2 = players.remove();
+        Player player1 =  players.remove();
         Cards wildCard = new WildCard("WildDraw4",4);
         player1.addHandCard(wildCard);
         game.playCardIfLegal("BlackWildDraw4",player1);
@@ -34,19 +38,19 @@ public class TestCards {
     /**
      * testing the functionality of the Wildcard color change, s.t. the other player can only play a card of the set color
      */
-    public void testWildCardDrawColor {
+    public void testWildCardDrawColor() {
         Cards newCard = new Cards("Green",5);
-        ArrayList<Players> players = game.returnPlayer();
-        Player player1 = players[1];
-        Player player2 =  players[2];
+        ArrayList<Player> players = game.returnPlayer();
+        Player player2 = players.remove();
+        Player player1 =  players.remove();
 
         game.addCardToPlayedPile(newCard);
-        Cards wildCard = new WildCard("Wild",0);
+        Wild wildCard = new WildCard("Wild",0);
         player1.addHandCard(wildCard);
         game.playCardIfLegal("BlackWild",player1);
         player1.playCard(wildCard);
-        Assert.assertFalse(game.playCardIfLegal("Blue6",player2))
-        Assert.assertTrue(game.playCardIfLegal("Red7",player2))
+        Assert.assertFalse(game.playCardIfLegal("Blue6",player2));
+        Assert.assertTrue(game.playCardIfLegal("Red7",player2));
     }
 
     /**
@@ -54,16 +58,37 @@ public class TestCards {
      */
     public void testDrawTwo() {
         Cards newCard = new Cards("Red",5);
-        ArrayList<Players> players = game.returnPlayer();
-        Player player1 = players[1];
-        Player player2 =  players[2];
+        ArrayList<Player> players = game.returnPlayer();
+        Player player2 = players.remove();
+        Player player1 =  players.remove();
 
         game.addCardToPlayedPile(newCard);
-        Cards drawTwo = new DrawTwo("Red");
+        DrawTwo drawTwo = new DrawTwo("Red");
         player1.addHandCard(drawTwo);
         game.playCardIfLegal("RedDraw2",player1);
         player1.playCard(drawTwo);
-        Assert.assertNotEqual((0,player2.nrOfHandCards))
-        Assert.assertEqual(2,player2.nrOfHandCards)
+        Assert.assertNotEqual(0,player2.nrOfHandCards);
+        Assert.assertEqual(2,player2.nrOfHandCards);
+    }
+
+    /**
+     * testing the funcitonality of the Skip Card
+     */
+    public void testSkip() {
+        Cards newCard = new Cards("Red",5);
+        ArrayList<Player> players = game.returnPlayer();
+        Player player2 = players.remove();
+        Player player1 =  players.remove();
+
+        game.addCardToPlayedPile(newCard);
+        ActionsCards skipCard = new ActionCards("Red",2);
+        game.playCardIfLegal("RedSkip",player1);
+        player1.playCard(skipCard);
+        Assert.assertEquals(2,game.returnDirectionNextPlayer();
+    }
+
+    @Test
+    public void testSkip() {
+
     }
 }
