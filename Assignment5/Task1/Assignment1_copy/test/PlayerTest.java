@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
-
+/**
+ * Test class for testing the Player Class
+ */
 class PlayerTest {
     private int boardsize = 20;
     private Player player1;
@@ -24,17 +26,40 @@ class PlayerTest {
         squares1 = board1.initSquares();
         squares2 = board1.initSquares();
 }
-
+    /**
+     * Test whether the input name is actually set
+     */
     @Test
     void testPlayerName() {
         //check if playername is set correctly
-        Assert.assertEquals(player1.getName(),"janosch");
+        Assert.assertEquals("janosch",player1.getName());
         Player newPlayer = new Player("janosch");
         //check two players having similar names, should be okay
         Assert.assertEquals(player1.getName(), newPlayer.getName());
     }
 
+    /**
+     * Let a player finish with overhead, position should still be on end field
+     */
+    @Test
+    void testPlayerFinishOver() {
+        Player newPlayer = new Player("randomString");
+        Board newBoard = new Board(boardsize);
+        Square[] newSquares = board1.initSquares();
+        int moveNumber = 6; //move to a position where no snake/ladder is
 
+        //initially set player close to end
+        newPlayer.updatePosition(boardsize - moveNumber,newSquares,newBoard);
+
+        //move exactly to end
+        newPlayer.updatePosition(2*moveNumber,newSquares,newBoard);
+        Assert.assertEquals(boardsize-1,newPlayer.getPosition()); //substract one bc array starts at 0
+    }
+
+    /**
+     * Let on player move by rolling the die, after both players have been set on the same position
+     * Afterwards their position should not be equal
+     */
     @Test
     void testTakeTurn() {
         //squares array should be different after moving one player
@@ -42,6 +67,10 @@ class PlayerTest {
         Assert.assertNotEquals(squares1[player1.getPosition()],squares2[player1.getPosition()]);
     }
 
+    /**
+     * Test if a player behaves correctly when encountering a ladder or a snake, test method getPosition
+     * Test getEnd method of Snake and Ladder
+     */
     @Test
     void testUpdatePositionCase() {
         Player newPlayer = new Player("xx");
@@ -62,6 +91,9 @@ class PlayerTest {
         else Assert.assertEquals(initialposition+moveNumber,newPlayer.getPosition());
     }
 
+    /**
+     * Let a player finish exaclty and test his position
+     */
     @Test
     void testPlayerFinishExact() {
         Player newPlayer = new Player("randomString");
@@ -77,21 +109,9 @@ class PlayerTest {
         Assert.assertEquals(boardsize-1,newPlayer.getPosition()); //substract one bc array starts at 0
     }
 
-    @Test
-    void testPlayerFinishOver() {
-        Player newPlayer = new Player("randomString");
-        Board newBoard = new Board(boardsize);
-        Square[] newSquares = board1.initSquares();
-        int moveNumber = 6; //move to a position where no snake/ladder is
-
-        //initially set player close to end
-        newPlayer.updatePosition(boardsize - moveNumber,newSquares,newBoard);
-
-        //move exactly to end
-        newPlayer.updatePosition(2*moveNumber,newSquares,newBoard);
-        Assert.assertEquals(boardsize-1,newPlayer.getPosition()); //substract one bc array starts at 0
-    }
-
+    /**
+     * Test case when a player moves to a field which is occupied, should return to start
+     */
     @Test
     void testPlayersSamePosition() {
         Player newPlayer1 = new Player("randomString");
@@ -109,6 +129,9 @@ class PlayerTest {
         Assert.assertEquals(0,newPlayer2.getPosition());
     }
 
+    /**
+     * Test the die such that no result is > 6 and < 1
+     */
     @Test
     void testDie() {
         for(int i=0;i<=100;i++){ //how to statistically test

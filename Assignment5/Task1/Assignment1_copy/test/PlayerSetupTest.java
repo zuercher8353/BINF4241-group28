@@ -5,12 +5,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.*;
 
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-
+/**
+ * Testing the PlayerSetup
+ */
 public class PlayerSetupTest implements Runnable {
 
     private boolean running = false;
@@ -30,6 +33,9 @@ public class PlayerSetupTest implements Runnable {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
+    /**
+     * intial setup of the test
+     */
     @BeforeEach
     public void setup() {
         game = new Game();
@@ -44,14 +50,36 @@ public class PlayerSetupTest implements Runnable {
     }
 
     /**
-     * test for restriction of amount fo players, lower limit
+     * testing the lower limit of the amount of players
      */
-   @Test
-   public void testInputPlayerAmountLower() {
+    @Test
+    public void testInputPlayerAmountLower() {
         thread = new Thread(this);
-        String input1 = "9"; //should be <= 4 and >= 2
-        InputStream in2 = new ByteArrayInputStream(input1.getBytes());
-        System.setIn(in2);
+        String input = "5"; //should be <= 4
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        long start_time = System.currentTimeMillis();
+        thread.start();
+        long end_time = System.currentTimeMillis();
+        while (end_time-start_time < 50){
+            end_time = System.currentTimeMillis();
+        }
+        thread.interrupt();
+        thread = null;
+        String outputSTR = outContent.toString();
+        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)Choose 2, 3 or 4 players(.*)(.*)(?s).*[\\n\\r].*"));
+    }
+
+    /**
+     * testing the upper limit of the amount of players
+     */
+    @Test
+    public void testInputPlayerAmountUpper() {
+
+        thread = new Thread(this);
+        String input = "1"; //should be >= 2
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
         long start_time = System.currentTimeMillis();
         thread.start();
         long end_time = System.currentTimeMillis();
@@ -61,8 +89,7 @@ public class PlayerSetupTest implements Runnable {
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-       String outputSTR2 = outContent.toString();
-        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR2.matches("(.*)(?s).*[\\n\\r].*(.*)\\nChoose 2, 3 or 4 players\\n(.*)(?s).*[\\n\\r].*(.*)"));
+        Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Choose 2, 3 or 4 players(.*)(?s).*[\\n\\r].*"));
     }
 
     /**

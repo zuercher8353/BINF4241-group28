@@ -1,5 +1,6 @@
 package test;
 
+import com.sun.source.tree.AssertTree;
 import main.*;
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,17 +13,18 @@ import java.io.InputStream;
  */
 public class BoardTest {
 
-    private int boardsize = 8;
+    private int boardsize = 21;
     private Board board;
     private Die die;
     private Game game;
-
+    private Player player1;
 
     @Before
     public void setup() {
         game = new Game();
         board = new Board(boardsize);
         die = new Die();
+        player1 = new Player("aName");
     }
 
 
@@ -42,12 +44,43 @@ public class BoardTest {
         Assert.assertNotEquals(newBoard.getBoardsize(), board.getBoardsize());
     }
 
- /*   @Test
-    public void testBoardSizeInput() throws Exception{
-        //Test minimal board size
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream("randSTR".getBytes());
-        System.setIn(in);
-        Assert.assertEquals("Choose between 10 and 100 squares\n",game.inputBoardsize());
-}*/
+    /**
+     * Test positions of ladders (the positions are fixed according to the boardsize)
+     * every 5th starting from 1
+     */
+    @Test
+    public void testLadderPositions() {
+        Square[] squares = board.initSquares();
+        Assert.assertTrue("Square 1 should be a ladder", squares[1]instanceof Ladder);
+        Assert.assertTrue("Square 1 should be a ladder", squares[16]instanceof Ladder);
+    }
+
+    /**
+     * Test positions of snakes (the positions are fixed according to the boardsize)
+     * every 5th starting from 5, while the last square can neither be a ladder nor a square
+     */
+    @Test
+    public void testSnakePositions() {
+        Square[] squares = board.initSquares();
+        Assert.assertTrue("Square 1 should be a ladder", squares[5]instanceof Snake);
+        Assert.assertFalse("Square 1 should be a ladder", squares[20]instanceof Snake);
+    }
+
+    /**
+    * Test if the getOccupied method is working correctly with Laddder and Snake Cases
+     */
+    @Test
+    public void testSquareOccupied() {
+        int newBoardsize = 20;
+        Board newBoard = new Board(newBoardsize);
+        Square[] squares = board.initSquares();
+        player1.updatePosition(7,squares,board); //normal case
+        Assert.assertTrue(squares[7].getOccupied());
+        player1.updatePosition(3,squares,board); //snake
+        Assert.assertFalse(squares[10].getOccupied());
+        Assert.assertTrue(squares[7].getOccupied());
+        player1.updatePosition(4,squares,board);
+        Assert.assertFalse(squares[11].getOccupied());
+        Assert.assertTrue(squares[14].getOccupied()); //snake
+    }
 }

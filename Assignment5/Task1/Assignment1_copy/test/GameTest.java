@@ -10,7 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-
+/**
+ * Test class for testing the Game
+ */
 public class GameTest implements Runnable {
 
     private boolean running = false;
@@ -83,7 +85,7 @@ public class GameTest implements Runnable {
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose between 10 and 100 squares'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
+        Assert.assertTrue("expected 'Invalid input'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
     }
 
     /**
