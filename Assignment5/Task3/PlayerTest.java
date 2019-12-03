@@ -1,6 +1,8 @@
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.ArrayList;
+
 public class PlayerTest {
     Player player1;
     String name = "test";
@@ -8,7 +10,6 @@ public class PlayerTest {
     @BeforeEach
     public void setup() {
         player1 = new Player(name);
-
     }
 
 
@@ -43,7 +44,7 @@ public class PlayerTest {
      */
     @Test
     public void testNrOFHandCards() {
-        player1.createHandcards
+        player1.createHandcards;
         Cards card1 = new NumberCard("Red", 6);
         Cards card2 = new NumberCard("Blue", 4);
         Cards card3 = new NumberCard("Green", 2);
@@ -65,11 +66,18 @@ public class PlayerTest {
         Cards card1 = new NumberCard("Red", 6);
         Cards card2 = new NumberCard("Blue", 4);
         Cards card3 = new NumberCard("Green", 2);
-        ArrayList<Cards> cardsList = ArrayList < Cards > [card1, card2, card3];
-        ArrayList<Cards> cardsList2 = ArrayList < Cards > {card1, card2};
+        ArrayList<Cards> cardsList1 = new ArrayList<Cards>();
+        cardsList1.add(card1);
+        cardsList1.add(card2);
+        cardsList1.add(card3);
+
+        ArrayList<Cards> cardsList2 = new ArrayList<Cards>();
+        cardsList2.add(card1);
+        cardsList2.add(card2);
+
         player1.addHandCard(card1);
         player1.addHandCard(card2);
-        player1.addHandCard(card3):
+        player1.addHandCard(card3);
         Assert.assertTrue(player1.returnHandCards instanceof ArrayList<Cards>);
         Assert.assertTrue(player1.returnHandCards == cardsList);
         player1.playCard(card3);

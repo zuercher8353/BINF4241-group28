@@ -1,3 +1,4 @@
+import main.Player;
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
 import java.io.ByteArrayInputStream;
@@ -26,7 +27,7 @@ public class GameTest {
         playerNames[1] = "test1";
         playerNames[2] = "test2";
         scoreToWin = 20;
-        game = new Game(nrOfPlayers, playernames, scoreToWin);
+        game = new Game(nrOfPlayers, playerNames, scoreToWin);
         player1 = Player("Player1");
         player2 = Player("Player2");
 
@@ -115,4 +116,58 @@ public class GameTest {
 
     }
 
+    /**
+     * Test the getter method of the Handcards of a player, after adding HandCards. must return the correct ArrayList of cards
+     */
+    @Test
+    public void testReturnHandCards() {
+
+        Cards newCard1 = new Cards("Red",5);
+        Cards newCard2 = new Cards("Blue",4);
+        Cards newCard3 = new Cards("Green",3);
+
+        ArrayList<Cards> newcards = new ArrayList<Cards>();
+        newcards.add(newCard1);
+        newcards.add(newCard2);
+        newcards.add(newCard3);
+
+        ArrayList<Cards> newcards2 = new ArrayList<Cards>();
+        newcards.add(newCard1);
+        newcards.add(newCard2);
+
+        ArrayList<Player> players = game.returnPlayers();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
+
+        player1.createHandcards;
+
+        player1.addHandCard(newCard1);
+        player1.addHandCard(newCard2);
+        player1.addHandCard(newCard3);
+
+        player2.addHandCard(newCard1);
+        player2.addHandCard(newCard2);
+
+        Assert.assertEquals(newcards,game.returnHandCards(player1));
+        Assert.assertEquals(newcards2,game.returnHandCards(player2));
+        Assert.assertTrue(game.returnHandCards(player1)instanceof ArrayList<Cards>);
+    }
+
+    /**
+     * test the returnPlayers method of the Game class, whether it returns the correct type and the correct player names
+     */
+    @Test
+    public void testReturnPlayers() {
+
+        Assert.assertTrue(game.returnPlayers()instanceof ArrayList<Player>);
+
+        ArrayList<Player> players = game.returnPlayer();
+        String name1 = players.remove(0).returnName();
+        String name2 = players.remove(1).returnName();
+
+        Assert.assertEquals("test1",name1);
+        Assert.assertEquals("test2",name2);
+    }
+
+    @Test
 }

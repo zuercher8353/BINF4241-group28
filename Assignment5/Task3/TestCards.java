@@ -26,8 +26,8 @@ public class TestCards {
      */
     public void testWildCardDraw4() {
         ArrayList<Player> players = game.returnPlayer();
-        Player player2 = players.remove();
-        Player player1 =  players.remove();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
         Cards wildCard = new WildCard("WildDraw4",4);
         player1.addHandCard(wildCard);
         game.playCardIfLegal("BlackWildDraw4",player1);
@@ -41,8 +41,8 @@ public class TestCards {
     public void testWildCardDrawColor() {
         Cards newCard = new Cards("Green",5);
         ArrayList<Player> players = game.returnPlayer();
-        Player player2 = players.remove();
-        Player player1 =  players.remove();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
         Wild wildCard = new WildCard("Wild",0);
@@ -59,8 +59,8 @@ public class TestCards {
     public void testDrawTwo() {
         Cards newCard = new Cards("Red",5);
         ArrayList<Player> players = game.returnPlayer();
-        Player player2 = players.remove();
-        Player player1 =  players.remove();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
         DrawTwo drawTwo = new DrawTwo("Red");
@@ -77,8 +77,8 @@ public class TestCards {
     public void testSkip() {
         Cards newCard = new Cards("Red",5);
         ArrayList<Player> players = game.returnPlayer();
-        Player player2 = players.remove();
-        Player player1 =  players.remove();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
         ActionsCards skipCard = new ActionCards("Red",2);
@@ -87,8 +87,25 @@ public class TestCards {
         Assert.assertEquals(2,game.returnDirectionNextPlayer();
     }
 
+    /**
+     * testing the Reverse Card, which always has direction -1, the game should return the direciton of -1
+     */
     @Test
-    public void testSkip() {
+    public void testReverse() {
+        Cards newCard = new Cards("Red",5);
+        ArrayList<Player> players = game.returnPlayer();
+        Player player2 = players.remove(1);
+        Player player1 =  players.remove(0);
 
+        game.addCardToPlayedPile(newCard);
+        ActionsCards reverseCard = new ActionCards("Red",-1);
+        game.playCardIfLegal("RedSkip",player1);
+        player1.playCard(skipCard);
+        Assert.assertEquals(-1,game.returnDirectionNextPlayer());
+
+        ActionsCards reverseCard2 = new ActionCards("Red",-1);
+        player1.playCard(skipCard2);
+        game.playCardIfLegal("RedSkip",player1);
+        Assert.assertEquals(1,game.returnDirectionNextPlayer());
     }
 }
