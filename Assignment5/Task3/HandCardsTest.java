@@ -48,7 +48,7 @@ public class HandCardsTest {
         handcards.addCards(c2);
 
         Assert.assertEquals(2, handcards.getNrOfCards());
-        Assert.assertFalse(handcards.isEmpty())
+        Assert.assertFalse(handcards.isEmpty());
 
 
     }
@@ -103,7 +103,7 @@ public class HandCardsTest {
 
 
     /**
-     * this test checks if correct handcards are returned
+     * this test checks if getHandCards works
      */
     @Test
     public void getCards(){
