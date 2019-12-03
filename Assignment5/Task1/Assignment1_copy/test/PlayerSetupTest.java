@@ -11,7 +11,10 @@ import java.io.*;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-
+/**
+ * Testing the PlayerSetup which requires an amount of players set by the user,
+ * restricted by an upper and a lower limit
+ */
 public class PlayerSetupTest implements Runnable {
 
     private boolean running = false;
@@ -32,20 +35,19 @@ public class PlayerSetupTest implements Runnable {
     private final PrintStream originalErr = System.err;
 
     @BeforeEach
+    /**
+     * intial setup of the test
+     */
     public void setup() {
-        game = new Game();
-        board = new Board(boardsize);
-        die = new Die();
+
         playerSetup = new PlayerSetup();
-        player1 = new Player("janosch");
-        player2 = new Player("jonas");
-        players = new Player[]{player1, player2};
+
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
 
     /**
-     * test for restriction of amount fo players, lower limit
+     * testing the lower limit of the amount of players
      */
     @Test
     public void testInputPlayerAmountLower() {
@@ -65,18 +67,20 @@ public class PlayerSetupTest implements Runnable {
         Assert.assertTrue("expected 'Choose 2, 3 or 4 players'",outputSTR.matches("(.*)Choose 2, 3 or 4 players(.*)(.*)(?s).*[\\n\\r].*"));
     }
 
+    /**
+     * testing the upper limit of the amount of players
+     */
     @Test
     public void testInputPlayerAmountUpper() {
-        thread.interrupt();
-        thread = null;
+
         thread = new Thread(this);
-        String input = "1"; //should be <= 4
+        String input = "1"; //should be >= 2
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         long start_time = System.currentTimeMillis();
         thread.start();
         long end_time = System.currentTimeMillis();
-        while (end_time-start_time < 50){
+        while (end_time-start_time < 10){
             end_time = System.currentTimeMillis();
         }
         thread.interrupt();

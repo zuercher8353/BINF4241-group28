@@ -36,9 +36,16 @@ public class Player {
             else {
                 if (squares[tempPos] instanceof Snake || squares[tempPos] instanceof Ladder) {
                     if(squares[squares[tempPos].getEnd()].getOccupied()){
-                        int newPosition = 0;
-                        squares[this.position].setOccupied(false);
-                        this.position = newPosition;
+                        if(squares[tempPos].getEnd() == this.position) {
+                            squares[this.position].setOccupied(false);
+                            this.position = squares[tempPos].getEnd();
+                            squares[this.position].setOccupied(true);
+                        } else {
+                            int newPosition = 0;
+                            squares[this.position].setOccupied(false);
+                            this.position = newPosition;
+                            squares[this.position].setOccupied(true);
+                        }
                     } else {
                         int newPosition = squares[tempPos].getEnd();
                         squares[this.position].setOccupied(false);

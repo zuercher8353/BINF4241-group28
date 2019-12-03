@@ -1,10 +1,15 @@
 #Assignment 5
 
 ##Task1
-no bugs were found in Task 1
+###Bugs Found:
 
-We are not testing for the boardsize input, as we would have to rearrange our code
-to be able to test it. However, we are only allowed to correct errors.
+- When a Player moves to a field which is a Snake, which puts him back to his initial position, the player was set to the start field
+because the end field of the snake was occupied (although by the player itself). This was corrected
+in the *updatePosition* method of the Player class.
+
+###Notes
+Remind: we used threads to test the functions requireing a user input. thus it might take a while
+for the tests to complete, escpecially the PlayerSetupTest.
 
 ##Task2
 ###GameBoardTest:
