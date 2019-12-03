@@ -170,4 +170,9 @@ public class GameTest {
     }
 
     @Test
+    public void testCardDrawPileToPlayPile() {
+        int initValue = game.getCardNrDrawPile();
+        game.moveCardDrawPileToPlayPile();
+        Assert.assertEquals(initValue -1,game.getCardNrDrawPile());
+    }
 }
