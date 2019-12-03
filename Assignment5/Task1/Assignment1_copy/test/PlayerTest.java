@@ -28,7 +28,7 @@ class PlayerTest {
     @Test
     void testPlayerName() {
         //check if playername is set correctly
-        Assert.assertEquals(player1.getName(),"janosch");
+        Assert.assertEquals("janosch",player1.getName());
         Player newPlayer = new Player("janosch");
         //check two players having similar names, should be okay
         Assert.assertEquals(player1.getName(), newPlayer.getName());

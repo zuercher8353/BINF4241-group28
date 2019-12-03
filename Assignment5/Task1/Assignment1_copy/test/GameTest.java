@@ -83,7 +83,7 @@ public class GameTest implements Runnable {
         thread.interrupt();
         thread = null;
         String outputSTR = outContent.toString();
-        Assert.assertTrue("expected 'Choose between 10 and 100 squares'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
+        Assert.assertTrue("expected 'Invalid input'",outputSTR.matches("(.*)(?s).*[\\n\\r].*(.*)Invalid input\n\n(.*)"));
     }
 
     /**
