@@ -238,6 +238,10 @@ public class GameTest {
         Assert.assertEquals("test2",name2);
     }
 
+    /**
+     * Testing CardDrawPileToPlayPile(), by using getCardNrDrawPile() and shufflePlayedToDraw()
+     */
+
     @Test
     public void testCardDrawPileToPlayPile() {
         game.shufflePlayedToDraw();
