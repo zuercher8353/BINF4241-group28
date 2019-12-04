@@ -99,3 +99,6 @@ Changing board.getMark(1,2) in line 158 to board.getMark(2,2) fixes the problem.
 ###getAvailableStatesLastOne
 
 
+This test checks if there are no available fields after marking all of them. 
+
+Fixing the problem in getOpenPositions() solves the problem.
