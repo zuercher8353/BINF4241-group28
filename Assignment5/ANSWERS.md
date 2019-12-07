@@ -7,6 +7,9 @@
 because the end field of the snake was occupied (although by the player itself). This was corrected
 in the *updatePosition* method of the Player class.
 
+- One was able to input an empty String as Playername, this was corrected in the PlayerSetup Class. The bug was
+found in the PlayerTest Class.
+
 ###Notes
 Remind: we used threads to test the functions requireing a user input. thus it might take a while
 for the tests to complete, escpecially the PlayerSetupTest.

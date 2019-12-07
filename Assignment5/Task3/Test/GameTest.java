@@ -1,6 +1,8 @@
 
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
+import src.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.reflect.Array;
@@ -9,7 +11,6 @@ import java.util.ArrayList;
 /**
  * Testing the Game class
  */
-
 public class GameTest {
 
     private int nrOfPlayers;
@@ -19,7 +20,6 @@ public class GameTest {
     private String[] playerNames;
     private Game game;
 
-
     @BeforeEach
     public void setup() {
         nrOfPlayers = 2;
@@ -28,8 +28,8 @@ public class GameTest {
         playerNames[2] = "test2";
         scoreToWin = 20;
         game = new Game(nrOfPlayers, playerNames, scoreToWin);
-        player1 = Player("Player1");
-        player2 = Player("Player2");
+        player1 = new Player("Player1");
+        player2 = new Player("Player2");
 
     }
 
@@ -148,8 +148,8 @@ public class GameTest {
         Assert.assertFalse(game.gameRoundOver());
         ArrayList<Player> players= game.returnPlayers();
         Player gamePlayer1 = players.remove();
-        ArrayList<Cards> = gamePlayer1.returnHandCards();
-        for (Cards card: ArrayList<Cards>) {
+        ArrayList<Cards> cardsList= gamePlayer1.returnHandCards();
+        for (Cards card: cardsList) {
             gamePlayer1.playCard(card);
         }
         int scoreBeforeRoundOver = gamePlayer1.getScore();
@@ -208,7 +208,7 @@ public class GameTest {
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
 
-        player1.createHandcards;
+        player1.createHandcards();
 
         player1.addHandCard(newCard1);
         player1.addHandCard(newCard2);

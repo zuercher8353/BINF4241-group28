@@ -44,7 +44,7 @@ public class PlayerTest {
      */
     @Test
     public void testNrOFHandCards() {
-        player1.createHandcards;
+        player1.createHandcards();
         Cards card1 = new NumberCard("Red", 6);
         Cards card2 = new NumberCard("Blue", 4);
         Cards card3 = new NumberCard("Green", 2);
@@ -62,7 +62,7 @@ public class PlayerTest {
      */
     @Test
     public void testReturnHandCards() {
-        player1.createHandcards;
+        player1.createHandcards();
         Cards card1 = new NumberCard("Red", 6);
         Cards card2 = new NumberCard("Blue", 4);
         Cards card3 = new NumberCard("Green", 2);

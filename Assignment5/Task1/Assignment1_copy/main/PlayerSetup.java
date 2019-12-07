@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PlayerSetup {
@@ -28,17 +30,21 @@ public class PlayerSetup {
 
         //START get player names
         Player[] players = new Player[playerCount];
-        for (
-                int i = 0;
-                i < playerCount; i++) {
+        for (int i = 0; i < playerCount; i++) {
 
             System.out.print("Name of player Nr. " + (i + 1) + ": ");
-            Scanner input = new Scanner(System.in);
-            String playerName = input.nextLine();
-            if (playerName.equals("")) {
-                playerName = "unknown";
+            boolean correctName = false;
+            while(!correctName) {
+                Scanner input = new Scanner(System.in);
+                String inputName = input.nextLine();
+                if(!inputName.equals("")) {
+                    players[i] = new Player(inputName);
+                    correctName = true;
+                } else {
+                    System.out.print("Choose another name: ");
+                }
             }
-            players[i] = new Player(playerName);
+
         }
         //END get player names
 

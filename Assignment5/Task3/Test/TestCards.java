@@ -84,7 +84,7 @@ public class TestCards {
         ActionsCards skipCard = new ActionCards("Red",2);
         game.playCardIfLegal("RedSkip",player1);
         player1.playCard(skipCard);
-        Assert.assertEquals(2,game.returnDirectionNextPlayer();
+        Assert.assertEquals(2,game.returnDirectionNextPlayer());
     }
 
     /**
