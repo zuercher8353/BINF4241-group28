@@ -191,9 +191,9 @@ public class GameTest {
     @Test
     public void testReturnHandCards() {
 
-        Cards newCard1 = new Cards("Red",5);
-        Cards newCard2 = new Cards("Blue",4);
-        Cards newCard3 = new Cards("Green",3);
+        Cards newCard1 = new NumberCard("Red",5);
+        Cards newCard2 = new NumberCard("Blue",4);
+        Cards newCard3 = new NumberCard("Green",3);
 
         ArrayList<Cards> newcards = new ArrayList<Cards>();
         newcards.add(newCard1);

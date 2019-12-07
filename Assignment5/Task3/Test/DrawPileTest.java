@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.Cards;
+import src.*;
 
 import java.util.ArrayList;
 
@@ -23,10 +23,10 @@ public class DrawPileTest {
     @Test
     public void nrOfCards(){
         ArrayList<Cards> drawPile = new ArrayList<>() {{
-            add(new Cards("blue"));
-            add(new Cards("blue"));
-            add(new Cards("green"));
-            add(new Cards("red"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
+            add(new NumberCard("green",8));
+            add(new NumberCard("red",7));
         }};
 
         drawPile1.addCards(drawPile);
@@ -41,8 +41,8 @@ public class DrawPileTest {
         Assert.assertTrue(drawPile1.isEmpty());
 
         ArrayList<Cards> drawPileToAdd = new ArrayList<>() {{
-            add(new Cards("yellow"));
-            add(new Cards("blue"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
         }};
 
         drawPile1.addCards(drawPileToAdd);
@@ -55,10 +55,10 @@ public class DrawPileTest {
     @Test
     public void removeCardWorks(){
         ArrayList<Cards> newCards = new ArrayList<>() {{
-            add(new Cards("blue"));
-            add(new Cards("blue"));
-            add(new Cards("green"));
-            add(new Cards("red"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
+            add(new NumberCard("green",8));
+            add(new NumberCard("red",7));
         }};
 
         drawPile1.addCards(newCards);
@@ -66,7 +66,7 @@ public class DrawPileTest {
 
         Cards card = drawPile1.removeCard();
 
-        Cards expected = new Cards("blue");
+        Cards expected = new NumberCard("blue",5);
 
         Assert.assertEquals(expected, card);
         Assert.assertEquals(3, drawPile1.getNrOfCards());
@@ -81,10 +81,10 @@ public class DrawPileTest {
     @Test
     public void shuffle(){
         ArrayList<Cards> drawPile = new ArrayList<Cards>() {{
-            add(new Cards("blue"));
-            add(new Cards("blue"));
-            add(new Cards("green"));
-            add(new Cards("red"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
+            add(new NumberCard("green",8));
+            add(new NumberCard("red",7));
         }};
 
         drawPile1.addCards(drawPile);
@@ -101,10 +101,10 @@ public class DrawPileTest {
     @Test
     public void removeMultipleCards(){
         ArrayList<Cards> drawPile = new ArrayList<>() {{
-            add(new Cards("blue"));
-            add(new Cards("blue"));
-            add(new Cards("green"));
-            add(new Cards("red"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
+            add(new NumberCard("green",8));
+            add(new NumberCard("red",7));
         }};
 
         drawPile1.addCards(drawPile);
@@ -113,7 +113,7 @@ public class DrawPileTest {
         Cards c2 = drawPile1.removeCard();
         Cards c3 = drawPile1.removeCard();
 
-        Cards expected = new Cards("green");
+        Cards expected = new NumberCard("green",9);
 
         Assert.assertEquals(1, drawPile1.getNrOfCards());
         Assert.assertEquals(expected, c3);
@@ -126,10 +126,10 @@ public class DrawPileTest {
     @Test
     public void isEmptyRemove(){
         ArrayList<Cards> drawPile = new ArrayList<Cards>() {{
-            add(new Cards("blue"));
-            add(new Cards("blue"));
-            add(new Cards("green"));
-            add(new Cards("red"));
+            add(new NumberCard("blue",5));
+            add(new NumberCard("blue",9));
+            add(new NumberCard("green",8));
+            add(new NumberCard("red",7));
         }};
 
         drawPile1.addCards(drawPile);

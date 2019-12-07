@@ -21,7 +21,7 @@ public class Player {
     public void updateScore(int sInt) {
 
     }
-    public Cards playCard(Cards card) {
+    public Cards playCard (Cards card) {
         return card;
     }
     public int nrOfHandCards() {
