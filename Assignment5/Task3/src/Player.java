@@ -15,7 +15,7 @@ public class Player {
     public ArrayList<Cards> returnHandCards() {
         return null;
     }
-    public void addHandCards(){
+    public void addHandCards(Cards s){
 
     }
     public void updateScore(int sInt) {
@@ -26,5 +26,8 @@ public class Player {
     }
     public int nrOfHandCards() {
         return 0;
+    }
+
+    public void addHandCard(Cards card2) {
     }
 }

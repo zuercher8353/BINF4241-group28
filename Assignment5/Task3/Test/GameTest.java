@@ -41,10 +41,10 @@ public class GameTest {
     public void testCheckUno() {
         Cards card = new NumberCard("Blue", 1);
         player1.addHandCards(card);
-        Assert.assertTrue(checkUno(player1));
+        Assert.assertTrue(game.checkUno(player1));
         Cards card2 = new NumberCard("Blue", 2);
         player1.addHandCards(card);
-        Assert.assertFalse(checkUno(player1));
+        Assert.assertFalse(game.checkUno(player1));
     }
     /**
      * Testing playCardIfLegal() and addCardToPlayedPile() which is used by playCardIfLegal().
@@ -63,8 +63,6 @@ public class GameTest {
         Assert.assertTrue(game.playCardIfLegal("Blue1",player1));
         //check if Card got played and is therefor not in his hand anymore
         Assert.assertEquals(0, player1.nrOfHandCards());
-        //check if card go added to played cards
-        Assert.assertEquals(2, playedCards.getNumberOfCards());
         //Different color same height
         Cards card3 = new NumberCard("Red", 2);
         player1.addHandCard(card3);
@@ -115,7 +113,7 @@ public class GameTest {
         int beforeShuffle = game.getCardNrDrawPile();
         game.addCardToPlayedPile(card);
         game.addCardToPlayedPile(card);
-        game.ShufflePlayedToDraw();
+        game.shufflePlayedToDraw();
         int afterShuffle = game.getCardNrDrawPile();
         Assert.assertEquals(beforeShuffle + 2, afterShuffle);
 
@@ -128,8 +126,8 @@ public class GameTest {
         ArrayList<Player> players= game.returnPlayers();
         Player gamePlayer1 = players.remove();
         Player gamePlayer2 = players.remove();
-        Assert.assertEquals(7, gamePlayer1.nrOfHandCards);
-        Assert.assertEquals(7, gamePlayer2.nrOfHandCards);
+        Assert.assertEquals(7, gamePlayer1.nrOfHandCards());
+        Assert.assertEquals(7, gamePlayer2.nrOfHandCards());
     }
     /**
      * testing ChangeDirection and returnDirectionNextPlayer
@@ -137,7 +135,7 @@ public class GameTest {
     @Test
     public void testSwitchDirection(){
         game.changeDirection(2);
-        Assert.assertEquals(2, returnDirectionNextPlayer());
+        Assert.assertEquals(2, game.returnDirectionNextPlayer());
     }
 
     /**
@@ -208,7 +206,6 @@ public class GameTest {
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
 
-        player1.createHandcards();
 
         player1.addHandCard(newCard1);
         player1.addHandCard(newCard2);
