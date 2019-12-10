@@ -125,8 +125,8 @@ public class GameTest {
     @Test
     public void testHandoutCards(){
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
-        Player gamePlayer2 = players.remove();
+        Player gamePlayer1 = players.remove(0);
+        Player gamePlayer2 = players.remove(1);
         Assert.assertEquals(7, gamePlayer1.nrOfHandCards());
         Assert.assertEquals(7, gamePlayer2.nrOfHandCards());
     }
@@ -146,7 +146,7 @@ public class GameTest {
     public void testGameRoundOver(){
         Assert.assertFalse(game.gameRoundOver());
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
+        Player gamePlayer1 = players.remove(0);
         ArrayList<Cards> cardsList= gamePlayer1.returnHandCards();
         for (Cards card: cardsList) {
             gamePlayer1.playCard(card);
@@ -175,7 +175,7 @@ public class GameTest {
     public void testGameRunning(){
         Assert.assertTrue(game.gameRunning());
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
+        Player gamePlayer1 = players.remove(0);
         gamePlayer1.updateScore(20);
         Assert.assertFalse(game.gameRunning());
     }
