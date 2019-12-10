@@ -4,55 +4,75 @@ import java.util.ArrayList;
 
 public class Game {
 
-    public Game(int i, String[]array, int x){
+    public Game(int i, String[] array, int x) {
 
     }
-    public boolean checkUno(Player player){
 
+    public boolean checkUno(Player player) {
+        return false;
     }
+
     public boolean playerShoutedUno(Player player) {
+        return false;
     }
-    public boolean playCardIfLegal(String s,Player p){
 
+    public boolean playCardIfLegal(String s, Player p) {
+        return false;
     }
-    public void addCardToPlayedPile(Cards c){
 
-    }
-    public void shufflePlayedToDraw(){
-
-    }
-    public int getCardNrDrawPile(){
-
-    }
-    public void HandoutCards(){
-
-    }
-    public void assignScore(){
-
-    }
-    public boolean gameRoundOver(){
-
-    }
-    public ArrayList<Cards> returnHandCards(Player p){
-
-    }
-    public void changeDirection(int){
-
-    }
-    public int returnDirectionNextPlayer(){
-
-    }
-    public void drawCards(int x,Player p){
-
-    }
-    public boolean gameRunning(){
-
-    }
-    public ArrayList<Player> returnPlayers(){
-
-    }
-    public void moveCardDrawPileToPlayPile(){
+    public void addCardToPlayedPile(Cards c) {
 
     }
 
+    public void shufflePlayedToDraw() {
+
+    }
+
+    public int getCardNrDrawPile() {
+        return 0;
+    }
+
+    public void HandoutCards() {
+
+    }
+
+    public void assignScore() {
+
+    }
+
+    public boolean gameRoundOver() {
+        return false;
+    }
+
+    public ArrayList<Cards> returnHandCards(Player p) {
+        return null;
+    }
+
+    public void changeDirection(int sInt) {
+
+    }
+
+    public int returnDirectionNextPlayer() {
+        return 0;
+    }
+
+    public void drawCards(int x, Player p) {
+
+    }
+
+    public boolean gameRunning() {
+        return false;
+    }
+
+    public ArrayList<Player> returnPlayers() {
+        return null;
+    }
+
+    public void moveCardDrawPileToPlayPile() {
+
+    }
+
+    public ArrayList<Player> returnPlayer() {
+        return null;
+    }
 }

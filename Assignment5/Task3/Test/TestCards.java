@@ -1,6 +1,11 @@
+package Test;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import src.*;
+
+import java.util.ArrayList;
 
 public class TestCards {
 
@@ -32,20 +37,20 @@ public class TestCards {
         player1.addHandCard(wildCard);
         game.playCardIfLegal("BlackWildDraw4",player1);
         player1.playCard(wildCard);
-        Assert.assertEqual(4,player2.nrOfCards);
+        Assert.assertEquals(4,player2.nrOfHandCards());
     }
 
     /**
      * testing the functionality of the Wildcard color change, s.t. the other player can only play a card of the set color
      */
     public void testWildCardDrawColor() {
-        Cards newCard = new Cards("Green",5);
+        NumberCard newCard = new NumberCard("Green",5);
         ArrayList<Player> players = game.returnPlayer();
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
-        Wild wildCard = new WildCard("Wild",0);
+        WildCard wildCard = new WildCard("Wild",0);
         player1.addHandCard(wildCard);
         game.playCardIfLegal("BlackWild",player1);
         player1.playCard(wildCard);
@@ -57,7 +62,7 @@ public class TestCards {
      * testing the DrawTwo functionality, s.t. the other player has two more cards
      */
     public void testDrawTwo() {
-        Cards newCard = new Cards("Red",5);
+        NumberCard newCard = new NumberCard("Red",5);
         ArrayList<Player> players = game.returnPlayer();
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
@@ -67,21 +72,21 @@ public class TestCards {
         player1.addHandCard(drawTwo);
         game.playCardIfLegal("RedDraw2",player1);
         player1.playCard(drawTwo);
-        Assert.assertNotEqual(0,player2.nrOfHandCards);
-        Assert.assertEqual(2,player2.nrOfHandCards);
+        Assert.assertNotEquals(0,player2.nrOfHandCards());
+        Assert.assertEquals(2,player2.nrOfHandCards());
     }
 
     /**
      * testing the funcitonality of the Skip Card
      */
     public void testSkip() {
-        Cards newCard = new Cards("Red",5);
+        NumberCard newCard = new NumberCard("Red",5);
         ArrayList<Player> players = game.returnPlayer();
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
-        ActionsCards skipCard = new ActionCards("Red",2);
+        ActionCard skipCard = new ActionCard("Red",2);
         game.playCardIfLegal("RedSkip",player1);
         player1.playCard(skipCard);
         Assert.assertEquals(2,game.returnDirectionNextPlayer());
@@ -92,19 +97,19 @@ public class TestCards {
      */
     @Test
     public void testReverse() {
-        Cards newCard = new Cards("Red",5);
+        NumberCard newCard = new NumberCard("Red",5);
         ArrayList<Player> players = game.returnPlayer();
         Player player2 = players.remove(1);
         Player player1 =  players.remove(0);
 
         game.addCardToPlayedPile(newCard);
-        ActionsCards reverseCard = new ActionCards("Red",-1);
+        ActionCard reverseCard = new ActionCard("Red",-1);
         game.playCardIfLegal("RedSkip",player1);
-        player1.playCard(skipCard);
+        player1.playCard(reverseCard);
         Assert.assertEquals(-1,game.returnDirectionNextPlayer());
 
-        ActionsCards reverseCard2 = new ActionCards("Red",-1);
-        player1.playCard(skipCard2);
+        ActionCard reverseCard2 = new ActionCard("Red",-1);
+        player1.playCard(reverseCard2);
         game.playCardIfLegal("RedSkip",player1);
         Assert.assertEquals(1,game.returnDirectionNextPlayer());
     }
