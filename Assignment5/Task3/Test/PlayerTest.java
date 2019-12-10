@@ -1,5 +1,8 @@
+package Test;
+
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
+import src.*;
 
 import java.util.ArrayList;
 
@@ -11,7 +14,6 @@ public class PlayerTest {
     public void setup() {
         player1 = new Player(name);
     }
-
 
     /**
      * test of setting a player name and getting a player name
@@ -32,10 +34,10 @@ public class PlayerTest {
     @Test
     public void testScore() {
         //check if score is set to zero, when initializized
-        Assert.assertEquals(player1.getscore(), 0);
+        Assert.assertEquals(player1.getScore(), 0);
         //check if increasing of score works
         player1.updateScore(10);
-        Assert.assertEquals(10, player1.getscore());
+        Assert.assertEquals(10, player1.getScore());
 
     }
 
@@ -78,10 +80,10 @@ public class PlayerTest {
         player1.addHandCard(card1);
         player1.addHandCard(card2);
         player1.addHandCard(card3);
-        Assert.assertTrue(player1.returnHandCards instanceof ArrayList<Cards>);
-        Assert.assertTrue(player1.returnHandCards == cardsList);
+        Assert.assertTrue(player1.returnHandCards() != null);
+        Assert.assertTrue(player1.returnHandCards() == cardsList1);
         player1.playCard(card3);
-        Assert.assertTrue(player1.returnHandCards == cardsList2);
+        Assert.assertTrue(player1.returnHandCards() == cardsList2);
     }
 
     /**
@@ -90,7 +92,7 @@ public class PlayerTest {
     @Test
     public void testPlayerScore() {
         player1.updateScore(2);
-        Assert.assertEquals(2, player1.getScore);
+        Assert.assertEquals(2, player1.getScore());
     }
 
 

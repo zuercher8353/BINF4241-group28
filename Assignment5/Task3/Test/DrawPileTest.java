@@ -1,3 +1,5 @@
+package Test;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +15,7 @@ public class DrawPileTest {
 
     @Before
     public void setup(){
-        drawPile = new DrawPile();
+        DrawPile drawPile = new DrawPile();
     }
 
 

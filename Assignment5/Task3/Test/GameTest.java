@@ -1,3 +1,4 @@
+package Test;
 
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;

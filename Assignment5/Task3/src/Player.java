@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Player {
     public Player(String string) {
-
     }
     public int getScore(){
         return 0;
@@ -29,5 +28,8 @@ public class Player {
     }
 
     public void addHandCard(Cards card2) {
+    }
+
+    public void createHandcards() {
     }
 }
