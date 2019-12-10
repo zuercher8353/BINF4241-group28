@@ -6,6 +6,9 @@ import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Testing the Player Class
+ */
 public class PlayerTest {
     Player player1;
     String name = "test";
@@ -94,6 +97,4 @@ public class PlayerTest {
         player1.updateScore(2);
         Assert.assertEquals(2, player1.getScore());
     }
-
-
 }

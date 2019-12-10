@@ -7,6 +7,9 @@ import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Testing the PlayedPile Class
+ */
 public class PlayedPileTest {
 
         private PlayedPile playedPile = new PlayedPile();

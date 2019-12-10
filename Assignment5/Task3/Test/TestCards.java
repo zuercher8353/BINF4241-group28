@@ -7,6 +7,9 @@ import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Test Class to test the functionality of the Cards interface
+ */
 public class TestCards {
 
     private int nrOfPlayers;

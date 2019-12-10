@@ -6,6 +6,9 @@ import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Test Class the test the HandCards Class
+ */
 public class HandCardsTest {
 
 
