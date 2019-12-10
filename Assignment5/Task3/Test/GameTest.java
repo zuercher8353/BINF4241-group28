@@ -217,7 +217,7 @@ public class GameTest {
 
         Assert.assertEquals(newcards,game.returnHandCards(player1));
         Assert.assertEquals(newcards2,game.returnHandCards(player2));
-        Assert.assertTrue(game.returnHandCards(player1)instanceof ArrayList<Cards>);
+        Assert.assertTrue(game.returnHandCards(player1) != null);
     }
 
     /**
@@ -226,7 +226,7 @@ public class GameTest {
     @Test
     public void testReturnPlayers() {
 
-        Assert.assertTrue(game.returnPlayers()instanceof ArrayList<Player>);
+        Assert.assertTrue(game.returnPlayers() != null);
 
         ArrayList<Player> players = game.returnPlayer();
         String name1 = players.remove(0).returnName();
