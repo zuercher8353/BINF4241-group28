@@ -108,7 +108,8 @@ Fixing the problem in getOpenPositions() solves the problem.
 
 ##Task 3
 
-####1 Identify how the system should behave: 
+
+###1 Identify how the system should behave: 
 
  The program should only accept input that are syntactically correct (syntactically not correct inputs should not be accepted by the program), the input must be of the following form:
  
@@ -195,7 +196,10 @@ If the ending uno or the command Uno is given this things get checked and this a
  (errormessage or new command what he has to do) at all. 
  
   
-  
+###2 Class Diagram of the Uno Game
+
+
+![](UNO_UML.png)
   
   
 
