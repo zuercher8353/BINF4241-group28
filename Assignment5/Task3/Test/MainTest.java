@@ -1,4 +1,7 @@
+package Test;
+
 import org.junit.*;
+import src.Main;
 
 /**
 Testing the functionality of the Main

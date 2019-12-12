@@ -1,13 +1,18 @@
+package Test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Test Class the test the HandCards Class
+ */
 public class HandCardsTest {
 
 
-    HandCards handcards = new HandCards();
+    private HandCards handcards = new HandCards();
 
     @Before
     public void setup(){
@@ -20,10 +25,10 @@ public class HandCardsTest {
      */
     @Test
     public void nrOfCards(){
-        Cards c1 = new Cards(blue);
-        Cards c2 = new Cards(blue);
-        Cards c3 = new Cards(green);
-        Cards c4 = new Cards(red);
+        Cards c1 = new NumberCard("blue", 1);
+        Cards c2 = new NumberCard("blue", 2);
+        Cards c3 = new NumberCard("green",7);
+        Cards c4 = new NumberCard("red", 5);
 
         handcards.addCards(c1);
         handcards.addCards(c2);
@@ -41,8 +46,8 @@ public class HandCardsTest {
     public void isEmpty(){
         Assert.assertTrue(handcards.isEmpty());
 
-        Cards c1 = new Cards(blue);
-        Cards c2 = new Cards(blue);
+        Cards c1 = new NumberCard("blue", 1);
+        Cards c2 = new NumberCard("blue", 2);
 
         handcards.addCards(c1);
         handcards.addCards(c2);
@@ -58,21 +63,20 @@ public class HandCardsTest {
      */
     @Test
     public void removeCardWorks(){
-        Cards c1 = new Cards(blue);
-        Cards c2 = new Cards(blue);
-        Cards c3 = new Cards(green);
-        Cards c4 = new Cards(red);
+        Cards c1 = new NumberCard("blue", 1);
+        Cards c2 = new NumberCard("blue", 2);
+        Cards c3 = new NumberCard("green",7);
+        Cards c4 = new NumberCard("red", 5);
 
         handcards.addCards(c1);
         handcards.addCards(c2);
         handcards.addCards(c3);
         handcards.addCards(c4);
 
-        Cards removed = handcards.removeCard();
-        Cards card = new Cards(blue);
+        Cards removed = handcards.removeCard(c1);
         Assert.assertEquals(3, handcards.getNrOfCards());
 
-        Assert.assertEquals(card, removed);
+        Assert.assertEquals(c1, removed);
     }
 
 
@@ -81,20 +85,20 @@ public class HandCardsTest {
      */
     @Test
     public void isEmptyRemove(){
-        Cards c1 = new Cards(blue);
-        Cards c2 = new Cards(blue);
-        Cards c3 = new Cards(green);
-        Cards c4 = new Cards(red);
+        Cards c1 = new NumberCard("blue", 1);
+        Cards c2 = new NumberCard("blue", 2);
+        Cards c3 = new NumberCard("green",7);
+        Cards c4 = new NumberCard("red", 5);
 
         handcards.addCards(c1);
         handcards.addCards(c2);
         handcards.addCards(c3);
         handcards.addCards(c4);
 
-        Cards r1 = handcards.removeCard();
-        Cards r2 = handcards.removeCard();
-        Cards r3 = handcards.removeCard();
-        Cards r4 = handcards.removeCard();
+        Cards r1 = handcards.removeCard(c1);
+        Cards r2 = handcards.removeCard(c2);
+        Cards r3 = handcards.removeCard(c3);
+        Cards r4 = handcards.removeCard(c4);
 
 
         Assert.assertEquals(0, handcards.getNrOfCards());
@@ -108,16 +112,16 @@ public class HandCardsTest {
     @Test
     public void getCards(){
         ArrayList<Cards> handCards = new ArrayList<>() {{
-            add(new Cards(blue));
-            add(new Cards(blue));
-            add(new Cards(green));
-            add(new Cards(red));
+            add(new NumberCard("blue", 1));
+            add(new NumberCard("blue", 2));
+            add(new NumberCard("green",7));
+            add(new NumberCard("red", 5));
         }};
 
-        Cards c1 = new Cards(blue);
-        Cards c2 = new Cards(blue);
-        Cards c3 = new Cards(green);
-        Cards c4 = new Cards(red);
+        Cards c1 = new NumberCard("blue", 1);
+        Cards c2 = new NumberCard("blue", 2);
+        Cards c3 = new NumberCard("green",7);
+        Cards c4 = new NumberCard("red", 5);
 
         handcards.addCards(c1);
         handcards.addCards(c2);

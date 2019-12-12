@@ -1,3 +1,4 @@
+package Test;
 
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -124,8 +125,8 @@ public class GameTest {
     @Test
     public void testHandoutCards(){
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
-        Player gamePlayer2 = players.remove();
+        Player gamePlayer1 = players.remove(0);
+        Player gamePlayer2 = players.remove(1);
         Assert.assertEquals(7, gamePlayer1.nrOfHandCards());
         Assert.assertEquals(7, gamePlayer2.nrOfHandCards());
     }
@@ -145,7 +146,7 @@ public class GameTest {
     public void testGameRoundOver(){
         Assert.assertFalse(game.gameRoundOver());
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
+        Player gamePlayer1 = players.remove(0);
         ArrayList<Cards> cardsList= gamePlayer1.returnHandCards();
         for (Cards card: cardsList) {
             gamePlayer1.playCard(card);
@@ -174,7 +175,7 @@ public class GameTest {
     public void testGameRunning(){
         Assert.assertTrue(game.gameRunning());
         ArrayList<Player> players= game.returnPlayers();
-        Player gamePlayer1 = players.remove();
+        Player gamePlayer1 = players.remove(0);
         gamePlayer1.updateScore(20);
         Assert.assertFalse(game.gameRunning());
     }
@@ -216,7 +217,7 @@ public class GameTest {
 
         Assert.assertEquals(newcards,game.returnHandCards(player1));
         Assert.assertEquals(newcards2,game.returnHandCards(player2));
-        Assert.assertTrue(game.returnHandCards(player1)instanceof ArrayList<Cards>);
+        Assert.assertTrue(game.returnHandCards(player1) != null);
     }
 
     /**
@@ -225,7 +226,7 @@ public class GameTest {
     @Test
     public void testReturnPlayers() {
 
-        Assert.assertTrue(game.returnPlayers()instanceof ArrayList<Player>);
+        Assert.assertTrue(game.returnPlayers() != null);
 
         ArrayList<Player> players = game.returnPlayer();
         String name1 = players.remove(0).returnName();

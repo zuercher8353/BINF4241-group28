@@ -1,12 +1,18 @@
+package Test;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import src.*;
 
 import java.util.ArrayList;
 
+/**
+ * Testing the PlayedPile Class
+ */
 public class PlayedPileTest {
 
-        PlayedPile playedPile = new PlayedPile();
+        private PlayedPile playedPile = new PlayedPile();
 
         @Before
         public void setup(){
@@ -19,10 +25,10 @@ public class PlayedPileTest {
          */
         @Test
         public void nrOfCards(){
-            Cards c1 = new Cards(blue);
-            Cards c2 = new Cards(blue);
-            Cards c3 = new Cards(green);
-            Cards c4 = new Cards(red);
+            Cards c1 = new NumberCard("blue", 1);
+            Cards c2 = new NumberCard("blue", 2);
+            Cards c3 = new NumberCard("green",7);
+            Cards c4 = new NumberCard("red", 5);
 
             playedPile.addCards(c1);
             playedPile.addCards(c2);
@@ -40,8 +46,9 @@ public class PlayedPileTest {
         public void isEmpty(){
             Assert.assertTrue(playedPile.isEmpty());
             Assert.assertEquals(0, playedPile.getNrOfCards());
-            Cards c1 = new Cards(blue);
-            Cards c2 = new Cards(blue);
+            Cards c1 = new NumberCard("blue", 1);
+            Cards c2 = new NumberCard("blue", 2);
+
 
             playedPile.addCards(c1);
             playedPile.addCards(c2);
@@ -57,10 +64,10 @@ public class PlayedPileTest {
          */
         @Test
         public void removeCardsWorks(){
-            Cards c1 = new Cards(blue);
-            Cards c2 = new Cards(blue);
-            Cards c3 = new Cards(green);
-            Cards c4 = new Cards(red);
+            Cards c1 = new NumberCard("blue", 1);
+            Cards c2 = new NumberCard("blue", 2);
+            Cards c3 = new NumberCard("green",7);
+            Cards c4 = new NumberCard("red", 5);
 
             playedPile.addCards(c1);
             playedPile.addCards(c2);
@@ -71,7 +78,7 @@ public class PlayedPileTest {
                 add(c4);
             }};
 
-            Cards removed = playedPile.removeCards();
+            ArrayList<Cards> removed = playedPile.removeCard();
 
             Assert.assertEquals(1, playedPile.getNrOfCards());
 
@@ -84,19 +91,18 @@ public class PlayedPileTest {
          */
         @Test
         public void getCards(){
-            Cards c1 = new Cards(blue);
-            Cards c2 = new Cards(blue);
-            Cards c3 = new Cards(green);
-            Cards c4 = new Cards(red);
+            Cards c1 = new NumberCard("blue", 1);
+            Cards c2 = new NumberCard("blue", 2);
+            Cards c3 = new NumberCard("green",7);
+            Cards c4 = new NumberCard("red", 5);
 
             playedPile.addCards(c1);
             playedPile.addCards(c2);
             playedPile.addCards(c3);
             playedPile.addCards(c4);
 
-            Cards expected = c4;
 
-            Assert.assertEquals(expected, playedPile.lastPlayedCard());
+            Assert.assertEquals(c4, playedPile.lastPlayedCard());
         }
 
 }
