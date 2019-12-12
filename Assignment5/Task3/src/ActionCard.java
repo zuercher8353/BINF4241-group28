@@ -5,5 +5,6 @@ public class ActionCard extends Cards {
         super(string);
     }
     public void action() {
+
     }
 }
