@@ -55,7 +55,7 @@ fixed the code.
 ###TicTacToeGameStateTest:
 7 Tests failed:
 
-###startingPlayerIsX  
+####startingPlayerIsX  
 
 This test checks if the starting player has the mark "X". 
 
@@ -63,34 +63,34 @@ When first calling the method getCurrentPlayer() it should return "X". Instead o
 current player it also always set it to "O".
 Deleting lines 82 and 83 fixed the problem.
 
-###switchPlayer
+####switchPlayer
 
 This test checks if switching the player works. It failed because getCurrentPlayer() always returned
 "O". 
 Deleting lines 82 and 83 in getCurrentPlayer() fixed the problem.
 
-###hasWinCol
+####hasWinCol
 
 This test checks if the marks in a column are the same so that the player can win. 
 
 It failed because the method hasWin() returned "false" instead of "true" when a column was complete.
 Changing "false" to "true" in line 103 fixed the code.
 
-###hasWinRow
+####hasWinRow
 
 This test checks if the marks in a row are the same so that the player can win. 
 
 It failed because the method hasWin() returned "false" instead of "true" when a row was complete.
 Changing "false" to "true" in line 103 fixed the code.
 
-###isOverWin
+####isOverWin
 
 This test calls the isOver() method which calls the hasWin() method to check if either one of the 
 players has won. 
 
 Fixing the problem in hasWinCol or hasWinRow fixes also this one.
 
-###hasWinDiagonal
+####hasWinDiagonal
 
 This test checks if a player can win by setting marks in the diagonal. 
 
@@ -99,7 +99,7 @@ from the center of the board it should check if the fields in the edges of the b
 mark. But the method checked the field 1,2 (which is not in a diagonal) instead of the field 2,2.
 Changing board.getMark(1,2) in line 158 to board.getMark(2,2) fixes the problem.
 
-###getAvailableStatesLastOne
+####getAvailableStatesLastOne
 
 
 This test checks if there are no available fields after marking all of them. 
