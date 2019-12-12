@@ -161,6 +161,7 @@ Fixing the problem in getOpenPositions() solves the problem.
   and the Output "Your not allowed to play this card" gets displayed, after that the user
   must give another input. 
   
+  
 If the ending uno or the command Uno is given this things get checked and this actions performed:
 
   - It gets checked if the player has only one card by calling the Game function checkUNO() gets called to check
